@@ -13,6 +13,7 @@
 |---|---|
 | 收到審查 ZIP 的老師 | [`REVIEWER_START_HERE.md`](REVIEWER_START_HERE.md) |
 | 要從 PPTX 建立審查包的人 | [`docs/getting-started.md`](docs/getting-started.md) |
+| 使用 Mac 的審查者或協作者 | [`docs/macos-guide.md`](docs/macos-guide.md) |
 | 要修 Skill、規準或工具的人 | [`docs/collaboration-workflow.md`](docs/collaboration-workflow.md) |
 | Repo 維護與版本管理者 | [`docs/maintenance.md`](docs/maintenance.md) |
 
@@ -54,6 +55,10 @@ Skills 位於 [`.agents/skills`](.agents/skills)，共用規則放在 [`data`](d
 ## 五分鐘開始
 
 需求：Python 3.11 以上。核心索引、抽取、驗證只使用 Python 標準函式庫；從官方 PDF 重建課綱目錄時才需要 `pdfplumber`。
+
+核心 Python 工具、GitHub 協作及離線審查工作台可在 Windows 與 macOS 使用。
+PowerPoint 實際播放匯出與 speaker notes 自動寫回目前依賴 Windows；Mac 使用者
+請依 [`macOS 使用指南`](docs/macos-guide.md) 與指定的 Windows 匯出者分工。
 
 1. 複製本機設定：
 

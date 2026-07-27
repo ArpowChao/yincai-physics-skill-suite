@@ -14,6 +14,25 @@
 
 同一個人可以兼任多個角色，但「AI 產出」與「人工上架判定」仍要分開記錄。
 
+## 平台分工
+
+GitHub Desktop、Git、Python 工具、Skill 維護、離線工作台與審查 ZIP 可在
+Windows 與 macOS 使用。現有的 PowerPoint 實際播放匯出與 speaker notes 自動
+寫回腳本依賴 Windows PowerShell 與 PowerPoint COM，因此團隊應指定至少一位
+Windows 匯出者；Mac 成員不需要因此退出審查或維護流程。
+
+| 工作 | Mac 成員 | Windows 匯出者 |
+|---|---|---|
+| 接受邀請、clone、分支、commit、PR | 可完成 | 可完成 |
+| 修改 Skill、資料、文件與測試 | 可完成 | 可完成 |
+| 建立 PPTX manifest、工作台與分享 ZIP | 可完成 | 可完成 |
+| 匯出 PowerPoint 播放 MP4／逐頁 PNG | 交付來源檔 | 執行與回傳 |
+| 產生講稿 JSON | 可完成 | 可完成 |
+| 自動寫回 notes 並驗證 PowerPoint | 交付 JSON | 執行與回傳 |
+
+Mac 的無終端機流程、可複製指令與交付方式見
+[`macOS 使用指南`](macos-guide.md)。
+
 ## 2. Private 與 Public 邊界
 
 目前 repository 應維持 **private**，原因是程式碼授權、原創教學內容授權與
@@ -32,7 +51,10 @@
 
 Repo 管理者在 GitHub repository 的 `Settings → Collaborators` 邀請成員。
 
-成員接受邀請後：
+沒有用過 GitHub 的 Mac 成員，建議先用 GitHub Desktop 接受邀請、clone、
+建立分支與 PR；詳見 [`macOS 使用指南`](macos-guide.md)。
+
+Windows PowerShell 成員接受邀請後：
 
 ```powershell
 git clone https://github.com/ArpowChao/yincai-physics-skill-suite.git
@@ -43,6 +65,19 @@ python -m unittest discover -s tests -v
 ```
 
 每個人自行設定 `config/project.toml`；不要把自己的路徑提交給別人。
+
+Mac Terminal 對應指令：
+
+```bash
+git clone https://github.com/ArpowChao/yincai-physics-skill-suite.git
+cd yincai-physics-skill-suite
+cp config/project.example.toml config/project.toml
+python3 scripts/validate_suite.py
+python3 -m unittest discover -s tests -v
+```
+
+AI Agent 可以在兩種平台讀寫本機 clone；push 與 PR 仍以使用者已接受邀請且本機
+GitHub 帳號有權限為前提。Agent 不會代替使用者接受 private repository 邀請。
 
 ## 4. 一個問題如何進入下一版
 

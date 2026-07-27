@@ -15,6 +15,7 @@
 5. 在「老師覆核」選擇通過、修改或暫緩，並寫一句理由。
 6. 按「匯出審查紀錄」，把 JSON 交回維護者。
 
+Windows 與 Mac 都可以使用這個方式；不需要安裝 Git、Python 或 PowerPoint。
 瀏覽器中的覆核內容只存在你的電腦，不會自動上傳。
 
 審查包名稱應採 `單元代碼_單元名稱_YYYYMMDD-HHmmss`。若同單元有多輪結果，
@@ -67,7 +68,8 @@ python scripts/build_review_share_bundle.py `
 ## 想修改專案
 
 請接著閱讀 [貢獻指南](CONTRIBUTING.md) 與
-[維護與迭代手冊](docs/maintenance.md)。提交前執行：
+[維護與迭代手冊](docs/maintenance.md)。Mac 使用者可先看
+[macOS 使用指南](docs/macos-guide.md)。提交前執行：
 
 ```powershell
 python scripts/audit_repository.py
