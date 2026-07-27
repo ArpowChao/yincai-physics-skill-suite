@@ -1,0 +1,12 @@
+{
+  "expectations": [
+    {"text": "正確對應 PEb-Vc-4 且不要求公式推導計算", "passed": true, "evidence": "命題藍圖列官方父碼及定性邊界。"},
+    {"text": "表格或情境資訊是作答必要線索", "passed": true, "evidence": "推理需依序使用甲、乙、丙三階段紀錄。"},
+    {"text": "四個選項只有一個正解", "passed": true, "evidence": "C 符合第一定律；A、B、D 分別含明確物理錯誤。"},
+    {"text": "每個誘答對應可說明的迷思", "passed": true, "evidence": "A 對應力維持運動、B 對應慣性是力、D 對應質量改變。"},
+    {"text": "附完整推理與診斷回饋", "passed": true, "evidence": "含四步推理與四選項回饋表。"},
+    {"text": "八項準則逐項有分數與題內證據", "passed": true, "evidence": "自評表涵蓋 1-1 至 3-3，總分 28/32。"},
+    {"text": "完成捷徑、刪除、表徵與課綱壓力測試", "passed": true, "evidence": "四項壓力測試均有結論及下一步。"}
+  ],
+  "summary": {"passed": 7, "failed": 0, "total": 7, "pass_rate": 1.0}
+}

@@ -26,7 +26,7 @@
     {"preferred": "電阻", "aliases": [], "symbol": "R", "unit": "Ω"},
     {"preferred": "磁通量", "aliases": [], "symbol": "Φ_B", "unit": "Wb"},
     {"preferred": "感應電動勢", "aliases": [], "symbol": "ε", "unit": "V"},
-    {"preferred": "冷次定律", "aliases": ["楞次定律", "Lenz定律"], "symbol": null, "unit": null},
+    {"preferred": "楞次定律", "aliases": ["Lenz 定律"], "symbol": null, "unit": null},
     {"preferred": "光子", "aliases": ["光量子"], "symbol": null, "unit": null}
   ]
 }

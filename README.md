@@ -131,4 +131,6 @@ tests/                   標準函式庫 unittest 測試
 
 請先閱讀 [`CONTRIBUTING.md`](CONTRIBUTING.md)。修改 Skill 時需保留可攜性、證據追溯、停止條件及正反向品質紀錄；新增教材內容時需確認授權與去識別。
 
-目前套件版本為 [`0.1.0`](VERSION)，歷次變更見 [`CHANGELOG.md`](CHANGELOG.md)。
+首波五個 10 分鐘分享主題與真實測試輸出見 [`showcase/README.md`](showcase/README.md)，互動式結果檢視頁為 [`showcase/review.html`](showcase/review.html)。
+
+目前套件版本見 [`VERSION`](VERSION)，歷次變更見 [`CHANGELOG.md`](CHANGELOG.md)。

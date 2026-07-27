@@ -1,0 +1,11 @@
+{
+  "expectations": [
+    {"text": "包含預習、課中、課後三層", "passed": true, "evidence": "學生版分成三個具不同功能的層次。"},
+    {"text": "課中有變因、單位與可填寫證據表", "passed": true, "evidence": "列出控制條件、表面材質、滑行距離 cm 與三次紀錄表。"},
+    {"text": "課後不是同型代算而是新情境遷移", "passed": true, "evidence": "課後要求評估兩張安全帶宣導文字並解釋。"},
+    {"text": "學生版不洩漏答案", "passed": true, "evidence": "答案與 CER 僅出現在分隔後的教師版。"},
+    {"text": "附教師答案與常見迷思", "passed": true, "evidence": "教師版包含評分重點、CER 與三項迷思追問。"},
+    {"text": "不要求超出 PEb-Vc-4 的公式計算", "passed": true, "evidence": "所有任務均為定性預測、證據分析與解釋。"}
+  ],
+  "summary": {"passed": 6, "failed": 0, "total": 6, "pass_rate": 1.0}
+}

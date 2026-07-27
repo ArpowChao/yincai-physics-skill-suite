@@ -1,0 +1,10 @@
+{
+  "expectations": [
+    {"text": "至少提供三頁具體 notes", "passed": true, "evidence": "結果包含第 6、8、10 頁三組講稿。"},
+    {"text": "使用合外力為零的精確術語", "passed": true, "evidence": "第 6、8 頁及一致性檢查均使用合外力為零。"},
+    {"text": "包含觀察問題與頁間轉場", "passed": true, "evidence": "第 6、8 頁均有畫面焦點、觀察問題及轉場。"},
+    {"text": "答錯回饋對應迷思而非只公布答案", "passed": true, "evidence": "第 10 頁回饋區分追蹤錯物體、缺少狀態與只背名詞。"},
+    {"text": "動畫行為不明時明確 HOLD", "passed": true, "evidence": "第 10 頁明載靜態畫面不足並判定 HOLD。"}
+  ],
+  "summary": {"passed": 5, "failed": 0, "total": 5, "pass_rate": 1.0}
+}

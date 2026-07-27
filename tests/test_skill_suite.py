@@ -1,4 +1,5 @@
 import re
+import json
 import unittest
 from pathlib import Path
 
@@ -73,6 +74,16 @@ class SkillSuiteTests(unittest.TestCase):
                 self.assertIn("display_name:", text)
                 self.assertIn("short_description:", text)
                 self.assertIn(f"${name}", text)
+
+    def test_terminology_uses_standard_lenz_spelling(self):
+        terms = json.loads(
+            (ROOT / "data" / "terminology" / "physics-terms.json").read_text(
+                encoding="utf-8"
+            )
+        )["terms"]
+        preferred = {term["preferred"] for term in terms}
+        self.assertIn("楞次定律", preferred)
+        self.assertNotIn("冷次定律", preferred)
 
 
 if __name__ == "__main__":

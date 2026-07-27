@@ -1,6 +1,6 @@
 # Local configuration and generated outputs
 config/project.toml
-outputs/
+/outputs/
 quality/records/
 __pycache__/
 *.py[cod]

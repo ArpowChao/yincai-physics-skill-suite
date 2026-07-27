@@ -1,0 +1,10 @@
+{
+  "expectations": [
+    {"text": "正確解析官方父碼 PEb-Vc-4", "passed": true, "evidence": "範圍卡列出專案節點 PEb-Vc-4-1 與官方父碼 PEb-Vc-4。"},
+    {"text": "明列不涉及公式推導與計算的課綱邊界", "passed": true, "evidence": "範圍卡明載以定律意義為主，不涉及公式推導與計算。"},
+    {"text": "概念鏈、探究鏈與應用鏈有不同功能", "passed": true, "evidence": "三鏈矩陣分別處理概念建模、變因證據與安全情境遷移。"},
+    {"text": "完整對應 S1–S9", "passed": true, "evidence": "九步驟對照表逐項列出 S1 至 S9。"},
+    {"text": "列出待確認風險與下一步", "passed": true, "evidence": "包含器材、摩擦模型、節數風險及投影片、學習單、評量承接。"}
+  ],
+  "summary": {"passed": 5, "failed": 0, "total": 5, "pass_rate": 1.0}
+}

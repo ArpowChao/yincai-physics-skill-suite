@@ -1,0 +1,11 @@
+{
+  "expectations": [
+    {"text": "S1–S9 各有狀態與頁碼證據", "passed": true, "evidence": "矩陣逐列涵蓋 S1–S9，並引用 p.1 至 p.10。"},
+    {"text": "指出不受力應修正為合外力為零", "passed": true, "evidence": "S3、S4 與 p.6/p.8 修訂均明確提出。"},
+    {"text": "同時記錄可保留的設計", "passed": true, "evidence": "列出歷史衝突、學生語言、生活連結與診斷提問四項強點。"},
+    {"text": "提出具頁碼的最小修訂清單", "passed": true, "evidence": "修訂表包含原頁碼、動作、內容與優先級。"},
+    {"text": "授權未確認時維持 HOLD", "passed": true, "evidence": "外部素材授權列 blocker，總判定為 HOLD。"},
+    {"text": "沒有把九步驟誤當九張投影片", "passed": true, "evidence": "明載功能覆蓋不等於一功能一張。"}
+  ],
+  "summary": {"passed": 6, "failed": 0, "total": 6, "pass_rate": 1.0}
+}

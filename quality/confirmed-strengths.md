@@ -12,3 +12,4 @@
 | CS-004 | 原始教材索引採唯讀，且輸出使用相對路徑 | `test_asset_index.py` |
 | CS-005 | 每個 Skill 都明訂輸入、工作流、輸出、停止條件與常見錯誤 | `scripts/validate_suite.py` |
 | CS-006 | 真實 `PEb-Vc-4-1` 單元已具歷史概念衝突、生活應用與迷思誘答，可作升級時的保留基底 | `quality/examples/peb-vc-4-1-dry-run.json` |
+| CS-007 | 五個首波分享 Skills 已以同一真實單元完成 29 項輸出契約檢核，能串成架構—審查—講稿—學習單—題目的連續示範 | `showcase/review.html`、`scripts/validate_showcase.py` |
