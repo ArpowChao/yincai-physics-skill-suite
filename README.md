@@ -4,6 +4,9 @@
 
 本專案的核心原則是：**先確認課綱與證據，再生成；先記錄優點與缺失，再修改；無法確認時標示 `HOLD`，不自行猜測。**
 
+外部老師或審查者請直接從 [`REVIEWER_START_HERE.md`](REVIEWER_START_HERE.md)
+開始；不需要先閱讀全部程式或取得原始教材庫。
+
 ## 產線總覽
 
 ```mermaid
@@ -51,6 +54,7 @@ Skills 位於 [`.agents/skills`](.agents/skills)，共用規則放在 [`data`](d
 3. 驗證 Skill Suite：
 
    ```powershell
+   python scripts/audit_repository.py
    python scripts/validate_suite.py
    python -m unittest discover -s tests -v
    ```
@@ -116,6 +120,28 @@ python scripts/build_review_workbench.py "outputs\review-packages\lesson"
 3. **總裝**：用 `physics-unit-package-qc` 比對三種載體的概念、術語、難度與檔名。
 4. **人工決策**：老師確認 `PASS / REVISE / HOLD`，把確認結果寫回品質紀錄。AI 不取代教師的課程與上架責任。
 
+## 給別人審查時怎麼交付
+
+建議分成兩份，不要把整個 10GB 教材庫交出去：
+
+1. **可分享核心 repo**：Skills、共用規則、工具、測試、去識別案例與維護文件。
+2. **單元審查包**：只包含該單元經授權的逐頁圖、必要影片、`review-workbench.html`、
+   `review-result.json` 與報告。
+
+審查者在工作台逐頁覆核後匯出 JSON；維護者把可重現問題建立成 issue，先增加
+失敗測試，再修改共用規則或 Skill。完整流程見
+[`docs/maintenance.md`](docs/maintenance.md)。
+
+確認投影片與影片可提供給指定審查者後，可建立排除原始 PPTX、教師姓名檔名、
+轉錄資料與多餘媒體的精簡分享包：
+
+```powershell
+python scripts/build_review_share_bundle.py `
+  "outputs\review-packages\lesson" `
+  "outputs\share-bundles\lesson" `
+  --confirm-authorized
+```
+
 ## 課綱與證據分級
 
 - **A 級**：教育部官方課綱、正式法規或專案核定規格。
@@ -151,13 +177,18 @@ python scripts/summarize_quality.py quality/records/*.json
 ## 專案結構
 
 ```text
+.github/                審查問題與 pull request 範本
 .agents/skills/          10 個可攜式 Skills
+archive/                 已被取代、暫不刪除的本機封存（內容不進版控）
 config/                  本機設定範例
 data/                    課綱、規準、術語、迷思與 schema
-docs/plans/              設計與實作計畫
+docs/                    設計、維護與迭代文件
+local-data/              仍需使用但不可直接分享的教材與候選資料
+outputs/                 每次生成的審查包與教材輸出（不進版控）
 quality/                 基準、案例、已知問題與迭代紀錄
 references/              共用證據與執行規則
 scripts/                 索引、抽取、查詢、紀錄與驗證工具
+showcase/                可公開的去識別示範
 tests/                   標準函式庫 unittest 測試
 ```
 

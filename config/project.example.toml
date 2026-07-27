@@ -1,9 +1,9 @@
 # Copy to config/project.toml. The local file is ignored by Git.
 
 [paths]
-materials = "../資料"
+materials = "../local-data/materials/資料"
 physics_wiki = "../local-data/physics-kb"
-curriculum_pdf = "../00-十二年國教自然科學領域課程綱要.pdf"
+curriculum_pdf = "../local-data/sources/curriculum/00-十二年國教自然科學領域課程綱要.pdf"
 outputs = "../outputs"
 
 [privacy]

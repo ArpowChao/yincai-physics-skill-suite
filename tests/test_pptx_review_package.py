@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SCRIPTS = ROOT / "scripts"
 MANIFEST_PATH = SCRIPTS / "build_pptx_review_manifest.py"
 WORKBENCH_PATH = SCRIPTS / "build_review_workbench.py"
+SHARE_BUNDLE_PATH = SCRIPTS / "build_review_share_bundle.py"
 
 
 def load_manifest_module():
@@ -40,6 +41,23 @@ def load_workbench_module():
     assert spec.loader
     spec.loader.exec_module(module)
     return module
+
+
+def load_share_bundle_module():
+    if not SHARE_BUNDLE_PATH.exists():
+        raise AssertionError("scripts/build_review_share_bundle.py is missing")
+    sys.path.insert(0, str(SCRIPTS))
+    try:
+        spec = importlib.util.spec_from_file_location(
+            "build_review_share_bundle_test",
+            SHARE_BUNDLE_PATH,
+        )
+        module = importlib.util.module_from_spec(spec)
+        assert spec.loader
+        spec.loader.exec_module(module)
+        return module
+    finally:
+        sys.path.pop(0)
 
 
 class PptxReviewPackageTests(unittest.TestCase):
@@ -162,6 +180,66 @@ class PptxReviewPackageTests(unittest.TestCase):
         html = module.build_html(data)
         embedded = html.split("const DATA = ", 1)[1].split(";\n", 1)[0]
         self.assertNotIn("</script", embedded.lower())
+
+    def test_share_bundle_excludes_original_and_sanitizes_filename(self):
+        module = load_share_bundle_module()
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            package = root / "package"
+            output = root / "share"
+            (package / "slides").mkdir(parents=True)
+            (package / "media").mkdir()
+            (package / "slides" / "slide-01.png").write_bytes(b"slide")
+            (package / "media" / "media1.mp4").write_bytes(b"video")
+            (package / "original.pptx").write_bytes(b"private-original")
+            (package / "transcripts").mkdir()
+            (package / "transcripts" / "media1.json").write_text(
+                '{"text": "unreliable"}',
+                encoding="utf-8",
+            )
+            (package / "review-report.md").write_text("# Review", encoding="utf-8")
+            (package / "manifest.json").write_text(
+                """{
+                  "source_filename": "PBa-V.1-2-2_動能_王老師.pptx",
+                  "source_sha256": "abc123",
+                  "slides": [
+                    {"slide": 1, "text": "動能", "notes": "", "relationships": []}
+                  ]
+                }""",
+                encoding="utf-8",
+            )
+            (package / "review-result.json").write_text(
+                """{
+                  "unit_code": "PBa-V.1-2-2",
+                  "unit_title": "動能",
+                  "decision": "HOLD",
+                  "nine_step_summary": {},
+                  "media_alignment": [{
+                    "slide": 1,
+                    "media": "media1.mp4",
+                    "role": "context",
+                    "rating": "partial",
+                    "reason": "只作為情境"
+                  }]
+                }""",
+                encoding="utf-8",
+            )
+
+            manifest = module.build_share_bundle(
+                package,
+                output,
+                include_playback=False,
+            )
+
+            self.assertTrue((output / "review-workbench.html").is_file())
+            self.assertTrue((output / "slides" / "slide-01.png").is_file())
+            self.assertTrue((output / "media" / "media1.mp4").is_file())
+            self.assertFalse((output / "original.pptx").exists())
+            self.assertFalse((output / "transcripts").exists())
+            self.assertFalse((output / "playback.mp4").exists())
+            workbench = (output / "review-workbench.html").read_text(encoding="utf-8")
+            self.assertNotIn("王老師", workbench)
+            self.assertEqual("PBa-V.1-2-2", manifest["unit_code"])
 
 
 if __name__ == "__main__":

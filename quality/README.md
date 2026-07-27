@@ -23,3 +23,7 @@
 - 要提交的案例先去識別，放在 `quality/examples/`。
 - `known-issues.md` 記錄套件層級限制；`confirmed-strengths.md` 記錄多次被驗證有效的設計。
 - 不得把教師或學生姓名、作答紀錄、未授權全文放進公開案例。
+
+外部審查者可從 [`REVIEWER_START_HERE.md`](../REVIEWER_START_HERE.md) 開始，
+用審查工作台匯出逐頁 JSON，或使用 GitHub 的「教材／Skill 審查問題」表單。
+維護者確認去識別後，再把可重現案例轉成 `quality/examples/` 與自動測試。

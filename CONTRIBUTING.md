@@ -1,5 +1,7 @@
 # 貢獻指南
 
+第一次參與請先閱讀 [`REVIEWER_START_HERE.md`](REVIEWER_START_HERE.md)。
+
 ## 修改原則
 
 1. 先描述教師負擔、失敗案例或想保留的優點，不以「讓提示詞更長」當作目標。
@@ -16,12 +18,22 @@
 4. 執行：
 
    ```powershell
+   python scripts/audit_repository.py
    python scripts/validate_suite.py
    python -m unittest discover -s tests -v
    ```
 
 5. 以一組真實但不提交原始檔的教材乾跑，記錄「保留優點」與「待修缺失」。
 6. Pull request 說明影響哪些 Skills、資料版本、相容性與人工覆核結果。
+
+## 檔案放置
+
+- repo 根目錄不可新增一次性報告、教師教材或研習草稿。
+- 仍要使用但不可公開的內容放 `local-data/`。
+- 已被取代但暫不刪除的內容放 `archive/`。
+- 未審定的知識或範例先放 `local-data/reference-candidates/`。
+- 去識別、可重現且已確認的案例才放 `quality/examples/`。
+- 正式 Skill 不得依賴 `local-data/`、`archive/` 或 `outputs/` 才能執行。
 
 ## Skill 版本
 

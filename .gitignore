@@ -6,17 +6,11 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 
-# Raw or derived teaching corpora (local only)
-/資料/
-/春煌博論評分/
-/HDMI-AI/
-/references/physics_concepts_kb/
-/references/teacher_courseware_index.md
-/references/master_courseware_database_catalog.md
-/references/unit_knowledge_map.md
-/.agents/skills/wsq-worksheet-generator/
-/.agents/skills/*/references/
-/.agents/skills/*/examples/
+# Local-only data and recoverable archives
+/local-data/*
+!/local-data/README.md
+/archive/*
+!/archive/README.md
 
 # Large binary source artifacts
 *.ppt
@@ -29,6 +23,7 @@ __pycache__/
 *.omv
 *.7z
 *.zip
+*.teacher-review.json
 
 # Editor and OS files
 .DS_Store
