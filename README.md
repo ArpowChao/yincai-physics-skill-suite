@@ -98,6 +98,17 @@ powershell -ExecutionPolicy Bypass -File scripts/export_pptx_review_assets.ps1 `
 `playback.mp4` 用來核對影片與動畫是否真的出現；若原簡報沒有錄製正式計時與旁白，
 匯出長度只是技術預覽，不可當作教學時間。原始教材與審查輸出預設不進版控。
 
+當審查包已有 `manifest.json` 與 `review-result.json`，可產生不需伺服器、
+不需網路連線的逐頁審查工作台：
+
+```powershell
+python scripts/build_review_workbench.py "outputs\review-packages\lesson"
+```
+
+開啟生成的 `review-workbench.html` 後，可以篩選影片問題與缺講稿頁、逐頁播放
+內嵌影片、檢查九步驟、記錄老師的 `PASS / REVISE / HOLD`，最後匯出 JSON
+交給下一輪 Skill。人工意見只存在瀏覽器的本機儲存空間，教材不會因此上傳。
+
 ## 老師的建議工作流
 
 1. **架構先行**：用 `physics-one-page-architect` 定義三鏈，再用 `physics-framework-checker` 檢查舊簡報。
