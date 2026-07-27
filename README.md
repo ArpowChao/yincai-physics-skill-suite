@@ -75,6 +75,29 @@ Skills 位於 [`.agents/skills`](.agents/skills)，共用規則放在 [`data`](d
      --output quality/records/PEb-Vc-4-1.json
    ```
 
+## PPTX 影音審查包
+
+先把 PPTX 的逐頁文字、speaker notes、圖片、內嵌影片與頁面對應抽成可追溯
+manifest：
+
+```powershell
+python scripts/build_pptx_review_manifest.py `
+  "C:\path\to\lesson.pptx" `
+  "outputs\review-packages\lesson"
+```
+
+若 Windows 電腦已安裝 Microsoft PowerPoint，可再用實際播放引擎匯出逐頁 PNG
+與包含內嵌影片／動畫的 MP4：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/export_pptx_review_assets.ps1 `
+  -InputPptx "C:\path\to\lesson.pptx" `
+  -OutputDir "outputs\review-packages\lesson"
+```
+
+`playback.mp4` 用來核對影片與動畫是否真的出現；若原簡報沒有錄製正式計時與旁白，
+匯出長度只是技術預覽，不可當作教學時間。原始教材與審查輸出預設不進版控。
+
 ## 老師的建議工作流
 
 1. **架構先行**：用 `physics-one-page-architect` 定義三鏈，再用 `physics-framework-checker` 檢查舊簡報。
