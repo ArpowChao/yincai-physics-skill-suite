@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/ppt-review-result.schema.json",
+  "title": "PPT content review result",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "unit_code",
+    "unit_title",
+    "decision",
+    "nine_step_summary",
+    "slide_findings"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "unit_code": {
+      "type": "string"
+    },
+    "unit_title": {
+      "type": "string"
+    },
+    "decision": {
+      "enum": ["PASS", "REVISE", "HOLD"]
+    },
+    "decision_reason": {
+      "type": "string"
+    },
+    "lesson_path": {
+      "type": "string"
+    },
+    "suggested_path": {
+      "type": "string"
+    },
+    "inferred_big_idea": {
+      "type": "object",
+      "required": ["statement", "evidence_slides", "confidence"],
+      "properties": {
+        "statement": {"type": "string"},
+        "evidence_slides": {
+          "type": "array",
+          "items": {"type": "integer", "minimum": 1}
+        },
+        "confidence": {
+          "enum": ["high", "medium", "low"]
+        },
+        "alignment_judgment": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "nine_step_summary": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^S[1-9]$"
+        }
+      }
+    },
+    "content_scores": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["criterion", "score", "evidence", "judgment"],
+        "properties": {
+          "criterion": {"type": "string"},
+          "score": {"type": ["integer", "null"], "minimum": 0, "maximum": 3},
+          "evidence": {"type": "string"},
+          "judgment": {"type": "string"},
+          "minimal_fix": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "critical_gates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["gate", "triggered", "evidence"],
+        "properties": {
+          "gate": {"type": "string"},
+          "triggered": {"type": "boolean"},
+          "evidence": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "slide_ledger": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slide", "teaching_role"],
+        "properties": {
+          "slide": {"type": "integer", "minimum": 1},
+          "teaching_role": {"type": "string"},
+          "primary_question": {"type": "string"},
+          "learner_action": {"type": "string"},
+          "expected_output": {"type": "string"},
+          "feedback": {"type": "string"},
+          "prerequisite": {"type": "string"},
+          "next_link": {"type": "string"},
+          "architecture_elements": {
+            "type": "array",
+            "items": {"type": "string", "pattern": "^S[1-9]$"}
+          },
+          "continuity_tags": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "media_alignment": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slide", "media", "role", "rating", "reason"],
+        "properties": {
+          "slide": {"type": "integer", "minimum": 1},
+          "media": {"type": "string"},
+          "role": {"type": "string"},
+          "rating": {"type": "string"},
+          "reason": {"type": "string"},
+          "observation_focus": {"type": "string"},
+          "pause_points": {"type": "string"},
+          "comparison": {"type": "string"},
+          "learner_output": {"type": "string"},
+          "used_later": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "slide_findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slide", "severity", "title", "detail", "action"],
+        "properties": {
+          "slide": {"type": "integer", "minimum": 1},
+          "severity": {
+            "enum": ["blocker", "major", "minor", "suggestion"]
+          },
+          "continuity_tag": {"type": "string"},
+          "title": {"type": "string"},
+          "detail": {"type": "string"},
+          "action": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "priority_actions": {
+      "type": "array",
+      "items": {"type": "string"},
+      "maxItems": 5
+    }
+  },
+  "additionalProperties": true
+}

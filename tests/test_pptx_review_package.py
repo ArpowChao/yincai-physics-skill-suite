@@ -3,6 +3,7 @@ import sys
 import tempfile
 import unittest
 import zipfile
+from datetime import datetime
 from pathlib import Path
 
 
@@ -61,6 +62,18 @@ def load_share_bundle_module():
 
 
 class PptxReviewPackageTests(unittest.TestCase):
+    def test_timestamped_output_dir_is_sortable_and_file_safe(self):
+        module = load_manifest_module()
+        output = module.timestamped_output_dir(
+            Path("outputs/review-packages/PBa-V.1-2-2_動能"),
+            datetime(2026, 7, 27, 23, 8, 15),
+        )
+        self.assertEqual(
+            "PBa-V.1-2-2_動能_20260727-230815",
+            output.name,
+        )
+        self.assertNotIn(":", output.name)
+
     def test_manifest_maps_embedded_media_to_slide(self):
         module = load_manifest_module()
         with tempfile.TemporaryDirectory() as tmp:
@@ -141,16 +154,53 @@ class PptxReviewPackageTests(unittest.TestCase):
                     "partial": ["S1"],
                     "insufficient": ["S2"]
                   },
+                  "lesson_path": "情境 S1 → 公式 S1",
+                  "suggested_path": "情境 S1 → 補證據 → 形成概念",
+                  "inferred_big_idea": {
+                    "statement": "動能由質量與速率共同決定",
+                    "evidence_slides": [1],
+                    "confidence": "high",
+                    "alignment_judgment": "活動與單元名稱一致"
+                  },
+                  "content_scores": [{
+                    "criterion": "學生任務與輸出",
+                    "score": 1,
+                    "evidence": "S1 只有觀看",
+                    "judgment": "缺少可判定輸出",
+                    "minimal_fix": "加入比較表"
+                  }],
+                  "critical_gates": [{
+                    "gate": "關鍵任務沒有輸出或回饋",
+                    "triggered": true,
+                    "evidence": "S1"
+                  }],
+                  "slide_ledger": [{
+                    "slide": 1,
+                    "teaching_role": "engage",
+                    "primary_question": "哪一個物體動能較大？",
+                    "learner_action": "比較質量與速率",
+                    "expected_output": "選擇並說明理由",
+                    "feedback": "下一頁用數據驗證",
+                    "prerequisite": "速率與質量",
+                    "next_link": "下一頁建立關係",
+                    "architecture_elements": ["S5", "S6"],
+                    "continuity_tags": ["MISSING-BRIDGE"]
+                  }],
                   "media_alignment": [{
                     "slide": 1,
                     "media": "media1.mp4",
                     "role": "context",
                     "rating": "partial",
-                    "reason": "只能作為情境"
+                    "reason": "只能作為情境",
+                    "observation_focus": "比較兩車",
+                    "comparison": "質量與速率",
+                    "learner_output": "寫出還缺的資料",
+                    "used_later": "下一頁資料表"
                   }],
                   "slide_findings": [{
                     "slide": 1,
                     "severity": "major",
+                    "continuity_tag": "MISSING-BRIDGE",
                     "title": "缺少控制變因",
                     "detail": "影片沒有量測資料",
                     "action": "補資料表"
@@ -164,8 +214,22 @@ class PptxReviewPackageTests(unittest.TestCase):
 
             self.assertEqual("slides/slide-01.png", data["slides"][0]["image"])
             self.assertEqual("media/media1.mp4", data["slides"][0]["media"][0]["path"])
+            self.assertEqual(
+                "選擇並說明理由",
+                data["slides"][0]["ledger"]["expected_output"],
+            )
+            self.assertEqual("情境 S1 → 公式 S1", data["lesson_path"])
+            self.assertEqual(
+                "動能由質量與速率共同決定",
+                data["inferred_big_idea"]["statement"],
+            )
+            self.assertTrue(data["critical_gates"][0]["triggered"])
             self.assertIn("教材審查工作台", html)
             self.assertIn("缺少控制變因", html)
+            self.assertIn("教學鏈", html)
+            self.assertIn("MISSING-BRIDGE", html)
+            self.assertIn("學生任務與輸出", html)
+            self.assertIn("推定大概念", html)
             self.assertIn("匯出審查紀錄", html)
             self.assertNotIn("fonts.googleapis.com", html)
 

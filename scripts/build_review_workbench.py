@@ -32,11 +32,15 @@ def build_workbench_data(package_dir: Path) -> dict[str, Any]:
     findings: dict[int, list[dict[str, Any]]] = {}
     for item in review.get("slide_findings", []):
         findings.setdefault(int(item["slide"]), []).append(item)
+    ledger: dict[int, dict[str, Any]] = {}
+    for item in review.get("slide_ledger", []):
+        ledger[int(item["slide"])] = item
 
     slides: list[dict[str, Any]] = []
     for slide in manifest["slides"]:
         number = int(slide["slide"])
         slide_media = alignments.get(number, [])
+        slide_ledger = ledger.get(number, {})
         slides.append(
             {
                 "number": number,
@@ -52,6 +56,19 @@ def build_workbench_data(package_dir: Path) -> dict[str, Any]:
                     for item in slide_media
                 ],
                 "findings": findings.get(number, []),
+                "ledger": {
+                    "teaching_role": slide_ledger.get("teaching_role", ""),
+                    "primary_question": slide_ledger.get("primary_question", ""),
+                    "learner_action": slide_ledger.get("learner_action", ""),
+                    "expected_output": slide_ledger.get("expected_output", ""),
+                    "feedback": slide_ledger.get("feedback", ""),
+                    "prerequisite": slide_ledger.get("prerequisite", ""),
+                    "next_link": slide_ledger.get("next_link", ""),
+                    "architecture_elements": slide_ledger.get(
+                        "architecture_elements", []
+                    ),
+                    "continuity_tags": slide_ledger.get("continuity_tags", []),
+                },
             }
         )
 
@@ -70,7 +87,8 @@ def build_workbench_data(package_dir: Path) -> dict[str, Any]:
     ]
 
     return {
-        "schema_version": "1.0",
+        "schema_version": "2.0",
+        "source_review_schema_version": review.get("schema_version", ""),
         "unit_code": review.get("unit_code", ""),
         "unit_title": review.get("unit_title", ""),
         "decision": review.get("decision", "HOLD"),
@@ -79,6 +97,12 @@ def build_workbench_data(package_dir: Path) -> dict[str, Any]:
         "source_sha256": manifest.get("source_sha256", ""),
         "inventory": review.get("inventory", {}),
         "nine_steps": nine_steps,
+        "lesson_path": review.get("lesson_path", ""),
+        "suggested_path": review.get("suggested_path", ""),
+        "inferred_big_idea": review.get("inferred_big_idea", {}),
+        "content_scores": review.get("content_scores", []),
+        "critical_gates": review.get("critical_gates", []),
+        "architecture_coverage": review.get("architecture_coverage", []),
         "priority_actions": review.get("priority_actions", []),
         "slides": slides,
         "links": {
@@ -330,8 +354,8 @@ HTML_TEMPLATE = r"""<!doctype html>
     .rail-label { margin-right: 5px; color: var(--muted); font: 700 9px/1 "Cascadia Mono", Consolas, monospace; }
     .rail-arrow { color: #89a09c; text-align: center; }
     .inspector { display: grid; grid-template-rows: auto minmax(0,1fr); }
-    .inspector-tabs { display: grid; grid-template-columns: repeat(3,1fr); padding: 7px; border-bottom: 1px solid var(--line); }
-    .inspector-tab { padding: 9px 6px; color: var(--muted); background: transparent; border: 0; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 800; }
+    .inspector-tabs { display: grid; grid-template-columns: repeat(4,1fr); padding: 7px; border-bottom: 1px solid var(--line); }
+    .inspector-tab { padding: 9px 4px; color: var(--muted); background: transparent; border: 0; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: 800; }
     .inspector-tab.active { color: var(--teal); background: var(--teal-soft); }
     .inspector-body { overflow-y: auto; padding: 15px; }
     .section-label { margin: 0 0 9px; color: var(--muted); font: 700 10px/1 "Cascadia Mono", Consolas, monospace; letter-spacing: .12em; text-transform: uppercase; }
@@ -348,7 +372,7 @@ HTML_TEMPLATE = r"""<!doctype html>
     .finding p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
     .finding .action { margin-top: 8px; padding-top: 8px; color: var(--ink); border-top: 1px dashed var(--line); }
     .empty { padding: 20px; color: var(--muted); text-align: center; border: 1px dashed var(--line); border-radius: 9px; }
-    .note-card, .media-card, .priority-card {
+    .note-card, .media-card, .priority-card, .ledger-card, .score-card, .gate-card {
       margin-bottom: 10px;
       padding: 11px;
       background: #f7faf9;
@@ -357,6 +381,18 @@ HTML_TEMPLATE = r"""<!doctype html>
       font-size: 12px;
       line-height: 1.55;
     }
+    .ledger-card strong, .score-card strong, .gate-card strong { display: block; margin-bottom: 4px; }
+    .ledger-card.missing, .gate-card.triggered { border-left: 4px solid var(--red); background: var(--red-soft); }
+    .ledger-value { color: var(--ink); }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+    .continuity-tag {
+      padding: 4px 7px;
+      color: var(--red);
+      background: var(--red-soft);
+      border-radius: 999px;
+      font: 700 10px/1 "Cascadia Mono", Consolas, monospace;
+    }
+    .path-card { margin-bottom: 12px; padding: 11px; border: 1px solid var(--line); border-radius: 9px; background: #f7faf9; font-size: 12px; line-height: 1.55; }
     .media-card strong { display: block; margin-bottom: 5px; }
     .step-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .step {
@@ -484,6 +520,7 @@ HTML_TEMPLATE = r"""<!doctype html>
       <aside class="panel inspector">
         <div class="inspector-tabs">
           <button class="inspector-tab active" data-tab="findings">本頁判讀</button>
+          <button class="inspector-tab" data-tab="chain">教學鏈</button>
           <button class="inspector-tab" data-tab="framework">九步驟</button>
           <button class="inspector-tab" data-tab="review">老師覆核</button>
         </div>
@@ -516,6 +553,7 @@ HTML_TEMPLATE = r"""<!doctype html>
     const filters = [
       ["all", "全部"],
       ["attention", "需處理"],
+      ["breaks", "教學斷點"],
       ["video", "有影片"],
       ["notes", "缺講稿"]
     ];
@@ -536,18 +574,26 @@ HTML_TEMPLATE = r"""<!doctype html>
     }
     function attention(slide) {
       return ["blocker", "major"].includes(slideSeverity(slide)) ||
-        slide.media.some(item => ["weak", "partial"].includes(item.rating));
+        slide.media.some(item => ["weak", "partial"].includes(item.rating)) ||
+        slide.ledger.continuity_tags.length > 0;
     }
     function filteredSlides() {
       const query = state.query.trim().toLowerCase();
       return DATA.slides.filter(slide => {
         if (state.filter === "attention" && !attention(slide)) return false;
+        if (state.filter === "breaks" && !slide.ledger.continuity_tags.length) return false;
         if (state.filter === "video" && !slide.media.length) return false;
         if (state.filter === "notes" && slide.has_notes) return false;
         if (!query) return true;
         const haystack = [
           slide.text,
           slide.notes,
+          slide.ledger.teaching_role,
+          slide.ledger.primary_question,
+          slide.ledger.learner_action,
+          slide.ledger.expected_output,
+          slide.ledger.feedback,
+          ...slide.ledger.continuity_tags,
           ...slide.findings.flatMap(item => [item.title, item.detail, item.action])
         ].join(" ").toLowerCase();
         return haystack.includes(query) || String(slide.number) === query;
@@ -593,6 +639,9 @@ HTML_TEMPLATE = r"""<!doctype html>
       if (severity) badges.push(`<span class="badge ${severity}">${severity === "major" ? "重大" : "次要"}缺失</span>`);
       if (!slide.has_notes) badges.push(`<span class="badge no-notes">缺講稿</span>`);
       if (slide.media.length) badges.push(`<span class="badge ${slide.media[0].rating}">影片 ${esc(slide.media[0].rating)}</span>`);
+      if (slide.ledger.continuity_tags.length) badges.push(
+        `<span class="badge major">${esc(slide.ledger.continuity_tags[0])}</span>`
+      );
       document.getElementById("slide-badges").innerHTML = badges.join("");
     }
     function renderStage(slide) {
@@ -610,6 +659,16 @@ HTML_TEMPLATE = r"""<!doctype html>
       );
     }
     function renderEvidenceRail(slide) {
+      const ledger = slide.ledger;
+      if (ledger.primary_question || ledger.expected_output || ledger.feedback) {
+        document.getElementById("evidence-rail").innerHTML = `
+          <span class="rail-box" title="${esc(ledger.primary_question)}"><span class="rail-label">問題</span>${esc(ledger.primary_question || "未標")}</span>
+          <span class="rail-arrow">→</span>
+          <span class="rail-box" title="${esc(ledger.expected_output)}"><span class="rail-label">輸出</span>${esc(ledger.expected_output || "未標")}</span>
+          <span class="rail-arrow">→</span>
+          <span class="rail-box" title="${esc(ledger.feedback)}"><span class="rail-label">回饋</span>${esc(ledger.feedback || "未標")}</span>`;
+        return;
+      }
       const media = slide.media[0];
       if (!media) {
         document.getElementById("evidence-rail").innerHTML = `
@@ -632,18 +691,57 @@ HTML_TEMPLATE = r"""<!doctype html>
         <article class="finding ${esc(item.severity)}">
           <h3>${esc(item.title)}</h3>
           <p>${esc(item.detail)}</p>
+          ${item.continuity_tag ? `<div class="tag-list"><span class="continuity-tag">${esc(item.continuity_tag)}</span></div>` : ""}
           <p class="action"><strong>建議：</strong>${esc(item.action)}</p>
         </article>`).join("") : `<div class="empty">本頁沒有預先標記的重大缺失，仍請人工確認。</div>`;
       const media = slide.media.map(item => `
         <div class="media-card">
           <strong>${esc(item.media)} · <span class="badge ${esc(item.rating)}">${esc(item.rating)}</span></strong>
-          ${esc(item.reason)}
+          <div>${esc(item.reason)}</div>
+          ${item.observation_focus ? `<div><strong>觀看焦點：</strong>${esc(item.observation_focus)}</div>` : ""}
+          ${item.comparison ? `<div><strong>比較／控制：</strong>${esc(item.comparison)}</div>` : ""}
+          ${item.learner_output ? `<div><strong>學生輸出：</strong>${esc(item.learner_output)}</div>` : ""}
+          ${item.used_later ? `<div><strong>後續用途：</strong>${esc(item.used_later)}</div>` : ""}
         </div>`).join("");
       const note = `<div class="note-card"><strong>Speaker notes：</strong>
         ${slide.has_notes ? esc(slide.notes) : "未提供；自學教材需要補本頁目標、觀察焦點、解釋與轉場。"}</div>`;
       return `<p class="section-label">本頁缺失</p>${cards}
         ${media ? `<p class="section-label">影音關聯</p>${media}` : ""}
         <p class="section-label">自學支援</p>${note}`;
+    }
+    function teachingRoleLabel(role) {
+      return ({
+        orientation: "目標／定向", engage: "引發／體驗", evidence: "觀察／證據",
+        inquiry: "探究／推理", concept: "概念形成", precision: "精準化",
+        representation: "表徵轉換", example: "示例／反例", check: "檢核／回饋",
+        transfer: "遷移／應用", synthesis: "統整／收束", transition: "轉場",
+        decoration: "裝飾"
+      })[role] || role || "尚未建立";
+    }
+    function chainHtml(slide) {
+      const item = slide.ledger;
+      const rows = [
+        ["主要角色", teachingRoleLabel(item.teaching_role), !item.teaching_role],
+        ["問題／主張", item.primary_question, !item.primary_question],
+        ["學生行動", item.learner_action, !item.learner_action],
+        ["預期輸出", item.expected_output, !item.expected_output],
+        ["回饋", item.feedback, !item.feedback],
+        ["需要的先備", item.prerequisite, false],
+        ["下一頁連結", item.next_link, false]
+      ].map(([label, value, missing]) => `
+        <div class="ledger-card ${missing ? "missing" : ""}">
+          <strong>${esc(label)}</strong>
+          <div class="ledger-value">${esc(value || "未標示")}</div>
+        </div>`).join("");
+      const architecture = item.architecture_elements.length
+        ? item.architecture_elements.map(code => `<span class="badge complete">${esc(code)}</span>`).join("")
+        : `<span class="badge unknown">未對應</span>`;
+      const tags = item.continuity_tags.length
+        ? item.continuity_tags.map(tag => `<span class="continuity-tag">${esc(tag)}</span>`).join("")
+        : `<span class="badge complete">未標記斷點</span>`;
+      return `<p class="section-label">逐頁教學清冊</p>${rows}
+        <p class="section-label">九步驟對應</p><div class="tag-list">${architecture}</div>
+        <p class="section-label" style="margin-top:16px">連貫性斷點</p><div class="tag-list">${tags}</div>`;
     }
     function frameworkHtml() {
       const steps = DATA.nine_steps.map(step => `
@@ -655,8 +753,34 @@ HTML_TEMPLATE = r"""<!doctype html>
       const priorities = DATA.priority_actions.map((item, index) =>
         `<div class="priority-card"><strong>P${index + 1}</strong>　${esc(item)}</div>`
       ).join("");
-      return `<p class="section-label">九步驟總覽</p><div class="step-grid">${steps}</div>
-        <p class="section-label" style="margin-top:18px">上架前優先處理</p>${priorities}`;
+      const paths = DATA.lesson_path || DATA.suggested_path ? `
+        <p class="section-label">整體教學路徑</p>
+        ${DATA.lesson_path ? `<div class="path-card"><strong>目前：</strong>${esc(DATA.lesson_path)}</div>` : ""}
+        ${DATA.suggested_path ? `<div class="path-card"><strong>建議：</strong>${esc(DATA.suggested_path)}</div>` : ""}` : "";
+      const bigIdea = DATA.inferred_big_idea?.statement ? `
+        <p class="section-label">推定大概念</p>
+        <div class="path-card">
+          <strong>${esc(DATA.inferred_big_idea.statement)}</strong>
+          <div>證據頁：${esc((DATA.inferred_big_idea.evidence_slides || []).join("、") || "未標示")}
+          · 信心：${esc(DATA.inferred_big_idea.confidence || "未標示")}</div>
+          ${DATA.inferred_big_idea.alignment_judgment ? `<div>${esc(DATA.inferred_big_idea.alignment_judgment)}</div>` : ""}
+        </div>` : "";
+      const scores = DATA.content_scores.length ? DATA.content_scores.map(item => `
+        <div class="score-card">
+          <strong>${esc(item.criterion)} · ${item.score === null || item.score === undefined ? "N/A" : `${esc(item.score)}/3`}</strong>
+          <div>${esc(item.judgment || "")}</div>
+          ${item.evidence ? `<div><strong>證據：</strong>${esc(item.evidence)}</div>` : ""}
+          ${item.minimal_fix ? `<div><strong>最小修正：</strong>${esc(item.minimal_fix)}</div>` : ""}
+        </div>`).join("") : `<div class="empty">舊版結果尚未提供十項內容評分。</div>`;
+      const gates = DATA.critical_gates.length ? DATA.critical_gates.map(item => `
+        <div class="gate-card ${item.triggered ? "triggered" : ""}">
+          <strong>${item.triggered ? "已觸發" : "未觸發"} · ${esc(item.gate)}</strong>
+          <div>${esc(item.evidence || "")}</div>
+        </div>`).join("") : `<div class="empty">舊版結果尚未提供 critical gates。</div>`;
+      return `${paths}${bigIdea}<p class="section-label">九步驟總覽</p><div class="step-grid">${steps}</div>
+        <p class="section-label" style="margin-top:18px">十項內容品質</p>${scores}
+        <p class="section-label" style="margin-top:18px">Critical gates</p>${gates}
+        <p class="section-label" style="margin-top:18px">上架前優先處理</p>${priorities || `<div class="empty">沒有預先列出的優先動作。</div>`}`;
     }
     function reviewHtml(slide) {
       const review = state.reviews[slide.number] || {};
@@ -677,6 +801,7 @@ HTML_TEMPLATE = r"""<!doctype html>
     function renderInspector(slide) {
       const body = document.getElementById("inspector-body");
       body.innerHTML = state.inspectorTab === "findings" ? findingsHtml(slide) :
+        state.inspectorTab === "chain" ? chainHtml(slide) :
         state.inspectorTab === "framework" ? frameworkHtml() : reviewHtml(slide);
     }
     function renderViewer() {

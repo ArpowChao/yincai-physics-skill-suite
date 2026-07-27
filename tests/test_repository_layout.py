@@ -59,6 +59,31 @@ class RepositoryLayoutTests(unittest.TestCase):
             errors = module.audit_tree(root, tracked=["README.md"])
             self.assertTrue(any("Broken Skill reference" in error for error in errors))
 
+    def test_collaboration_entrypoints_and_ci_are_present(self):
+        required = [
+            ROOT / "docs" / "getting-started.md",
+            ROOT / "docs" / "collaboration-workflow.md",
+            ROOT / "docs" / "maintenance.md",
+            ROOT / ".github" / "workflows" / "ci.yml",
+        ]
+        for path in required:
+            with self.subTest(path=path):
+                self.assertTrue(path.is_file())
+
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertIn("docs/getting-started.md", readme)
+        self.assertIn("docs/collaboration-workflow.md", readme)
+
+        workflow = (
+            ROOT / ".github" / "workflows" / "ci.yml"
+        ).read_text(encoding="utf-8")
+        self.assertIn("python scripts/audit_repository.py", workflow)
+        self.assertIn("python scripts/validate_suite.py", workflow)
+        self.assertIn("python -m unittest discover -s tests -v", workflow)
+
+        gitignore = (ROOT / ".gitignore").read_text(encoding="utf-8")
+        self.assertIn("/outputs/", gitignore)
+
 
 if __name__ == "__main__":
     unittest.main()

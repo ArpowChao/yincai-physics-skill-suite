@@ -1,6 +1,6 @@
 interface:
-  display_name: "九步驟架構檢核"
-  short_description: "審查物理投影片的九步驟覆蓋、銜接與缺失"
-  default_prompt: "Use $physics-framework-checker to review this physics deck against the nine-step framework."
+  display_name: "高中物理 PPT 總審查"
+  short_description: "檢查九步驟、逐頁教學鏈、物理與影音關聯"
+  default_prompt: "Use $physics-framework-checker to audit this physics deck for curriculum scope, nine-step coverage, slide-to-slide teaching coherence, learner output and feedback, physics accuracy, and media relevance."
 policy:
   allow_implicit_invocation: true

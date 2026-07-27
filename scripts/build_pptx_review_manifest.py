@@ -6,6 +6,7 @@ import json
 import posixpath
 import re
 import zipfile
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 from xml.etree import ElementTree
@@ -30,6 +31,14 @@ def sha256_file(path: Path) -> str:
         while chunk := handle.read(1024 * 1024):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def timestamped_output_dir(
+    output_dir: Path,
+    now: datetime | None = None,
+) -> Path:
+    timestamp = (now or datetime.now().astimezone()).strftime("%Y%m%d-%H%M%S")
+    return output_dir.with_name(f"{output_dir.name}_{timestamp}")
 
 
 def relationship_kind(type_uri: str) -> str:
@@ -143,9 +152,19 @@ def main() -> int:
     )
     parser.add_argument("input", type=Path)
     parser.add_argument("output_dir", type=Path)
+    parser.add_argument(
+        "--timestamp",
+        action="store_true",
+        help="Append local time as YYYYMMDD-HHmmss and refuse an existing target.",
+    )
     args = parser.parse_args()
-    manifest = build_manifest(args.input.resolve(), args.output_dir.resolve())
-    manifest_path = args.output_dir / "manifest.json"
+    output_dir = args.output_dir.resolve()
+    if args.timestamp:
+        output_dir = timestamped_output_dir(output_dir)
+        if output_dir.exists():
+            parser.error(f"timestamped output already exists: {output_dir}")
+    manifest = build_manifest(args.input.resolve(), output_dir)
+    manifest_path = output_dir / "manifest.json"
     manifest_path.write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
@@ -154,6 +173,7 @@ def main() -> int:
         json.dumps(
             {
                 "manifest": str(manifest_path.resolve()),
+                "output_dir": str(output_dir.resolve()),
                 "slides": manifest["slide_count"],
                 "media": manifest["media_count"],
                 "slides_with_notes": manifest["slides_with_notes"],

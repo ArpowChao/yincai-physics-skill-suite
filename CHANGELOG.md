@@ -2,6 +2,20 @@
 
 本專案使用語意化版本概念記錄可攜式 Skill Suite 的變更。
 
+## 0.6.0 — 2026-07-27
+
+- 修正 S1／S2 審查語意：單元名稱作為學習目標錨點；大概念由跨頁活動、
+  問題、證據與應用反推，不因未另列目標句或「大概念」專頁而扣分。
+- 審查包統一採 `單元代碼_單元名稱_YYYYMMDD-HHmmss`，manifest 工具新增
+  `--timestamp`，自動使用本機時間並拒絕同名輸出。
+- 將 `review-yincai-physics-content-ppt` 的內容型審查方法融合進
+  `physics-framework-checker`，維持 10 個 Skill 的清楚分工。
+- PPT 總審查新增中央教學任務、逐頁教學清冊、十項內容品質、連貫性斷點與
+  critical gates。
+- 影音審查新增觀看焦點、比較／控制、學生輸出與後續用途，不再只判斷表面主題相關。
+- 離線審查工作台新增「教學鏈」頁籤與斷點篩選，並顯示整體路徑、內容評分及 gates。
+- 新增可分享的 `ppt-review-result.json` schema 與完整內容型 PPT 審查規準。
+
 ## 0.5.0 — 2026-07-27
 
 - 新增 PowerPoint speaker notes 寫入工具，強制另存新檔並檢查頁數一致。

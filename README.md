@@ -7,6 +7,18 @@
 外部老師或審查者請直接從 [`REVIEWER_START_HERE.md`](REVIEWER_START_HERE.md)
 開始；不需要先閱讀全部程式或取得原始教材庫。
 
+## 依角色開始
+
+| 角色 | 從這裡開始 |
+|---|---|
+| 收到審查 ZIP 的老師 | [`REVIEWER_START_HERE.md`](REVIEWER_START_HERE.md) |
+| 要從 PPTX 建立審查包的人 | [`docs/getting-started.md`](docs/getting-started.md) |
+| 要修 Skill、規準或工具的人 | [`docs/collaboration-workflow.md`](docs/collaboration-workflow.md) |
+| Repo 維護與版本管理者 | [`docs/maintenance.md`](docs/maintenance.md) |
+
+GitHub repository 目前應維持 private，直到程式與原創內容授權完成決策。GitHub
+只保存可分享核心；`outputs/`、真實教材、影片與本機品質紀錄不會上傳。
+
 ## 產線總覽
 
 ```mermaid
@@ -26,7 +38,7 @@ flowchart LR
 
 | Skill | 用途 | 主要輸出 |
 |---|---|---|
-| `physics-framework-checker` | 九步驟架構逐頁檢核 | 保留、補頁、合併、重排清單 |
+| `physics-framework-checker` | 內容型 PPT 總審查 | 九步驟、逐頁教學鏈、影音與修復藍圖 |
 | `physics-one-page-architect` | 課綱到一頁式架構 | 概念鏈、探究鏈、應用鏈 |
 | `physics-slide-enhancer` | 讓簡報可自學 | speaker notes、轉場、答題回饋 |
 | `physics-worksheet-generator` | 三層學習單 | 預習單、課中單、課後單 |
@@ -87,8 +99,14 @@ manifest：
 ```powershell
 python scripts/build_pptx_review_manifest.py `
   "C:\path\to\lesson.pptx" `
-  "outputs\review-packages\lesson"
+  "outputs\review-packages\單元代碼_單元名稱" `
+  --timestamp
 ```
+
+實際資料夾會命名為
+`單元代碼_單元名稱_YYYYMMDD-HHmmss`，例如
+`PBa-V.1-2-2_動能_20260727-230815`。時間採執行電腦本機時間；這種格式可排序、
+不含 Windows 禁用字元，並避免新一輪審查覆蓋舊結果。
 
 若 Windows 電腦已安裝 Microsoft PowerPoint，可再用實際播放引擎匯出逐頁 PNG
 與包含內嵌影片／動畫的 MP4：
@@ -109,9 +127,16 @@ powershell -ExecutionPolicy Bypass -File scripts/export_pptx_review_assets.ps1 `
 python scripts/build_review_workbench.py "outputs\review-packages\lesson"
 ```
 
-開啟生成的 `review-workbench.html` 後，可以篩選影片問題與缺講稿頁、逐頁播放
-內嵌影片、檢查九步驟、記錄老師的 `PASS / REVISE / HOLD`，最後匯出 JSON
-交給下一輪 Skill。人工意見只存在瀏覽器的本機儲存空間，教材不會因此上傳。
+開啟生成的 `review-workbench.html` 後，可以篩選教學鏈斷點、影片問題與缺講稿頁，
+逐頁播放內嵌影片，檢查「本頁問題 → 學生輸出 → 回饋」、九步驟、十項內容品質與
+critical gates，記錄老師的 `PASS / REVISE / HOLD`，最後匯出 JSON 交給下一輪
+Skill。人工意見只存在瀏覽器的本機儲存空間，教材不會因此上傳。
+
+`review-result.json` 的可攜格式見
+[`data/schemas/ppt-review-result.schema.json`](data/schemas/ppt-review-result.schema.json)；
+完整判讀規則見
+[`references/ppt-content-review.md`](references/ppt-content-review.md)。舊版結果沒有
+逐頁教學清冊時仍可開啟，但工作台會明確標示尚未提供的欄位。
 
 `physics-slide-enhancer` 產生逐頁講稿 JSON 後，可另存一份含 speaker notes 的
 PowerPoint，不覆寫原檔：
@@ -128,7 +153,8 @@ powershell -ExecutionPolicy Bypass -File scripts/apply_pptx_notes.ps1 `
 
 ## 老師的建議工作流
 
-1. **架構先行**：用 `physics-one-page-architect` 定義三鏈，再用 `physics-framework-checker` 檢查舊簡報。
+1. **架構先行**：用 `physics-one-page-architect` 定義三鏈，再用
+   `physics-framework-checker` 總審查九步驟、逐頁教學鏈、內容充實度、物理與影音。
 2. **分線製作**：投影片走 `physics-ppt-upgrader`、`physics-slide-enhancer`、`physics-visual-style-guide`；學習單走 `physics-worksheet-generator`；題目走 `physics-literacy-question-creator`、`physics-misconception-prompting`、`physics-question-qa-checker`。
 3. **總裝**：用 `physics-unit-package-qc` 比對三種載體的概念、術語、難度與檔名。
 4. **人工決策**：老師確認 `PASS / REVISE / HOLD`，把確認結果寫回品質紀錄。AI 不取代教師的課程與上架責任。
@@ -211,6 +237,10 @@ tests/                   標準函式庫 unittest 測試
 ## 貢獻
 
 請先閱讀 [`CONTRIBUTING.md`](CONTRIBUTING.md)。修改 Skill 時需保留可攜性、證據追溯、停止條件及正反向品質紀錄；新增教材內容時需確認授權與去識別。
+
+完整的 issue → 分支 → 測試 → PR → review → 發布流程見
+[`docs/collaboration-workflow.md`](docs/collaboration-workflow.md)。所有 push 與 PR
+都會由 GitHub Actions 執行 repository audit、Skill 驗證與完整測試。
 
 首波五個 10 分鐘分享主題與真實測試輸出見 [`showcase/README.md`](showcase/README.md)，互動式結果檢視頁為 [`showcase/review.html`](showcase/review.html)。
 

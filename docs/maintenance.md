@@ -43,15 +43,21 @@ flowchart LR
 
 ## 每次發布
 
-1. 執行 repository audit、Skill 驗證與全部單元測試。
-2. 用至少一個真實但不進版控的教材審查包乾跑。
-3. 更新 `quality/known-issues.md` 與 `quality/confirmed-strengths.md`。
-4. 更新 `CHANGELOG.md` 與 `VERSION`。
-5. 建立 Git tag；確認公開內容沒有個資、原始教材或本機路徑。
+1. 從 issue 建立版本分支或 release PR，不直接在遠端 `main` 修改。
+2. 執行 repository audit、Skill 驗證與全部單元測試。
+3. 用至少一個真實但不進版控的教材審查包乾跑。
+4. 更新 `quality/known-issues.md` 與 `quality/confirmed-strengths.md`。
+5. 更新 `CHANGELOG.md` 與 `VERSION`。
+6. 由物理／教材審查者與 repo 維護者各完成一次 review。
+7. GitHub Actions 通過後合併，建立 Git tag。
+8. 確認公開內容沒有個資、原始教材或本機路徑。
 
 對外傳送單元審查包時，使用 `scripts/build_review_share_bundle.py`，不要直接壓縮
 完整 `outputs/review-packages/`。分享工具會排除原始 PPTX、來源檔名、轉錄資料與
 未被頁面引用的媒體，但維護者仍必須先確認頁面與影片授權。
+
+GitHub 的分支、PR、review、CI 與 collaborator 操作見
+[`collaboration-workflow.md`](collaboration-workflow.md)。
 
 ## 清理規則
 

@@ -9,6 +9,9 @@
 5. 需要舊教材時，先用 `scripts/index_materials.py` 建立或更新本機索引；檔名狀態只作提示。
 6. 需要讀取 PPTX/DOCX 時，先用 `scripts/extract_office_text.py` 取得結構化文字；涉及圖文或版面判斷時仍須渲染檢視。
 7. 將結論分為 `PASS`、`REVISE`、`HOLD`，同時記錄 strengths 與 findings。
+8. 新審查包使用 `單元代碼_單元名稱_YYYYMMDD-HHmmss` 命名；時間採執行電腦
+   的本機時間。使用 `build_pptx_review_manifest.py --timestamp` 自動加上時間，
+   不重用舊輸出資料夾。
 
 ## 不可省略的人工門檻
 

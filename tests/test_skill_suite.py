@@ -85,6 +85,27 @@ class SkillSuiteTests(unittest.TestCase):
         self.assertIn("楞次定律", preferred)
         self.assertNotIn("冷次定律", preferred)
 
+    def test_framework_infers_goal_and_big_idea_from_deck_evidence(self):
+        rubric = json.loads(
+            (ROOT / "data" / "rubrics" / "nine-step.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        steps = {item["id"]: item for item in rubric["steps"]}
+        self.assertIn("單元名稱", " ".join(steps["S1"]["required_evidence"]))
+        self.assertIn("一致性", " ".join(steps["S1"]["required_evidence"]))
+        self.assertIn("反推", " ".join(steps["S2"]["required_evidence"]))
+        self.assertIn("跨頁活動", " ".join(steps["S2"]["required_evidence"]))
+        self.assertNotIn(
+            "只有單元名稱沒有目標",
+            steps["S1"]["common_failures"],
+        )
+        review_rule = (ROOT / "references" / "ppt-content-review.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("單元名稱作為學習目標錨點", review_rule)
+        self.assertIn("不要求在投影片上明列", review_rule)
+
 
 if __name__ == "__main__":
     unittest.main()

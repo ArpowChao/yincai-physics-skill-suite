@@ -12,10 +12,11 @@
 
 ## 開發流程
 
-1. 在 issue 或品質紀錄附上最小重現案例。
-2. 先新增會重現問題的測試。
-3. 修改最小範圍的規則、資料或 Skill。
-4. 執行：
+1. 在 GitHub issue 或品質紀錄附上最小重現案例。
+2. 從最新 `main` 建立 `fix/`、`feat/`、`docs/`、`data/` 或 `test/` 分支。
+3. 先新增會重現問題的測試。
+4. 修改最小範圍的規則、資料或 Skill。
+5. 執行：
 
    ```powershell
    python scripts/audit_repository.py
@@ -23,8 +24,13 @@
    python -m unittest discover -s tests -v
    ```
 
-5. 以一組真實但不提交原始檔的教材乾跑，記錄「保留優點」與「待修缺失」。
-6. Pull request 說明影響哪些 Skills、資料版本、相容性與人工覆核結果。
+6. 以一組真實但不提交原始檔的教材乾跑，記錄「保留優點」與「待修缺失」。
+7. Push 分支並建立 Pull request；不要直接 push `main`。
+8. Pull request 說明影響哪些 Skills、資料版本、相容性與人工覆核結果。
+9. GitHub Actions 全部通過並取得人工 approval 後才合併。
+
+完整操作、分支命名、PR 與發布方式見
+[`docs/collaboration-workflow.md`](docs/collaboration-workflow.md)。
 
 ## 檔案放置
 
@@ -34,6 +40,7 @@
 - 未審定的知識或範例先放 `local-data/reference-candidates/`。
 - 去識別、可重現且已確認的案例才放 `quality/examples/`。
 - 正式 Skill 不得依賴 `local-data/`、`archive/` 或 `outputs/` 才能執行。
+- 不使用 `git add -f` 上傳被忽略的教材或輸出。
 
 ## Skill 版本
 
