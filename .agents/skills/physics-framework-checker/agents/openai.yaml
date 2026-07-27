@@ -1,0 +1,6 @@
+interface:
+  display_name: "九步驟架構檢核"
+  short_description: "審查物理投影片的九步驟覆蓋、銜接與缺失"
+  default_prompt: "Use $physics-framework-checker to review this physics deck against the nine-step framework."
+policy:
+  allow_implicit_invocation: true

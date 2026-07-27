@@ -1,0 +1,6 @@
+interface:
+  display_name: "一頁式教學架構"
+  short_description: "從課綱代碼建立概念、探究與應用三鏈架構"
+  default_prompt: "Use $physics-one-page-architect to create a one-page three-chain teaching architecture."
+policy:
+  allow_implicit_invocation: true

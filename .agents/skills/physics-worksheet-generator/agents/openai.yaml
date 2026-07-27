@@ -1,0 +1,6 @@
+interface:
+  display_name: "三層物理學習單"
+  short_description: "依投影片生成預習、課中與課後學習單"
+  default_prompt: "Use $physics-worksheet-generator to create a three-stage worksheet from this physics deck."
+policy:
+  allow_implicit_invocation: true

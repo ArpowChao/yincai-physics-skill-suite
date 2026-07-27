@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0",
+  "ideas": [
+    {"id": "change-stability", "zh_tw": "改變與穩定", "prompt": "哪些量改變？什麼條件使系統維持或恢復穩定？"},
+    {"id": "relationships", "zh_tw": "關係", "prompt": "變數之間如何連動？是因果、正比、反比或守恆關係嗎？"},
+    {"id": "patterns", "zh_tw": "模式", "prompt": "資料或現象中有哪些重複、週期或可預測規律？"},
+    {"id": "structure-function", "zh_tw": "結構與功能", "prompt": "元件如何排列，並因此產生特定功能？"},
+    {"id": "systems-models", "zh_tw": "系統與模型", "prompt": "系統邊界在哪裡？模型保留與忽略了什麼？"},
+    {"id": "order", "zh_tw": "次序", "prompt": "事件的先後、方向或不可逆性為何重要？"},
+    {"id": "interactions", "zh_tw": "交互作用", "prompt": "物體或場之間如何互相影響與交換能量、動量或資訊？"}
+  ],
+  "selection_rule": "選一個主大概念；只有在第二個概念對目標與任務不可替代時才列副概念。"
+}

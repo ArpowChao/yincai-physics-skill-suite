@@ -1,0 +1,78 @@
+{
+  "record_version": "1.0",
+  "record_id": "20260727-peb-vc-4-1-dry-run",
+  "created_at": "2026-07-27T16:00:00+08:00",
+  "skill": "physics-unit-package-qc",
+  "skill_version": "1.0.0",
+  "project_code": "PEb-Vc-4-1",
+  "official_code": "PEb-Vc-4",
+  "artifact_refs": [
+    "local-materials:普高一/投影片/PEb-Vc-4-1",
+    "local-materials:普高一/學習單/PEb-Vc-4-1",
+    "local-materials:普高一/診斷題/PEb-Vc-4-1-1"
+  ],
+  "evidence": [
+    {
+      "level": "A",
+      "ref": "curriculum:PEb-Vc-4:pdf-pages-39,187-188"
+    },
+    {
+      "level": "C",
+      "ref": "local-unit-package:PEb-Vc-4-1:text-and-visual-dry-run"
+    }
+  ],
+  "decision": "HOLD",
+  "strengths": [
+    {
+      "criterion": "concept-sequence",
+      "note": "投影片由亞里斯多德觀點、伽利略思想實驗推進到牛頓第一定律，具可辨識的概念衝突與歷史脈絡。"
+    },
+    {
+      "criterion": "cross-artifact-alignment",
+      "note": "投影片、WSQ 學習單與診斷題都聚焦運動狀態與慣性，生活例子可互相銜接。"
+    },
+    {
+      "criterion": "diagnostic-distractors",
+      "note": "題目已使用「物體一定停止」「只有運動物體才有慣性」等常見迷思作為誘答。"
+    }
+  ],
+  "findings": [
+    {
+      "severity": "blocker",
+      "criterion": "publication-rights",
+      "note": "投影片包含外部圖片、影片與 QR code；乾跑只能確認有來源標示，不能確認公開再利用授權。",
+      "action": "上架或公開 repository 前逐項建立來源與授權清單；無法確認者改用可授權自製圖。"
+    },
+    {
+      "severity": "major",
+      "criterion": "physics-precision",
+      "note": "教材多處使用「物體不受力」描述第一定律，未明確區分完全無力與合外力為零。",
+      "action": "統一改為「合外力為零時運動狀態不變」，再以靜止或等速直線運動說明。"
+    },
+    {
+      "severity": "major",
+      "criterion": "self-learning-support",
+      "note": "10 張投影片均無實質 speaker notes；末頁提問也沒有可見的答題後診斷回饋。",
+      "action": "補上逐頁觀察提示、關鍵推理、轉場與末頁各類回答的澄清回饋。"
+    },
+    {
+      "severity": "major",
+      "criterion": "nine-step-coverage",
+      "note": "已有學生觀察語言、思想體驗與有感應用，但未清楚呈現學習目標、大概念、證據事實與可操作探究。",
+      "action": "保留現有歷史概念鏈，補一頁目標與大概念、摩擦漸減的證據整理，以及可記錄預測與觀察的探究活動。"
+    },
+    {
+      "severity": "major",
+      "criterion": "worksheet-progression",
+      "note": "現有學習單是 WSQ 版本，未涵蓋三層版本要求中的課中數據記錄與課後遷移診斷。",
+      "action": "保留 WSQ 觀察與提問，增加課中預測—證據表及課後新情境解釋。"
+    },
+    {
+      "severity": "minor",
+      "criterion": "source-document-hygiene",
+      "note": "診斷題 DOCX 的填寫說明重複出現，增加老師後續清稿負擔。",
+      "action": "輸出前移除重複模板段落，將命題規格改放文件屬性或附錄。"
+    }
+  ],
+  "human_decision": null
+}

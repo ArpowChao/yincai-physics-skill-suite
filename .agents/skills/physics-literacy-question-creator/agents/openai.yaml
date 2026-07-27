@@ -1,0 +1,6 @@
+interface:
+  display_name: "物理素養題命題"
+  short_description: "依三面向八準則產題並附自評與課綱證據"
+  default_prompt: "Use $physics-literacy-question-creator to create a Stage 5 physics literacy question with an eight-criteria self-review."
+policy:
+  allow_implicit_invocation: true

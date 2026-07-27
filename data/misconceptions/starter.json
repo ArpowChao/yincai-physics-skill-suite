@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "status": "starter-set-requires-local-validation",
+  "records": [
+    {"id": "mechanics-motion-requires-force", "topic": "牛頓第一定律", "claim": "物體要持續運動就必須持續受同方向的力", "diagnostic_move": "比較近似無摩擦與有摩擦表面的運動", "clarification": "合力改變速度；合力為零時速度可維持不變。"},
+    {"id": "mechanics-force-direction-equals-velocity", "topic": "力與運動", "claim": "合力方向一定等於速度方向", "diagnostic_move": "詢問上拋球上升期間速度與加速度方向", "clarification": "合力方向決定加速度方向，不必等於速度方向。"},
+    {"id": "mechanics-action-reaction-cancel", "topic": "牛頓第三定律", "claim": "作用力與反作用力互相抵消，所以物體不會加速", "diagnostic_move": "要求標示兩個力各作用在哪一個物體", "clarification": "作用力與反作用力作用在不同物體，不能直接在同一受力圖相消。"},
+    {"id": "mechanics-heavier-falls-faster", "topic": "自由落體", "claim": "較重物體一定落得較快", "diagnostic_move": "比較排除空氣阻力前後的預測", "clarification": "忽略空氣阻力時，各物體自由落體加速度相同。"},
+    {"id": "waves-source-controls-speed", "topic": "波速頻率波長", "claim": "振源振得越快，波在同一介質中傳得越快", "diagnostic_move": "固定介質改變頻率，詢問波長如何改變", "clarification": "同一條件下波速由介質性質決定，頻率改變時波長相應改變。"},
+    {"id": "waves-particles-travel-with-wave", "topic": "力學波", "claim": "介質粒子會隨波形一路移到遠處", "diagnostic_move": "追蹤繩上一個標記點", "clarification": "介質粒子在平衡位置附近振動，波傳遞能量而非大量物質。"},
+    {"id": "optics-color-in-object", "topic": "物體顏色", "claim": "物體本身帶有固定顏色，與照明光無關", "diagnostic_move": "改變入射光顏色並預測物體外觀", "clarification": "觀察到的顏色取決於光源光譜、物體選擇性吸收或反射及觀察者。"},
+    {"id": "circuits-current-consumed", "topic": "電路", "claim": "電流通過燈泡後被消耗，所以回到電池的電流較小", "diagnostic_move": "比較串聯電路不同位置的電流", "clarification": "穩態串聯電路各處電流相同；轉換的是能量，不是把電荷消耗掉。"},
+    {"id": "circuits-battery-constant-current", "topic": "電池與電路", "claim": "同一顆電池不論接什麼元件都提供相同電流", "diagnostic_move": "比較不同電阻負載", "clarification": "電流由電源特性與外部電路共同決定。"},
+    {"id": "thermal-heat-contained", "topic": "熱與溫度", "claim": "熱是物體內含有的一種物質", "diagnostic_move": "區分內能與因溫差傳遞的能量", "clarification": "熱是因溫度差而傳遞的能量，不是物體儲存的物質。"},
+    {"id": "thermal-temperature-equals-energy", "topic": "熱與溫度", "claim": "溫度較高的物體一定具有較多總內能", "diagnostic_move": "比較一杯熱水與一桶溫水", "clarification": "溫度與微觀平均能量相關；總內能也與物質量和狀態等有關。"},
+    {"id": "em-induction-motion-required", "topic": "電磁感應", "claim": "只要磁鐵在附近移動就一定有感應電流", "diagnostic_move": "檢查迴路是否閉合及穿過迴路的磁通量是否改變", "clarification": "感應電動勢與磁通量變化有關；有電流還需要閉合導電路徑。"},
+    {"id": "quantum-intensity-controls-photoelectron-energy", "topic": "光電效應", "claim": "把光照得更亮就能讓每個光電子具有更大最大動能", "diagnostic_move": "分別改變頻率與強度", "clarification": "在光電效應模型中，單一光子能量由頻率決定；強度主要影響光子數量。"}
+  ]
+}

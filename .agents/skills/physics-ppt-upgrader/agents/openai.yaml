@@ -1,0 +1,6 @@
+interface:
+  display_name: "舊物理簡報升級"
+  short_description: "將舊 PPT 對齊九步驟、自學與課綱規格"
+  default_prompt: "Use $physics-ppt-upgrader to plan and verify an upgrade of this legacy physics deck."
+policy:
+  allow_implicit_invocation: true

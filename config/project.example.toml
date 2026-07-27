@@ -1,0 +1,16 @@
+# Copy to config/project.toml. The local file is ignored by Git.
+
+[paths]
+materials = "../資料"
+physics_wiki = "../local-data/physics-kb"
+curriculum_pdf = "../00-十二年國教自然科學領域課程綱要.pdf"
+outputs = "../outputs"
+
+[privacy]
+include_teacher_names_in_local_index = true
+publish_teacher_names = false
+publish_student_data = false
+
+[quality]
+default_decision_on_missing_evidence = "HOLD"
+hash_artifacts = false

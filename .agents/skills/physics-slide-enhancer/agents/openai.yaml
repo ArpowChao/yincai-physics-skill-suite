@@ -1,0 +1,6 @@
+interface:
+  display_name: "投影片自學增強"
+  short_description: "補寫講稿、轉場與診斷式答題回饋"
+  default_prompt: "Use $physics-slide-enhancer to make this physics deck suitable for self-directed learning."
+policy:
+  allow_implicit_invocation: true

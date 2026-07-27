@@ -1,0 +1,6 @@
+interface:
+  display_name: "迷思誘答設計"
+  short_description: "以可追溯迷思設計診斷誘答與澄清回饋"
+  default_prompt: "Use $physics-misconception-prompting to design diagnostic distractors and misconception feedback."
+policy:
+  allow_implicit_invocation: true

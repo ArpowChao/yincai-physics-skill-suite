@@ -1,0 +1,37 @@
+# Local configuration and generated outputs
+config/project.toml
+outputs/
+quality/records/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Raw or derived teaching corpora (local only)
+/資料/
+/春煌博論評分/
+/HDMI-AI/
+/references/physics_concepts_kb/
+/references/teacher_courseware_index.md
+/references/master_courseware_database_catalog.md
+/references/unit_knowledge_map.md
+/.agents/skills/wsq-worksheet-generator/
+/.agents/skills/*/references/
+/.agents/skills/*/examples/
+
+# Large binary source artifacts
+*.ppt
+*.pptx
+*.doc
+*.docx
+*.pdf
+*.xlsx
+*.xlsm
+*.omv
+*.7z
+*.zip
+
+# Editor and OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

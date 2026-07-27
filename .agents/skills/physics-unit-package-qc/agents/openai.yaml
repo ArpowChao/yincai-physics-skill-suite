@@ -1,0 +1,6 @@
+interface:
+  display_name: "單元教材包總檢"
+  short_description: "總檢投影片、學習單與題目的一致性及上架條件"
+  default_prompt: "Use $physics-unit-package-qc to audit this slide, worksheet, and question package before publication."
+policy:
+  allow_implicit_invocation: true

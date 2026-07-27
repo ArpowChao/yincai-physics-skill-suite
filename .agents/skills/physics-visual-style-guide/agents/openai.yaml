@@ -1,0 +1,6 @@
+interface:
+  display_name: "物理圖像產線"
+  short_description: "生成風格一致且物理正確的概念示意圖"
+  default_prompt: "Use $physics-visual-style-guide to design a consistent and physically correct diagram."
+policy:
+  allow_implicit_invocation: true

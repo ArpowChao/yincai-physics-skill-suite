@@ -1,0 +1,6 @@
+interface:
+  display_name: "物理題目雙檢"
+  short_description: "檢查物理正確性、數值合理性與誘答診斷力"
+  default_prompt: "Use $physics-question-qa-checker to audit this question for physics, numerical, and diagnostic quality."
+policy:
+  allow_implicit_invocation: true

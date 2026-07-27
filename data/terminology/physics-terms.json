@@ -1,0 +1,32 @@
+{
+  "terminology_version": "1.0.0",
+  "locale": "zh-TW",
+  "rules": [
+    "同一單元包的術語、符號、正方向與單位必須一致。",
+    "首次出現專有名詞時提供學生語言轉譯。",
+    "向量與純量不得只靠字型差異判斷；必要時以箭號或文字說明。",
+    "課綱原文與團隊慣用詞不同時，保留課綱詞並註記別名。"
+  ],
+  "terms": [
+    {"preferred": "力", "aliases": ["作用力"], "symbol": "F", "unit": "N"},
+    {"preferred": "合力", "aliases": ["淨力"], "symbol": "ΣF", "unit": "N"},
+    {"preferred": "正向力", "aliases": ["支持力", "法向力"], "symbol": "N", "unit": "N"},
+    {"preferred": "速率", "aliases": ["速度大小"], "symbol": "v", "unit": "m/s"},
+    {"preferred": "速度", "aliases": [], "symbol": "v⃗", "unit": "m/s"},
+    {"preferred": "加速度", "aliases": [], "symbol": "a⃗", "unit": "m/s²"},
+    {"preferred": "慣性", "aliases": [], "symbol": null, "unit": null},
+    {"preferred": "功", "aliases": ["作功"], "symbol": "W", "unit": "J"},
+    {"preferred": "動能", "aliases": [], "symbol": "K", "unit": "J"},
+    {"preferred": "重力位能", "aliases": [], "symbol": "U_g", "unit": "J"},
+    {"preferred": "頻率", "aliases": [], "symbol": "f", "unit": "Hz"},
+    {"preferred": "波長", "aliases": [], "symbol": "λ", "unit": "m"},
+    {"preferred": "波速", "aliases": [], "symbol": "v", "unit": "m/s"},
+    {"preferred": "電流", "aliases": ["電流強度"], "symbol": "I", "unit": "A"},
+    {"preferred": "電位差", "aliases": ["電壓"], "symbol": "V", "unit": "V"},
+    {"preferred": "電阻", "aliases": [], "symbol": "R", "unit": "Ω"},
+    {"preferred": "磁通量", "aliases": [], "symbol": "Φ_B", "unit": "Wb"},
+    {"preferred": "感應電動勢", "aliases": [], "symbol": "ε", "unit": "V"},
+    {"preferred": "冷次定律", "aliases": ["楞次定律", "Lenz定律"], "symbol": null, "unit": null},
+    {"preferred": "光子", "aliases": ["光量子"], "symbol": null, "unit": null}
+  ]
+}

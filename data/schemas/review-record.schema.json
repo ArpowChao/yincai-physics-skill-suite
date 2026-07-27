@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/adaptive-physics/review-record.schema.json",
+  "title": "Adaptive Physics Skill Review Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_version",
+    "record_id",
+    "created_at",
+    "skill",
+    "skill_version",
+    "project_code",
+    "official_code",
+    "artifact_refs",
+    "evidence",
+    "decision",
+    "strengths",
+    "findings",
+    "human_decision"
+  ],
+  "properties": {
+    "record_version": {"type": "string"},
+    "record_id": {"type": "string"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "skill": {"type": "string"},
+    "skill_version": {"type": "string"},
+    "project_code": {"type": "string"},
+    "official_code": {"type": "string"},
+    "artifact_refs": {"type": "array", "items": {"type": "string"}},
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["level", "ref"],
+        "properties": {
+          "level": {"enum": ["A", "B", "C", "D"]},
+          "ref": {"type": "string"}
+        }
+      }
+    },
+    "decision": {"enum": ["PASS", "REVISE", "HOLD"]},
+    "strengths": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["criterion", "note"],
+        "properties": {
+          "criterion": {"type": "string"},
+          "note": {"type": "string"}
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["severity", "criterion", "note", "action"],
+        "properties": {
+          "severity": {"enum": ["blocker", "major", "minor", "suggestion"]},
+          "criterion": {"type": "string"},
+          "note": {"type": "string"},
+          "action": {"type": "string"}
+        }
+      }
+    },
+    "human_decision": {"type": ["string", "null"]}
+  }
+}
