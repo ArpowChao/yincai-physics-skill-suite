@@ -98,6 +98,30 @@ class AssetIndexTests(unittest.TestCase):
             result = extractor.extract_office(path)
             self.assertEqual("", result["slides"][0]["notes"])
 
+    def test_pptx_notes_join_runs_without_inserting_spaces(self):
+        extractor = load_module("extract_office_text_note_runs", EXTRACTOR_PATH)
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "sample.pptx"
+            with zipfile.ZipFile(path, "w") as archive:
+                archive.writestr(
+                    "ppt/slides/slide1.xml",
+                    '<p:sld xmlns:p="p" xmlns:a="a"><a:t>內容</a:t></p:sld>',
+                )
+                archive.writestr(
+                    "ppt/notesSlides/notesSlide1.xml",
+                    '<p:notes xmlns:p="p" xmlns:a="a"><p:sp><p:nvPr>'
+                    '<p:ph type="body"/></p:nvPr><p:txBody><a:p>'
+                    "<a:r><a:t>【</a:t></a:r><a:r><a:t>觀看焦點</a:t></a:r>"
+                    "<a:r><a:t>】</a:t></a:r><a:r><a:t>先比較兩車</a:t></a:r>"
+                    "</a:p><a:p><a:r><a:t>下一段</a:t></a:r></a:p>"
+                    "</p:txBody></p:sp></p:notes>",
+                )
+            result = extractor.extract_office(path)
+            self.assertEqual(
+                "【觀看焦點】先比較兩車\n下一段",
+                result["slides"][0]["notes"],
+            )
+
     def test_extracts_docx_paragraphs(self):
         extractor = load_module("extract_office_text_docx", EXTRACTOR_PATH)
         with tempfile.TemporaryDirectory() as tmp:

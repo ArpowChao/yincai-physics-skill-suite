@@ -113,6 +113,19 @@ python scripts/build_review_workbench.py "outputs\review-packages\lesson"
 內嵌影片、檢查九步驟、記錄老師的 `PASS / REVISE / HOLD`，最後匯出 JSON
 交給下一輪 Skill。人工意見只存在瀏覽器的本機儲存空間，教材不會因此上傳。
 
+`physics-slide-enhancer` 產生逐頁講稿 JSON 後，可另存一份含 speaker notes 的
+PowerPoint，不覆寫原檔：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/apply_pptx_notes.ps1 `
+  -InputPptx "C:\path\to\lesson.pptx" `
+  -NotesJson "outputs\review-packages\lesson\speaker-notes.json" `
+  -OutputPptx "outputs\review-packages\lesson\lesson-自學講稿版.pptx"
+```
+
+完成後應重新抽取 notes、由 PowerPoint 匯出逐頁 PNG／MP4，確認講稿完整且沒有
+破壞投影片、動畫與內嵌影片。
+
 ## 老師的建議工作流
 
 1. **架構先行**：用 `physics-one-page-architect` 定義三鏈，再用 `physics-framework-checker` 檢查舊簡報。

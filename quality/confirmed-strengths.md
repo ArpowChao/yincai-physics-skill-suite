@@ -16,3 +16,4 @@
 | CS-008 | PPTX 審查包能把逐頁畫面、內嵌影片、講稿、九步驟與人工覆核整合在離線工作台 | `test_pptx_review_package.py` 與 `PBa-V.1-2-2` 真實乾跑 |
 | CS-009 | repo audit 能阻止根目錄散檔、私有資料進版控、大型教材提交與 Skill 參考連結失效 | `scripts/audit_repository.py` 與 `test_repository_layout.py` |
 | CS-010 | 外部分享工具會排除原始 PPTX、來源姓名檔名、轉錄資料與未引用媒體 | `build_review_share_bundle.py` 的去識別測試 |
+| CS-011 | `physics-slide-enhancer` 已能把逐頁講稿實際寫回新 PPTX；19 頁 notes 精確比對一致，重新渲染的 19 張畫面像素雜湊未改變 | `PBa-V.1-2-2 動能` 自學講稿版乾跑與 `apply_pptx_notes.ps1` |

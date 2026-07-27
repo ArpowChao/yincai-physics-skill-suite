@@ -2,6 +2,15 @@
 
 本專案使用語意化版本概念記錄可攜式 Skill Suite 的變更。
 
+## 0.5.0 — 2026-07-27
+
+- 新增 PowerPoint speaker notes 寫入工具，強制另存新檔並檢查頁數一致。
+- 用 `physics-slide-enhancer` 完成 `PBa-V.1-2-2 動能` 19 頁自學講稿、影片觀看任務、轉場與選項回饋。
+- 修正 notes XML 抽取，不再於 PowerPoint 分割文字 run 之間插入多餘空格。
+- 新增單元知識資料快照，記錄核心概念、 verified values、迷思、影片角色與未決問題。
+- 建立自學講稿版審查工作台與 45 MB 精簡外部審查 ZIP。
+- 測試增至 29 項。
+
 ## 0.4.1 — 2026-07-27
 
 - 外部審查包新增 `index.html` 與 UTF-8 `README-請先看.txt`，解壓縮後可直接使用。

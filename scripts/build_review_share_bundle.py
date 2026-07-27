@@ -22,6 +22,9 @@ OPTIONAL_PUBLIC_FILES = {
     "playback.mp4",
     "slides-contact-sheet.png",
     "video-contact-sheet.png",
+    "speaker-notes.json",
+    "speaker-notes-report.md",
+    "unit-knowledge-snapshot.json",
 }
 FORBIDDEN_BUNDLE_SUFFIXES = {
     ".ppt",

@@ -51,7 +51,7 @@ def xml_paragraphs(xml_bytes: bytes) -> list[str]:
 def notes_body_text(xml_bytes: bytes) -> str:
     root = ElementTree.fromstring(xml_bytes)
     found_body_placeholder = False
-    values: list[str] = []
+    paragraphs: list[str] = []
     for shape in root.iter():
         if local_name(shape.tag) != "sp":
             continue
@@ -63,13 +63,19 @@ def notes_body_text(xml_bytes: bytes) -> str:
         if not any(node.attrib.get("type") == "body" for node in placeholders):
             continue
         found_body_placeholder = True
-        values.extend(
-            node.text or ""
-            for node in shape.iter()
-            if local_name(node.tag) == "t" and (node.text or "").strip()
-        )
+        for paragraph in shape.iter():
+            if local_name(paragraph.tag) != "p":
+                continue
+            values = [
+                node.text or ""
+                for node in paragraph.iter()
+                if local_name(node.tag) == "t" and (node.text or "").strip()
+            ]
+            text = "".join(values).strip()
+            if text:
+                paragraphs.append(text)
     if found_body_placeholder:
-        return " ".join(values).strip()
+        return "\n".join(paragraphs).strip()
     # Minimal fixtures and some non-standard producers omit placeholders.
     return xml_text(xml_bytes)
 
