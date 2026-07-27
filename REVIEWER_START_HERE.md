@@ -22,10 +22,12 @@
 python scripts/build_review_share_bundle.py `
   "outputs\review-packages\單元" `
   "outputs\share-bundles\單元" `
-  --confirm-authorized
+  --confirm-authorized `
+  --zip
 ```
 
 產生的分享包會排除原始 PPTX、教師姓名檔名、完整媒體庫與轉錄原始資料。
+審查者只要解壓縮 ZIP 並雙擊 `index.html`。
 
 ## 一個好問題要包含什麼
 

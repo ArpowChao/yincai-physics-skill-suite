@@ -5,6 +5,7 @@ import hashlib
 import json
 import shutil
 import sys
+import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -65,8 +66,10 @@ def build_share_bundle(
 
     data = build_workbench_data(package_dir)
     data["source_filename"] = ""
+    workbench_html = build_html(data)
+    (output_dir / "index.html").write_text(workbench_html, encoding="utf-8")
     (output_dir / "review-workbench.html").write_text(
-        build_html(data),
+        workbench_html,
         encoding="utf-8",
     )
     copy_file(package_dir / "review-report.md", output_dir / "review-report.md")
@@ -92,15 +95,34 @@ def build_share_bundle(
 
     readme = f"""# {data['unit_code']} {data['unit_title']} 外部審查包
 
-1. 開啟 `review-workbench.html`。
-2. 逐頁檢查投影片、影片關聯、九步驟與 AI 建議。
-3. 在「老師覆核」記錄 `PASS / REVISE / HOLD` 與理由。
-4. 按「匯出審查紀錄」，將 JSON 交回維護者。
+1. 解壓縮整個 ZIP，不要只在壓縮檔裡預覽。
+2. 雙擊 `index.html`。
+3. 逐頁檢查投影片、影片關聯、九步驟與 AI 建議。
+4. 在「老師覆核」記錄 `PASS / REVISE / HOLD` 與理由。
+5. 按「匯出審查紀錄」，將下載的 JSON 交回維護者。
+
+不需要安裝軟體、不需要連線，也不要移動 `slides` 或 `media` 子資料夾。
 
 本分享包不含原始 PPTX、教師姓名檔名、完整教材庫或自動轉錄原始資料。
 內容仍可能包含受授權限制的頁面與影片，只能依提供者核定範圍使用。
 """
     (output_dir / "README.md").write_text(readme, encoding="utf-8")
+    plain_readme = f"""{data['unit_code']} {data['unit_title']} 外部審查包
+
+怎麼開始：
+1. 先解壓縮整個 ZIP。
+2. 雙擊 index.html。
+3. 逐頁檢查投影片、影片關聯、九步驟與 AI 建議。
+4. 在「老師覆核」選擇通過、修改或暫緩，並寫下理由。
+5. 按「匯出審查紀錄」，把下載的 JSON 交回。
+
+不需要安裝軟體或網路連線。
+請勿移動或刪除 slides、media 資料夾。
+"""
+    (output_dir / "README-請先看.txt").write_text(
+        plain_readme,
+        encoding="utf-8-sig",
+    )
 
     files = sorted(path for path in output_dir.rglob("*") if path.is_file())
     forbidden = [
@@ -133,6 +155,29 @@ def build_share_bundle(
     return manifest
 
 
+def create_zip(output_dir: Path, zip_path: Path | None = None) -> Path:
+    output_dir = output_dir.resolve()
+    zip_path = (
+        zip_path.resolve()
+        if zip_path
+        else Path(f"{output_dir}.zip")
+    )
+    if zip_path.exists():
+        raise FileExistsError(f"ZIP already exists: {zip_path}")
+    zip_path.parent.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(
+        zip_path,
+        "w",
+        compression=zipfile.ZIP_DEFLATED,
+        compresslevel=6,
+        allowZip64=True,
+    ) as archive:
+        for path in sorted(output_dir.rglob("*")):
+            if path.is_file():
+                archive.write(path, path.relative_to(output_dir).as_posix())
+    return zip_path
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Build a privacy-minimized directory for external review."
@@ -149,6 +194,11 @@ def main() -> int:
         action="store_true",
         help="Exclude the full playback MP4.",
     )
+    parser.add_argument(
+        "--zip",
+        action="store_true",
+        help="Also create OUTPUT_DIR.zip for delivery.",
+    )
     args = parser.parse_args()
     if not args.confirm_authorized:
         print(
@@ -162,10 +212,12 @@ def main() -> int:
         args.output_dir,
         include_playback=not args.without_playback,
     )
+    zip_path = create_zip(args.output_dir) if args.zip else None
     print(
         json.dumps(
             {
                 "bundle": str(args.output_dir.resolve()),
+                "zip": str(zip_path) if zip_path else None,
                 "unit_code": manifest["unit_code"],
                 "files": len(manifest["files"]) + 1,
             },

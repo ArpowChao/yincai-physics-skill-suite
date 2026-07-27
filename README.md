@@ -139,8 +139,11 @@ python scripts/build_review_workbench.py "outputs\review-packages\lesson"
 python scripts/build_review_share_bundle.py `
   "outputs\review-packages\lesson" `
   "outputs\share-bundles\lesson" `
-  --confirm-authorized
+  --confirm-authorized `
+  --zip
 ```
+
+審查者解壓縮後只要雙擊 `index.html`；不需 Python、PowerPoint 或網路連線。
 
 ## 課綱與證據分級
 

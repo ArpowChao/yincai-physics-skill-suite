@@ -231,7 +231,9 @@ class PptxReviewPackageTests(unittest.TestCase):
                 include_playback=False,
             )
 
+            self.assertTrue((output / "index.html").is_file())
             self.assertTrue((output / "review-workbench.html").is_file())
+            self.assertTrue((output / "README-請先看.txt").is_file())
             self.assertTrue((output / "slides" / "slide-01.png").is_file())
             self.assertTrue((output / "media" / "media1.mp4").is_file())
             self.assertFalse((output / "original.pptx").exists())
@@ -240,6 +242,15 @@ class PptxReviewPackageTests(unittest.TestCase):
             workbench = (output / "review-workbench.html").read_text(encoding="utf-8")
             self.assertNotIn("王老師", workbench)
             self.assertEqual("PBa-V.1-2-2", manifest["unit_code"])
+
+            zip_path = module.create_zip(output)
+            self.assertTrue(zip_path.is_file())
+            with zipfile.ZipFile(zip_path) as archive:
+                names = set(archive.namelist())
+            self.assertIn("index.html", names)
+            self.assertIn("slides/slide-01.png", names)
+            self.assertIn("media/media1.mp4", names)
+            self.assertNotIn("original.pptx", names)
 
 
 if __name__ == "__main__":
