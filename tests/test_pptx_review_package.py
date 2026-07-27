@@ -149,6 +149,19 @@ class PptxReviewPackageTests(unittest.TestCase):
                   "unit_code": "PBa-V.1-2-2",
                   "unit_title": "動能",
                   "decision": "HOLD",
+                  "scope_card": {
+                    "project_code": "PBa-V.1-2-2",
+                    "project_title": "動能",
+                    "official_parent": "PBa-V.1-2",
+                    "course": "技高物理A",
+                    "official_statement": "能與力的關係。",
+                    "teaching_note": "施力與位移造成能量變化。",
+                    "pdf_page": 108,
+                    "evidence_level": "A+B",
+                    "mapping_status": "mapped-with-source-conflict",
+                    "scope_constraints": ["推導深度需人工確認"],
+                    "conflicts": ["舊碼標為位能"]
+                  },
                   "nine_step_summary": {
                     "complete": ["S4"],
                     "partial": ["S1"],
@@ -224,7 +237,13 @@ class PptxReviewPackageTests(unittest.TestCase):
                 data["inferred_big_idea"]["statement"],
             )
             self.assertTrue(data["critical_gates"][0]["triggered"])
+            self.assertEqual(
+                "PBa-V.1-2",
+                data["scope_card"]["official_parent"],
+            )
             self.assertIn("教材審查工作台", html)
+            self.assertIn("查看範圍卡", html)
+            self.assertIn("mapped-with-source-conflict", html)
             self.assertIn("缺少控制變因", html)
             self.assertIn("教學鏈", html)
             self.assertIn("MISSING-BRIDGE", html)

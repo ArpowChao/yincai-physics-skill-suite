@@ -41,6 +41,31 @@ flowchart LR
 - 單一教材特例：先記 `quality/records/`，不要污染共用規則。
 - 介面問題：附瀏覽器、操作步驟、預期與實際結果。
 
+## 更新專案節點目錄
+
+一般使用者不需要四份原始 Excel；repo 已追蹤去識別後的
+`data/curriculum/project-node-catalog.json`。只有負責更新節點的人，才把最新版
+Excel 放入 `local-data/sources/node-maps/`。檔名需維持：
+
+- `物A-B知識節點 07.18.xlsx`
+- `SDGS教材.xlsx`
+- `選修物理123_知識節點V7.xlsx`
+- `選修物理4_知識節點V3.xlsx`
+
+安裝一次 `openpyxl` 後重建：
+
+```powershell
+python -m pip install openpyxl
+python scripts/build_project_node_catalog.py
+python scripts/resolve_curriculum.py PBa-V.1-2-2
+python -m unittest tests.test_curriculum -v
+```
+
+腳本只輸出節點、課程、官方父層、範圍與工作表列號，不輸出教師、負責人、群組
+或製作進度。原始 Excel 受 `.gitignore` 保護；PR 只提交 JSON、規則、測試與
+必要文件。若同一代碼出現不同標題或父層，保留 `conflicts` 並人工裁決，不可在
+匯入時靜默覆蓋。
+
 ## 每次發布
 
 1. 從 issue 建立版本分支或 release PR，不直接在遠端 `main` 修改。

@@ -27,6 +27,30 @@
     "decision_reason": {
       "type": "string"
     },
+    "scope_card": {
+      "type": "object",
+      "properties": {
+        "project_code": {"type": "string"},
+        "project_title": {"type": "string"},
+        "official_parent": {"type": "string"},
+        "course": {"type": "string"},
+        "track": {"type": "string"},
+        "official_statement": {"type": "string"},
+        "teaching_note": {"type": "string"},
+        "pdf_page": {"type": "integer", "minimum": 1},
+        "evidence_level": {"type": "string"},
+        "mapping_status": {"type": "string"},
+        "scope_constraints": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "conflicts": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      },
+      "additionalProperties": true
+    },
     "lesson_path": {
       "type": "string"
     },

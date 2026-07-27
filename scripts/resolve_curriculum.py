@@ -4,7 +4,13 @@ import argparse
 import json
 from pathlib import Path
 
-from common import DEFAULT_CURRICULUM, load_curriculum, resolve_official_code
+from common import (
+    DEFAULT_CURRICULUM,
+    DEFAULT_PROJECT_NODES,
+    load_curriculum,
+    load_project_nodes,
+    resolve_curriculum_scope,
+)
 
 
 def main() -> int:
@@ -13,8 +19,17 @@ def main() -> int:
     )
     parser.add_argument("code")
     parser.add_argument("--catalog", type=Path, default=DEFAULT_CURRICULUM)
+    parser.add_argument(
+        "--project-catalog",
+        type=Path,
+        default=DEFAULT_PROJECT_NODES,
+    )
     args = parser.parse_args()
-    entry = resolve_official_code(args.code, load_curriculum(args.catalog))
+    entry = resolve_curriculum_scope(
+        args.code,
+        load_curriculum(args.catalog),
+        load_project_nodes(args.project_catalog),
+    )
     print(json.dumps(entry, ensure_ascii=False, indent=2))
     return 0
 

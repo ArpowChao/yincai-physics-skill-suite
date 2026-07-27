@@ -82,11 +82,17 @@ PowerPoint 實際播放匯出與 speaker notes 自動寫回目前依賴 Windows�
    python scripts/index_materials.py "資料" --output outputs/materials-index.jsonl
    ```
 
-5. 查詢自訂代碼所屬的官方課綱條目：
+5. 查詢自訂代碼所屬的官方課綱條目；技高節點會回傳課程版本、官方父層、頁碼
+   與來源衝突：
 
    ```powershell
    python scripts/resolve_curriculum.py PEb-Vc-4-1
+   python scripts/resolve_curriculum.py PBa-V.1-2-2
    ```
+
+   四份原始節點 Excel 不會上傳；所有協作者直接使用 repo 內已去識別的節點
+   目錄。只有節點資料維護者需要依
+   [`維護手冊`](docs/maintenance.md#更新專案節點目錄) 重建目錄。
 
 6. 建立一筆審查紀錄：
 
@@ -196,7 +202,13 @@ python scripts/build_review_share_bundle.py `
 - **C 級**：已驗證且品質穩定的既有教材。
 - **D 級**：LLM-wiki、舊教材、未驗證筆記或模型推論，只能作候選資料，不能單獨證明「未超綱」。
 
-詳細規則見 [`references/evidence-policy.md`](references/evidence-policy.md) 與 [`references/stage5_curriculum_and_scope.md`](references/stage5_curriculum_and_scope.md)。本專案已將官方第五學習階段物理條目整理成 [`data/curriculum/stage5-physics.json`](data/curriculum/stage5-physics.json)；每筆保留來源頁碼與範圍註記。
+詳細規則見 [`references/evidence-policy.md`](references/evidence-policy.md) 與
+[`references/stage5_curriculum_and_scope.md`](references/stage5_curriculum_and_scope.md)。
+本專案已將官方第五學習階段物理條目整理成
+[`data/curriculum/stage5-physics.json`](data/curriculum/stage5-physics.json)，並將
+四份節點 Excel 去個資後整理成
+[`data/curriculum/project-node-catalog.json`](data/curriculum/project-node-catalog.json)；
+每筆保留可追溯來源、頁碼與範圍註記，原始 Excel 不進版控。
 
 ## 品質紀錄與迭代
 
