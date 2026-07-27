@@ -24,12 +24,18 @@
 
 ## 2. 第一次安裝
 
-需求：
+共同需求：
 
 - Git；
 - Python 3.11 以上；
-- Windows PowerShell；
-- Microsoft PowerPoint：只有實際匯出動畫、內嵌影片與播放 MP4 時需要。
+
+平台差異：
+
+- Windows PowerShell 與 Microsoft PowerPoint：只有實際匯出動畫、內嵌影片、
+  播放 MP4，或自動把 speaker notes 寫回 PPTX 時需要；
+- Mac 可完成 GitHub 協作、Python 驗證、manifest、工作台與分享 ZIP；上述兩個
+  PowerPoint 自動化步驟交給 Windows 匯出者。第一次使用請看
+  [`macOS 使用指南`](macos-guide.md)。
 
 取得 private repository 需要先由管理者加入 GitHub collaborator：
 
@@ -56,6 +62,9 @@ python -m unittest discover -s tests -v
 ```
 
 三個指令都成功後才開始處理真實教材。
+
+Mac Terminal 請把 `Copy-Item` 改成 `cp`、`Set-Location` 改成 `cd`，並優先使用
+`python3`。完整可複製指令見 [`macOS 使用指南`](macos-guide.md)。
 
 ## 3. 從 PPTX 建立審查包
 
@@ -84,7 +93,8 @@ PBa-V.1-2-2_動能_20260727-230815
 
 ### 3.2 匯出逐頁畫面與實際播放
 
-電腦有 Microsoft PowerPoint 時執行：
+這一步目前需要 Windows 與 Microsoft PowerPoint。Mac 使用者先完成 manifest，
+再把來源 PPTX 透過已授權的安全管道交給 Windows 匯出者：
 
 ```powershell
 powershell -ExecutionPolicy Bypass `
@@ -129,7 +139,8 @@ python scripts/build_review_workbench.py `
 
 ### 3.5 補寫 speaker notes
 
-只有使用者要求修改時才建立新 PPTX；不覆寫來源：
+只有使用者要求修改時才建立新 PPTX；不覆寫來源。以下自動寫回工具目前需要
+Windows 與 Microsoft PowerPoint；Mac 可先產生 `speaker-notes.json` 再交付：
 
 ```powershell
 powershell -ExecutionPolicy Bypass `

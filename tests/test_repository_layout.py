@@ -63,6 +63,7 @@ class RepositoryLayoutTests(unittest.TestCase):
         required = [
             ROOT / "docs" / "getting-started.md",
             ROOT / "docs" / "collaboration-workflow.md",
+            ROOT / "docs" / "macos-guide.md",
             ROOT / "docs" / "maintenance.md",
             ROOT / ".github" / "workflows" / "ci.yml",
         ]
@@ -73,6 +74,7 @@ class RepositoryLayoutTests(unittest.TestCase):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         self.assertIn("docs/getting-started.md", readme)
         self.assertIn("docs/collaboration-workflow.md", readme)
+        self.assertIn("docs/macos-guide.md", readme)
 
         workflow = (
             ROOT / ".github" / "workflows" / "ci.yml"

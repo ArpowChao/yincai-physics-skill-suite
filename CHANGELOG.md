@@ -2,6 +2,14 @@
 
 本專案使用語意化版本概念記錄可攜式 Skill Suite 的變更。
 
+## 0.6.1 — 2026-07-28
+
+- 新增 macOS 快速指南，包含 GitHub Desktop 無終端機入門、Terminal 指令、AI
+  Agent 使用方式、審查 ZIP、manifest、工作台與分享 ZIP。
+- 明確區分跨平台 Python 工作與 Windows 專用的 PowerPoint 播放匯出、speaker
+  notes 寫回，並建立 Mac 成員與 Windows 匯出者的交付流程。
+- README、操作手冊、協作流程及外部審查入口加入 Mac 導覽與防止教材誤上傳提醒。
+
 ## 0.6.0 — 2026-07-27
 
 - 修正 S1／S2 審查語意：單元名稱作為學習目標錨點；大概念由跨頁活動、
