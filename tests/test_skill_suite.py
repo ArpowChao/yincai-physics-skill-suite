@@ -204,6 +204,32 @@ class SkillSuiteTests(unittest.TestCase):
         self.assertIn("錨定 S9", text)
         self.assertIn("教學順序", text)
 
+    def test_student_language_requires_stage_calibration(self):
+        rubric = json.loads(
+            (ROOT / "data" / "rubrics" / "nine-step.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        s5 = {item["id"]: item for item in rubric["steps"]}["S5"]
+        self.assertIn("學習階段與程度基準", s5["required_evidence"])
+        calibration = s5["calibration"]
+        self.assertTrue(calibration["rule"])
+        self.assertIn("國中會考 B 基礎", calibration["baselines"])
+        self.assertTrue(calibration["checks"])
+        # 沒有基準就寫學生說法，是 S5 飄移的來源。
+        for failure in (
+            "未標明學習階段與程度基準就寫學生說法",
+            "用低於實際學習階段的語言假造學生說法",
+            "把學生在前一學習階段已取得的用詞列為本單元要教的 S4",
+        ):
+            self.assertIn(failure, s5["common_failures"])
+
+    def test_architect_states_stage_baseline(self):
+        text = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("學習階段與程度基準", text)
+
 
 if __name__ == "__main__":
     unittest.main()
