@@ -2,6 +2,17 @@
 
 本專案使用語意化版本概念記錄可攜式 Skill Suite 的變更。
 
+## 0.7.2 — 2026-07-28
+
+- 新增 `GEMINI.md`、`AGENTS.md` 與跨 Agent 執行契約，讓 Gemini CLI 及其他
+  Agent 明確載入 `.agents/skills`、課綱解析流程與 S1／S2 判讀規則。
+- 新增內容型 PPT／一頁式架構 Skill 路由及衝突診斷，避免 Gemini 的全域舊
+  `physics-framework-9step` 或對話快取誤套到內容審查。
+- 新增 `validate_review_policy.py`，攔截把未明列「大概念」標題、專頁或字樣
+  當成缺失或修正要求的模型輸出。
+- 審查工作台改為 fail closed：政策違規的 `review-result.json` 不再生成介面。
+- 加入 Gemini 錯誤輸出的回歸測試與跨平台操作說明。
+
 ## 0.7.1 — 2026-07-28
 
 - 將協作模型修正為「所有 collaborator 都是 Skill 與資料維護者」，不再假設
