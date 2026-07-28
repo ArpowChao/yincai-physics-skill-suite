@@ -121,6 +121,9 @@ git pull --ff-only
 git switch -c fix/framework-infer-big-idea
 ```
 
+`git pull --ff-only` 不可省略。從過期的本機 `main` 開分支是衝突的主要來源；
+若這一步失敗或稍後 PR 顯示衝突，處理方式見 [`§4.7`](#47-與別人的修改整併)。
+
 建議命名：
 
 - `fix/`：修正錯誤判讀或工具問題；
@@ -195,6 +198,107 @@ PR 必須說明：
 
 GitHub Actions 會自動執行 repository audit、Skill 驗證與全部單元測試。CI 失敗
 不得合併。
+
+### 4.7 與別人的修改整併
+
+多人同時維護時，最常見的狀況是你和別人從同一個版本各自往下改：
+
+```
+A ── B        別人的修改，已經合併進 main
+ \
+  └─ C        你的修改，還在你的分支
+```
+
+Git 不會拿 B 和 C 硬比，而是同時對照共同祖先 A，因此多數情況會自動處理：
+
+| 狀況 | 結果 |
+|---|---|
+| B 改甲檔，C 改乙檔 | 自動合併 |
+| B、C 都改甲檔，但**不同行** | 自動合併 |
+| B、C 改**同一行** | **衝突**，需要人決定 |
+
+規則：**先合併的人不必處理，第二個要合併的人負責整併。**
+
+#### 預防：開分支前一定要更新
+
+九成的衝突來自「從過期的本機 `main` 開分支」。正確做法是先取回遠端狀態，
+再從遠端的 `main` 開分支：
+
+```powershell
+git fetch origin
+git switch -c fix/your-topic origin/main
+```
+
+`§4.2` 的 `git switch main; git pull --ff-only` 效果相同，重點都是**動手前先更新**。
+若 `git pull --ff-only` 失敗，代表你的本機 `main` 已經有別人沒有的 commit，
+請改用下面的流程整併，不要用 `git pull` 硬蓋。
+
+#### 真的撞到：在自己的分支上 rebase
+
+PR 頁面出現 `This branch has conflicts that must be resolved` 時，在本機執行：
+
+```powershell
+git fetch origin
+git rebase origin/main
+```
+
+Git 會停在衝突的檔案，內容長這樣：
+
+```text
+<<<<<<< HEAD
+別人的版本
+=======
+你的版本
+>>>>>>> 你的 commit
+```
+
+用編輯器打開，**刪掉 `<<<<<<<`、`=======`、`>>>>>>>` 三行標記**，留下最終要的內容。
+兩邊都要保留時就兩段都留（例如 `CHANGELOG.md` 應保留雙方條目，新版本排在上面）。
+處理完：
+
+```powershell
+git add <剛才修改的檔案>
+git rebase --continue
+python scripts/audit_repository.py
+python scripts/validate_suite.py
+python -m unittest discover -s tests -v
+git push --force-with-lease
+```
+
+三項驗證務必在 push 前跑，因為 rebase 會把你的修改重新套到別人的新程式上，
+可能產生本機原本沒有的失敗。
+
+`--force-with-lease` 是必要的：rebase 會重寫你的 commit，一般 push 會被拒絕。
+它與 `--force` 的差別是，若遠端分支在你不知情時被別人更新過，它會拒絕覆蓋。
+**只對自己的分支使用，永遠不要對 `main` 使用。**
+
+若分支已經有其他人接手開發，改用 merge，不要 rebase 改寫共用歷史：
+
+```powershell
+git fetch origin
+git merge origin/main
+```
+
+Mac 的 git 指令與上述完全相同；GitHub Desktop 使用者可在衝突提示中選擇
+「Open in editor」，處理完標記後按 Continue。
+
+#### 無法自動合併的檔案
+
+`.pptx`、`.docx`、`.pdf`、`.xlsx`、圖片與影片是二進位格式，Git 只能整份二選一，
+沒有逐行合併。兩人同時修改同一份簡報，必然有一份要重做。這是這些副檔名列入
+`.gitignore` 的原因之一（另兩個是容量與個資授權，見 `§2`）。
+
+教材與審查輸出改以檔案交付，不走 Git：
+
+```powershell
+python scripts/build_review_share_bundle.py `
+  "outputs\review-packages\lesson" "outputs\share-bundles\lesson" `
+  --confirm-authorized --zip
+```
+
+`data/curriculum/project-node-overrides.json` 是多人會同時修改的文字檔，
+請一律使用 `python scripts/set_project_node_override.py <patch.json>`。
+它要求填寫預期舊值，若別人已先行修改就會直接擋下，比事後解衝突安全。
 
 ## 5. Review 與合併
 

@@ -132,8 +132,10 @@ python3 scripts/build_review_share_bundle.py \
 
 ## 用 GitHub Desktop 提交修改
 
+0. **先按左上角 `Fetch origin`，再按 `Pull origin`（若有）。** 從過期的 `main`
+   開分支是衝突的主要來源，這一步不能跳過。
 1. 在 GitHub Desktop 選 `Branch → New Branch`，名稱使用
-   `docs/`、`fix/`、`feat/`、`data/` 或 `test/` 前綴。
+   `docs/`、`fix/`、`feat/`、`data/` 或 `test/` 前綴。確認 based on 是 `main`。
 2. 在 Agent 或編輯器完成修改。
 3. 執行驗證，確認沒有把 `outputs/`、`local-data/` 或教材原檔加入。
 4. 回到 GitHub Desktop，檢查 Changes 清單。
@@ -146,6 +148,22 @@ python3 scripts/build_review_share_bundle.py \
 [`collaboration-workflow.md`](collaboration-workflow.md)。
 
 ## 常見問題
+
+### PR 出現「This branch has conflicts」
+
+代表你和別人改到同一行。GitHub Desktop 的處理方式：
+
+1. 選 `Branch → Update from main`（會先自動 Fetch）。
+2. 出現衝突清單時，按 `Open in editor`。
+3. 刪掉 `<<<<<<<`、`=======`、`>>>>>>>` 三行標記，留下最終要的內容；
+   兩邊都該保留時就兩段都留。
+4. 存檔回到 GitHub Desktop，按 `Continue merge`。
+5. **重跑一次驗證指令**，因為你的修改剛被套到別人的新程式上。
+6. 按 `Push origin`。
+
+`.pptx`、`.docx`、圖片與影片無法逐行合併，只能整份二選一——這也是它們不進
+版控的原因之一。完整說明與 Terminal 指令見
+[`collaboration-workflow.md §4.7`](collaboration-workflow.md#47-與別人的修改整併)。
 
 ### 收到邀請但還是看不到 repository
 
