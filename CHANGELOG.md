@@ -2,6 +2,17 @@
 
 本專案使用語意化版本概念記錄可攜式 Skill Suite 的變更。
 
+## 0.7.1 — 2026-07-28
+
+- 將協作模型修正為「所有 collaborator 都是 Skill 與資料維護者」，不再假設
+  只有少數節點資料管理員。
+- 新增 GitHub 追蹤的 `project-node-overrides.json`；團隊確認的節點修正可在
+  Windows／macOS 共同維護，且不會被後續 Excel 重匯洗掉。
+- 新增 `set_project_node_override.py`，要求理由、證據與預期舊值，防止過期 PR
+  覆蓋他人修正，並拒絕教師、群組與進度等私密欄位。
+- 補上不依賴 `local-data` 的共同調教流程與回歸測試；原始 Excel 只在整批新版
+  節點重新匯入時使用。
+
 ## 0.7.0 — 2026-07-28
 
 - 將四份知識節點 Excel 整理為 1,015 筆去識別專案節點目錄；原始 Excel、

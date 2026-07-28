@@ -25,6 +25,7 @@
 
 - 官方課綱：`data/curriculum/stage5-physics.json`
 - 專案節點映射：`data/curriculum/project-node-catalog.json`
+- 團隊確認的節點修正：`data/curriculum/project-node-overrides.json`
 - 九步驟：`data/rubrics/nine-step.json`
 - 三面向八準則：`data/rubrics/literacy-eight-criteria.json`
 - 術語：`data/terminology/physics-terms.json`
