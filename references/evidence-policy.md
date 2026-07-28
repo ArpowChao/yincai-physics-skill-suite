@@ -11,8 +11,9 @@
 
 ## 強制規則
 
-1. 先以 `data/curriculum/project-node-catalog.json` 精確查詢專案節點；查無
-   技高節點時不得以字串切割猜測父碼。
+1. 先以 `data/curriculum/project-node-catalog.json` 精確查詢專案節點，並套用
+   `project-node-overrides.json` 的團隊覆核決策；查無技高節點時不得以字串
+   切割猜測父碼。
 2. 課綱判定引用 `data/curriculum/stage5-physics.json` 或專案節點目錄內的
    官方條目、官方文件 URL 與 PDF 頁碼。
 3. 教材檔名中的「已」「不」「美工完成」只當歷史狀態提示，不是新規準的品質真值。

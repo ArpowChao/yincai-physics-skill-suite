@@ -9,6 +9,9 @@ DATA_PATH = ROOT / "data" / "curriculum" / "stage5-physics.json"
 PROJECT_DATA_PATH = (
     ROOT / "data" / "curriculum" / "project-node-catalog.json"
 )
+PROJECT_OVERRIDES_PATH = (
+    ROOT / "data" / "curriculum" / "project-node-overrides.json"
+)
 COMMON_PATH = ROOT / "scripts" / "common.py"
 
 
@@ -134,6 +137,71 @@ class CurriculumTests(unittest.TestCase):
         self.assertEqual("advanced-elective", elective["track"])
         self.assertEqual("動能", elective["project_title"])
         self.assertEqual("功能定理。", elective["statement"])
+
+    def test_team_override_requires_no_raw_workbooks(self):
+        common = load_common()
+        catalog = common.load_project_nodes(
+            PROJECT_DATA_PATH,
+            overrides_path=None,
+        )
+        overrides = {
+            "entries": {
+                "PBa-V.1-2-2": {
+                    "reason": "教師覆核後補強範圍提醒",
+                    "evidence_refs": ["issue:#example", "curriculum:p.108"],
+                    "expected": {"title": "動能"},
+                    "set": {
+                        "scope_constraints": [
+                            "本測試證明協作者可不依賴原始 Excel 修正節點。"
+                        ]
+                    },
+                }
+            }
+        }
+        updated = common.apply_project_node_overrides(catalog, overrides)
+        self.assertEqual(
+            ["本測試證明協作者可不依賴原始 Excel 修正節點。"],
+            updated["entries"]["PBa-V.1-2-2"]["scope_constraints"],
+        )
+        self.assertEqual(["PBa-V.1-2-2"], updated["overrides_applied"])
+
+    def test_team_override_rejects_stale_or_private_changes(self):
+        common = load_common()
+        catalog = common.load_project_nodes(
+            PROJECT_DATA_PATH,
+            overrides_path=None,
+        )
+        stale = {
+            "entries": {
+                "PBa-V.1-2-2": {
+                    "reason": "測試",
+                    "evidence_refs": ["test"],
+                    "expected": {"title": "位能"},
+                    "set": {"title": "測試"},
+                }
+            }
+        }
+        with self.assertRaises(ValueError):
+            common.apply_project_node_overrides(catalog, stale)
+        private = {
+            "entries": {
+                "PBa-V.1-2-2": {
+                    "reason": "測試",
+                    "evidence_refs": ["test"],
+                    "expected": {"title": "動能"},
+                    "set": {"teacher": "不應寫入"},
+                }
+            }
+        }
+        with self.assertRaises(ValueError):
+            common.apply_project_node_overrides(catalog, private)
+
+    def test_tracked_override_file_is_shareable(self):
+        self.assertTrue(PROJECT_OVERRIDES_PATH.exists())
+        overrides = json.loads(
+            PROJECT_OVERRIDES_PATH.read_text(encoding="utf-8")
+        )
+        self.assertIsInstance(overrides["entries"], dict)
 
     def test_unknown_code_is_not_guessed(self):
         common = load_common()

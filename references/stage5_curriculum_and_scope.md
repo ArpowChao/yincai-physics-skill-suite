@@ -3,7 +3,8 @@
 本文件是人類可讀的操作摘要。完整 120 筆普高必修 `Vc` 與加深加廣選修 `Va`
 條目、課綱陳述、教學說明及 PDF 頁碼位於
 `data/curriculum/stage5-physics.json`；技高物理 A／B、選修物理 1–4 與 SDGs
-教材的專案節點映射位於 `data/curriculum/project-node-catalog.json`。
+教材的專案節點映射位於 `data/curriculum/project-node-catalog.json`，團隊覆核
+後的修正位於 `data/curriculum/project-node-overrides.json` 並由解析器自動套用。
 
 ## 先區分兩種代碼
 

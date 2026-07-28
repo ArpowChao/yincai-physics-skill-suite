@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import re
+from copy import deepcopy
 from pathlib import Path
 from typing import Any
 
@@ -10,6 +11,9 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CURRICULUM = REPO_ROOT / "data" / "curriculum" / "stage5-physics.json"
 DEFAULT_PROJECT_NODES = (
     REPO_ROOT / "data" / "curriculum" / "project-node-catalog.json"
+)
+DEFAULT_PROJECT_NODE_OVERRIDES = (
+    REPO_ROOT / "data" / "curriculum" / "project-node-overrides.json"
 )
 CODE_PATTERN = re.compile(r"^(P[A-Za-z]{2})-(?:V|Ⅴ)([acAC])((?:-\d+)+)$")
 TECHNICAL_NODE_PATTERN = re.compile(
@@ -42,12 +46,92 @@ def load_curriculum(path: Path | str = DEFAULT_CURRICULUM) -> dict[str, Any]:
     return data
 
 
-def load_project_nodes(path: Path | str = DEFAULT_PROJECT_NODES) -> dict[str, Any]:
+def apply_project_node_overrides(
+    catalog: dict[str, Any],
+    overrides: dict[str, Any],
+) -> dict[str, Any]:
+    result = deepcopy(catalog)
+    decisions = overrides.get("entries", {})
+    if not isinstance(decisions, dict):
+        raise ValueError("Project node overrides must contain an entries object")
+    applied = []
+    for raw_code, decision in decisions.items():
+        code = normalize_project_node_code(raw_code)
+        entry = result["entries"].get(code)
+        if not entry:
+            raise ValueError(f"Override references unknown project node: {raw_code}")
+        if not isinstance(decision, dict):
+            raise ValueError(f"Override for {raw_code} must be an object")
+        reason = decision.get("reason")
+        evidence_refs = decision.get("evidence_refs")
+        expected = decision.get("expected", {})
+        changes = decision.get("set", {})
+        if not isinstance(reason, str) or not reason.strip():
+            raise ValueError(f"Override for {raw_code} requires a reason")
+        if not isinstance(evidence_refs, list) or not evidence_refs:
+            raise ValueError(f"Override for {raw_code} requires evidence_refs")
+        if not isinstance(expected, dict) or not isinstance(changes, dict):
+            raise ValueError(f"Override for {raw_code} has invalid expected/set data")
+        forbidden = {
+            "author",
+            "teacher",
+            "group",
+            "progress",
+            "作者老師",
+            "負責人",
+        }
+        if forbidden.intersection(changes):
+            raise ValueError(f"Override for {raw_code} contains private fields")
+        allowed = {
+            "course",
+            "title",
+            "subtheme",
+            "learning_content",
+            "learning_content_explanation",
+            "official_parent",
+            "official_statement",
+            "official_source",
+            "scope_constraints",
+            "node_scope",
+            "evidence_level",
+            "mapping_status",
+            "legacy_reference",
+            "conflicts",
+            "related_physics_nodes",
+        }
+        unsupported = set(changes) - allowed
+        if unsupported:
+            raise ValueError(
+                f"Override for {raw_code} contains unsupported fields: "
+                f"{', '.join(sorted(unsupported))}"
+            )
+        for field, expected_value in expected.items():
+            if entry.get(field) != expected_value:
+                raise ValueError(
+                    f"Override for {raw_code} expected {field}="
+                    f"{expected_value!r}, found {entry.get(field)!r}"
+                )
+        entry.update(deepcopy(changes))
+        applied.append(code)
+    result["overrides_applied"] = applied
+    return result
+
+
+def load_project_nodes(
+    path: Path | str = DEFAULT_PROJECT_NODES,
+    overrides_path: Path | str | None = DEFAULT_PROJECT_NODE_OVERRIDES,
+) -> dict[str, Any]:
     data = json.loads(Path(path).read_text(encoding="utf-8"))
     entries = data.get("entries")
     if not isinstance(entries, dict):
         raise ValueError("Project node catalog must contain an entries object")
-    return data
+    if overrides_path is None:
+        return data
+    override_file = Path(overrides_path)
+    if not override_file.exists():
+        return data
+    overrides = json.loads(override_file.read_text(encoding="utf-8"))
+    return apply_project_node_overrides(data, overrides)
 
 
 def normalize_project_node_code(code: str) -> str:

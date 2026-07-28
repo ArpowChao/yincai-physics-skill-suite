@@ -41,18 +41,59 @@ flowchart LR
 - 單一教材特例：先記 `quality/records/`，不要污染共用規則。
 - 介面問題：附瀏覽器、操作步驟、預期與實際結果。
 
-## 更新專案節點目錄
+## 所有協作者都能維護節點與 Skill
 
-一般使用者不需要四份原始 Excel；repo 已追蹤去識別後的
-`data/curriculum/project-node-catalog.json`。只有負責更新節點的人，才把最新版
-Excel 放入 `local-data/sources/node-maps/`。檔名需維持：
+本專案的 collaborator 都是維護者，不區分少數「資料管理員」。以下工作完全
+不需要 `local-data`：
+
+- 修改 `.agents/skills/*/SKILL.md` 的流程與輸出契約；
+- 修改 `references/`、`data/rubrics/`、schema 與測試；
+- 修正個別節點的名稱、父層、範圍限制或來源衝突；
+- 用去識別案例建立回歸測試並提出 PR。
+
+基礎匯入結果位於 `data/curriculum/project-node-catalog.json`。經團隊覆核的新
+決策寫入 `data/curriculum/project-node-overrides.json`，解析器會自動套用；
+因此重新匯入 Excel 不會洗掉團隊後續調教結果。
+
+建立一個本機 patch，例如放在 `outputs/node-fix.json`：
+
+```json
+{
+  "code": "PBa-V.1-2-2",
+  "reason": "依課綱頁碼與教師覆核修正範圍說明",
+  "evidence_refs": ["curriculum:p.108", "github-issue:#12"],
+  "expected": {"title": "動能"},
+  "set": {
+    "mapping_status": "mapped-with-source-conflict",
+    "scope_constraints": ["此處填入團隊確認的新限制"]
+  }
+}
+```
+
+先驗證，再寫入覆寫檔：
+
+```powershell
+python scripts/set_project_node_override.py outputs/node-fix.json --check
+python scripts/set_project_node_override.py outputs/node-fix.json
+python scripts/resolve_curriculum.py PBa-V.1-2-2
+python -m unittest tests.test_curriculum -v
+```
+
+`expected` 是防呆條件：若別人的 PR 已先改動該節點，工具會停止，要求重新讀取
+最新狀態，而不是覆蓋他人的決策。`reason` 與 `evidence_refs` 必填，教師、群組、
+進度等個資欄位會被拒絕。
+
+### 何時才需要原始 Excel
+
+只有收到整批新版節點 Excel、要重建 1,015 筆基礎匯入結果時才需要
+`local-data/sources/node-maps/`。檔名需維持：
 
 - `物A-B知識節點 07.18.xlsx`
 - `SDGS教材.xlsx`
 - `選修物理123_知識節點V7.xlsx`
 - `選修物理4_知識節點V3.xlsx`
 
-安裝一次 `openpyxl` 後重建：
+安裝一次 `openpyxl` 後重建基礎目錄；既有覆寫檔不會被改動：
 
 ```powershell
 python -m pip install openpyxl
@@ -61,10 +102,10 @@ python scripts/resolve_curriculum.py PBa-V.1-2-2
 python -m unittest tests.test_curriculum -v
 ```
 
-腳本只輸出節點、課程、官方父層、範圍與工作表列號，不輸出教師、負責人、群組
-或製作進度。原始 Excel 受 `.gitignore` 保護；PR 只提交 JSON、規則、測試與
-必要文件。若同一代碼出現不同標題或父層，保留 `conflicts` 並人工裁決，不可在
-匯入時靜默覆蓋。
+匯入腳本只輸出節點、課程、官方父層、範圍與工作表列號，不輸出教師、負責人、
+群組或製作進度。原始 Excel 受 `.gitignore` 保護；PR 只提交 JSON、規則、測試
+與必要文件。若同一代碼出現不同標題或父層，保留 `conflicts` 並透過覆寫決策
+人工裁決，不可在匯入時靜默覆蓋。
 
 ## 每次發布
 

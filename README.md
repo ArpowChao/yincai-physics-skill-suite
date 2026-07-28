@@ -91,8 +91,10 @@ PowerPoint 實際播放匯出與 speaker notes 自動寫回目前依賴 Windows�
    ```
 
    四份原始節點 Excel 不會上傳；所有協作者直接使用 repo 內已去識別的節點
-   目錄。只有節點資料維護者需要依
-   [`維護手冊`](docs/maintenance.md#更新專案節點目錄) 重建目錄。
+   目錄與覆寫決策檔。每位 collaborator 都能修改 Skill、規準、測試及節點
+   覆寫，不需要 `local-data`；只有收到整批新版 Excel、要重新匯入基礎目錄時
+   才需要原始檔。操作見
+   [`維護手冊`](docs/maintenance.md#所有協作者都能維護節點與-skill)。
 
 6. 建立一筆審查紀錄：
 
@@ -208,7 +210,9 @@ python scripts/build_review_share_bundle.py `
 [`data/curriculum/stage5-physics.json`](data/curriculum/stage5-physics.json)，並將
 四份節點 Excel 去個資後整理成
 [`data/curriculum/project-node-catalog.json`](data/curriculum/project-node-catalog.json)；
-每筆保留可追溯來源、頁碼與範圍註記，原始 Excel 不進版控。
+每筆保留可追溯來源、頁碼與範圍註記。團隊後續確認的修正放在
+[`data/curriculum/project-node-overrides.json`](data/curriculum/project-node-overrides.json)，
+避免重新匯入 Excel 時洗掉已審定決策；原始 Excel 不進版控。
 
 ## 品質紀錄與迭代
 
