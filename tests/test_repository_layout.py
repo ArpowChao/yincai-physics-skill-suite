@@ -61,6 +61,8 @@ class RepositoryLayoutTests(unittest.TestCase):
 
     def test_collaboration_entrypoints_and_ci_are_present(self):
         required = [
+            ROOT / "AGENTS.md",
+            ROOT / "GEMINI.md",
             ROOT / "docs" / "getting-started.md",
             ROOT / "docs" / "collaboration-workflow.md",
             ROOT / "docs" / "macos-guide.md",
@@ -75,6 +77,14 @@ class RepositoryLayoutTests(unittest.TestCase):
         self.assertIn("docs/getting-started.md", readme)
         self.assertIn("docs/collaboration-workflow.md", readme)
         self.assertIn("docs/macos-guide.md", readme)
+
+        gemini = (ROOT / "GEMINI.md").read_text(encoding="utf-8")
+        runtime = (
+            ROOT / "references" / "cross-agent-runtime.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("physics-framework-checker", gemini)
+        self.assertIn("/skills list", runtime)
+        self.assertIn("不得因此扣分", runtime)
 
         workflow = (
             ROOT / ".github" / "workflows" / "ci.yml"

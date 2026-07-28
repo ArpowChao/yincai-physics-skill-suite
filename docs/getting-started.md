@@ -128,14 +128,32 @@ powershell -ExecutionPolicy Bypass `
 單元名稱是學習目標錨點；大概念不要求在投影片明列。審查者應從活動、問題、
 證據、公式與應用反推大概念，再判斷內容是否與單元名稱一致。
 
+若使用 Gemini CLI，先在 repository 根目錄確認：
+
+```text
+/skills list
+/memory show
+```
+
+清單中必須出現 `physics-framework-checker`，專案記憶必須包含 `GEMINI.md`。
+剛更新 repository 時執行 `/skills reload` 與 `/memory reload`；workspace 尚未
+信任時，先執行 `/trust` 並重新啟動。若清單另有舊
+`physics-framework-9step`，內容型 PPT 審查不得批准或啟用它。Skill 未載入時
+不要接受審查結果。
+
 ### 3.4 建立離線工作台
 
 ```powershell
+python scripts/check_skill_conflicts.py --task content-deck-review
+python scripts/validate_review_policy.py `
+  "outputs\review-packages\單元代碼_單元名稱_YYYYMMDD-HHmmss\review-result.json"
 python scripts/build_review_workbench.py `
   "outputs\review-packages\單元代碼_單元名稱_YYYYMMDD-HHmmss"
 ```
 
-開啟生成的 `review-workbench.html`，進行人工覆核。
+第一個指令檢查是否存在會誤觸發的舊全域 Skill；第二個指令會拒絕「因未明列
+大概念而扣分／要求補標題」的錯誤結果。工作台建置本身也會執行輸出政策檢查；
+通過後再開啟 `review-workbench.html` 進行人工覆核。
 
 ### 3.5 補寫 speaker notes
 

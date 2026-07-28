@@ -9,8 +9,10 @@ from pathlib import Path
 ALLOWED_ROOT_FILES = {
     ".gitattributes",
     ".gitignore",
+    "AGENTS.md",
     "CHANGELOG.md",
     "CONTRIBUTING.md",
+    "GEMINI.md",
     "LICENSES.md",
     "README.md",
     "REVIEWER_START_HERE.md",

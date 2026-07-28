@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "routes": {
+    "content-deck-review": {
+      "preferred_skill": "physics-framework-checker",
+      "incompatible_skills": [
+        "physics-framework-9step"
+      ],
+      "reason": "內容型 PPT 必須跨頁反推九步驟；不得套用要求單張九宮格欄位顯性呈現的舊架構 Skill。"
+    },
+    "one-page-architecture": {
+      "preferred_skill": "physics-one-page-architect",
+      "legacy_skills": [
+        "physics-framework-9step"
+      ],
+      "reason": "一頁式架構圖可顯性呈現九步驟與三鏈；這與內容型 PPT 審查是不同任務。"
+    }
+  }
+}

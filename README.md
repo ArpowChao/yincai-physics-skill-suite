@@ -16,6 +16,7 @@
 | 使用 Mac 的審查者或協作者 | [`docs/macos-guide.md`](docs/macos-guide.md) |
 | 要修 Skill、規準或工具的人 | [`docs/collaboration-workflow.md`](docs/collaboration-workflow.md) |
 | Repo 維護與版本管理者 | [`docs/maintenance.md`](docs/maintenance.md) |
+| 使用 Gemini CLI 執行 Skill | [`GEMINI.md`](GEMINI.md) |
 
 GitHub repository 目前應維持 private，直到程式與原創內容授權完成決策。GitHub
 只保存可分享核心；`outputs/`、真實教材、影片與本機品質紀錄不會上傳。
@@ -137,8 +138,15 @@ powershell -ExecutionPolicy Bypass -File scripts/export_pptx_review_assets.ps1 `
 不需網路連線的逐頁審查工作台：
 
 ```powershell
+python scripts/check_skill_conflicts.py --task content-deck-review
+python scripts/validate_review_policy.py `
+  "outputs\review-packages\lesson\review-result.json"
 python scripts/build_review_workbench.py "outputs\review-packages\lesson"
 ```
+
+第一個指令會檢查 Gemini 等 Agent 是否仍可見已知舊版衝突 Skill；第二個指令
+會攔截把「未明列大概念標題／專頁」誤判成缺失的模型輸出；
+工作台也會自動執行同一檢查，違反政策時拒絕建立。
 
 開啟生成的 `review-workbench.html` 後，可以篩選教學鏈斷點、影片問題與缺講稿頁，
 逐頁播放內嵌影片，檢查「本頁問題 → 學生輸出 → 回饋」、九步驟、十項內容品質與

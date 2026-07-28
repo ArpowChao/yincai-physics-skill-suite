@@ -5,6 +5,11 @@ import json
 from pathlib import Path
 from typing import Any
 
+try:
+    from scripts.review_policy import validate_review_policy
+except ModuleNotFoundError:
+    from review_policy import validate_review_policy
+
 
 NINE_STEP_LABELS = {
     "S1": "主題目標",
@@ -26,6 +31,12 @@ def read_json(path: Path) -> dict[str, Any]:
 def build_workbench_data(package_dir: Path) -> dict[str, Any]:
     manifest = read_json(package_dir / "manifest.json")
     review = read_json(package_dir / "review-result.json")
+    policy_errors = validate_review_policy(review)
+    if policy_errors:
+        details = "\n".join(f"- {error}" for error in policy_errors)
+        raise ValueError(
+            "review-result.json 違反專案審查政策，未建立工作台：\n" + details
+        )
     alignments: dict[int, list[dict[str, Any]]] = {}
     for item in review.get("media_alignment", []):
         alignments.setdefault(int(item["slide"]), []).append(item)
