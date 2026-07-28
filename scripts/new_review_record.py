@@ -6,7 +6,7 @@ from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from common import load_curriculum, resolve_official_code
+from common import load_curriculum, load_project_nodes, resolve_curriculum_scope
 from quality_records import validate_record
 
 
@@ -16,7 +16,11 @@ def build_record(
     artifact_refs: list[str],
     skill_version: str = "1.0.0",
 ) -> dict:
-    official = resolve_official_code(project_code, load_curriculum())
+    scope = resolve_curriculum_scope(
+        project_code,
+        load_curriculum(),
+        load_project_nodes(),
+    )
     timestamp = datetime.now(ZoneInfo("Asia/Taipei"))
     slug = project_code.lower().replace("-", "_")
     return {
@@ -26,9 +30,18 @@ def build_record(
         "skill": skill,
         "skill_version": skill_version,
         "project_code": project_code.replace("Ⅴ", "V"),
-        "official_code": official["code"],
+        "official_code": scope["code"],
         "artifact_refs": artifact_refs,
-        "evidence": [{"level": "A", "ref": f"curriculum:{official['code']}"}],
+        "evidence": [
+            {
+                "level": (
+                    "A"
+                    if "A" in scope.get("evidence_level", "A")
+                    else "B"
+                ),
+                "ref": f"curriculum:{scope['code']}",
+            }
+        ],
         "decision": "HOLD",
         "strengths": [],
         "findings": [],

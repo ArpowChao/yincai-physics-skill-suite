@@ -6,6 +6,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "data" / "curriculum" / "stage5-physics.json"
+PROJECT_DATA_PATH = (
+    ROOT / "data" / "curriculum" / "project-node-catalog.json"
+)
 COMMON_PATH = ROOT / "scripts" / "common.py"
 
 
@@ -49,6 +52,19 @@ class CurriculumTests(unittest.TestCase):
         self.assertIn("不涉及公式之推導與計算", note)
         self.assertIn(188, entries["PEb-Vc-4"]["teaching_note_source_pages"])
 
+    def test_cross_page_work_energy_note_is_not_truncated(self):
+        entries = json.loads(DATA_PATH.read_text(encoding="utf-8"))["entries"]
+        for code in ["PBa-Va-1", "PBa-Va-2"]:
+            with self.subTest(code=code):
+                self.assertIn(
+                    "外力作功之總和等於質點動能之變化量",
+                    entries[code]["teaching_note"],
+                )
+                self.assertEqual(
+                    [196, 197],
+                    entries[code]["teaching_note_source_pages"],
+                )
+
     def test_project_node_resolves_to_official_parent(self):
         common = load_common()
         catalog = common.load_curriculum(DATA_PATH)
@@ -65,11 +81,71 @@ class CurriculumTests(unittest.TestCase):
             common.resolve_official_code("PKc-Va-10-13", catalog)["code"],
         )
 
+    def test_project_catalog_contains_sanitized_excel_nodes(self):
+        self.assertTrue(PROJECT_DATA_PATH.exists())
+        data = json.loads(PROJECT_DATA_PATH.read_text(encoding="utf-8"))
+        self.assertGreaterEqual(data["entry_count"], 1000)
+        node = data["entries"]["PBa-V.1-2-2"]
+        self.assertEqual("技高物理A", node["course"])
+        self.assertEqual("動能", node["title"])
+        self.assertEqual("PBa-V.1-2", node["official_parent"])
+        self.assertIn("物體會因此產生能量的變化", node["learning_content_explanation"])
+        self.assertEqual(108, node["official_source"]["pdf_page"])
+        self.assertEqual("A+B", node["evidence_level"])
+        self.assertIn("source-conflict", node["mapping_status"])
+        self.assertTrue(
+            any("位能的定義" in item for item in node["conflicts"])
+        )
+
+        raw = PROJECT_DATA_PATH.read_text(encoding="utf-8")
+        for forbidden_field in [
+            '"author"',
+            '"teacher"',
+            '"group"',
+            '"progress"',
+            '"作者老師"',
+            '"負責人"',
+        ]:
+            with self.subTest(forbidden_field=forbidden_field):
+                self.assertNotIn(forbidden_field, raw)
+
+    def test_technical_and_elective_nodes_resolve_to_scope_cards(self):
+        common = load_common()
+        curriculum = common.load_curriculum(DATA_PATH)
+        projects = common.load_project_nodes(PROJECT_DATA_PATH)
+
+        technical = common.resolve_curriculum_scope(
+            "PBa-V.1-2-2",
+            curriculum,
+            projects,
+        )
+        self.assertEqual("PBa-V.1-2", technical["code"])
+        self.assertEqual("technical-physics-a", technical["track"])
+        self.assertEqual("動能", technical["project_title"])
+        self.assertEqual("A+B", technical["evidence_level"])
+        self.assertTrue(technical["conflicts"])
+
+        elective = common.resolve_curriculum_scope(
+            "PBa-Va-2.1",
+            curriculum,
+            projects,
+        )
+        self.assertEqual("PBa-Va-2", elective["code"])
+        self.assertEqual("advanced-elective", elective["track"])
+        self.assertEqual("動能", elective["project_title"])
+        self.assertEqual("功能定理。", elective["statement"])
+
     def test_unknown_code_is_not_guessed(self):
         common = load_common()
         catalog = common.load_curriculum(DATA_PATH)
         with self.assertRaises(common.UnknownCurriculumCode):
             common.resolve_official_code("PZZ-Vc-99-1", catalog)
+        with self.assertRaises(common.UnknownCurriculumCode):
+            common.resolve_curriculum_scope(
+                "PZZ-V.1-99-1",
+                catalog,
+                common.load_project_nodes(PROJECT_DATA_PATH),
+            )
 
 
 if __name__ == "__main__":

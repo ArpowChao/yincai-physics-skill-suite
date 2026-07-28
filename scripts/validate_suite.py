@@ -76,6 +76,7 @@ def validate() -> list[str]:
 
     data_files = [
         ROOT / "data" / "curriculum" / "stage5-physics.json",
+        ROOT / "data" / "curriculum" / "project-node-catalog.json",
         ROOT / "data" / "rubrics" / "nine-step.json",
         ROOT / "data" / "rubrics" / "literacy-eight-criteria.json",
         ROOT / "data" / "schemas" / "review-record.schema.json",

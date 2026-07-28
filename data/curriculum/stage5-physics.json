@@ -8,28 +8,30 @@
       "code": "PBa-Va-1",
       "track": "advanced-elective",
       "statement": "功等於力和位移的向量內積，功率為功的時間變化率。",
-      "teaching_note": "1-1 以力與位移的純量積定義功，並介紹平均功率及瞬時功率。 2-1 定義動能，並證明外力作功之總和等於質",
+      "teaching_note": "1-1 以力與位移的純量積定義功，並介紹平均功率及瞬時功率。 2-1 定義動能，並證明外力作功之總和等於質點動能之變化量。",
       "source": {
         "document": "十二年國民基本教育課程綱要國民中小學暨普通型高級中等學校─自然科學領域",
         "pdf_page": 49
       },
       "teaching_note_source_page": 196,
       "teaching_note_source_pages": [
-        196
+        196,
+        197
       ]
     },
     "PBa-Va-2": {
       "code": "PBa-Va-2",
       "track": "advanced-elective",
       "statement": "功能定理。",
-      "teaching_note": "1-1 以力與位移的純量積定義功，並介紹平均功率及瞬時功率。 2-1 定義動能，並證明外力作功之總和等於質",
+      "teaching_note": "1-1 以力與位移的純量積定義功，並介紹平均功率及瞬時功率。 2-1 定義動能，並證明外力作功之總和等於質點動能之變化量。",
       "source": {
         "document": "十二年國民基本教育課程綱要國民中小學暨普通型高級中等學校─自然科學領域",
         "pdf_page": 49
       },
       "teaching_note_source_page": 196,
       "teaching_note_source_pages": [
-        196
+        196,
+        197
       ]
     },
     "PBa-Va-3": {

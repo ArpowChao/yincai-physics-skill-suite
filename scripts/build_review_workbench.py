@@ -93,6 +93,7 @@ def build_workbench_data(package_dir: Path) -> dict[str, Any]:
         "unit_title": review.get("unit_title", ""),
         "decision": review.get("decision", "HOLD"),
         "decision_reason": review.get("decision_reason", ""),
+        "scope_card": review.get("scope_card", {}),
         "source_filename": manifest.get("source_filename", ""),
         "source_sha256": manifest.get("source_sha256", ""),
         "inventory": review.get("inventory", {}),
@@ -435,6 +436,13 @@ HTML_TEMPLATE = r"""<!doctype html>
     .modal-head h2 { margin: 0; font-size: 16px; }
     .modal-head button { color: white; background: transparent; border: 0; cursor: pointer; font-size: 23px; }
     dialog video { display: block; width: 100%; background: #000; }
+    .scope-body { padding: 18px; background: var(--paper); }
+    .scope-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .scope-item { padding: 12px; border: 1px solid var(--line); border-radius: 9px; background: white; }
+    .scope-item.wide { grid-column: 1 / -1; }
+    .scope-item strong { display: block; margin-bottom: 5px; color: var(--muted); font-size: 11px; }
+    .scope-item span, .scope-item li { font-size: 13px; line-height: 1.55; }
+    .scope-item ul { margin: 4px 0 0; padding-left: 20px; }
     .toast {
       position: fixed;
       left: 50%;
@@ -485,6 +493,7 @@ HTML_TEMPLATE = r"""<!doctype html>
       </div>
       <div class="top-actions">
         <span class="decision" id="decision"></span>
+        <button class="top-button" id="show-scope">查看範圍卡</button>
         <button class="top-button" id="play-all">播放完整簡報</button>
         <button class="top-button" id="export-review">匯出審查紀錄</button>
       </div>
@@ -535,6 +544,13 @@ HTML_TEMPLATE = r"""<!doctype html>
       <button id="close-playback" aria-label="關閉">×</button>
     </div>
     <video id="playback-video" controls preload="metadata"></video>
+  </dialog>
+  <dialog id="scope-dialog">
+    <div class="modal-head">
+      <h2>課綱與專案節點範圍卡</h2>
+      <button id="close-scope" aria-label="關閉">×</button>
+    </div>
+    <div class="scope-body" id="scope-body"></div>
   </dialog>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -607,6 +623,22 @@ HTML_TEMPLATE = r"""<!doctype html>
       toast.textContent = message;
       toast.classList.add("show");
       setTimeout(() => toast.classList.remove("show"), 1800);
+    }
+    function renderScopeCard() {
+      const scope = DATA.scope_card || {};
+      const constraints = scope.scope_constraints || [];
+      const conflicts = scope.conflicts || [];
+      document.getElementById("scope-body").innerHTML = `
+        <div class="scope-grid">
+          <div class="scope-item"><strong>專案節點</strong><span>${esc(scope.project_code || DATA.unit_code)} ${esc(scope.project_title || DATA.unit_title)}</span></div>
+          <div class="scope-item"><strong>官方父層／課程</strong><span>${esc(scope.official_parent || "尚未確認")} · ${esc(scope.course || scope.track || "")}</span></div>
+          <div class="scope-item wide"><strong>官方內容</strong><span>${esc(scope.official_statement || "")}</span></div>
+          <div class="scope-item wide"><strong>內容說明</strong><span>${esc(scope.teaching_note || "")}</span></div>
+          <div class="scope-item"><strong>證據與頁碼</strong><span>${esc(scope.evidence_level || "")} · p.${esc(scope.pdf_page || "")}</span></div>
+          <div class="scope-item"><strong>映射狀態</strong><span>${esc(scope.mapping_status || "")}</span></div>
+          <div class="scope-item wide"><strong>範圍限制</strong>${constraints.length ? `<ul>${constraints.map(item => `<li>${esc(item)}</li>`).join("")}</ul>` : "<span>未列</span>"}</div>
+          <div class="scope-item wide"><strong>來源衝突</strong>${conflicts.length ? `<ul>${conflicts.map(item => `<li>${esc(item)}</li>`).join("")}</ul>` : "<span>無</span>"}</div>
+        </div>`;
     }
     function renderFilters() {
       document.getElementById("filters").innerHTML = filters.map(([key, label]) =>
@@ -919,6 +951,12 @@ HTML_TEMPLATE = r"""<!doctype html>
       dialog.close();
     });
     dialog.addEventListener("close", () => playback.pause());
+    const scopeDialog = document.getElementById("scope-dialog");
+    document.getElementById("show-scope").addEventListener("click", () => {
+      renderScopeCard();
+      scopeDialog.showModal();
+    });
+    document.getElementById("close-scope").addEventListener("click", () => scopeDialog.close());
     render();
   </script>
 </body>

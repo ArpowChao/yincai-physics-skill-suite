@@ -145,6 +145,11 @@ git switch -c fix/framework-infer-big-idea
 可跨單元共用的規則放 `data/`、`references/` 或 `scripts/`。不要把某份教材答案
 直接寫進 Skill。
 
+節點 Excel 由指定維護者放在本機 `local-data/sources/node-maps/`，再執行
+`python scripts/build_project_node_catalog.py`。其他成員只需 pull 已去識別的
+`data/curriculum/project-node-catalog.json`，不必取得原始 Excel，也能進行
+範圍查詢與審查。
+
 ### 4.4 本機驗證
 
 ```powershell
