@@ -270,7 +270,7 @@ git push --force-with-lease
 
 `--force-with-lease` 是必要的：rebase 會重寫你的 commit，一般 push 會被拒絕。
 它與 `--force` 的差別是，若遠端分支在你不知情時被別人更新過，它會拒絕覆蓋。
-**只對自己的分支使用，永遠不要對 `main` 使用。**
+**只對自己的分支使用**；`main` 已由分支保護禁止 force push，見 [`§8`](#8-main-分支保護已生效)。
 
 若分支已經有其他人接手開發，改用 merge，不要 rebase 改寫共用歷史：
 
@@ -351,18 +351,39 @@ python scripts/build_review_share_bundle.py `
 
 正式資料位置與變更分流見 [`maintenance.md`](maintenance.md)。
 
-## 8. Repo 管理者建議設定
+## 8. main 分支保護（已生效）
 
-在 GitHub 設定：
+`main` 已啟用分支保護，以下規則由 GitHub 強制執行，不是慣例：
+
+| 規則 | 設定 | 實際效果 |
+|---|---|---|
+| 必須經由 pull request | approvals = **0** | 不能 `git push origin main`，一律開 PR |
+| 必須通過 CI | check = **`validate`** | CI 紅燈無法合併 |
+| 必須先更新到最新 main | strict | 落後 main 的 PR 要先 rebase 才能合併 |
+| 線性歷史 | 啟用 | 配合 squash merge，不產生分岔 |
+| 禁止 force push 與刪除 | 啟用 | `main` 無法被覆蓋或刪除 |
+| 未解決的討論不得合併 | 啟用 | PR 上的 review comment 要先 resolve |
+| 管理員一併受限 | **啟用** | 擁有者與 AI Agent 都不能繞過 |
+
+兩點說明：
+
+- **approvals 設 0 是刻意的。** GitHub 不允許自己核可自己的 PR；單人維護期間若要求
+  至少一位核可，任何 PR 都無法合併。等有第二位維護者再調高。
+- **管理員一併受限是刻意的。** AI Agent 使用維護者本人的憑證操作，若保留管理員後門，
+  等於同時對 Agent 開後門，保護會失效。
+
+需要臨時調整時，用 GitHub 網頁 `Settings → Branches` 修改，或：
+
+```powershell
+gh api repos/ArpowChao/yincai-physics-skill-suite/branches/main/protection
+```
+
+其餘建議設定：
 
 - 預設分支：`main`；
 - 合併方式：保留 squash merge；
-- 刪除已合併分支；
-- main 需要 pull request；
-- main 需要通過 `repository-quality` CI；
-- 至少一位 approval；
-- 禁止 force push 與刪除 main；
-- 啟用 secret scanning 與 dependency alerts（方案支援時）。
+- 開啟 `Settings → General → Automatically delete head branches`；
+- 啟用 secret scanning 與 dependency alerts。
 
 授權未定前維持 private。要邀請只審查教材、不修改程式的人，可以只傳經授權的
 離線審查 ZIP，不必開放整個 repository。
