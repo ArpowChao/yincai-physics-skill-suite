@@ -12,7 +12,7 @@ description: Use when 使用者要依物理投影片建立或優化 WSQ、預習
 開始前讀取：
 
 - `../../../references/skill-runtime.md`
-- `../../../data/rubrics/nine-step.json`
+- `../../../data/rubrics/nine-step.json`（**正向生成**：預習承接 S6、課中承接 S8、課後承接 S9）
 - `../../../references/worksheets_templates_and_examples.md`
 
 ## Inputs

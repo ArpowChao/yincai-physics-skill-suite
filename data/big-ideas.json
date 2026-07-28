@@ -1,13 +1,19 @@
 {
-  "version": "1.0.0",
+  "version": "2.0.0",
+  "source": {
+    "document": "教案架構檢核表（新架構討論）",
+    "slide": 6,
+    "note": "大概念（概念透鏡）八項，依原始表格名稱與說明。"
+  },
   "ideas": [
-    {"id": "change-stability", "zh_tw": "改變與穩定", "prompt": "哪些量改變？什麼條件使系統維持或恢復穩定？"},
-    {"id": "relationships", "zh_tw": "關係", "prompt": "變數之間如何連動？是因果、正比、反比或守恆關係嗎？"},
-    {"id": "patterns", "zh_tw": "模式", "prompt": "資料或現象中有哪些重複、週期或可預測規律？"},
-    {"id": "structure-function", "zh_tw": "結構與功能", "prompt": "元件如何排列，並因此產生特定功能？"},
-    {"id": "systems-models", "zh_tw": "系統與模型", "prompt": "系統邊界在哪裡？模型保留與忽略了什麼？"},
-    {"id": "order", "zh_tw": "次序", "prompt": "事件的先後、方向或不可逆性為何重要？"},
-    {"id": "interactions", "zh_tw": "交互作用", "prompt": "物體或場之間如何互相影響與交換能量、動量或資訊？"}
+    {"id": "change", "zh_tw": "改變", "en": "Change", "definition": "系統隨著時間改變，產生某些因子的變化", "prompt": "哪些因子隨時間改變？改變的方向與速率為何？"},
+    {"id": "balance", "zh_tw": "穩定", "en": "Balance", "definition": "當系統內各項因子不變的情況下，達到穩定的狀態", "prompt": "哪些因子維持不變？系統靠什麼達到或恢復穩定？"},
+    {"id": "relationship", "zh_tw": "關係", "en": "Relationship", "definition": "人事物間的關聯", "prompt": "哪些量彼此連動？是比值、正比、反比或因果關係？", "example": "m/v 密度或 v/m 疏度、x/t 速率大、t/x 速率快"},
+    {"id": "pattern", "zh_tw": "模式", "en": "Pattern", "definition": "在事物上產生一種規律的樣態", "prompt": "資料或現象中有哪些重複、週期或可預測的規律？"},
+    {"id": "structure", "zh_tw": "結構", "en": "Structure", "definition": "相互關連元件間的排列或組織", "prompt": "元件如何排列與組織？"},
+    {"id": "system", "zh_tw": "系統", "en": "System", "definition": "一群有關係的元件，依據某種規則運作而形成的整體", "prompt": "系統邊界在哪裡？依什麼規則運作？", "example": "(A+B) 與 (A′+B′) 能量守恆、動量守恆；守恆律對應到系統"},
+    {"id": "order", "zh_tw": "次序", "en": "Order", "definition": "有原則的排列", "prompt": "事件的先後、方向或不可逆性為何重要？"},
+    {"id": "interaction", "zh_tw": "交互作用", "en": "Interaction", "definition": "元件間透過任何形式的互動產生的影響", "prompt": "元件之間如何互相影響、交換能量、動量或資訊？"}
   ],
-  "selection_rule": "選一個主大概念；只有在第二個概念對目標與任務不可替代時才列副概念。"
+  "selection_rule": "從表中選一個作為本單元的教學套路，並展開成可操作的探究方式；只有在第二個概念對目標與任務不可替代時才列副概念。"
 }

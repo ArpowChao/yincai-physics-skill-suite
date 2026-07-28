@@ -12,7 +12,7 @@ description: Use when 使用者要在上架前總檢高中物理單元包，對�
 開始前讀取：
 
 - `../../../references/skill-runtime.md`
-- `../../../data/rubrics/nine-step.json`
+- `../../../data/rubrics/nine-step.json`（**逆向審查**：以 `teaching_order` 檢查三份教材的難度遞進）
 - `../../../data/rubrics/literacy-eight-criteria.json`
 - `../../../data/terminology/physics-terms.json`
 

@@ -12,7 +12,7 @@ description: Use when 使用者要把既有高中物理 PPT 升級為因材網�
 開始前讀取：
 
 - `../../../references/skill-runtime.md`
-- `../../../data/rubrics/nine-step.json`
+- `../../../data/rubrics/nine-step.json`（**逆向審查**：先反推現況，再依 `teaching_order` 檢查頁序）
 - 需要 notes 時使用 `physics-slide-enhancer`
 - 需要圖像時使用 `physics-visual-style-guide`
 

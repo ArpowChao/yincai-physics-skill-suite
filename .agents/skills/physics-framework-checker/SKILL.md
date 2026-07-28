@@ -18,7 +18,7 @@ description: Use when 使用者要總審查、補足或重排因材網高中物�
 開始前讀取：
 
 - `../../../references/skill-runtime.md`
-- `../../../data/rubrics/nine-step.json`
+- `../../../data/rubrics/nine-step.json`（**逆向審查**：由教材反推 S2 與 S3，不得要求教材明列大概念標籤）
 - `../../../references/stage5_curriculum_and_scope.md`
 - `../../../references/ppt-content-review.md`
 

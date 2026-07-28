@@ -11,15 +11,16 @@ except ModuleNotFoundError:
     from review_policy import validate_review_policy
 
 
+# 短標籤供逐頁矩陣顯示；完整名稱與定義見 data/rubrics/nine-step.json。
 NINE_STEP_LABELS = {
-    "S1": "主題目標",
+    "S1": "教學知識",
     "S2": "大概念",
-    "S3": "原理",
-    "S4": "專家語言",
-    "S5": "學生觀察語言",
+    "S3": "原理原則",
+    "S4": "概念",
+    "S5": "事實",
     "S6": "體驗活動",
-    "S7": "證據事實",
-    "S8": "探究",
+    "S7": "事實到概念",
+    "S8": "探究活動",
     "S9": "有感應用",
 }
 
