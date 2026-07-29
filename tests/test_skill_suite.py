@@ -166,16 +166,28 @@ class SkillSuiteTests(unittest.TestCase):
         self.assertEqual(["S1", "S2", "S3", "S4", "S5"], groups["知識結構"]["steps"])
         self.assertEqual(["S6", "S7", "S8", "S9"], groups["教學活動"]["steps"])
 
-    def test_big_ideas_keep_change_and_balance_separate(self):
+    def test_big_ideas_use_seven_exclusive_confirmed_names(self):
         data = json.loads(
             (ROOT / "data" / "big-ideas.json").read_text(encoding="utf-8")
         )
         ideas = {item["id"]: item["zh_tw"] for item in data["ideas"]}
-        self.assertEqual(8, len(ideas))
-        self.assertEqual("改變", ideas["change"])
-        self.assertEqual("穩定", ideas["balance"])
+        self.assertEqual(7, len(ideas))
+        self.assertEqual("改變與穩定", ideas["change-and-stability"])
         self.assertEqual("系統", ideas["system"])
-        self.assertEqual("結構", ideas["structure"])
+        self.assertEqual("結構與功能", ideas["structure-and-function"])
+        self.assertNotIn("change", ideas)
+        self.assertNotIn("balance", ideas)
+        self.assertNotIn("structure", ideas)
+        self.assertIn("只能", data["selection_rule"])
+        self.assertIn("不得使用主／副大概念", data["selection_rule"])
+
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("只選一個", architect)
+        self.assertIn("不使用主／副大概念", architect)
+        self.assertIn("改變與穩定", architect)
+        self.assertIn("結構與功能", architect)
 
     def test_rubric_readers_declare_direction(self):
         directions = {
@@ -224,11 +236,93 @@ class SkillSuiteTests(unittest.TestCase):
         ):
             self.assertIn(failure, s5["common_failures"])
 
+    def test_experience_context_is_familiar_or_directly_observable(self):
+        rubric = json.loads(
+            (ROOT / "data" / "rubrics" / "nine-step.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        s6 = {item["id"]: item for item in rubric["steps"]}["S6"]
+        self.assertIn("已有經驗", s6["purpose"])
+        self.assertIn("容易直接觀察", s6["purpose"])
+        self.assertIn("離學生生活太遠", s6["purpose"])
+        self.assertTrue(
+            any("直接可觀察性" in item for item in s6["required_evidence"])
+        )
+
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("已有經驗", architect)
+        self.assertIn("容易直接觀察", architect)
+        self.assertIn("離學生生活太遠", architect)
+
+    def test_ai_experience_video_is_short_and_single_focus(self):
+        rubric = json.loads(
+            (ROOT / "data" / "rubrics" / "nine-step.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        s6 = {item["id"]: item for item in rubric["steps"]}["S6"]
+        video = s6["ai_video"]
+        self.assertEqual(2, video["duration_seconds"]["minimum"])
+        self.assertEqual(10, video["duration_seconds"]["maximum"])
+        self.assertIn("一個", video["role"])
+        self.assertIn("不承擔完整背景", video["role"])
+        self.assertTrue(video["required_support"])
+
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("2–10 秒", architect)
+        self.assertIn("一個可重播觀察", architect)
+        self.assertIn("不讓短片承擔完整背景", architect)
+
+    def test_architect_requires_ai_video_storyboard_cards_for_three_activities(self):
+        rubric = json.loads(
+            (ROOT / "data" / "rubrics" / "nine-step.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        contract = rubric["ai_video_storyboard_contract"]
+        self.assertEqual(
+            ["S6 體驗活動", "S8 探究活動", "S9 應用活動"],
+            contract["applies_to"],
+        )
+        self.assertEqual({"min": 2, "max": 10}, contract["default_duration_seconds"])
+        for field in [
+            "開場畫面",
+            "關鍵動作或變化",
+            "收尾畫面",
+            "鏡位與構圖",
+            "畫面中可見的物理證據",
+            "學生觀看任務",
+            "不可直接揭露的答案",
+        ]:
+            self.assertIn(field, contract["required_fields"])
+
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("AI 影片畫面規格卡", architect)
+        self.assertIn("S6 體驗活動、S8 探究活動、S9 應用活動各輸出一張", architect)
+        self.assertIn("不使用理由、替代表徵", architect)
+
     def test_architect_states_stage_baseline(self):
         text = (
             SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
         ).read_text(encoding="utf-8")
         self.assertIn("學習階段與程度基準", text)
+
+
+    def test_cross_agent_runtime_requires_user_iteration_decision(self):
+        runtime = (ROOT / "references" / "cross-agent-runtime.md").read_text(
+            encoding="utf-8"
+        )
+        for choice in ["只套用本次", "記為候選需求", "納入共通規則"]:
+            self.assertIn(choice, runtime)
+        self.assertIn("未取得選擇前", runtime)
+        self.assertIn("不得自行把候選需求升級成共通規則", runtime)
 
 
 if __name__ == "__main__":
