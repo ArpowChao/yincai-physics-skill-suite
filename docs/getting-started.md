@@ -37,12 +37,16 @@
   PowerPoint 自動化步驟交給 Windows 匯出者。第一次使用請看
   [`macOS 使用指南`](macos-guide.md)。
 
-取得 private repository 需要先由管理者加入 GitHub collaborator：
+任何人都能複製 public repository，不需要 collaborator 邀請：
 
 ```powershell
 git clone https://github.com/ArpowChao/yincai-physics-skill-suite.git
 Set-Location yincai-physics-skill-suite
 ```
+
+只有 collaborator 能把分支直接推送到正式 repository。其他人請先 fork，再從
+自己的 fork 建立分支與 Pull Request；無論身分為何，都不能直接修改受保護的
+`main`。
 
 建立本機設定：
 

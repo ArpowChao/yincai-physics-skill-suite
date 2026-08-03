@@ -1,6 +1,6 @@
 # macOS 使用指南
 
-Mac 使用者可以審查教材、複製 private repository、修改 Skill、執行 Python
+Mac 使用者可以審查教材、複製 public repository、修改 Skill、執行 Python
 工具、建立離線工作台與分享 ZIP。只有依賴 Windows PowerPoint 自動化的兩個步驟，
 需要交給指定的 Windows 匯出者處理。
 
@@ -31,10 +31,11 @@ COM，不代表 Mac 不能開啟或人工編輯 PowerPoint。
 
 ## 第一次加入 GitHub：不使用終端機
 
-### 1. 接受邀請
+### 1. 確認是否需要邀請
 
-管理者會把 GitHub 邀請寄到你的帳號或信箱。請先登入正確的 GitHub 帳號並按
-`Accept invitation`。只有收到 Gmail 通知，不等於已經接受 repository 邀請。
+只要閱讀、clone 或 fork，不需要邀請。若要直接把工作分支推到正式 repository，
+管理者會把 collaborator 邀請寄到你的帳號或信箱；請登入正確帳號並按
+`Accept invitation`。只有收到 Gmail 通知，不等於已接受邀請。
 
 ### 2. 用 GitHub Desktop 複製專案
 
@@ -165,10 +166,10 @@ python3 scripts/build_review_share_bundle.py \
 版控的原因之一。完整說明與 Terminal 指令見
 [`collaboration-workflow.md §4.7`](collaboration-workflow.md#47-與別人的修改整併)。
 
-### 收到邀請但還是看不到 repository
+### 收到 collaborator 邀請但無法推送
 
-確認三件事：邀請已按接受、GitHub Desktop 登入同一個帳號、repository 仍為
-private 且你的 collaborator 權限未被移除。
+確認三件事：邀請已按接受、GitHub Desktop 登入同一個帳號、你的 collaborator
+權限未被移除。沒有 collaborator 權限時，改用 fork → Pull Request。
 
 ### `python` 指令找不到
 
