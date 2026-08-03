@@ -10,6 +10,14 @@
 
 本專案使用語意化版本概念記錄可攜式 Skill Suite 的變更。
 
+## 1.0.1 — 2026-08-03
+
+- repository 改為 public，任何人可閱讀、clone、fork 與提出 Pull Request。
+- 正式 repository 的寫入權限仍限 collaborator；`main` 繼續強制 PR、`validate`
+  CI、最新主線、線性歷史、禁止 force push／刪除及討論解決。
+- 公開可見不等於取得開源授權；補充未選定授權前的著作權與第三方來源邊界。
+- 更新 Windows、macOS 與外部貢獻者操作說明。
+
 ## 1.0.0 — 2026-07-29
 
 - `big-ideas.json` 升級為 3.0.0，依團隊最新確認將大概念修正為七項。

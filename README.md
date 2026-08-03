@@ -18,8 +18,11 @@
 | Repo 維護與版本管理者 | [`docs/maintenance.md`](docs/maintenance.md) |
 | 使用 Gemini CLI 執行 Skill | [`GEMINI.md`](GEMINI.md) |
 
-GitHub repository 目前應維持 private，直到程式與原創內容授權完成決策。GitHub
-只保存可分享核心；`outputs/`、真實教材、影片與本機品質紀錄不會上傳。
+GitHub repository 為 public，任何人都能閱讀、clone 與 fork；只有被加入
+collaborator 的維護者能把分支推送到正式 repository。`main` 仍受 PR、CI、禁止
+force push 與禁止刪除等規則保護。GitHub 只保存可分享核心；`outputs/`、真實
+教材、影片與本機品質紀錄不會上傳。公開可見不等於取得再利用授權，授權狀態見
+[`LICENSES.md`](LICENSES.md)。
 
 ## 產線總覽
 
@@ -243,7 +246,8 @@ python scripts/summarize_quality.py quality/records/*.json
 
 此 repository 預設不納入 `資料/`、原始 PDF、PPTX、DOCX、教師姓名索引、生成輸出與 LLM-wiki 全文。原因是容量、個資與著作權可能不適合公開散布。公開 repo 只包含可重建的規則、結構化資料、程式、測試與去識別品質案例。
 
-在公開前仍須由專案負責人決定程式碼與原創內容授權；詳見 [`LICENSES.md`](LICENSES.md)。
+本 repository 雖公開可見，程式碼與原創內容尚未選定開源授權；詳見
+[`LICENSES.md`](LICENSES.md)。
 
 ## 專案結構
 

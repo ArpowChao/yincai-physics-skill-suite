@@ -33,23 +33,24 @@ Windows 匯出者；Mac 成員不需要因此退出審查或維護流程。
 Mac 的無終端機流程、可複製指令與交付方式見
 [`macOS 使用指南`](macos-guide.md)。
 
-## 2. Private 與 Public 邊界
+## 2. Public repository 與寫入邊界
 
-目前 repository 應維持 **private**，原因是程式碼授權、原創教學內容授權與
-第三方來源邊界尚未完成決策。
+repository 為 **public**。任何人都能閱讀、clone、fork、提出 Issue，並從 fork
+送出 Pull Request；只有 GitHub collaborator 能直接把工作分支推送到正式
+repository。無論是否為 collaborator，`main` 都只能經 Pull Request、通過
+`validate` CI 且解決討論後合併。
 
-改成 public 前必須：
+公開可見不等於開源授權。目前尚未選定程式碼與原創內容授權，第三方教材也沒有
+因此取得再散布權。詳細邊界見 [`LICENSES.md`](../LICENSES.md)。每次提交仍須：
 
-1. 選定程式碼與 Skills 的授權。
-2. 選定原創規準、文件與範例的內容授權。
-3. 完成第三方來源與必要引用檢查。
-4. 再跑 repository audit，確認沒有個資、本機路徑與未授權教材。
-
-詳細邊界見 [`LICENSES.md`](../LICENSES.md)。
+1. 排除原始教材、生成輸出、個資與本機路徑。
+2. 檢查第三方來源與必要引用。
+3. 執行 repository audit、Skill 驗證與完整測試。
 
 ## 3. 第一次加入
 
-Repo 管理者在 GitHub repository 的 `Settings → Collaborators` 邀請成員。
+只需閱讀或 fork 的人不必受邀。需要直接把分支推到正式 repository 的共同維護者，
+由 Repo 管理者在 GitHub `Settings → Collaborators` 邀請。
 
 沒有用過 GitHub 的 Mac 成員，建議先用 GitHub Desktop 接受邀請、clone、
 建立分支與 PR；詳見 [`macOS 使用指南`](macos-guide.md)。
@@ -76,8 +77,8 @@ python3 scripts/validate_suite.py
 python3 -m unittest discover -s tests -v
 ```
 
-AI Agent 可以在兩種平台讀寫本機 clone；push 與 PR 仍以使用者已接受邀請且本機
-GitHub 帳號有權限為前提。Agent 不會代替使用者接受 private repository 邀請。
+AI Agent 可以在兩種平台讀寫本機 clone。Collaborator 可推送正式 repository 的
+工作分支；其他人只能推送自己的 fork。Agent 不會取得超過登入帳號本身的權限。
 
 ## 4. 一個問題如何進入下一版
 
@@ -385,5 +386,5 @@ gh api repos/ArpowChao/yincai-physics-skill-suite/branches/main/protection
 - 開啟 `Settings → General → Automatically delete head branches`；
 - 啟用 secret scanning 與 dependency alerts。
 
-授權未定前維持 private。要邀請只審查教材、不修改程式的人，可以只傳經授權的
-離線審查 ZIP，不必開放整個 repository。
+公開 repository 不含真實教材。只審查特定教材的人仍應收到經授權的離線審查 ZIP，
+不要把教材原檔或審查輸出放進公開 repository。
