@@ -5,6 +5,7 @@ from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import json
 import re
+import sys
 from pathlib import Path
 from typing import Any, Iterable
 from urllib.parse import urlparse
@@ -298,6 +299,8 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> int:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="backslashreplace")
     args = build_parser().parse_args(argv)
     if args.command == "analyze":
         source = args.input.read_text(encoding="utf-8-sig")

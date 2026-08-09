@@ -1,4 +1,5 @@
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -124,6 +125,7 @@ class TtsPronunciationTests(unittest.TestCase):
                 capture_output=True,
                 text=True,
                 encoding="utf-8",
+                env={**os.environ, "PYTHONIOENCODING": "cp1252"},
             )
 
             self.assertEqual(0, completed.returncode, completed.stderr)
