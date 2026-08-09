@@ -1,6 +1,6 @@
 # 因材網高中物理教材產線 Skill Suite
 
-這個 repository 把「投影片、學習單、素養題」三條產線整理成 10 個可組合的 Codex Skills，並用共用的第五學習階段課綱、九步驟架構、三面向八準則、術語表與品質紀錄，降低教師重複整理與審查的負擔。
+這個 repository 把「投影片、學習單、素養題、配音稿」整理成 11 個可組合的 Codex Skills，並用共用的第五學習階段課綱、九步驟架構、三面向八準則、術語表與品質紀錄，降低教師重複整理與審查的負擔。
 
 本專案的核心原則是：**先確認課綱與證據，再生成；先記錄優點與缺失，再修改；無法確認時標示 `HOLD`，不自行猜測。**
 
@@ -39,7 +39,7 @@ flowchart LR
     G --> H["品質紀錄與下一版迭代"]
 ```
 
-## 10 個 Skills
+## 11 個 Skills
 
 | Skill | 用途 | 主要輸出 |
 |---|---|---|
@@ -53,6 +53,7 @@ flowchart LR
 | `physics-ppt-upgrader` | 舊簡報升級 | 差距分析、升級稿、變更摘要 |
 | `physics-misconception-prompting` | 迷思與誘答設計 | 迷思假設、誘答、診斷回饋 |
 | `physics-unit-package-qc` | 單元教材包出貨總檢 | 跨載體一致性與上架判定 |
+| `prepare-tts-transcript` | 配音前標記多音字與公式 | 保留原稿的配音稿、逐項修改紀錄 |
 
 Skills 位於 [`.agents/skills`](.agents/skills)，共用規則放在 [`data`](data) 與 [`references`](references)。Skills 本身保持精簡，不各自複製課綱與評分規準。
 
@@ -107,6 +108,68 @@ PowerPoint 實際播放匯出與 speaker notes 自動寫回目前依賴 Windows�
      --artifact-ref "materials:relative/path/to/deck.pptx" `
      --output quality/records/PEb-Vc-4-1.json
    ```
+
+## 配音稿校對
+
+原始逐字稿與配音稿永遠分開：原稿保留正確文字，配音稿才用同音異字修正無法
+設定發音的 TTS。可直接請 Agent 使用 `$prepare-tts-transcript`，或啟動不需帳號、
+不會上傳文字的本機校對頁面：
+
+```powershell
+python scripts/tts_pronunciation.py serve --host 127.0.0.1 --port 8765
+```
+
+頁面可匯入 TXT、SRT、VTT，標出「主角 → 主腳」、「角色 → 腳色」等已確認
+建議，也內建從教育部《重編國語辭典修訂本》產生的 15,660 條多音詞候選。這批
+候選是從 51 個人工追蹤的常見多音字及 2 到 8 字詞目篩出，**不是已知錯音清單，
+也不能直接自動改稿**。頁面也會把常見方程式改成口語念法。教育部讀音以黃色
+呈現、預設不改稿；老師確認同音字草稿後才套用。每一筆都能接受、略過或自行
+改字，最後
+另存 `*.tts.txt` 配音稿與 `*.changes.json` 修改紀錄。個人規則可只存在本機瀏覽器，
+也可按「送交 GitHub 共用詞庫」開啟已填好的讀音建議表；經人工確認並補測試後，
+才會加入團隊共用字典。
+
+頁面目前也已載入 **5,061 條兩岸讀音差異候選**，其中 4,882 條具有完整的同音字
+草稿，例如「微小 → 維小」、「儲存 → 除存」、「頭髮 → 頭法」。紫色卡片會同時
+顯示臺灣與中國資料讀音；這些草稿預設保持原稿，老師按「確認並套用」後才會改入
+配音稿。候選由 `scripts/import_cross_strait_tts_candidates.py` 依固定來源版本產生。
+
+這個 Skill 的資料來源、15,660 條的產生方式、兩岸讀音差異調查、g2pW 的角色、
+公式處理與授權邊界，完整記錄在
+[`讀音來源與證據層級`](.agents/skills/prepare-tts-transcript/references/pronunciation-sources.md)。
+其中「官方臺灣讀音／兩岸或模型候選／目標 TTS 實際誤讀／已試聽成功的同音字」
+是四個不同層級；只有最後一層可進入共用自動規則。目前靜態頁面使用已確認規則、
+教育部候選與兩岸候選；g2pW 則供 Agent 或維護者做上下文判音，不放進靜態頁面。
+
+### 給老師使用的 GitHub Pages
+
+合併到 `main` 後，[`tts-pages.yml`](.github/workflows/tts-pages.yml) 會把同一套校對台
+發佈為 GitHub Pages。repository 管理者第一次只要在 **Settings → Pages → Source**
+選擇 **GitHub Actions**；之後修改網頁或共用詞庫時會自動更新。預期網址為：
+
+`https://arpowchao.github.io/yincai-physics-skill-suite/`
+
+公開網頁不需要登入，也不會把逐字稿傳給伺服器：讀音比對、公式轉換與個人詞庫
+都在老師自己的瀏覽器內完成。部署包只包含校對頁面、已確認規則、教育部候選與
+兩岸候選等必要公開資料，不包含專案其他檔案。
+
+需要先在本機檢查部署內容時：
+
+```powershell
+python scripts/build_tts_pronunciation_site.py --output outputs/tts-pronunciation-pages
+```
+
+### Google Sheet 候選詞庫
+
+若團隊希望直接在試算表查看、修改與標記新增詞條，可部署
+[`Google Apps Script 收件匣`](integrations/google-apps-script/tts-pronunciation/README.md)。
+老師只會送出原稿詞語、配音寫法、相關例句與來源頁面，不會送出完整逐字稿。
+
+部署後，把 Apps Script 的 `/exec` 網址填入
+[`submission.json`](data/tts-pronunciation/submission.json)。網頁按鈕會自動從
+「送交 GitHub 共用詞庫」切換為「送到 Google 共用候選表」。Google Sheet 的
+新增列預設為「待確認」；維護者在表內修改、註記與核准後，再由 Agent 同步到
+GitHub 的正式共用字典。
 
 ## PPTX 影音審查包
 
@@ -253,11 +316,12 @@ python scripts/summarize_quality.py quality/records/*.json
 
 ```text
 .github/                審查問題與 pull request 範本
-.agents/skills/          10 個可攜式 Skills
+.agents/skills/          11 個可攜式 Skills
 archive/                 已被取代、暫不刪除的本機封存（內容不進版控）
 config/                  本機設定範例
 data/                    課綱、規準、術語、迷思與 schema
 docs/                    設計、維護與迭代文件
+integrations/            Google Apps Script 等選用外部整合
 local-data/              仍需使用但不可直接分享的教材與候選資料
 outputs/                 每次生成的審查包與教材輸出（不進版控）
 quality/                 基準、案例、已知問題與迭代紀錄

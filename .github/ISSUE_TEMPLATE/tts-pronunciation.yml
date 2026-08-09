@@ -1,0 +1,48 @@
+name: 配音讀音建議
+description: 提交多音字或同音異字配音寫法，經人工確認後加入共用詞庫。
+title: "[讀音建議] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感謝補充。這裡只收集配音稿的替代寫法；正式逐字稿仍保留原字。維護者會先人工確認語境與讀音，再決定是否加入共用詞庫。
+  - type: input
+    id: original
+    attributes:
+      label: 原稿詞語
+      description: 正式逐字稿中應保留的正確文字。
+      placeholder: 例如：主角
+    validations:
+      required: true
+  - type: input
+    id: spoken
+    attributes:
+      label: 配音寫法
+      description: 能讓目標 TTS 唸出正確讀音的同音異字。
+      placeholder: 例如：主腳
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: 使用語境或例句
+      description: 請提供一句包含原稿詞語的實際句子，幫助判斷是否能安全共用。
+      placeholder: 例如：他是這部電影的主角。
+    validations:
+      required: true
+  - type: dropdown
+    id: tested
+    attributes:
+      label: 是否已用配音系統試聽
+      options:
+        - 已試聽，替代寫法讀音正確
+        - 尚未試聽，需要協助確認
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: 提交前確認
+      options:
+        - label: 我知道這是候選建議，需經團隊人工確認後才會加入共用詞庫。
+          required: true

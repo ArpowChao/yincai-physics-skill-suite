@@ -31,6 +31,15 @@ class RepositoryLayoutTests(unittest.TestCase):
             errors = module.audit_tree(root, tracked=["README.md"])
             self.assertEqual([], errors)
 
+    def test_git_worktree_metadata_file_is_allowed(self):
+        module = load_audit_module()
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.make_tree(root, module)
+            (root / ".git").write_text("gitdir: ../repo/.git/worktrees/demo", encoding="utf-8")
+            errors = module.audit_tree(root, tracked=["README.md"])
+            self.assertEqual([], errors)
+
     def test_flags_loose_root_file_and_tracked_binary(self):
         module = load_audit_module()
         with tempfile.TemporaryDirectory() as tmp:

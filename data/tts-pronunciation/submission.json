@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "provider": "google_apps_script",
+  "apps_script_url": "https://script.google.com/macros/s/AKfycbzT2KEB4aqvUOLKOSqJvaTbFLZ7g-fAg275eifarNYOqNQBSuvtM3wbg7kmpwiypTRF/exec",
+  "github_issue_fallback": true,
+  "description": "填入 Apps Script Web App 的 /exec 網址後，候選讀音會送到 Google Sheet；未設定時改用 GitHub Issue。"
+}
