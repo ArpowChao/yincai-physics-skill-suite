@@ -7,6 +7,7 @@ from pathlib import Path
 
 
 ALLOWED_ROOT_FILES = {
+    ".git",
     ".gitattributes",
     ".gitignore",
     "AGENTS.md",
@@ -24,6 +25,7 @@ REQUIRED_SHAREABLE_DIRS = {
     "config",
     "data",
     "docs",
+    "integrations",
     "quality",
     "references",
     "scripts",

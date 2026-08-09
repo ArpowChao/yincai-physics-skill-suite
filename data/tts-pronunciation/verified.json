@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "locale": "zh-TW",
+  "description": "經人工確認、只供網路配音稿使用的同音異字規則。",
+  "rules": [
+    {
+      "original": "主角",
+      "spoken": "主腳",
+      "pronunciation": "ㄓㄨˇ ㄐㄧㄠˇ",
+      "verified": true,
+      "note": "臺灣口語讀音；原稿仍保留「主角」。"
+    },
+    {
+      "original": "角色",
+      "spoken": "腳色",
+      "pronunciation": "ㄐㄧㄠˇ ㄙㄜˋ",
+      "verified": true,
+      "note": "「腳色」亦為教育部辭典收錄寫法，只用於配音稿。"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "配音稿校對"
+  short_description: "在本機標記多音字與公式並產生不污染原始逐字稿的可確認配音稿"
+  default_prompt: "Use $prepare-tts-transcript to inspect this transcript and prepare a reviewed TTS-only version."

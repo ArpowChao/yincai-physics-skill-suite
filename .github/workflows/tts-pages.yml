@@ -1,0 +1,51 @@
+name: deploy-tts-pronunciation-reviewer
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/tts-pages.yml"
+      - "data/tts-pronunciation/**"
+      - "scripts/build_tts_pronunciation_site.py"
+      - "showcase/tts-pronunciation/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Build static reviewer
+        run: python scripts/build_tts_pronunciation_site.py --output _site
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

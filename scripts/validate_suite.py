@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS_ROOT = ROOT / ".agents" / "skills"
 EXPECTED = {
+    "prepare-tts-transcript",
     "physics-framework-checker",
     "physics-one-page-architect",
     "physics-slide-enhancer",
@@ -83,6 +84,8 @@ def validate() -> list[str]:
         ROOT / "data" / "schemas" / "review-record.schema.json",
         ROOT / "data" / "schemas" / "ppt-review-result.schema.json",
         ROOT / "data" / "terminology" / "physics-terms.json",
+        ROOT / "data" / "tts-pronunciation" / "submission.json",
+        ROOT / "integrations" / "google-apps-script" / "tts-pronunciation" / "appsscript.json",
     ]
     for path in data_files:
         if not path.exists():

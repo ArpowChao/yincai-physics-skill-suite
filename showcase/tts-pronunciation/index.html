@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title>配音稿校對台</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="masthead">
+      <div class="masthead__top">
+        <div class="masthead__copy">
+          <p class="eyebrow">給老師的配音稿校對工具</p>
+          <h1>讓文字正確，也讓聲音正確</h1>
+          <p class="lede">匯入檔案或直接貼上文字，系統會用顏色標出讀音與公式建議。全文只在你的瀏覽器處理。</p>
+        </div>
+        <div class="privacy-stamp" aria-label="隱私說明">
+          <strong>不上傳</strong>
+          <span>原稿留在這台裝置</span>
+        </div>
+      </div>
+
+      <section class="input-hub" aria-labelledby="inputHubTitle">
+        <div class="input-hub__header">
+          <div>
+            <p class="input-hub__step">開始</p>
+            <h2 id="inputHubTitle">先選一種方式開始</h2>
+          </div>
+          <p>兩種方式都可以，之後仍能自由修改。</p>
+        </div>
+        <div class="input-choice-grid">
+          <button id="importChoice" class="input-choice input-choice--file" type="button">
+            <span class="input-choice__badge" aria-hidden="true">檔案</span>
+            <span class="input-choice__copy">
+              <strong>匯入檔案</strong>
+              <small>選擇 TXT、SRT 或 VTT</small>
+            </span>
+            <span class="input-choice__arrow" aria-hidden="true">→</span>
+          </button>
+          <button id="pasteChoice" class="input-choice input-choice--paste" type="button">
+            <span class="input-choice__badge" aria-hidden="true">文字</span>
+            <span class="input-choice__copy">
+              <strong>直接貼上文字</strong>
+              <small>跳到輸入框，貼上後開始檢查</small>
+            </span>
+            <span class="input-choice__arrow" aria-hidden="true">↓</span>
+          </button>
+        </div>
+        <input id="fileInput" class="visually-hidden" type="file" accept=".txt,.srt,.vtt,text/plain">
+      </section>
+    </header>
+
+    <main>
+      <section class="status-strip" aria-label="檢查摘要">
+        <div class="color-guide" aria-label="顏色說明">
+          <span class="color-guide__item color-guide__item--source">綠色｜原始文字</span>
+          <span class="color-guide__item color-guide__item--review">橘紅｜需要確認</span>
+          <span class="color-guide__item color-guide__item--cross-strait">紫色｜兩岸讀音差異</span>
+          <span class="color-guide__item color-guide__item--speech">深藍｜配音結果</span>
+        </div>
+        <div class="status-strip__item">
+          <span class="status-strip__label">已確認規則</span>
+          <strong id="confirmedCount">0</strong>
+        </div>
+        <div class="status-strip__item">
+          <span class="status-strip__label">教育部讀音參考</span>
+          <strong id="referenceCount">0</strong>
+        </div>
+        <div class="status-strip__item">
+          <span class="status-strip__label">兩岸差異候選</span>
+          <strong id="crossStraitCount">0</strong>
+        </div>
+        <div class="status-strip__item">
+          <span class="status-strip__label">本次標記</span>
+          <strong id="changeCount">0</strong>
+        </div>
+        <div class="status-strip__item status-strip__item--wide">
+          <span class="status-strip__label">處理方式</span>
+          <strong>只建立配音稿，原稿永遠保留</strong>
+        </div>
+        <p id="announcement" class="status-strip__message" aria-live="polite">正在載入已確認詞庫…</p>
+      </section>
+
+      <section class="proof-grid" aria-label="逐字稿校對工作區">
+        <article class="panel panel--source">
+          <header class="panel__header">
+            <div>
+              <p class="panel__kicker">01 · 正確文字</p>
+              <h2>原始逐字稿</h2>
+            </div>
+            <span class="panel__tag">不會覆寫</span>
+          </header>
+          <label class="field-label" for="sourceText">在這裡貼上或修改文字</label>
+          <textarea id="sourceText" spellcheck="false">他是這部電影的主角，也是一個重要角色。
+公式：x² + y² = z²</textarea>
+          <button id="analyzeButton" class="button button--check" type="button">檢查這份文字</button>
+          <div class="preview-block">
+            <div class="preview-block__header">
+              <h3>對應標記</h3>
+              <p>點選標記可找到中央建議。</p>
+            </div>
+            <div id="sourcePreview" class="source-preview" aria-label="原稿標記預覽"></div>
+          </div>
+        </article>
+
+        <aside class="review-rail" aria-labelledby="reviewTitle">
+          <header class="review-rail__header">
+            <p class="panel__kicker">02 · 人工確認</p>
+            <h2 id="reviewTitle">修改建議</h2>
+            <p>已確認規則會先套用；任何一筆都能忽略或改寫。</p>
+          </header>
+          <div class="review-toolbar" aria-label="建議篩選與批次操作">
+            <div class="review-toolbar__filters" role="group" aria-label="篩選建議">
+              <button class="review-filter is-active" type="button" data-review-filter="all" aria-pressed="true">全部</button>
+              <button class="review-filter" type="button" data-review-filter="pending" aria-pressed="false">待確認</button>
+              <button class="review-filter" type="button" data-review-filter="handled" aria-pressed="false">已處理</button>
+            </div>
+            <button id="keepAllPendingButton" class="review-toolbar__keep" type="button">待確認全部保留</button>
+            <p id="reviewVisibleCount" class="review-toolbar__count">顯示 0／0 筆</p>
+          </div>
+          <div id="reviewList" class="review-list"></div>
+        </aside>
+
+        <article class="panel panel--speech">
+          <header class="panel__header">
+            <div>
+              <p class="panel__kicker">03 · 交給配音</p>
+              <h2>配音專用稿</h2>
+            </div>
+            <span class="panel__tag panel__tag--speech">可直接複製</span>
+          </header>
+          <label class="field-label" for="speechText">只將這份文字送進網路配音</label>
+          <textarea id="speechText" readonly spellcheck="false"></textarea>
+          <div class="output-actions">
+            <button id="copyButton" class="button button--quiet" type="button">複製配音稿</button>
+            <button id="downloadButton" class="button button--primary" type="button">下載配音稿</button>
+            <button id="downloadChangesButton" class="button button--text" type="button">下載修改紀錄</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="rule-drawer" aria-labelledby="ruleTitle">
+        <div class="rule-drawer__intro">
+          <p class="panel__kicker">個人補充層</p>
+          <h2 id="ruleTitle">有需要，再補一條</h2>
+          <p>先選擇只存這台裝置，或送交 GitHub 讓團隊確認後加入共用詞庫。</p>
+        </div>
+        <form id="ruleForm" class="rule-form">
+          <label>
+            <span>原稿詞語</span>
+            <input id="ruleOriginal" required placeholder="例如：主角">
+          </label>
+          <span class="rule-form__arrow" aria-hidden="true">→</span>
+          <label>
+            <span>配音寫法</span>
+            <input id="ruleSpoken" required placeholder="例如：主腳">
+          </label>
+          <div class="rule-form__submit">
+            <button class="button button--local-rule" type="submit">只存這台裝置</button>
+            <button id="submitSharedRuleButton" class="button button--shared-rule" type="button">送交 GitHub 共用詞庫</button>
+            <small id="sharedRuleHint">GitHub 會要求登入；送出後由團隊人工確認。</small>
+          </div>
+        </form>
+        <div class="rule-tools">
+          <p id="personalRuleSummary">尚未加入個人規則。</p>
+          <div class="rule-tools__actions">
+            <label class="button button--text" for="ruleFileInput">匯入個人詞庫</label>
+            <input id="ruleFileInput" class="visually-hidden" type="file" accept="application/json,.json">
+            <button id="exportRulesButton" class="button button--text" type="button">匯出個人詞庫</button>
+            <button id="clearRulesButton" class="button button--danger-text" type="button">清除個人詞庫</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <template id="emptyReviewTemplate">
+      <div class="empty-review">
+        <span aria-hidden="true">✓</span>
+        <strong>目前沒有需要處理的項目</strong>
+        <p>若仍聽見錯音，可在下方新增個人規則。</p>
+      </div>
+    </template>
+    <iframe class="visually-hidden" name="sharedRuleSubmissionFrame" title="共用詞庫提交結果"></iframe>
+    <script src="moe-heteronyms.js" defer></script>
+    <script src="cross-strait-candidates.js" defer></script>
+    <script src="app.js" defer></script>
+  </body>
+</html>

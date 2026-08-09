@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS_ROOT = ROOT / ".agents" / "skills"
 EXPECTED_SKILLS = {
+    "prepare-tts-transcript",
     "physics-framework-checker",
     "physics-one-page-architect",
     "physics-slide-enhancer",
@@ -40,6 +41,42 @@ def parse_frontmatter(text: str) -> dict[str, str]:
 
 
 class SkillSuiteTests(unittest.TestCase):
+    def test_tts_pronunciation_tool_has_review_assets(self):
+        required = [
+            ROOT / "scripts" / "tts_pronunciation.py",
+            ROOT / "data" / "tts-pronunciation" / "verified.json",
+            ROOT / "data" / "tts-pronunciation" / "formulas.json",
+            ROOT / "showcase" / "tts-pronunciation" / "index.html",
+            ROOT / "showcase" / "tts-pronunciation" / "styles.css",
+            ROOT / "showcase" / "tts-pronunciation" / "app.js",
+            ROOT / "showcase" / "tts-pronunciation" / "cross-strait-candidates.js",
+            ROOT / "data" / "tts-pronunciation" / "cross-strait-candidates.json",
+            SKILLS_ROOT
+            / "prepare-tts-transcript"
+            / "references"
+            / "pronunciation-sources.md",
+        ]
+        self.assertEqual([], [str(path.relative_to(ROOT)) for path in required if not path.exists()])
+
+    def test_tts_skill_documents_sources_and_evidence_boundaries(self):
+        source_doc = (
+            SKILLS_ROOT
+            / "prepare-tts-transcript"
+            / "references"
+            / "pronunciation-sources.md"
+        ).read_text(encoding="utf-8")
+        for marker in [
+            "15,660",
+            "51 個",
+            "g0v/moedict-data",
+            "g0v/moedict-data-csld",
+            "a1e91196f84cd2f3456570906191615f477278c8",
+            "g2pW",
+            "不是 TTS 錯誤率",
+            "已驗證替代",
+        ]:
+            self.assertIn(marker, source_doc)
+
     def test_expected_skills_exist(self):
         present = {
             path.name
