@@ -103,6 +103,8 @@ def _prepare_rules(
 ) -> list[dict[str, Any]]:
     merged: dict[str, dict[str, Any]] = {}
     for rule in confirmed:
+        if rule.get("auto_apply") is False:
+            continue
         original = str(rule.get("original", ""))
         spoken = str(rule.get("spoken", ""))
         if not original or not spoken:

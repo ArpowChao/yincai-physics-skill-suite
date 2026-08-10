@@ -64,11 +64,51 @@ class TtsPronunciationTests(unittest.TestCase):
         path = ROOT / "data" / "tts-pronunciation" / "verified.json"
         data = json.loads(path.read_text(encoding="utf-8"))
 
-        self.assertGreaterEqual(len(data["rules"]), 2)
+        self.assertEqual(138, len(data["rules"]))
         for rule in data["rules"]:
             self.assertTrue(rule["original"])
             self.assertTrue(rule["spoken"])
             self.assertTrue(rule["verified"])
+
+        imported = [
+            rule
+            for rule in data["rules"]
+            if rule.get("source") == "user-confirmed-csv"
+        ]
+        self.assertEqual(136, len(imported))
+        self.assertTrue(
+            all(rule["pronunciation"] and rule["note"] for rule in imported)
+        )
+        self.assertEqual(
+            {"和（連詞）", "聘請"},
+            {
+                rule["original"]
+                for rule in imported
+                if rule.get("auto_apply") is False
+            },
+        )
+        imported_by_original = {rule["original"]: rule for rule in imported}
+        self.assertEqual("勒色", imported_by_original["垃圾"]["spoken"])
+        self.assertEqual("熟．悉", imported_by_original["熟悉"]["spoken"])
+        self.assertEqual("簸放", imported_by_original["播放"]["spoken"])
+
+    def test_rule_marked_not_for_auto_apply_is_not_replaced(self):
+        from scripts.tts_pronunciation import analyze_text
+
+        result = analyze_text(
+            "這是一條危險規則。",
+            [
+                {
+                    "original": "危險",
+                    "spoken": "為險",
+                    "verified": True,
+                    "auto_apply": False,
+                }
+            ],
+        )
+
+        self.assertEqual("這是一條危險規則。", result["speech_text"])
+        self.assertEqual([], result["changes"])
 
     def test_equation_is_expanded_to_teacher_friendly_speech(self):
         from scripts.tts_pronunciation import analyze_text

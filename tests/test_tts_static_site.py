@@ -23,6 +23,7 @@ class TtsStaticSiteTests(unittest.TestCase):
         self.assertIn('spoken: "主腳"', app)
         self.assertIn('fetch("data/verified.json")', app)
         self.assertIn("CROSS_STRAIT_PRONUNCIATION_CANDIDATES", app)
+        self.assertIn("rule.auto_apply === false", app)
         self.assertNotIn("/api/analyze", app)
 
     def test_static_site_builder_copies_only_required_public_files(self):
