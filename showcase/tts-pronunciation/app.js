@@ -93,7 +93,9 @@ const crossStraitRules = (
   hasFullSuggestion,
   verified: false,
   source: "cross-strait-reference",
-  note: "兩岸詞典讀音差異；同音字是依臺灣讀音產生的草稿，請用目標 TTS 試聽後再套用。",
+  note: hasFullSuggestion
+    ? "兩岸詞典讀音差異；完整同音字草稿已依團隊批次確認自動套用，仍可選擇保留原稿。"
+    : "兩岸詞典讀音差異；尚無完整同音字替代，維持原稿並等待人工確認。",
 }));
 const pendingRules = [...crossStraitRules, ...referenceRules].sort((left, right) =>
   right.original.length - left.original.length
@@ -357,7 +359,8 @@ function decisionFor(change) {
 }
 
 function isPendingChange(change) {
-  return change.type === "reference" || change.type === "cross-strait";
+  return change.type === "reference"
+    || (change.type === "cross-strait" && change.hasFullSuggestion === false);
 }
 
 function buildSpeechText() {
@@ -467,9 +470,11 @@ function renderReviewCards() {
           </div>
         </div>`
       : "";
-    const pendingLabel = change.hasFullSuggestion
-      ? "同音字草稿（確認後再套用）"
-      : "尚無完整替代，請自行修改後套用";
+    const suggestionLabel = change.type === "cross-strait" && change.hasFullSuggestion
+      ? "完整同音字草稿（已依團隊批次確認自動套用）"
+      : change.hasFullSuggestion
+        ? "同音字草稿（確認後再套用）"
+        : "尚無完整替代，請自行修改後套用";
     card.innerHTML = `
       <summary class="review-card__summary">
         <span class="review-card__number">${String(index + 1).padStart(2, "0")}</span>
@@ -495,7 +500,7 @@ function renderReviewCards() {
         ${pronunciationComparison}
         <p class="review-card__original"><span>原稿</span><strong>${escapeHtml(change.original)}</strong></p>
         <span class="review-card__arrow" aria-hidden="true">↓ 改成</span>
-        <label class="field-label review-card__spoken-label" for="spoken-${change.id}">${isPendingChange(change) ? pendingLabel : "配音稿建議"}</label>
+        <label class="field-label review-card__spoken-label" for="spoken-${change.id}">${change.type === "cross-strait" ? suggestionLabel : isPendingChange(change) ? suggestionLabel : "配音稿建議"}</label>
         <textarea class="review-card__input" id="spoken-${change.id}" rows="2">${escapeHtml(decision.spoken)}</textarea>
         ${change.note ? `<p class="review-card__note">${escapeHtml(change.note)}</p>` : ""}
         <div class="review-card__actions">

@@ -26,6 +26,17 @@ class TtsStaticSiteTests(unittest.TestCase):
         self.assertIn("rule.auto_apply === false", app)
         self.assertNotIn("/api/analyze", app)
 
+    def test_complete_cross_strait_suggestions_default_to_accepted(self):
+        app = (ROOT / "showcase" / "tts-pronunciation" / "app.js").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn(
+            'change.type === "cross-strait" && change.hasFullSuggestion === false',
+            app,
+        )
+        self.assertIn("已依團隊批次確認自動套用", app)
+
     def test_static_site_builder_copies_only_required_public_files(self):
         with tempfile.TemporaryDirectory() as tmp:
             output = Path(tmp) / "site"
@@ -159,6 +170,8 @@ class TtsStaticSiteTests(unittest.TestCase):
         self.assertEqual("除存", rules["儲存"]["spoken"])
         self.assertEqual("頭法", rules["頭髮"]["spoken"])
         self.assertFalse(rules["微小"]["verified"])
+        self.assertTrue(rules["乳突狀瘤病毒"]["has_full_suggestion"])
+        self.assertFalse(rules["生米煮成熟飯"]["has_full_suggestion"])
 
 
 if __name__ == "__main__":

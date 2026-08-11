@@ -39,6 +39,10 @@ description: Use when preparing Traditional Chinese transcripts, subtitles, form
 - `data/tts-pronunciation/verified.json` 是全團隊共用、已確認的安全規則。
 - `data/tts-pronunciation/moe-heteronyms.json` 是教育部辭典的多音詞參考層；只能
   標示為待確認，不得視為目標 TTS 一定會唸錯，也不得未確認就改稿。
+- `data/tts-pronunciation/cross-strait-candidates.json` 仍是兩岸讀音候選層，不得
+  標示為逐條試聽確認。依 2026-08-11 的團隊批次確認，網頁對
+  `has_full_suggestion=true` 的 4,882 條完整草稿預設套用到配音稿；179 條不完整
+  草稿仍維持待確認。每筆都必須保留「保留原稿」選項，且不得改動正式逐字稿。
 - 個人規則優先於共用規則，但預設只存在瀏覽器或另外匯出的 JSON，不直接寫回共用資料。
 - 最長詞組優先，避免短詞規則拆錯語境。
 - 不要把個人規則升級為共用規則，除非人已確認語境、替代字可被目標 TTS 唸對，並補上測試。
@@ -52,7 +56,8 @@ description: Use when preparing Traditional Chinese transcripts, subtitles, form
 - 新增或修改共用讀音規則、比較臺灣與中國讀音、使用 g2pW 或匯入辭典前，先讀
   [讀音來源與證據層級](references/pronunciation-sources.md)。
 - 嚴格區分四層證據：「官方臺灣讀音」、「兩岸讀音差異或模型候選」、「目標
-  TTS 實際誤讀」、「已試聽成功的同音字替代」。前兩層只能提出待確認建議。
+  TTS 實際誤讀」、「已試聽成功的同音字替代」。批次套用的兩岸候選仍停留在
+  第二層，不得因此升級為已試聽成功或寫入 `verified.json`。
 - 只有同時確認正確讀音、實際聽到目標 TTS 誤讀，並試聽替代字有效後，才把規則
   升級到 `verified.json`。記錄使用的語音服務、聲音版本、日期與測試句。
 - 不把第三方資料集的規模寫成「已發現錯音數」；數量、篩選方式、版本與授權必須

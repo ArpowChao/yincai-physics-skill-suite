@@ -111,6 +111,25 @@ def main() -> int:
             "圍小、廚存、頭法、頰子、細俊、縱合。"
         )
 
+        page.locator("#sourceText").fill("乳突狀瘤病毒。")
+        page.get_by_role("button", name="檢查這份文字").click()
+        complete_cross_strait = page.locator(
+            '.review-card[data-type="cross-strait"]'
+        )
+        expect(complete_cross_strait).to_have_count(1)
+        expect(complete_cross_strait).to_have_attribute("data-status", "accepted")
+        expect(complete_cross_strait.locator(".review-card__verified")).to_have_count(0)
+        expect(page.locator("#speechText")).to_have_value("乳圖狀瘤病毒。")
+
+        page.locator("#sourceText").fill("生米煮成熟飯。")
+        page.get_by_role("button", name="檢查這份文字").click()
+        incomplete_cross_strait = page.locator(
+            '.review-card[data-type="cross-strait"]'
+        )
+        expect(incomplete_cross_strait).to_have_count(1)
+        expect(incomplete_cross_strait).to_have_attribute("data-status", "pending")
+        expect(page.locator("#speechText")).to_have_value("生米煮成熟飯。")
+
         page.locator("#sourceText").fill(
             "重力、測量、校正、數據、音樂、銀行、學校、處理。\n" * 25
         )
