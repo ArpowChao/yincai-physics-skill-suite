@@ -352,6 +352,33 @@ class SkillSuiteTests(unittest.TestCase):
         self.assertIn("學習階段與程度基準", text)
 
 
+    def test_architect_confirms_scope_before_generating(self):
+        # 交付形式與深度上限沒問就自己假設，是整份架構作廢的來源。
+        text = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("開始前必須確認", text)
+        for item in (
+            "交付形式",
+            "先備單元",
+            "最少要帶走的一句話",
+        ):
+            with self.subTest(item=item):
+                self.assertIn(item, text)
+        self.assertIn("未取得答案前不生成架構", text)
+        self.assertIn("不以假設代替提問", text)
+
+    def test_architect_offers_candidates_before_committing(self):
+        # 直接生成單一情境，使用者只能一輪一輪退回重做。
+        text = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("10 個候選", text)
+        self.assertIn("學生會說出的話", text)
+        self.assertIn("迷思風險", text)
+        self.assertIn("不得由物理概念反推類比", text)
+        self.assertIn("未選定前不進入後續步驟", text)
+
     def test_cross_agent_runtime_requires_user_iteration_decision(self):
         runtime = (ROOT / "references" / "cross-agent-runtime.md").read_text(
             encoding="utf-8"
