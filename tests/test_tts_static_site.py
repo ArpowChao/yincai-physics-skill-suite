@@ -54,6 +54,44 @@ class TtsStaticSiteTests(unittest.TestCase):
             self.assertTrue((output / ".nojekyll").is_file())
             self.assertFalse((output / "scripts").exists())
 
+    def test_sources_page_is_published_and_states_provenance(self):
+        # 老師要能從工具頁點到「這些建議打哪來」，而不必翻 repo 裡的 markdown。
+        site = ROOT / "showcase" / "tts-pronunciation"
+        index = (site / "index.html").read_text(encoding="utf-8")
+        self.assertIn('href="sources.html"', index)
+
+        sources = (site / "sources.html").read_text(encoding="utf-8")
+        for marker in [
+            "15,660",
+            "5,061",
+            "a1e91196f84cd2f3456570906191615f477278c8",
+            "CC BY-ND 3.0 TW",
+            "CC BY-NC-ND 4.0",
+            "CC0",
+            "Apache-2.0",
+            "不等於",
+        ]:
+            with self.subTest(marker=marker):
+                self.assertIn(marker, sources)
+        self.assertIn('href="index.html"', sources)
+
+    def test_static_site_builder_publishes_the_sources_page(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp) / "site"
+            subprocess.run(
+                [
+                    sys.executable,
+                    str(ROOT / "scripts" / "build_tts_pronunciation_site.py"),
+                    "--output",
+                    str(output),
+                ],
+                check=True,
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+            )
+            self.assertTrue((output / "sources.html").is_file())
+
     def test_pages_workflow_builds_and_deploys_static_artifact(self):
         workflow = (ROOT / ".github" / "workflows" / "tts-pages.yml").read_text(
             encoding="utf-8"
