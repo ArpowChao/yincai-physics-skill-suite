@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "locale": "zh-TW",
-  "description": "經人工確認、只供網路配音稿使用的同音異字規則。",
+  "description": "經人工確認、只供網路配音稿使用的同音異字規則；含 2026-08-10 使用者確認匯入資料。",
   "rules": [
     {
       "original": "主角",
@@ -16,6 +16,3569 @@
       "pronunciation": "ㄐㄧㄠˇ ㄙㄜˋ",
       "verified": true,
       "note": "「腳色」亦為教育部辭典收錄寫法，只用於配音稿。"
+    },
+    {
+      "original": "和（連詞）",
+      "spoken": "漢",
+      "pronunciation": "ㄏㄢˋ",
+      "verified": true,
+      "auto_apply": false,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "hé",
+      "difference_type": "音節；限詞性",
+      "risk": "高",
+      "note": "使用者於 2026-08-10 確認可用。高｜只限『我和你』的連詞；不可全域替換『和』。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "和（連詞）",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "垃圾",
+      "spoken": "勒色",
+      "pronunciation": "ㄌㄜˋ ㄙㄜˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "lājī",
+      "difference_type": "整詞兩音節",
+      "risk": "高",
+      "note": "使用者於 2026-08-10 確認可用。高｜『勒』多音；『泐』罕用；『樂色』可能成 yuèsè。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "垃圾",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      },
+      "alternate_spoken": [
+        "泐色"
+      ]
+    },
+    {
+      "original": "垃圾車",
+      "spoken": "勒色車",
+      "pronunciation": "ㄌㄜˋ ㄙㄜˋ ㄔㄜ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "lājīchē",
+      "difference_type": "整詞兩音節",
+      "risk": "高",
+      "note": "使用者於 2026-08-10 確認可用。高｜候選多音或罕用，可能誤讀、略過或成為 OOV。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "垃圾車",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      },
+      "alternate_spoken": [
+        "泐色車"
+      ]
+    },
+    {
+      "original": "企業",
+      "spoken": "氣業",
+      "pronunciation": "ㄑㄧˋ ㄧㄝˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "qǐyè",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "企業",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "企圖",
+      "spoken": "氣圖",
+      "pronunciation": "ㄑㄧˋ ㄊㄨˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "qǐtú",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "企圖",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "企鵝",
+      "spoken": "氣鵝",
+      "pronunciation": "ㄑㄧˋ ㄜˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "qǐ'é",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "企鵝",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "包括",
+      "spoken": "包瓜",
+      "pronunciation": "ㄅㄠ ㄍㄨㄚ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "bāokuò",
+      "difference_type": "聲母＋韻母",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "包括",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "括號",
+      "spoken": "瓜號",
+      "pronunciation": "ㄍㄨㄚ ㄏㄠˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "kuòhào",
+      "difference_type": "聲母＋韻母",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "括號",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "檔案",
+      "spoken": "黨案",
+      "pronunciation": "ㄉㄤˇ ㄢˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "dàng'àn",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "檔案",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "存檔",
+      "spoken": "存黨",
+      "pronunciation": "ㄘㄨㄣˊ ㄉㄤˇ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "cúndàng",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "存檔",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "傍晚",
+      "spoken": "幫晚",
+      "pronunciation": "ㄅㄤ ㄨㄢˇ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "bàngwǎn",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "傍晚",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "熟悉",
+      "spoken": "熟．悉",
+      "pronunciation": "ㄕㄡˊ ㄒㄧ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "shúxī",
+      "difference_type": "韻母",
+      "risk": "高",
+      "note": "使用者於 2026-08-10 確認可用。高｜無可靠常用同音字；優先用發音詞典或 SSML。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "熟悉",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      },
+      "alternate_spoken": [
+        "SSML"
+      ]
+    },
+    {
+      "original": "熟練",
+      "spoken": "熟．練",
+      "pronunciation": "ㄕㄡˊ ㄌㄧㄢˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "shúliàn",
+      "difference_type": "韻母",
+      "risk": "高",
+      "note": "使用者於 2026-08-10 確認可用。高｜無可靠常用同音字；優先用發音詞典或 SSML。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "熟練",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      },
+      "alternate_spoken": [
+        "SSML"
+      ]
+    },
+    {
+      "original": "寂寞",
+      "spoken": "急寞",
+      "pronunciation": "ㄐㄧˊ ㄇㄛˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "jìmò",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "寂寞",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "究竟",
+      "spoken": "就竟",
+      "pronunciation": "ㄐㄧㄡˋ ㄐㄧㄥˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "jiūjìng",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "究竟",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "研究",
+      "spoken": "研就",
+      "pronunciation": "ㄧㄢˊ ㄐㄧㄡˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "yánjiū",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "研究",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "說服",
+      "spoken": "稅服",
+      "pronunciation": "ㄕㄨㄟˋ ㄈㄨˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "shuōfú",
+      "difference_type": "韻母＋聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "說服",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "暫時",
+      "spoken": "戰時",
+      "pronunciation": "ㄓㄢˋ ㄕˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "zànshí",
+      "difference_type": "聲母",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜代字形成另一個真詞，可能改變停連；字幕勿用。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "暫時",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "短暫",
+      "spoken": "短戰",
+      "pronunciation": "ㄉㄨㄢˇ ㄓㄢˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "duǎnzàn",
+      "difference_type": "聲母",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "短暫",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "擁有",
+      "spoken": "永有",
+      "pronunciation": "ㄩㄥˇ ㄧㄡˇ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "yōngyǒu",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "擁有",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "擁抱",
+      "spoken": "永抱",
+      "pronunciation": "ㄩㄥˇ ㄅㄠˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "yōngbào",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "擁抱",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "攜帶",
+      "spoken": "西帶",
+      "pronunciation": "ㄒㄧ ㄉㄞˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "xiédài",
+      "difference_type": "韻母",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "攜帶",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "攜手",
+      "spoken": "西手",
+      "pronunciation": "ㄒㄧ ㄕㄡˇ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "xiéshǒu",
+      "difference_type": "韻母",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "攜手",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "框架",
+      "spoken": "筐架",
+      "pronunciation": "ㄎㄨㄤ ㄐㄧㄚˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "kuàngjià",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "框架",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "夾子",
+      "spoken": "頰子",
+      "pronunciation": "ㄐㄧㄚˊ ˙ㄗ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "jiāzi",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜第二音節輕聲仍由引擎決定；需句測。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "夾子",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "髮夾",
+      "spoken": "法頰",
+      "pronunciation": "ㄈㄚˇ ㄐㄧㄚˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "fàjiā",
+      "difference_type": "兩處聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "髮夾",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "叔叔",
+      "spoken": "熟叔",
+      "pronunciation": "ㄕㄨˊ ˙ㄕㄨ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "shūshu",
+      "difference_type": "聲調＋輕聲",
+      "risk": "高",
+      "note": "使用者於 2026-08-10 確認可用。高｜另含輕聲差；單靠換字通常無法完整重現。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "叔叔",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "叔父",
+      "spoken": "熟父",
+      "pronunciation": "ㄕㄨˊ ㄈㄨˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "shūfù",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "叔父",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "悄悄",
+      "spoken": "巧巧",
+      "pronunciation": "ㄑㄧㄠˇ ㄑㄧㄠˇ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "qiāoqiāo",
+      "difference_type": "兩處聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "悄悄",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "識別",
+      "spoken": "試別",
+      "pronunciation": "ㄕˋ ㄅㄧㄝˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "shíbié",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "識別",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "品行",
+      "spoken": "品性",
+      "pronunciation": "ㄆㄧㄣˇ ㄒㄧㄥˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "pǐnxíng",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜代字形成另一個真詞，可能改變停連；字幕勿用。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "品行",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "操行",
+      "spoken": "操性",
+      "pronunciation": "ㄘㄠ ㄒㄧㄥˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "cāoxíng",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "操行",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "諷刺",
+      "spoken": "奉刺",
+      "pronunciation": "ㄈㄥˋ ㄘˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "fěngcì",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "諷刺",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "聘請",
+      "spoken": "聘請",
+      "pronunciation": "ㄆㄧㄥˋ ㄑㄧㄥˇ",
+      "verified": true,
+      "auto_apply": false,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "pìnqǐng",
+      "difference_type": "韻尾",
+      "risk": "高",
+      "note": "使用者於 2026-08-10 確認可用。高｜無可靠常用同音字；優先用發音詞典或 SSML。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "聘請",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "侮辱",
+      "spoken": "侮入",
+      "pronunciation": "ㄨˇ ㄖㄨˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "wǔrǔ",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "侮辱",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "膽怯",
+      "spoken": "膽卻",
+      "pronunciation": "ㄉㄢˇ ㄑㄩㄝˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "dǎnqiè",
+      "difference_type": "韻母＋聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "膽怯",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "步驟",
+      "spoken": "步奏",
+      "pronunciation": "ㄅㄨˋ ㄗㄡˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "bùzhòu",
+      "difference_type": "聲母",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "步驟",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "部署",
+      "spoken": "部樹",
+      "pronunciation": "ㄅㄨˋ ㄕㄨˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "bùshǔ",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "部署",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "賞賜",
+      "spoken": "賞四",
+      "pronunciation": "ㄕㄤˇ ㄙˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "shǎngcì",
+      "difference_type": "聲母",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "賞賜",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "綜合",
+      "spoken": "縱合",
+      "pronunciation": "ㄗㄨㄥˋ ㄏㄜˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "zōnghé",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "綜合",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "綜藝",
+      "spoken": "縱藝",
+      "pronunciation": "ㄗㄨㄥˋ ㄧˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "zōngyì",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "綜藝",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "偽造",
+      "spoken": "衛造",
+      "pronunciation": "ㄨㄟˋ ㄗㄠˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "wěizào",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "偽造",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "虛偽",
+      "spoken": "虛衛",
+      "pronunciation": "ㄒㄩ ㄨㄟˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "xūwěi",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "虛偽",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "通緝",
+      "spoken": "通氣",
+      "pronunciation": "ㄊㄨㄥ ㄑㄧˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "tōngjī",
+      "difference_type": "聲母＋聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜代字形成另一個真詞，可能改變停連；字幕勿用。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "通緝",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "投擲",
+      "spoken": "投直",
+      "pronunciation": "ㄊㄡˊ ㄓˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "tóuzhì",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "投擲",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "播放",
+      "spoken": "簸放",
+      "pronunciation": "ㄅㄛˋ ㄈㄤˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "bōfàng",
+      "difference_type": "聲調",
+      "risk": "高",
+      "note": "使用者於 2026-08-10 確認可用。高｜候選多音或罕用，可能誤讀、略過或成為 OOV。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "播放",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      },
+      "alternate_spoken": [
+        "SSML"
+      ]
+    },
+    {
+      "original": "播報",
+      "spoken": "簸報",
+      "pronunciation": "ㄅㄛˋ ㄅㄠˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "bōbào",
+      "difference_type": "聲調",
+      "risk": "高",
+      "note": "使用者於 2026-08-10 確認可用。高｜候選多音或罕用，可能誤讀、略過或成為 OOV。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "播報",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      },
+      "alternate_spoken": [
+        "SSML"
+      ]
+    },
+    {
+      "original": "大廈",
+      "spoken": "大下",
+      "pronunciation": "ㄉㄚˋ ㄒㄧㄚˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "dàshà",
+      "difference_type": "聲母／介音",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜代字形成另一個真詞，可能改變停連；字幕勿用。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "大廈",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "眼眶",
+      "spoken": "眼筐",
+      "pronunciation": "ㄧㄢˇ ㄎㄨㄤ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "yǎnkuàng",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "眼眶",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "皺褶",
+      "spoken": "皺折",
+      "pronunciation": "ㄓㄡˋ ㄓㄜˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "zhòuzhě",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜代字形成另一個真詞，可能改變停連；字幕勿用。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "皺褶",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "挾持",
+      "spoken": "俠持",
+      "pronunciation": "ㄒㄧㄚˊ ㄔˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "xiéchí",
+      "difference_type": "韻母",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "挾持",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "貯存",
+      "spoken": "煮存",
+      "pronunciation": "ㄓㄨˇ ㄘㄨㄣˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "A　高頻生活、社會與數位使用",
+      "mainland_pronunciation": "zhùcún",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "貯存",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "星期",
+      "spoken": "星其",
+      "pronunciation": "ㄒㄧㄥ ㄑㄧˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "xīngqī",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "星期",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "日期",
+      "spoken": "日其",
+      "pronunciation": "ㄖˋ ㄑㄧˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "rìqī",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "日期",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "學期",
+      "spoken": "學其",
+      "pronunciation": "ㄒㄩㄝˊ ㄑㄧˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "xuéqī",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "學期",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "期中",
+      "spoken": "其中",
+      "pronunciation": "ㄑㄧˊ ㄓㄨㄥ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "qīzhōng",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜代字形成另一個真詞，可能改變停連；字幕勿用。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "期中",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "期末",
+      "spoken": "其末",
+      "pronunciation": "ㄑㄧˊ ㄇㄛˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "qīmò",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "期末",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "期待",
+      "spoken": "其待",
+      "pronunciation": "ㄑㄧˊ ㄉㄞˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "qīdài",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "期待",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "期限",
+      "spoken": "其限",
+      "pronunciation": "ㄑㄧˊ ㄒㄧㄢˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "qīxiàn",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "期限",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "長期",
+      "spoken": "長其",
+      "pronunciation": "ㄔㄤˊ ㄑㄧˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "chángqī",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "長期",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "突然",
+      "spoken": "圖然",
+      "pronunciation": "ㄊㄨˊ ㄖㄢˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "tūrán",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "突然",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "突破",
+      "spoken": "圖破",
+      "pronunciation": "ㄊㄨˊ ㄆㄛˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "tūpò",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "突破",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "可惜",
+      "spoken": "可席",
+      "pronunciation": "ㄎㄜˇ ㄒㄧˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "kěxī",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "可惜",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "珍惜",
+      "spoken": "珍席",
+      "pronunciation": "ㄓㄣ ㄒㄧˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "zhēnxī",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "珍惜",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "休息",
+      "spoken": "休席",
+      "pronunciation": "ㄒㄧㄡ ㄒㄧˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "xiūxī",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "休息",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "利息",
+      "spoken": "利席",
+      "pronunciation": "ㄌㄧˋ ㄒㄧˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "lìxī",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "利息",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "窒息",
+      "spoken": "窒席",
+      "pronunciation": "ㄓˋ ㄒㄧˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "zhìxī",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "窒息",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "熄火",
+      "spoken": "席火",
+      "pronunciation": "ㄒㄧˊ ㄏㄨㄛˇ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "xīhuǒ",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "熄火",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "攻擊",
+      "spoken": "攻級",
+      "pronunciation": "ㄍㄨㄥ ㄐㄧˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "gōngjī",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "攻擊",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "射擊",
+      "spoken": "射級",
+      "pronunciation": "ㄕㄜˋ ㄐㄧˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "shèjī",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "射擊",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "打擊",
+      "spoken": "打級",
+      "pronunciation": "ㄉㄚˇ ㄐㄧˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "dǎjī",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "打擊",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "質量",
+      "spoken": "直量",
+      "pronunciation": "ㄓˊ ㄌㄧㄤˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "zhìliàng",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜物理語境可比；兩岸日常語義範圍並非完全相同。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "質量",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "品質",
+      "spoken": "品直",
+      "pronunciation": "ㄆㄧㄣˇ ㄓˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "pǐnzhì",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "品質",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "物質",
+      "spoken": "物直",
+      "pronunciation": "ㄨˋ ㄓˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "wùzhì",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "物質",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "質數",
+      "spoken": "直數",
+      "pronunciation": "ㄓˊ ㄕㄨˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "zhìshù",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "質數",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "北伐",
+      "spoken": "北發",
+      "pronunciation": "ㄅㄟˇ ㄈㄚ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "běifá",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "北伐",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "笨拙",
+      "spoken": "笨卓",
+      "pronunciation": "ㄅㄣˋ ㄓㄨㄛˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "bènzhuō",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "笨拙",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "樸素",
+      "spoken": "蒲素",
+      "pronunciation": "ㄆㄨˊ ㄙㄨˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "pǔsù",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "樸素",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "樸實",
+      "spoken": "蒲實",
+      "pronunciation": "ㄆㄨˊ ㄕˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "pǔshí",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "樸實",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "建築",
+      "spoken": "建竹",
+      "pronunciation": "ㄐㄧㄢˋ ㄓㄨˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "jiànzhù",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "建築",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "鞠躬",
+      "spoken": "橘躬",
+      "pronunciation": "ㄐㄩˊ ㄍㄨㄥ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "jūgōng",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "鞠躬",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "蟄伏",
+      "spoken": "直伏",
+      "pronunciation": "ㄓˊ ㄈㄨˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "zhéfú",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "蟄伏",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "混淆",
+      "spoken": "混搖",
+      "pronunciation": "ㄏㄨㄣˋ ㄧㄠˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "hùnxiáo",
+      "difference_type": "聲母＋韻母",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "混淆",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "頗有",
+      "spoken": "叵有",
+      "pronunciation": "ㄆㄛˇ ㄧㄡˇ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "pōyǒu",
+      "difference_type": "聲調",
+      "risk": "高",
+      "note": "使用者於 2026-08-10 確認可用。高｜候選多音或罕用，可能誤讀、略過或成為 OOV。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "頗有",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      },
+      "alternate_spoken": [
+        "SSML"
+      ]
+    },
+    {
+      "original": "剽竊",
+      "spoken": "票竊",
+      "pronunciation": "ㄆㄧㄠˋ ㄑㄧㄝˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "piāoqiè",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "剽竊",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "和煦",
+      "spoken": "和許",
+      "pronunciation": "ㄏㄜˊ ㄒㄩˇ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "héxù",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "和煦",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "枯萎",
+      "spoken": "枯威",
+      "pronunciation": "ㄎㄨ ㄨㄟ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "B　校園、抽象概念與語文常見詞",
+      "mainland_pronunciation": "kūwěi",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "枯萎",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "血液",
+      "spoken": "寫液",
+      "pronunciation": "ㄒㄧㄝˇ ㄧㄝˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "xuèyè",
+      "difference_type": "韻母＋聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "血液",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "血壓",
+      "spoken": "寫壓",
+      "pronunciation": "ㄒㄧㄝˇ ㄧㄚ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "xuèyā",
+      "difference_type": "韻母＋聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "血壓",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "血型",
+      "spoken": "寫型",
+      "pronunciation": "ㄒㄧㄝˇ ㄒㄧㄥˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "xuèxíng",
+      "difference_type": "韻母＋聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "血型",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "白血病",
+      "spoken": "白寫病",
+      "pronunciation": "ㄅㄞˊ ㄒㄧㄝˇ ㄅㄧㄥˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "báixuèbìng",
+      "difference_type": "韻母＋聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "白血病",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "細菌",
+      "spoken": "細俊",
+      "pronunciation": "ㄒㄧˋ ㄐㄩㄣˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "xìjūn",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "細菌",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "病菌",
+      "spoken": "病俊",
+      "pronunciation": "ㄅㄧㄥˋ ㄐㄩㄣˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "bìngjūn",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "病菌",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "黴菌",
+      "spoken": "黴俊",
+      "pronunciation": "ㄇㄟˊ ㄐㄩㄣˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "méijūn",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "黴菌",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "儲存",
+      "spoken": "廚存",
+      "pronunciation": "ㄔㄨˊ ㄘㄨㄣˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "chǔcún",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "儲存",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "儲蓄",
+      "spoken": "廚蓄",
+      "pronunciation": "ㄔㄨˊ ㄒㄩˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "chǔxù",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "儲蓄",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "危險",
+      "spoken": "圍險",
+      "pronunciation": "ㄨㄟˊ ㄒㄧㄢˇ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "wēixiǎn",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "危險",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "危機",
+      "spoken": "圍機",
+      "pronunciation": "ㄨㄟˊ ㄐㄧ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "wēijī",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "危機",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "微笑",
+      "spoken": "圍笑",
+      "pronunciation": "ㄨㄟˊ ㄒㄧㄠˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "wēixiào",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "微笑",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "微小",
+      "spoken": "圍小",
+      "pronunciation": "ㄨㄟˊ ㄒㄧㄠˇ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "wēixiǎo",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "微小",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "發酵",
+      "spoken": "發笑",
+      "pronunciation": "ㄈㄚ ㄒㄧㄠˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "fājiào",
+      "difference_type": "聲母＋韻母",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜代字形成另一個真詞，可能改變停連；字幕勿用。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "發酵",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "酵母",
+      "spoken": "笑母",
+      "pronunciation": "ㄒㄧㄠˋ ㄇㄨˇ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "jiàomǔ",
+      "difference_type": "聲母＋韻母",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "酵母",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "乳酪",
+      "spoken": "乳落",
+      "pronunciation": "ㄖㄨˇ ㄌㄨㄛˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "rǔlào",
+      "difference_type": "韻母＋聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "乳酪",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "剝削",
+      "spoken": "剝血",
+      "pronunciation": "ㄅㄛ ㄒㄩㄝˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "bōxuē",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "剝削",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "削弱",
+      "spoken": "血弱",
+      "pronunciation": "ㄒㄩㄝˋ ㄖㄨㄛˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "xuēruò",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "削弱",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "剖面",
+      "spoken": "叵面",
+      "pronunciation": "ㄆㄡˇ ㄇㄧㄢˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "pōumiàn",
+      "difference_type": "聲調",
+      "risk": "高",
+      "note": "使用者於 2026-08-10 確認可用。高｜候選多音或罕用，可能誤讀、略過或成為 OOV。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "剖面",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      },
+      "alternate_spoken": [
+        "SSML"
+      ]
+    },
+    {
+      "original": "堤防",
+      "spoken": "題防",
+      "pronunciation": "ㄊㄧˊ ㄈㄤˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "dīfáng",
+      "difference_type": "聲母",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "堤防",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "堤岸",
+      "spoken": "題岸",
+      "pronunciation": "ㄊㄧˊ ㄢˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "dī'àn",
+      "difference_type": "聲母",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "堤岸",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "薄膜",
+      "spoken": "博膜",
+      "pronunciation": "ㄅㄛˊ ㄇㄛˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "báomó",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜普通話另有文白異讀規則；不同引擎可能選 bó。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "薄膜",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "薄片",
+      "spoken": "博片",
+      "pronunciation": "ㄅㄛˊ ㄆㄧㄢˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "báopiàn",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜普通話另有文白異讀規則；不同引擎可能選 bó。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "薄片",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "暴露",
+      "spoken": "瀑露",
+      "pronunciation": "ㄆㄨˋ ㄌㄨˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "bàolù",
+      "difference_type": "音節",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "暴露",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "曝光",
+      "spoken": "瀑光",
+      "pronunciation": "ㄆㄨˋ ㄍㄨㄤ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "bàoguāng",
+      "difference_type": "音節",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "曝光",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "舞蹈",
+      "spoken": "舞道",
+      "pronunciation": "ㄨˇ ㄉㄠˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "wǔdǎo",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "舞蹈",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "跌倒",
+      "spoken": "疊倒",
+      "pronunciation": "ㄉㄧㄝˊ ㄉㄠˇ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "diēdǎo",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "跌倒",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "暴跌",
+      "spoken": "暴疊",
+      "pronunciation": "ㄅㄠˋ ㄉㄧㄝˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "bàodiē",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "暴跌",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "蝸牛",
+      "spoken": "瓜牛",
+      "pronunciation": "ㄍㄨㄚ ㄋㄧㄡˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "wōniú",
+      "difference_type": "聲母＋韻母",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "蝸牛",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "耳蝸",
+      "spoken": "耳瓜",
+      "pronunciation": "ㄦˇ ㄍㄨㄚ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "ěrwō",
+      "difference_type": "聲母＋韻母",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "耳蝸",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "湖泊",
+      "spoken": "湖伯",
+      "pronunciation": "ㄏㄨˊ ㄅㄛˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "húpō",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "湖泊",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "柏樹",
+      "spoken": "博樹",
+      "pronunciation": "ㄅㄛˊ ㄕㄨˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "bǎishù",
+      "difference_type": "韻母＋聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "柏樹",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "柏油",
+      "spoken": "博油",
+      "pronunciation": "ㄅㄛˊ ㄧㄡˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "bǎiyóu",
+      "difference_type": "韻母＋聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "柏油",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "波濤",
+      "spoken": "波桃",
+      "pronunciation": "ㄅㄛ ㄊㄠˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "bōtāo",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "波濤",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "帆船",
+      "spoken": "凡船",
+      "pronunciation": "ㄈㄢˊ ㄔㄨㄢˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "fānchuán",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "帆船",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "搖曳",
+      "spoken": "搖意",
+      "pronunciation": "ㄧㄠˊ ㄧˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "yáoyè",
+      "difference_type": "韻母＋聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "搖曳",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "洞穴",
+      "spoken": "洞血",
+      "pronunciation": "ㄉㄨㄥˋ ㄒㄩㄝˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "dòngxué",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "洞穴",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "穴位",
+      "spoken": "血位",
+      "pronunciation": "ㄒㄩㄝˋ ㄨㄟˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "xuéwèi",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "穴位",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "顫抖",
+      "spoken": "戰抖",
+      "pronunciation": "ㄓㄢˋ ㄉㄡˇ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "chàndǒu",
+      "difference_type": "聲母",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "顫抖",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "肋骨",
+      "spoken": "勒骨",
+      "pronunciation": "ㄌㄜˋ ㄍㄨˇ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "lèigǔ",
+      "difference_type": "韻母",
+      "risk": "高",
+      "note": "使用者於 2026-08-10 確認可用。高｜候選多音或罕用，可能誤讀、略過或成為 OOV。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "肋骨",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      },
+      "alternate_spoken": [
+        "泐骨"
+      ]
+    },
+    {
+      "original": "髮型",
+      "spoken": "法型",
+      "pronunciation": "ㄈㄚˇ ㄒㄧㄥˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "fàxíng",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "髮型",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "理髮",
+      "spoken": "理法",
+      "pronunciation": "ㄌㄧˇ ㄈㄚˇ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "lǐfà",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜代字形成另一個真詞，可能改變停連；字幕勿用。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "理髮",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "頭髮",
+      "spoken": "頭法",
+      "pronunciation": "ㄊㄡˊ ㄈㄚˇ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "tóufa",
+      "difference_type": "聲調＋輕聲",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜普通話常把第二音節讀輕聲；代字仍需句測。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "頭髮",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "夕陽",
+      "spoken": "細陽",
+      "pronunciation": "ㄒㄧˋ ㄧㄤˊ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "xīyáng",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "夕陽",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "凸透鏡",
+      "spoken": "圖透鏡",
+      "pronunciation": "ㄊㄨˊ ㄊㄡˋ ㄐㄧㄥˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "tūtòujìng",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "凸透鏡",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "鈾",
+      "spoken": "右",
+      "pronunciation": "ㄧㄡˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "yóu",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "鈾",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "鈷",
+      "spoken": "姑",
+      "pronunciation": "ㄍㄨ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "gǔ",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜臺灣化學元素義讀 ㄍㄨ；另有罕義又音 ㄍㄨˇ。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "鈷",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "褐色",
+      "spoken": "河色",
+      "pronunciation": "ㄏㄜˊ ㄙㄜˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "hèsè",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "褐色",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
+    },
+    {
+      "original": "噸位",
+      "spoken": "頓位",
+      "pronunciation": "ㄉㄨㄣˋ ㄨㄟˋ",
+      "verified": true,
+      "auto_apply": true,
+      "source": "user-confirmed-csv",
+      "category": "C　健康、自然與基礎科學",
+      "mainland_pronunciation": "dūnwèi",
+      "difference_type": "聲調",
+      "risk": "中",
+      "note": "使用者於 2026-08-10 確認可用。中｜只供 TTS；奇詞可能改變斷詞，需整句試聽。",
+      "verification": {
+        "confirmed_by": "user",
+        "confirmed_on": "2026-08-10",
+        "test_text": "噸位",
+        "result": "使用者確認替代可用",
+        "tts_service": "未提供",
+        "voice_version": "未提供",
+        "csv_original_status": "待各引擎實測"
+      },
+      "references": {
+        "taiwan": "https://language.moe.gov.tw/001/Upload/Files/site_content/M0001/respub/index.html",
+        "mainland": "https://hudong.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/t20100115_75598.html"
+      }
     }
   ]
 }

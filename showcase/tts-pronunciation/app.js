@@ -234,6 +234,7 @@ function findFormulaChanges(text) {
 function analyzeLocally(text, overrides = []) {
   const merged = new Map();
   for (const rule of confirmedRules) {
+    if (rule.auto_apply === false) continue;
     if (!rule.original || !rule.spoken) continue;
     merged.set(rule.original, { ...rule, source: "confirmed", verified: Boolean(rule.verified) });
   }

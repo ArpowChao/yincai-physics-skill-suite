@@ -105,15 +105,11 @@ def main() -> int:
 
         page.locator("#sourceText").fill("微小、儲存、頭髮、夾子、細菌、綜合。")
         page.get_by_role("button", name="檢查這份文字").click()
-        expect(page.locator('.review-card[data-type="cross-strait"]')).to_have_count(6)
-        expect(page.locator(".review-card__cross-strait").first).to_have_text("兩岸詞典")
-        expect(page.locator(".pronunciation-comparison")).to_have_count(6)
-        expect(page.locator("#speechText")).to_have_value("微小、儲存、頭髮、夾子、細菌、綜合。")
-        first_cross_strait = page.locator('.review-card[data-type="cross-strait"]').first
-        expect(first_cross_strait).to_contain_text("微小")
-        expect(first_cross_strait).to_contain_text("維小")
-        first_cross_strait.get_by_role("button", name="確認並套用").click()
-        expect(page.locator("#speechText")).to_have_value(re.compile("維小"))
+        expect(page.locator('.review-card[data-type="pronunciation"]')).to_have_count(6)
+        expect(page.locator(".review-card__verified")).to_have_count(6)
+        expect(page.locator("#speechText")).to_have_value(
+            "圍小、廚存、頭法、頰子、細俊、縱合。"
+        )
 
         page.locator("#sourceText").fill(
             "重力、測量、校正、數據、音樂、銀行、學校、處理。\n" * 25
