@@ -14,6 +14,7 @@ def build(output: Path) -> None:
     output.mkdir(parents=True, exist_ok=True)
     for name in (
         "index.html",
+        "sources.html",
         "styles.css",
         "moe-heteronyms.js",
         "cross-strait-candidates.js",

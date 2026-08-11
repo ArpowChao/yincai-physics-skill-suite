@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title>配音讀音資料從哪裡來｜配音稿校對台</title>
+    <style>
+      :root{
+        --paper:#F6F5F1; --paper-2:#EEEDE6; --paper-3:#E4E2D8;
+        --ink:#1B1F1D; --ink-2:#4A514C; --ink-3:#767D76;
+        --rule:#D4D1C6; --rule-2:#BFBBAD;
+        --cinnabar:#A83A26; --cinnabar-bg:#F3E4E0;
+        --sage:#4F6355; --sage-bg:#E6EAE4;
+        --serif:"Songti TC","Noto Serif TC","Source Han Serif TC","PMingLiU",Georgia,serif;
+        --sans:"PingFang TC","Noto Sans TC","Source Han Sans TC","Microsoft JhengHei","Heiti TC",system-ui,sans-serif;
+        --mono:ui-monospace,"SF Mono","Cascadia Code",Consolas,monospace;
+      }
+      *{box-sizing:border-box;}
+      body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+        line-height:1.85;font-size:16px;padding:0 1.5rem 6rem;
+        -webkit-font-smoothing:antialiased;}
+      .wrap{max-width:62rem;margin:0 auto;}
+      .col{max-width:44rem;}
+
+      .backlink{display:inline-block;font-family:var(--mono);font-size:.78rem;
+        letter-spacing:.06em;color:var(--cinnabar);text-decoration:none;
+        padding:1.75rem 0 0;}
+      .backlink:hover{text-decoration:underline;}
+      .backlink:focus-visible{outline:2px solid var(--cinnabar);outline-offset:3px;}
+
+      .masthead{padding:2rem 0 2rem;border-bottom:2px solid var(--ink);}
+      .eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;
+        color:var(--cinnabar);text-transform:uppercase;margin:0 0 1.25rem;}
+      h1{font-family:var(--serif);font-size:2.6rem;line-height:1.25;font-weight:500;
+        margin:0 0 1.25rem;text-wrap:balance;letter-spacing:.02em;}
+      .standfirst{font-size:1.0625rem;color:var(--ink-2);margin:0;max-width:38rem;}
+
+      h2{font-family:var(--serif);font-size:1.5rem;font-weight:500;line-height:1.4;
+        margin:0 0 .5rem;letter-spacing:.02em;}
+      h3{font-size:1rem;font-weight:500;margin:0 0 .5rem;letter-spacing:.03em;}
+      section{padding-top:3.5rem;}
+      .secnum{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;
+        color:var(--ink-3);margin:0 0 .75rem;}
+      p{margin:0 0 1rem;}
+      .col p:last-child{margin-bottom:0;}
+      strong{font-weight:500;}
+      code{font-family:var(--mono);font-size:.85em;background:var(--paper-3);
+        padding:.1em .4em;border-radius:3px;word-break:break-all;}
+      a{color:var(--cinnabar);text-underline-offset:3px;}
+
+      .split{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);
+        grid-template-columns:1fr 1fr;margin:1.75rem 0 0;max-width:44rem;}
+      .split>div{background:var(--paper-2);padding:1.25rem 1.4rem;}
+      .split .lbl{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;
+        color:var(--ink-3);margin:0 0 .6rem;}
+      .split .big{font-family:var(--serif);font-size:1.5rem;margin:0 0 .35rem;}
+      .split .note{font-size:.85rem;color:var(--ink-2);margin:0;line-height:1.6;}
+      .fn{font-family:var(--mono);font-size:.72rem;color:var(--ink-3);}
+      .zy{font-family:var(--serif);color:var(--cinnabar);font-size:.95rem;}
+
+      .ladder{margin:1.75rem 0 0;max-width:46rem;}
+      .rung{display:grid;grid-template-columns:2.5rem 1fr;gap:1.25rem;
+        padding:1.15rem 1.4rem;background:var(--paper-2);
+        border-left:3px solid var(--rule-2);margin-bottom:2px;}
+      .rung--2{border-left-width:5px;}
+      .rung--3{border-left-width:7px;background:var(--paper-3);}
+      .rung--4{border-left:9px solid var(--cinnabar);background:var(--cinnabar-bg);}
+      .rung .n{font-family:var(--mono);font-size:1.5rem;color:var(--ink-3);
+        line-height:1.2;font-variant-numeric:tabular-nums;}
+      .rung--4 .n{color:var(--cinnabar);}
+      .rung h3{margin:0 0 .3rem;}
+      .rung p{font-size:.9rem;color:var(--ink-2);margin:0;line-height:1.65;}
+      .threshold{display:flex;align-items:center;gap:.9rem;margin:1.1rem 0;}
+      .threshold span{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;
+        color:var(--cinnabar);white-space:nowrap;}
+      .threshold::before,.threshold::after{content:"";height:1px;
+        background:var(--cinnabar);flex:1;}
+      .threshold::before{flex:0 0 1.5rem;}
+
+      .tw{overflow-x:auto;margin:1.75rem 0 0;border:1px solid var(--rule);}
+      table{border-collapse:collapse;width:100%;font-size:.875rem;min-width:34rem;}
+      th,td{text-align:left;padding:.8rem .95rem;border-bottom:1px solid var(--rule);
+        vertical-align:top;line-height:1.6;}
+      thead th{background:var(--paper-3);font-weight:500;font-size:.78rem;
+        letter-spacing:.05em;color:var(--ink-2);white-space:nowrap;}
+      tbody tr:last-child td{border-bottom:none;}
+      tbody tr:nth-child(odd) td{background:var(--paper-2);}
+      .num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
+      .nm{font-family:var(--mono);font-size:.8rem;word-break:break-all;}
+
+      .tag{display:inline-block;font-size:.72rem;padding:.15rem .5rem;border-radius:2px;
+        white-space:nowrap;font-family:var(--mono);letter-spacing:.04em;}
+      .tag--yes{background:var(--cinnabar-bg);color:var(--cinnabar);
+        border:1px solid var(--cinnabar);}
+      .tag--no{background:transparent;color:var(--ink-3);border:1px solid var(--rule-2);}
+      .tag--part{background:var(--sage-bg);color:var(--sage);border:1px solid var(--sage);}
+
+      .steps{list-style:none;padding:0;margin:1.25rem 0 0;max-width:44rem;
+        counter-reset:s;border-top:1px solid var(--rule);}
+      .steps li{counter-increment:s;display:grid;grid-template-columns:2rem 1fr;
+        gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--rule);
+        font-size:.9rem;line-height:1.65;}
+      .steps li::before{content:counter(s);font-family:var(--mono);color:var(--ink-3);
+        font-size:.8rem;padding-top:.15rem;}
+
+      .warn{border-left:3px solid var(--cinnabar);background:var(--cinnabar-bg);
+        padding:1.1rem 1.4rem;margin:1.5rem 0 0;max-width:44rem;font-size:.9rem;
+        line-height:1.7;}
+      .warn p{margin:0 0 .6rem;}
+      .warn p:last-child{margin:0;}
+
+      .chips{display:flex;flex-wrap:wrap;gap:.4rem;margin:1rem 0 0;max-width:44rem;}
+      .chip{font-family:var(--serif);font-size:1.05rem;padding:.25rem .65rem;
+        background:var(--paper-3);border:1px solid var(--rule-2);border-radius:2px;}
+
+      .pagefoot{margin-top:5rem;padding-top:1.75rem;border-top:2px solid var(--ink);
+        font-size:.82rem;color:var(--ink-3);line-height:1.75;}
+
+      @media (max-width:640px){
+        h1{font-size:1.9rem;}
+        .split{grid-template-columns:1fr;}
+        body{font-size:15px;}
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+
+      <a class="backlink" href="index.html">← 回到配音稿校對台</a>
+
+      <header class="masthead">
+        <p class="eyebrow">prepare-tts-transcript</p>
+        <h1>配音讀音資料<br>從哪裡來</h1>
+        <p class="standfirst">這個工具會建議你把配音稿裡的字換掉。這一頁說明每一條建議的出處、它能證明什麼，以及它<strong>不能</strong>證明什麼。</p>
+      </header>
+
+      <section>
+        <p class="secnum">原則</p>
+        <h2>原稿不動，只改配音稿</h2>
+        <div class="col">
+          <p>TTS 遇到破音字會唸錯。修法是換成同音字——但那個字只能進配音稿，<strong>絕不能回填到字幕、講義或教材</strong>。工具全程維持兩份文字。</p>
+        </div>
+        <div class="split">
+          <div>
+            <p class="lbl">原始逐字稿</p>
+            <p class="big">主角</p>
+            <p class="note">學生看到的、教材印出來的。工具永不覆寫這一份。</p>
+          </div>
+          <div>
+            <p class="lbl">配音稿</p>
+            <p class="big">主腳 <span class="zy">ㄓㄨˇ ㄐㄧㄠˇ</span></p>
+            <p class="note">只送進語音系統。換字是為了讓機器唸對，不是改寫語意。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <p class="secnum">證據層級</p>
+        <h2>四層，一層比一層難</h2>
+        <div class="col">
+          <p>每一條讀音建議都落在其中一層。層級不是分類，是<strong>階梯</strong>——上一層成立不代表下一層成立。</p>
+        </div>
+
+        <div class="ladder">
+          <div class="rung">
+            <div class="n">1</div>
+            <div>
+              <h3>官方臺灣讀音</h3>
+              <p>用教育部辭典或審音資料，判斷教材希望呈現的讀音。</p>
+            </div>
+          </div>
+          <div class="rung rung--2">
+            <div class="n">2</div>
+            <div>
+              <h3>候選讀音</h3>
+              <p>用辭典詞目、兩岸差異或 g2pW 找出值得檢查的詞。只能標成待確認。</p>
+            </div>
+          </div>
+          <div class="rung rung--3">
+            <div class="n">3</div>
+            <div>
+              <h3>目標 TTS 實測</h3>
+              <p>用實際要上線的語音服務、聲音與完整句子試聽，確認它真的唸錯。不同服務或版本結果可能不同。</p>
+            </div>
+          </div>
+
+          <div class="threshold"><span>以下才可以自動改稿</span></div>
+
+          <div class="rung rung--4">
+            <div class="n">4</div>
+            <div>
+              <h3>已驗證替代</h3>
+              <p>換成同音異字後再次試聽，確認讀音正確、且沒有破壞停頓、重音或相鄰文字。通過才進入團隊共用的 <strong>已確認庫</strong>。</p>
+              <p style="margin-top:.5rem;">進到第 4 層<strong>不代表一定會自動套用</strong>：像「和（連詞）」只在「我和你」成立，就標成不自動，仍要人逐句決定。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="warn">
+          <p>「臺灣與中國讀音不同」<strong>不等於</strong>目標 TTS 會唸錯。</p>
+          <p>「g2pW 判出正確讀音」<strong>不等於</strong>已找到可用的同音字替代。</p>
+        </div>
+      </section>
+
+      <section>
+        <p class="secnum">資料一覽</p>
+        <h2>六份資料，各自坐在不同層</h2>
+        <div class="tw">
+          <table>
+            <thead>
+              <tr><th>資料</th><th>筆數</th><th>來源</th><th>層</th><th>可否自動改稿</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>已確認庫<br><span class="fn">verified.json</span></td>
+                <td class="num">138</td>
+                <td>團隊人工試聽確認</td>
+                <td class="num">4</td>
+                <td><span class="tag tag--yes">可以</span>　<span class="tag tag--no">2 條除外</span></td>
+              </tr>
+              <tr>
+                <td>教育部辭典候選庫<br><span class="fn">moe-heteronyms.json</span></td>
+                <td class="num">15,660</td>
+                <td>教育部《重編國語辭典修訂本》，經 g0v/moedict-data</td>
+                <td class="num">1–2</td>
+                <td><span class="tag tag--no">須老師確認</span></td>
+              </tr>
+              <tr>
+                <td>兩岸讀音候選庫<br><span class="fn">cross-strait-candidates.json</span></td>
+                <td class="num">5,061</td>
+                <td>《兩岸詞典》，經 g0v/moedict-data-csld</td>
+                <td class="num">2</td>
+                <td><span class="tag tag--no">只供優先測試</span></td>
+              </tr>
+              <tr>
+                <td>公式唸法規則<br><span class="fn">formulas.json</span></td>
+                <td class="num">—</td>
+                <td>本專案自撰，非辭典內容</td>
+                <td class="num">—</td>
+                <td><span class="tag tag--part">簡單式可</span></td>
+              </tr>
+              <tr>
+                <td>瀏覽器個人詞庫</td>
+                <td class="num">—</td>
+                <td>某位老師、某個聲音的本機經驗</td>
+                <td class="num">3–4</td>
+                <td><span class="tag tag--part">僅本人</span></td>
+              </tr>
+              <tr>
+                <td>g2pW</td>
+                <td class="num">—</td>
+                <td>依上下文判音的模型，GitYCC/g2pW</td>
+                <td class="num">2</td>
+                <td><span class="tag tag--no">第二意見</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <p class="secnum">庫的內容</p>
+        <h2>每一份庫裡實際長什麼樣</h2>
+        <div class="col">
+          <p>下面是各庫的實際欄位與樣本。詞條數龐大的兩份只列樣本，全部內容在工具頁裡可逐筆檢視。</p>
+        </div>
+
+        <h3 style="margin:2.5rem 0 0;">已確認庫　138 條　已試聽確認</h3>
+        <div class="col">
+          <p>唯一可以自動改稿的一層。136 條由使用者以 CSV 逐條確認，另有 2 條為專案早期規則。</p>
+        </div>
+        <div class="tw">
+          <table>
+            <thead><tr><th>分布</th><th>內容</th></tr></thead>
+            <tbody>
+              <tr><td>可否自動套用</td><td>自動 <span class="num">134</span>　不自動 <span class="num">2</span>　未標 <span class="num">2</span></td></tr>
+              <tr><td>風險等級</td><td>中 <span class="num">124</span>　高 <span class="num">12</span>　未標 <span class="num">2</span></td></tr>
+              <tr><td>詞類分布</td><td>A 高頻生活與數位 <span class="num">52</span>　C 健康自然與基礎科學 <span class="num">49</span>　B 校園與語文常見詞 <span class="num">35</span></td></tr>
+              <tr><td>差異型態</td><td>聲調 <span class="num">94</span>　韻母＋聲調 <span class="num">10</span>　聲母＋韻母 <span class="num">7</span>　聲母 <span class="num">7</span>　韻母 <span class="num">6</span>　其餘 <span class="num">14</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tw">
+          <table>
+            <thead><tr><th>原詞</th><th>配音</th><th>注音</th><th>差異型態</th><th>風險</th><th>自動</th></tr></thead>
+            <tbody>
+              <tr><td>質量</td><td>直量</td><td class="zy">ㄓˊ ㄌㄧㄤˋ</td><td>聲調</td><td>中</td><td><span class="tag tag--yes">是</span></td></tr>
+              <tr><td>物質</td><td>物直</td><td class="zy">ㄨˋ ㄓˊ</td><td>聲調</td><td>中</td><td><span class="tag tag--yes">是</span></td></tr>
+              <tr><td>微小</td><td>圍小</td><td class="zy">ㄨㄟˊ ㄒㄧㄠˇ</td><td>聲調</td><td>中</td><td><span class="tag tag--yes">是</span></td></tr>
+              <tr><td>血液</td><td>寫液</td><td class="zy">ㄒㄧㄝˇ ㄧㄝˋ</td><td>韻母＋聲調</td><td>中</td><td><span class="tag tag--yes">是</span></td></tr>
+              <tr><td>垃圾</td><td>勒色</td><td class="zy">ㄌㄜˋ ㄙㄜˋ</td><td>整詞兩音節</td><td>高</td><td><span class="tag tag--yes">是</span></td></tr>
+              <tr><td>和（連詞）</td><td>漢</td><td class="zy">ㄏㄢˋ</td><td>音節；限詞性</td><td>高</td><td><span class="tag tag--no">否</span></td></tr>
+              <tr><td>主角</td><td>主腳</td><td class="zy">ㄓㄨˇ ㄐㄧㄠˇ</td><td>—</td><td>—</td><td><span class="tag tag--part">未標</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col" style="margin-top:1.25rem;">
+          <p>每一條還附完整的 <code>verification</code> 區塊，記錄確認人、確認日期、測試句與結果，以及臺灣與中國官方讀音的參照網址。</p>
+        </div>
+
+        <h3 style="margin:2.5rem 0 0;">教育部辭典候選庫　15,660 條　待確認</h3>
+        <div class="col">
+          <p>教育部辭典詞目與讀音，同音字是本專案產生的草稿。<code>verified</code> 一律為 <code>false</code>。</p>
+        </div>
+        <div class="tw">
+          <table>
+            <thead><tr><th>原詞</th><th>配音草稿</th><th>注音</th><th>換掉的字</th></tr></thead>
+            <tbody>
+              <tr><td>一分行情，一分貨</td><td>一芬航情，一芬貨</td><td class="zy">ㄧ ㄈㄣ ㄏㄤˊ ㄑㄧㄥˊ，ㄧ ㄈㄣ ㄏㄨㄛˋ</td><td>分→芬　行→航</td></tr>
+              <tr><td>一身做不得兩件事</td><td>一身做不德兩件事</td><td class="zy">…ㄅㄨˋ ㄉㄜˊ…</td><td>得→德</td></tr>
+              <tr><td>三十年風水輪流轉</td><td>三十年風水輪流賺</td><td class="zy">…ㄌㄧㄡˊ ㄓㄨㄢˋ</td><td>轉→賺</td></tr>
+              <tr><td>不貴尺璧而重寸陰</td><td>不貴尺璧而仲寸陰</td><td class="zy">…ㄦˊ ㄓㄨㄥˋ ㄘㄨㄣˋ ㄧㄣ</td><td>重→仲</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 style="margin:2.5rem 0 0;">兩岸讀音候選庫　5,061 條　待確認</h3>
+        <div class="col">
+          <p>臺灣與中國讀音並列，讓老師先看差在哪，再決定要不要測。</p>
+        </div>
+        <div class="tw">
+          <table>
+            <thead><tr><th>原詞</th><th>配音草稿</th><th>臺灣</th><th>中國</th><th>換掉的字</th></tr></thead>
+            <tbody>
+              <tr><td>一發不可收拾</td><td>義發不可收石</td><td class="zy">ㄧˋ … ㄕˊ</td><td class="zy">ㄧ … ˙ㄕ</td><td>一→義　拾→石</td></tr>
+              <tr><td>乳突狀瘤病毒</td><td>乳圖狀瘤病毒</td><td class="zy">ㄊㄨˊ</td><td class="zy">ㄊㄨ</td><td>突→圖</td></tr>
+              <tr><td>信息高速公路</td><td>信席高速公路</td><td class="zy">ㄒㄧˊ</td><td class="zy">ㄒㄧ</td><td>息→席</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 style="margin:2.5rem 0 0;">公式唸法規則　全部列出</h3>
+        <div class="col">
+          <p>這一份很小，可以完整列出。<strong>只有這 16 條</strong>；其餘寫法一律保留原式交老師確認。</p>
+        </div>
+        <div class="tw">
+          <table>
+            <thead><tr><th>符號</th><th>唸法</th><th>符號</th><th>唸法</th></tr></thead>
+            <tbody>
+              <tr><td class="nm">+</td><td>加上</td><td class="nm">≠</td><td>不等於</td></tr>
+              <tr><td class="nm">-　−</td><td>減去</td><td class="nm">&gt;</td><td>大於</td></tr>
+              <tr><td class="nm">*　×</td><td>乘以</td><td class="nm">&lt;</td><td>小於</td></tr>
+              <tr><td class="nm">÷</td><td>除以</td><td class="nm">&gt;=　≥</td><td>大於或等於</td></tr>
+              <tr><td class="nm">=</td><td>等於</td><td class="nm">&lt;=　≤</td><td>小於或等於</td></tr>
+              <tr><td class="nm">²</td><td>的平方</td><td class="nm">³</td><td>的三次方</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="warn">
+          <p>沒有負次方、沒有根號、沒有分數、沒有下標。<code>10⁻³</code> 或 <code>√2</code> 這類寫法<strong>不會被自動處理</strong>，會原樣保留並標成待確認。</p>
+        </div>
+      </section>
+
+      <section>
+        <p class="secnum">產生方式</p>
+        <h2>教育部那 15,660 條怎麼來的</h2>
+        <div class="col">
+          <p>來源是臺灣教育部《重編國語辭典修訂本》，使用 g0v/moedict-data 的 JSON。產生程式是 <code>scripts/import_moe_tts_lexicon.py</code>，篩選條件三項：</p>
+        </div>
+        <ol class="steps">
+          <li>先由本專案人工列出 <strong>51 個</strong>常見多音字，以及可供配音測試的同音字。</li>
+          <li>從辭典取出長度 <strong>2 到 8 字</strong>、且至少含一個上述多音字的詞目。</li>
+          <li>再要求注音音節數能與詞目字數對齊。</li>
+        </ol>
+        <div class="warn">
+          <p><strong>15,660 是「可能需要檢查的辭典詞目」</strong>，不是 15,660 個已知錯音，也不是 15,660 條可直接套用的修正。</p>
+          <p>同音字是本專案產生的配音草稿，教育部只提供詞目與讀音。</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>兩岸那 5,061 條怎麼來的</h2>
+        <div class="col">
+          <p>來源是 g0v/moedict-data-csld 整理的《兩岸詞典》，比對臺灣《國語一字多音審訂表》與中國《普通話異讀詞審音表》。調查釘在單一 commit，過程可重現：</p>
+        </div>
+        <div class="tw">
+          <table>
+            <thead><tr><th>步驟</th><th>數量</th><th>條件</th></tr></thead>
+            <tbody>
+              <tr><td>原始 CSV 資料列</td><td class="num">101,686</td><td>不含標題</td></tr>
+              <tr><td>同時具臺灣與中國讀音</td><td class="num">7,936</td><td>其中讀音字串確實不同者 7,935</td></tr>
+              <tr><td>篩選後詞目</td><td class="num">5,079</td><td>2–6 個純漢字、音節可對齊、排除只剩「一／不」變調</td></tr>
+              <tr><td>正規化合併後載入</td><td class="num">5,061</td><td>其中 4,882 條附完整同音字草稿</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col" style="margin-top:1rem;">
+          <p style="font-size:.85rem;color:var(--ink-3);">本表數字取自 <strong>兩岸讀音候選庫</strong> 的 <code>generation</code> 欄位，即實際部署資料的產生紀錄。說明文件 <code>pronunciation-sources.md</code> 記的是較早一次調查（7,934 與 5,075），兩者相差數筆。</p>
+        </div>
+        <div class="tw">
+          <table>
+            <thead><tr><th>「字＋臺灣讀音＋中國讀音」對應</th><th>種數</th></tr></thead>
+            <tbody>
+              <tr><td>不重複總數</td><td class="num">1,140</td></tr>
+              <tr><td>出現至少 2 次</td><td class="num">549</td></tr>
+              <tr><td>出現至少 5 次</td><td class="num">210</td></tr>
+              <tr><td>出現至少 10 次</td><td class="num">103</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col" style="margin-top:1.75rem;">
+          <p>來源 commit：<code>a1e91196f84cd2f3456570906191615f477278c8</code>；正規化程式 <code>scripts/import_cross_strait_tts_candidates.py</code>。</p>
+          <p>可優先檢查的字：</p>
+        </div>
+        <div class="chips">
+          <span class="chip">血</span><span class="chip">期</span><span class="chip">質</span>
+          <span class="chip">微</span><span class="chip">髮</span><span class="chip">擊</span>
+          <span class="chip">儲</span><span class="chip">檔</span><span class="chip">夾</span>
+          <span class="chip">菌</span><span class="chip">穴</span><span class="chip">究</span>
+          <span class="chip">偽</span><span class="chip">寂</span><span class="chip">擁</span>
+          <span class="chip">築</span><span class="chip">績</span><span class="chip">堤</span>
+          <span class="chip">矽</span><span class="chip">酵</span>
+        </div>
+        <div class="warn">
+          <p>以上是<strong>本專案的分析快照</strong>，不是來源單位公布的統計，也不是 TTS 錯誤率。</p>
+          <p>資料包含罕用詞、歷史讀音、輕聲與其他不適合直接做替代規則的差異。每個詞仍須回到完整語境與目標聲音實測。</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>公式念法是自己寫的</h2>
+        <div class="col">
+          <p>公式口語化規則<strong>不是</strong>教育部辭典或 g2pW 的內容，是本專案為教學配音撰寫的。</p>
+        </div>
+        <div class="tw">
+          <table>
+            <thead><tr><th>類型</th><th>處理</th></tr></thead>
+            <tbody>
+              <tr><td>簡單次方、四則運算、等號</td><td><span class="tag tag--part">可先產生口語草稿</span></td></tr>
+              <tr><td>根號、分數、上下標</td><td><span class="tag tag--no">保留原式，老師確認</span></td></tr>
+              <tr><td>向量、矩陣、分段函數、巢狀式</td><td><span class="tag tag--no">保留原式，老師確認</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col" style="margin-top:1.5rem;">
+          <p>正式逐字稿一律保留原公式，只有配音稿使用口語版本。</p>
+        </div>
+      </section>
+
+      <section>
+        <p class="secnum">升級門檻</p>
+        <h2>什麼情況才能進共用字典</h2>
+        <div class="col">
+          <p>要把一條規則加進 <strong>已確認庫</strong>，至少要記錄下列四項。<strong>缺任何一項，就留在候選層或個人詞庫</strong>，不升級成全團隊自動規則。</p>
+        </div>
+        <ol class="steps">
+          <li>原詞、完整測試句、希望的臺灣讀音與依據。</li>
+          <li>目標 TTS 服務、聲音或版本、測試日期，以及實際聽到的誤讀。</li>
+          <li>同音字替代，以及替代後的試聽結果。</li>
+          <li>適用語境、可能衝突與自動化測試。</li>
+        </ol>
+      </section>
+
+      <section>
+        <p class="secnum">授權</p>
+        <h2>可以拿去做什麼，不可以做什麼</h2>
+        <div class="tw">
+          <table>
+            <thead><tr><th>來源</th><th>授權</th><th>限制</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>教育部《重編國語辭典修訂本》</td>
+                <td class="nm">CC BY-ND 3.0 TW</td>
+                <td>依教育部公眾授權說明使用，<strong>來源與授權欄位必須保留</strong></td>
+              </tr>
+              <tr>
+                <td>《中華語文大辭典／兩岸詞典》原始內容</td>
+                <td class="nm">CC BY-NC-ND 4.0</td>
+                <td>非商業、禁止改作</td>
+              </tr>
+              <tr>
+                <td>g0v 的格式轉換與編排</td>
+                <td class="nm">CC0</td>
+                <td><strong>不得</strong>把「格式是 CC0」誤解成原始詞典內容也可任意改作</td>
+              </tr>
+              <tr>
+                <td>g2pW</td>
+                <td class="nm">Apache-2.0</td>
+                <td>僅程式碼；模型、資料與相依項的授權須各自查核</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="warn">
+          <p>本 repository <strong>不收錄整份兩岸詞典</strong>，只部署經篩選的配音候選子集。來源、版本與非商業／禁止改作限制必須保留，不得視為本專案程式碼授權的一部分。</p>
+        </div>
+      </section>
+
+      <p class="pagefoot">
+        本頁依據 <code>.agents/skills/prepare-tts-transcript/references/pronunciation-sources.md</code> 整理。<br>
+        數字為 <strong>已確認庫</strong> 匯入已確認規則後的狀態；資料版本更新時本頁需同步。
+      </p>
+
+    </div>
+  </body>
+</html>
