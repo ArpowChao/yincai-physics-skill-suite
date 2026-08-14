@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SKILLS_ROOT = ROOT / ".agents" / "skills"
 EXPECTED = {
     "prepare-tts-transcript",
+    "zh-tw-proofread",
     "physics-framework-checker",
     "physics-one-page-architect",
     "physics-slide-enhancer",

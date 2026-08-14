@@ -1,6 +1,6 @@
 # 因材網高中物理教材產線 Skill Suite
 
-這個 repository 把「投影片、學習單、素養題、配音稿」整理成 11 個可組合的 Codex Skills，並用共用的第五學習階段課綱、九步驟架構、三面向八準則、術語表與品質紀錄，降低教師重複整理與審查的負擔。
+這個 repository 把「投影片、學習單、素養題、配音稿、逐字稿校對」整理成 12 個可組合的 Codex Skills，並用共用的第五學習階段課綱、九步驟架構、三面向八準則、術語表與品質紀錄，降低教師重複整理與審查的負擔。
 
 本專案的核心原則是：**先確認課綱與證據，再生成；先記錄優點與缺失，再修改；無法確認時標示 `HOLD`，不自行猜測。**
 
@@ -39,7 +39,7 @@ flowchart LR
     G --> H["品質紀錄與下一版迭代"]
 ```
 
-## 11 個 Skills
+## 12 個 Skills
 
 | Skill | 用途 | 主要輸出 |
 |---|---|---|
@@ -54,6 +54,7 @@ flowchart LR
 | `physics-misconception-prompting` | 迷思與誘答設計 | 迷思假設、誘答、診斷回饋 |
 | `physics-unit-package-qc` | 單元教材包出貨總檢 | 跨載體一致性與上架判定 |
 | `prepare-tts-transcript` | 配音前標記多音字與公式 | 保留原稿的配音稿、逐項修改紀錄 |
+| `zh-tw-proofread` | 逐字稿錯別字與兩岸用語校正 | 依教育部辭典與兩岸詞彙校正逐字稿、修訂對照表 |
 
 Skills 位於 [`.agents/skills`](.agents/skills)，共用規則放在 [`data`](data) 與 [`references`](references)。Skills 本身保持精簡，不各自複製課綱與評分規準。
 
@@ -316,7 +317,7 @@ python scripts/summarize_quality.py quality/records/*.json
 
 ```text
 .github/                審查問題與 pull request 範本
-.agents/skills/          11 個可攜式 Skills
+.agents/skills/          12 個可攜式 Skills
 archive/                 已被取代、暫不刪除的本機封存（內容不進版控）
 config/                  本機設定範例
 data/                    課綱、規準、術語、迷思與 schema
