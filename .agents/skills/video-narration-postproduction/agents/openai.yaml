@@ -1,0 +1,4 @@
+interface:
+  display_name: "教學影片旁白與 TTS 精密後製"
+  short_description: "零交叉剪輯、精確停頓、AI 原聲與選配語速比較"
+  default_prompt: "Use $video-narration-postproduction to rebuild and validate this teaching video's recorded narration or TTS workflow."

@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS_ROOT = ROOT / ".agents" / "skills"
 EXPECTED_SKILLS = {
+    "video-narration-postproduction",
     "prepare-tts-transcript",
     "zh-tw-proofread",
     "physics-framework-checker",
@@ -42,6 +43,23 @@ def parse_frontmatter(text: str) -> dict[str, str]:
 
 
 class SkillSuiteTests(unittest.TestCase):
+    def test_video_narration_skill_keeps_production_gates(self):
+        text = (
+            SKILLS_ROOT / "video-narration-postproduction" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        for marker in [
+            "先選路徑",
+            "220–280",
+            "預設 0.5 秒",
+            "0.15 秒",
+            "2.9 秒",
+            "3.1 秒",
+            "低振幅零交叉",
+            "這不是強制項目",
+            "機器音",
+        ]:
+            self.assertIn(marker, text)
+
     def test_tts_pronunciation_tool_has_review_assets(self):
         required = [
             ROOT / "scripts" / "tts_pronunciation.py",
