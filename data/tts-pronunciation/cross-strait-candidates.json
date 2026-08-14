@@ -44862,8 +44862,9 @@
       ],
       "has_full_suggestion": true,
       "verified": false,
+      "auto_apply": false,
       "source": "cross-strait-reference",
-      "note": "兩岸詞典讀音差異；同音字是依臺灣讀音產生的草稿，請用目標 TTS 試聽後再套用。"
+      "note": "兩岸詞典讀音差異；同音字是依臺灣讀音產生的草稿，請用目標 TTS 試聽後再套用。使用者於 2026-08-14 審核：目標 TTS 唸原字「傳播」已正確，不套用同音字替代，保留原稿。"
     },
     {
       "original": "傴僂",
@@ -82677,8 +82678,9 @@
       ],
       "has_full_suggestion": true,
       "verified": false,
+      "auto_apply": false,
       "source": "cross-strait-reference",
-      "note": "兩岸詞典讀音差異；同音字是依臺灣讀音產生的草稿，請用目標 TTS 試聽後再套用。"
+      "note": "兩岸詞典讀音差異；同音字是依臺灣讀音產生的草稿，請用目標 TTS 試聽後再套用。使用者於 2026-08-14 覆核：目標 TTS 唸原字「舞蹈」已正確，不套用同音字替代，保留原稿。"
     },
     {
       "original": "航廈",
@@ -96115,8 +96117,9 @@
       ],
       "has_full_suggestion": true,
       "verified": false,
+      "auto_apply": false,
       "source": "cross-strait-reference",
-      "note": "兩岸詞典讀音差異；同音字是依臺灣讀音產生的草稿，請用目標 TTS 試聽後再套用。"
+      "note": "兩岸詞典讀音差異；同音字是依臺灣讀音產生的草稿，請用目標 TTS 試聽後再套用。使用者於 2026-08-14 審核：目標 TTS 唸原字「顏色」已正確，不套用同音字替代，保留原稿。"
     },
     {
       "original": "顓頊",
