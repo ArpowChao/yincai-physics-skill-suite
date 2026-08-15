@@ -54,7 +54,7 @@ flowchart LR
 | `physics-misconception-prompting` | 迷思與誘答設計 | 迷思假設、誘答、診斷回饋 |
 | `physics-unit-package-qc` | 單元教材包出貨總檢 | 跨載體一致性與上架判定 |
 | `prepare-tts-transcript` | 配音前標記多音字與公式 | 保留原稿的配音稿、逐項修改紀錄 |
-| `zh-tw-proofread` | 逐字稿錯別字與兩岸用語校正 | 依教育部辭典與兩岸詞彙校正逐字稿、修訂對照表 |
+| `zh-tw-proofread` | 逐字稿錯別字、兩岸用語與理化專名校正 | 依教育部辭典、兩岸詞彙與理化名詞對照表校正逐字稿、修訂對照表與待確認清單 |
 | `video-narration-postproduction` | 真人旁白與 TTS 影片後製 | 語速閘門、零交叉剪輯、AI 原聲、精確停留與母帶檢驗 |
 
 Skills 位於 [`.agents/skills`](.agents/skills)，共用規則放在 [`data`](data) 與 [`references`](references)。Skills 本身保持精簡，不各自複製課綱與評分規準。

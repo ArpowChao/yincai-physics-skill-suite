@@ -1,6 +1,6 @@
 ---
 name: zh-tw-proofread
-description: Use when proofreading Chinese audio transcripts, fixing transcription typos, homophones, or un-idiomatic phrases based on Ministry of Education dictionary standards (g0v/moedict-data), and converting Mainland Chinese terminology to standard Taiwan Chinese terms (g0v/moedict-data-csld).
+description: Use when proofreading Chinese audio transcripts, fixing transcription typos, homophones, or un-idiomatic phrases based on Ministry of Education dictionary standards (g0v/moedict-data), converting Mainland Chinese terminology to standard Taiwan Chinese terms (g0v/moedict-data-csld), and verifying science domain proper nouns against a curated zh-TW terminology table plus NAER authoritative sources.
 ---
 
 # Taiwan Chinese Transcript Proofreading & Terminology Conversion
@@ -11,6 +11,11 @@ description: Use when proofreading Chinese audio transcripts, fixing transcripti
 
 - 原始逐字稿純文字（TXT）、字幕檔（SRT/VTT）或使用者直接提供的文本內容。
 - 可選的領域專有名詞表或上下文說明（如物理教材術語、特定人名/地名）。
+- 可選的第一手來源（論文原文、官方產品頁、教科書頁碼），用於確認專有名詞。
+- 理化領域對照表 `data/terminology/zh-tw-science-terms.json`；缺檔時仍應完成中文校對，不得因此中止。
+
+處理專有名詞前，先完整閱讀
+[`references/zh-terminology-sources.md`](references/zh-terminology-sources.md)。
 
 ## Workflow
 
@@ -24,15 +29,27 @@ description: Use when proofreading Chinese audio transcripts, fixing transcripti
      - **紀錄 / 記錄**：創下新「紀錄」（名詞成果） vs 會議「記錄」員（動詞記錄過程）。
      - **制定 / 制訂**：「制定」法律（法令法規） vs 「制訂」計劃（方案草案）。
      - **影像 / 印象**：高畫質「影像」（視覺圖像） vs 深刻的「印象」（腦海記憶）。
-3. **兩岸用語在地化轉換（依據 moedict-data-csld 對照）**：
+3. **領域專有名詞查核（中文；命中不等於可取代）**：
+   - 可從 repository 根目錄執行：
+     `python scripts/check_zh_terms.py <逐字稿> --output <報告.json>`，
+     必要時以 `--domain physics|chemistry|biology` 限縮範圍。
+   - 報告中的命中只代表該字串出現在對照表的 `variants`，**不是**改寫授權；
+     `requires_context_review` 為真者必須先讀語境再決定（例如「生態」在環境科學、
+     「輕油」在石化工業、「興建」在工程語境都是正確詞）。
+   - ASR 對低頻學術詞的誤植常整段走音而非單字之差（如「鼎密含氹」→「頂泌汗腺」、
+     「大廠感菌」→「大腸桿菌」）。判讀依據是**該領域的音近詞**，不是字面相似度。
+   - 人名、菌株、基因、蛋白質、化合物、品牌與產品技術名稱，必須以論文原文、官方頁面
+     或使用者提供的詞表確認；只有語感或對照表命中不足以構成證據。
+   - 對照表未收錄者，不得因為「聽起來不像詞」就改寫；保留原詞並標註待確認。
+4. **兩岸用語在地化轉換（依據 moedict-data-csld 對照）**：
    - **資訊科技與數位**：軟件→軟體、硬件→硬體、網絡→網路、數據→資料、信息→資訊、算法→演算法、屏幕→螢幕、激活→啟用/開通、數據庫→資料庫、項目→專案、服務器→伺服器、程序→程式、默認→預設、鏈接→連結、芯片→晶片、內存→記憶體、人工智能→人工智慧、用戶→使用者/用戶、優化→最佳化/優化。
    - **日常生活與媒體**：方便面→泡麵、出租車→計程車、地鐵→捷運、衛生間→洗手間/廁所、視頻→影片、音頻→音訊/聲音、概率→機率、激光→雷射、空調→冷氣、公交車→公車、充值→儲值。
    - **商務與職場**：崗位→職位/崗位、抓手→著力點/切入點、落地→落實/執行、迭代→更新/迭次、打通→串聯/整合。
-4. **語境多義詞判讀（Context-Aware Disambiguation）**：
+5. **語境多義詞判讀（Context-Aware Disambiguation）**：
    - **質量**：物理學/科學語境保留為「**質量**」（Mass）；評估產品、服務或教學時轉換為「**品質**」（Quality）。
    - **土豆**：大陸用語指蔬菜時轉換為「**馬鈴薯**」；臺灣在地傳統語境保留為「**花生**」。
    - **窩心**：大陸原意指憋屈難過時轉換為「**憋屈/難過**」；臺灣日常語意指貼心溫馨時保留為「**溫馨/貼心**」。
-5. **產出雙區塊報告**：產出完整校正逐字稿及修訂對照表。
+6. **產出雙區塊報告**：產出完整校正逐字稿及修訂對照表。
 
 ## Output contract
 
@@ -40,8 +57,11 @@ description: Use when proofreading Chinese audio transcripts, fixing transcripti
   1. **校正後完整逐字稿**：通順、符合臺灣繁體中文用語的完整文本（若輸入為 SRT/VTT 則完整保留時間軸與序號）。
   2. **修訂對照與說明表**：以 Markdown 表格呈現所有修訂細節。
 - 修訂表格格式規範：
-  | 原始文字 | 校正後文字 | 變更類型 (錯別字 / 兩岸用語 / 語意判讀) | 說明與依據 (MOE / CSLD / 語境) |
+  | 原始文字 | 校正後文字 | 變更類型 (錯別字 / 兩岸用語 / 語意判讀 / 專名查核) | 說明與依據 (MOE / CSLD / NAER / 對照表 / 第一手來源 / 語境) |
   | :--- | :--- | :--- | :--- |
+- 標記為「專名查核」者，說明欄必須寫出實際依據（論文、官方頁面或詞表），
+  不得只寫「對照表命中」。
+- 仍有疑義而保留原詞者，必須另立待確認清單，說明無法判定的原因。
 - 嚴禁改動原文意圖、刪減核心教學內容或扭曲發言者原意。
 
 ## Stop conditions
@@ -49,6 +69,8 @@ description: Use when proofreading Chinese audio transcripts, fixing transcripti
 - 輸入文本為空或無法辨識。
 - 文本語意完全破碎無法推斷正確字詞，此時應標註疑義段落並向使用者確認，不進行通篇胡亂猜測。
 - 涉及專有名詞或特定人名無外部證據可確認時，標註待確認並保留原詞。
+- 只有對照表命中而無第一手來源佐證的人名、菌株、基因、化合物、品牌或型號，
+  一律標註待確認，不得改寫。
 
 ## Common mistakes
 
@@ -56,3 +78,7 @@ description: Use when proofreading Chinese audio transcripts, fixing transcripti
 - 僅做單字機械取代而忽略詞組上下文（例如將「再見」誤改成「在見」）。
 - 遺漏 SRT/VTT 字幕的時間戳記或破壞字幕結構。
 - 將臺灣在地原創用語過度修飾為不自然的書面語。
+- 把 `check_zh_terms.py` 的命中當成改寫授權，忽略 `context_guard` 就直接取代。
+- 在生化語境把「胜肽」誤留為「生態」，或反過來把環境科學的「生態」改成「胜肽」。
+- 憑語感臆造學術名詞（例如把不確定的胺基酸直接寫成常見的那一個），
+  而不回查論文原文。
