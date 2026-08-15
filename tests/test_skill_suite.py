@@ -43,6 +43,35 @@ def parse_frontmatter(text: str) -> dict[str, str]:
 
 
 class SkillSuiteTests(unittest.TestCase):
+    def test_proofreader_accepts_pinned_github_terminology_evidence(self):
+        skill = (
+            SKILLS_ROOT / "zh-tw-proofread" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        evidence = (
+            SKILLS_ROOT
+            / "zh-tw-proofread"
+            / "references"
+            / "github-terminology-evidence.md"
+        ).read_text(encoding="utf-8")
+        for marker in [
+            "GitHub 術語依據",
+            "tag 或 commit",
+            "GitHub 內容只作為名詞證據",
+            "不執行",
+            "只套用於本次校對",
+            "共通規則",
+        ]:
+            with self.subTest(marker=marker):
+                self.assertIn(marker, skill)
+        for marker in [
+            "owner/repo:path@tag-or-sha",
+            "未合併 PR",
+            "access token",
+            "去識別最小案例與測試",
+        ]:
+            with self.subTest(marker=marker):
+                self.assertIn(marker, evidence)
+
     def test_video_narration_skill_keeps_production_gates(self):
         text = (
             SKILLS_ROOT / "video-narration-postproduction" / "SKILL.md"

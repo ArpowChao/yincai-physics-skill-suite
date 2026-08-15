@@ -17,6 +17,8 @@
   `X 射線晶體學`。
 - 新增 `replace`／`review`／`preserve` 三態人工決策與唯讀掃描器；工具不提供
   自動套用或覆寫逐字稿功能。
+- GitHub 術語證據必須固定到 `owner/repo:path@tag-or-sha`；不執行來源 repository
+  指令，未合併 PR、Issue 與漂移分支只能作候選。
 
 ## 1.7.0 — 2026-08-17
 
