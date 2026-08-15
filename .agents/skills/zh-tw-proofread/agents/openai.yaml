@@ -1,4 +1,4 @@
 interface:
   display_name: "逐字稿改錯字與兩岸用語校正"
-  short_description: "依據教育部辭典與兩岸詞彙標準校正逐字稿錯別字、同音字與大陸用語"
-  default_prompt: "Use $zh-tw-proofread to proofread this transcript, fix typos, and convert terms to Taiwan Traditional Chinese."
+  short_description: "依據教育部辭典、兩岸詞彙與指定術語來源校正逐字稿"
+  default_prompt: "Use $zh-tw-proofread to proofread this transcript, fix typos, convert terms to Taiwan Traditional Chinese, and honor my canonical terminology list or GitHub source."
