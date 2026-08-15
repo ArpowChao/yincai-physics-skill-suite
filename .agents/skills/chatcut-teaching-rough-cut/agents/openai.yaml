@@ -1,0 +1,6 @@
+interface:
+  display_name: "ChatCut 教學影片粗剪"
+  short_description: "保護教學影片重點、完成可編輯粗剪與字幕交付"
+  default_prompt: "Use $chatcut-teaching-rough-cut to safely rough-cut this PowerPoint teaching video in ChatCut."
+policy:
+  allow_implicit_invocation: true

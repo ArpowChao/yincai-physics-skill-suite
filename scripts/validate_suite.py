@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS_ROOT = ROOT / ".agents" / "skills"
 EXPECTED = {
+    "chatcut-teaching-rough-cut",
     "video-narration-postproduction",
     "prepare-tts-transcript",
     "zh-tw-proofread",
