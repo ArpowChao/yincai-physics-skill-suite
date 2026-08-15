@@ -19,6 +19,8 @@
   自動套用或覆寫逐字稿功能。
 - GitHub 術語證據必須固定到 `owner/repo:path@tag-or-sha`；不執行來源 repository
   指令，未合併 PR、Issue 與漂移分支只能作候選。
+- 物理量與單位新增 QUDT、UCUM、Unicode CLDR `zh_Hant`、OM 固定 revision 及證據
+  邊界；repo 正式術語優先，外部來源衝突時維持待確認。
 
 ## 1.7.0 — 2026-08-17
 

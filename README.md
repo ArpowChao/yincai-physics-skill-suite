@@ -62,6 +62,8 @@ Skills 位於 [`.agents/skills`](.agents/skills)，共用規則放在 [`data`](d
 `zh-tw-proofread` 可搭配使用者自行下載的 ECDICT CSV，以唯讀方式列出英文拼字、
 大小寫與詞形候選。ECDICT 不會隨 repository 散布，也不會被當成基因、蛋白質、
 化學代號、品牌或型號的權威來源；這類名稱仍須以論文或官方文件確認。
+物理量、單位與量綱另以固定版本的 QUDT、UCUM、Unicode CLDR 與 OM 做外部查核，
+但不會覆寫 repo 已確認的臺灣高中教材術語。
 
 ## 五分鐘開始
 

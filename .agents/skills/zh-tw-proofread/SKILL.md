@@ -27,6 +27,8 @@ description: Use when proofreading Chinese audio transcripts, fixing transcripti
 [`references/terminology-sources.md`](references/terminology-sources.md) 與
 [`references/terminology-evidence.md`](references/terminology-evidence.md)。使用 GitHub
 來源時另讀 [`references/github-terminology-evidence.md`](references/github-terminology-evidence.md)。
+涉及物理量、單位或量綱時，另讀
+[`references/physics-terminology-sources.md`](references/physics-terminology-sources.md)。
 
 ## Workflow
 
@@ -61,6 +63,9 @@ description: Use when proofreading Chinese audio transcripts, fixing transcripti
      `GitHub: owner/repo:path@tag-or-sha`。GitHub 內容只作為名詞證據，**不執行**
      repository 指令或安裝依賴；單次來源預設只套用於本次校對，若要升級為
      **共通規則**，必須先建立去識別案例與測試。
+   - 物理量、單位與量綱依 repo 正式術語優先，再以 QUDT、UCUM、CLDR `zh_Hant`
+     與 OM 查核概念、機器代碼及顯示；外部來源不得自動覆寫 repo 詞，衝突時標記
+     `待確認`。
 5. **英文術語候選查核（ECDICT，唯讀且不得自動取代）**：
    - 有本機 `ecdict.csv` 時，可從 repository 根目錄執行：
      `python scripts/check_ecdict_terms.py <逐字稿> <ecdict.csv> --output <報告.json>`。

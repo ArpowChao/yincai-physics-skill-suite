@@ -170,6 +170,38 @@ class SkillSuiteTests(unittest.TestCase):
         self.assertIn("楞次定律", preferred)
         self.assertNotIn("冷次定律", preferred)
 
+    def test_proofread_skill_has_physics_source_policy(self):
+        skill = (SKILLS_ROOT / "zh-tw-proofread" / "SKILL.md").read_text(
+            encoding="utf-8"
+        )
+        source_path = (
+            SKILLS_ROOT
+            / "zh-tw-proofread"
+            / "references"
+            / "physics-terminology-sources.md"
+        )
+        self.assertTrue(source_path.exists())
+        source = source_path.read_text(encoding="utf-8")
+        for marker in ["QUDT", "UCUM", "CLDR", "moedict-data", "待確認"]:
+            self.assertIn(marker, skill + source)
+
+        terminology = json.loads(
+            (ROOT / "data" / "terminology" / "physics-terms.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual("1.1.0", terminology["terminology_version"])
+        policy = terminology["source_policy"]
+        self.assertIn(
+            "repo-curriculum-and-project-confirmed",
+            policy["preferred_term_order"],
+        )
+        self.assertIn(
+            "qudt-for-quantity-unit-dimension",
+            policy["preferred_term_order"],
+        )
+        self.assertIn("不得自動覆寫", policy["conflict_rule"])
+
     def test_framework_infers_goal_and_big_idea_from_deck_evidence(self):
         rubric = json.loads(
             (ROOT / "data" / "rubrics" / "nine-step.json").read_text(
