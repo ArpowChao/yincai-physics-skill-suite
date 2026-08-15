@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "terminology_version": "1.0.0",
+  "locale": "zh-TW",
+  "updated_on": "2026-08-15",
+  "scope": "A reviewed starter registry for Taiwan Chinese transcript errors, cross-strait terms, scientific terms, and proper names. It is not a complete dictionary.",
+  "sources": [
+    {
+      "id": "g0v-moe-revised",
+      "name": "g0v/moedict-data（教育部重編國語辭典修訂本資料）",
+      "url": "https://github.com/g0v/moedict-data",
+      "version": "a6dc997417507eb510fc29822bc514de2c92728c",
+      "retrieved_on": "2026-08-15",
+      "role": "general_dictionary",
+      "license_note": "辭典文字為教育部 CC BY-ND 3.0 TW；g0v 格式轉換另以 CC0 釋出。"
+    },
+    {
+      "id": "g0v-csld",
+      "name": "g0v/moedict-data-csld（中華語文知識庫資料轉換）",
+      "url": "https://github.com/g0v/moedict-data-csld",
+      "version": "a1e91196f84cd2f3456570906191615f477278c8",
+      "retrieved_on": "2026-08-15",
+      "role": "cross_strait_reference",
+      "license_note": "原始內容為 CC BY-NC-ND 4.0；g0v 格式轉換與編排部分為 CC0。"
+    },
+    {
+      "id": "naer-chemical-nomenclature",
+      "name": "國家教育研究院化學名詞命名原則",
+      "url": "https://terms.naer.edu.tw/media/download/b9133d8b-58bb-11ed-86f7-0050569f32ad.pdf",
+      "version": "2022-10-31 PDF",
+      "retrieved_on": "2026-08-15",
+      "role": "taiwan_scientific_terminology",
+      "license_note": "僅保存短詞目與來源連結；不重製原文件。"
+    },
+    {
+      "id": "moex-apocrine-2026",
+      "name": "考選部 115 年第二次專技高考試題",
+      "url": "https://wwwq.moex.gov.tw/exam/wHandExamQandA_File.ashx?c=309&code=115090&q=1&s=0104&t=Q",
+      "version": "115 年第二次考試，題號 3",
+      "retrieved_on": "2026-08-15",
+      "role": "taiwan_professional_terminology",
+      "license_note": "僅保存短詞目與來源連結；不重製試題。"
+    },
+    {
+      "id": "mohw-tph-apocrine",
+      "name": "衛生福利部臺北醫院狐臭衛教",
+      "url": "https://www.tph.mohw.gov.tw/?aid=801&iid=965&page_name=detail&pid=16",
+      "version": "page retrieved 2026-08-15",
+      "retrieved_on": "2026-08-15",
+      "role": "taiwan_accepted_alias",
+      "license_note": "僅保存短詞目與來源連結；不重製衛教文章。"
+    },
+    {
+      "id": "elife-34995",
+      "name": "A bacterial transporter required for the generation of human body odour",
+      "url": "https://elifesciences.org/articles/34995",
+      "version": "eLife 7:e34995 (2018)",
+      "retrieved_on": "2026-08-15",
+      "role": "primary_research",
+      "license_note": "僅保存論文中的短專名、縮寫與來源連結。"
+    },
+    {
+      "id": "orangehouse-faq",
+      "name": "橘子工坊官方常見問題",
+      "url": "https://www.orangehouse.com.tw/faq",
+      "version": "page retrieved 2026-08-15",
+      "retrieved_on": "2026-08-15",
+      "role": "brand_official",
+      "license_note": "僅保存品牌短詞目與來源連結；品牌文字仍屬權利人。"
+    }
+  ],
+  "terms": [
+    {
+      "id": "apocrine-sweat-gland",
+      "preferred": "頂泌汗腺",
+      "term_type": "scientific_term",
+      "domains": ["biomedicine"],
+      "source_ids": ["moex-apocrine-2026", "mohw-tph-apocrine"],
+      "variants": [
+        {"text": "鼎密含氹", "kind": "asr_error", "action": "replace", "confidence": "confirmed"},
+        {"text": "頂密汗腺", "kind": "asr_error", "action": "replace", "confidence": "confirmed"},
+        {"text": "頂漿腺", "kind": "accepted_alias", "action": "preserve", "confidence": "confirmed"},
+        {"text": "頂漿汗腺", "kind": "accepted_alias", "action": "preserve", "confidence": "confirmed"},
+        {"text": "大汗腺", "kind": "accepted_alias", "action": "preserve", "confidence": "confirmed"}
+      ]
+    },
+    {
+      "id": "cysteine",
+      "preferred": "半胱胺酸",
+      "term_type": "scientific_term",
+      "domains": ["chemistry", "biomedicine"],
+      "source_ids": ["naer-chemical-nomenclature"],
+      "variants": [
+        {"text": "半光氨酸", "kind": "asr_error", "action": "replace", "confidence": "confirmed"},
+        {"text": "半胱氨酸", "kind": "cross_strait_variant", "action": "replace", "confidence": "confirmed"},
+        {"text": "半胱胺酸", "kind": "preferred_form", "action": "preserve", "confidence": "confirmed"}
+      ]
+    },
+    {
+      "id": "glycine",
+      "preferred": "甘胺酸",
+      "term_type": "scientific_term",
+      "domains": ["chemistry", "biomedicine"],
+      "source_ids": ["naer-chemical-nomenclature"],
+      "variants": [
+        {"text": "肝氨酸", "kind": "asr_error", "action": "replace", "confidence": "confirmed"},
+        {"text": "甘氨酸", "kind": "cross_strait_variant", "action": "replace", "confidence": "confirmed"},
+        {"text": "甘胺酸", "kind": "preferred_form", "action": "preserve", "confidence": "confirmed"}
+      ]
+    },
+    {
+      "id": "tyrosine",
+      "preferred": "酪胺酸",
+      "term_type": "scientific_term",
+      "domains": ["chemistry", "biomedicine"],
+      "source_ids": ["naer-chemical-nomenclature", "elife-34995"],
+      "variants": [
+        {"text": "弱氨酸", "kind": "asr_error", "action": "replace", "confidence": "confirmed"},
+        {"text": "酪氨酸", "kind": "cross_strait_variant", "action": "replace", "confidence": "confirmed"},
+        {"text": "酪胺酸", "kind": "preferred_form", "action": "preserve", "confidence": "confirmed"}
+      ]
+    },
+    {
+      "id": "tryptophan",
+      "preferred": "色胺酸",
+      "term_type": "scientific_term",
+      "domains": ["chemistry", "biomedicine"],
+      "source_ids": ["naer-chemical-nomenclature"],
+      "variants": [
+        {"text": "色氨酸", "kind": "cross_strait_variant", "action": "replace", "confidence": "confirmed"},
+        {"text": "色胺酸", "kind": "preferred_form", "action": "preserve", "confidence": "confirmed"}
+      ]
+    },
+    {
+      "id": "peptsh",
+      "preferred": "PepTSh",
+      "term_type": "research_proper_name",
+      "domains": ["microbiology"],
+      "source_ids": ["elife-34995"],
+      "variants": [
+        {"text": "PPT SH", "kind": "asr_error", "action": "replace", "confidence": "confirmed"},
+        {"text": "PPTSH", "kind": "asr_error", "action": "replace", "confidence": "confirmed"},
+        {"text": "PepTSh", "kind": "preferred_form", "action": "preserve", "confidence": "confirmed"}
+      ]
+    },
+    {
+      "id": "elife-journal",
+      "preferred": "eLife",
+      "term_type": "publication_proper_name",
+      "domains": ["publishing"],
+      "source_ids": ["elife-34995"],
+      "variants": [
+        {"text": "E-Live", "kind": "asr_error", "action": "replace", "confidence": "confirmed"},
+        {"text": "E Live", "kind": "asr_error", "action": "replace", "confidence": "confirmed"},
+        {"text": "eLife", "kind": "preferred_form", "action": "preserve", "confidence": "confirmed"}
+      ]
+    },
+    {
+      "id": "three-methyl-three-sulfanylhexan-1-ol",
+      "preferred": "3M3SH",
+      "term_type": "research_abbreviation",
+      "domains": ["chemistry", "microbiology"],
+      "source_ids": ["elife-34995"],
+      "variants": [
+        {"text": "3M3 SH", "kind": "spacing_error", "action": "replace", "confidence": "confirmed"},
+        {"text": "3M3SH", "kind": "preferred_form", "action": "preserve", "confidence": "confirmed"}
+      ]
+    },
+    {
+      "id": "s-cys-gly-3m3sh",
+      "preferred": "S-Cys-Gly-3M3SH",
+      "term_type": "chemical_proper_name",
+      "domains": ["chemistry", "microbiology"],
+      "source_ids": ["elife-34995"],
+      "variants": [
+        {"text": "S-Cys-Gly-3M3SH", "kind": "preferred_form", "action": "preserve", "confidence": "confirmed"}
+      ]
+    },
+    {
+      "id": "pot-family",
+      "preferred": "POT",
+      "term_type": "research_abbreviation",
+      "domains": ["microbiology"],
+      "source_ids": ["elife-34995"],
+      "variants": [
+        {"text": "POT", "kind": "preferred_form", "action": "preserve", "confidence": "confirmed"}
+      ]
+    },
+    {
+      "id": "staphylococcus-hominis",
+      "preferred": "Staphylococcus hominis",
+      "term_type": "taxonomic_name",
+      "domains": ["microbiology"],
+      "source_ids": ["elife-34995"],
+      "variants": [
+        {"text": "Staphylococcus hominis", "kind": "preferred_form", "action": "preserve", "confidence": "confirmed"},
+        {"text": "S. hominis", "kind": "accepted_abbreviation", "action": "preserve", "confidence": "confirmed"}
+      ]
+    },
+    {
+      "id": "sh1446",
+      "preferred": "SH1446",
+      "term_type": "research_identifier",
+      "domains": ["microbiology"],
+      "source_ids": ["elife-34995"],
+      "variants": [
+        {"text": "SH1446", "kind": "preferred_form", "action": "preserve", "confidence": "confirmed"}
+      ]
+    },
+    {
+      "id": "orangehouse-micellar-orange-oil",
+      "preferred": "微胞橘油",
+      "term_type": "brand_term",
+      "domains": ["consumer_product"],
+      "source_ids": ["orangehouse-faq"],
+      "variants": [
+        {"text": "微包舉油", "kind": "asr_error", "action": "replace", "confidence": "confirmed"},
+        {"text": "微胞橘油", "kind": "preferred_form", "action": "preserve", "confidence": "confirmed"}
+      ]
+    },
+    {
+      "id": "orangehouse-laundry-series",
+      "preferred": "天然制菌去味洗衣系列",
+      "term_type": "brand_phrase",
+      "domains": ["consumer_product"],
+      "source_ids": ["orangehouse-faq"],
+      "variants": [
+        {"text": "致菌聚味洗衣系列", "kind": "asr_error", "action": "review", "confidence": "candidate"},
+        {"text": "天然制菌去味洗衣系列", "kind": "preferred_form", "action": "preserve", "confidence": "confirmed"}
+      ]
+    },
+    {
+      "id": "lipophilic",
+      "preferred": "親脂性",
+      "term_type": "scientific_term",
+      "domains": ["chemistry", "consumer_product"],
+      "source_ids": ["orangehouse-faq"],
+      "variants": [
+        {"text": "清脂性", "kind": "asr_error", "action": "replace", "confidence": "confirmed"},
+        {"text": "親脂性", "kind": "preferred_form", "action": "preserve", "confidence": "confirmed"}
+      ]
+    },
+    {
+      "id": "database",
+      "preferred": "資料庫",
+      "term_type": "cross_strait_term",
+      "domains": ["information_technology"],
+      "source_ids": ["g0v-csld"],
+      "variants": [
+        {"text": "數據庫", "kind": "cross_strait_variant", "action": "replace", "confidence": "confirmed"},
+        {"text": "資料庫", "kind": "preferred_form", "action": "preserve", "confidence": "confirmed"}
+      ]
+    }
+  ]
+}

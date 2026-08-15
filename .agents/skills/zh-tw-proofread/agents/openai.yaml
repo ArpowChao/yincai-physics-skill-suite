@@ -1,4 +1,4 @@
 interface:
   display_name: "逐字稿改錯字與兩岸用語校正"
-  short_description: "校正逐字稿錯字與兩岸用語，查核中文學科術語，並以 ECDICT 輔助英文術語候選"
-  default_prompt: "Use $zh-tw-proofread to proofread this transcript, verify Chinese science terms with traceable sources, convert terms to Taiwan Traditional Chinese, and treat ECDICT matches only as English terminology candidates."
+  short_description: "校正逐字稿與兩岸用語，以可追溯來源查核中英學科術語及研究專名"
+  default_prompt: "Use $zh-tw-proofread to verify science terms and research proper names with traceable sources, report preserve/review/replace states without automatic rewriting, and treat ECDICT only as an English candidate source."

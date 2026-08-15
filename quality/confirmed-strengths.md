@@ -1,6 +1,6 @@
 # 已確認可保留的設計
 
-更新日期：2026-07-27
+更新日期：2026-08-15
 
 以下是目前由規格檢查與測試確認的套件層級優點；真實教學成效仍需累積教師覆核紀錄。
 
@@ -17,3 +17,4 @@
 | CS-009 | repo audit 能阻止根目錄散檔、私有資料進版控、大型教材提交與 Skill 參考連結失效 | `scripts/audit_repository.py` 與 `test_repository_layout.py` |
 | CS-010 | 外部分享工具會排除原始 PPTX、來源姓名檔名、轉錄資料與未引用媒體 | `build_review_share_bundle.py` 的去識別測試 |
 | CS-011 | `physics-slide-enhancer` 已能把逐頁講稿實際寫回新 PPTX；19 頁 notes 精確比對一致，重新渲染的 19 張畫面像素雜湊未改變 | `PBa-V.1-2-2 動能` 自學講稿版乾跑與 `apply_pptx_notes.ps1` |
+| CS-012 | `zh-tw-proofread` 能以唯讀報告區分修訂建議、人工覆核與接受別名，並為研究專名保留來源版本、證據角色與信心 | `research-proper-terms.json`、`check_research_terms.py` 與 `test_research_terms.py` |

@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "terminology_version": "1.0.0",
+  "locale": "zh-TW",
+  "updated_on": "2026-08-15",
+  "scope": "A reviewed registry for research proper names used in transcript proofreading; candidate-only and never an automatic replacement source.",
+  "sources": [
+    {
+      "id": "elife-34995",
+      "name": "A bacterial transporter required for the generation of human body odour",
+      "url": "https://elifesciences.org/articles/34995",
+      "version": "eLife 7:e34995 (2018)",
+      "retrieved_on": "2026-08-15",
+      "role": "primary_research",
+      "license_note": "僅保存論文中的短專名、縮寫與來源連結。"
+    }
+  ],
+  "terms": [
+    {
+      "id": "peptsh",
+      "preferred": "PepTSh",
+      "term_type": "research_proper_name",
+      "domains": [
+        "microbiology"
+      ],
+      "source_ids": [
+        "elife-34995"
+      ],
+      "variants": [
+        {
+          "text": "PPT SH",
+          "kind": "asr_error",
+          "action": "replace",
+          "confidence": "confirmed"
+        },
+        {
+          "text": "PPTSH",
+          "kind": "asr_error",
+          "action": "replace",
+          "confidence": "confirmed"
+        },
+        {
+          "text": "PepTSh",
+          "kind": "preferred_form",
+          "action": "preserve",
+          "confidence": "confirmed"
+        }
+      ]
+    },
+    {
+      "id": "elife-journal",
+      "preferred": "eLife",
+      "term_type": "publication_proper_name",
+      "domains": [
+        "publishing"
+      ],
+      "source_ids": [
+        "elife-34995"
+      ],
+      "variants": [
+        {
+          "text": "E-Live",
+          "kind": "asr_error",
+          "action": "replace",
+          "confidence": "confirmed"
+        },
+        {
+          "text": "E Live",
+          "kind": "asr_error",
+          "action": "replace",
+          "confidence": "confirmed"
+        },
+        {
+          "text": "eLife",
+          "kind": "preferred_form",
+          "action": "preserve",
+          "confidence": "confirmed"
+        }
+      ]
+    },
+    {
+      "id": "three-methyl-three-sulfanylhexan-1-ol",
+      "preferred": "3M3SH",
+      "term_type": "research_abbreviation",
+      "domains": [
+        "chemistry",
+        "microbiology"
+      ],
+      "source_ids": [
+        "elife-34995"
+      ],
+      "variants": [
+        {
+          "text": "3M3 SH",
+          "kind": "spacing_error",
+          "action": "replace",
+          "confidence": "confirmed"
+        },
+        {
+          "text": "3M3SH",
+          "kind": "preferred_form",
+          "action": "preserve",
+          "confidence": "confirmed"
+        }
+      ]
+    },
+    {
+      "id": "s-cys-gly-3m3sh",
+      "preferred": "S-Cys-Gly-3M3SH",
+      "term_type": "chemical_proper_name",
+      "domains": [
+        "chemistry",
+        "microbiology"
+      ],
+      "source_ids": [
+        "elife-34995"
+      ],
+      "variants": [
+        {
+          "text": "S-Cys-Gly-3M3SH",
+          "kind": "preferred_form",
+          "action": "preserve",
+          "confidence": "confirmed"
+        }
+      ]
+    },
+    {
+      "id": "pot-family",
+      "preferred": "POT",
+      "term_type": "research_abbreviation",
+      "domains": [
+        "microbiology"
+      ],
+      "source_ids": [
+        "elife-34995"
+      ],
+      "variants": [
+        {
+          "text": "POT",
+          "kind": "preferred_form",
+          "action": "preserve",
+          "confidence": "confirmed"
+        }
+      ]
+    },
+    {
+      "id": "staphylococcus-hominis",
+      "preferred": "Staphylococcus hominis",
+      "term_type": "taxonomic_name",
+      "domains": [
+        "microbiology"
+      ],
+      "source_ids": [
+        "elife-34995"
+      ],
+      "variants": [
+        {
+          "text": "Staphylococcus hominis",
+          "kind": "preferred_form",
+          "action": "preserve",
+          "confidence": "confirmed"
+        },
+        {
+          "text": "S. hominis",
+          "kind": "accepted_abbreviation",
+          "action": "preserve",
+          "confidence": "confirmed"
+        }
+      ]
+    },
+    {
+      "id": "sh1446",
+      "preferred": "SH1446",
+      "term_type": "research_identifier",
+      "domains": [
+        "microbiology"
+      ],
+      "source_ids": [
+        "elife-34995"
+      ],
+      "variants": [
+        {
+          "text": "SH1446",
+          "kind": "preferred_form",
+          "action": "preserve",
+          "confidence": "confirmed"
+        }
+      ]
+    },
+    {
+      "id": "x-ray-crystallography",
+      "preferred": "X 射線晶體學",
+      "term_type": "research_method",
+      "domains": [
+        "structural-biology"
+      ],
+      "source_ids": [
+        "elife-34995"
+      ],
+      "variants": [
+        {
+          "text": "X-ray crystallography",
+          "kind": "english_name",
+          "action": "preserve",
+          "confidence": "confirmed"
+        },
+        {
+          "text": "X射線晶體學",
+          "kind": "spacing_variant",
+          "action": "preserve",
+          "confidence": "confirmed"
+        },
+        {
+          "text": "X 射線晶體學",
+          "kind": "preferred_form",
+          "action": "preserve",
+          "confidence": "confirmed"
+        }
+      ]
+    }
+  ]
+}
