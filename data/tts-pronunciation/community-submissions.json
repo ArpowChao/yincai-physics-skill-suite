@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "locale": "zh-TW",
+  "description": "透過 Google Sheet「讀音候選」表單收到的社群提交，尚未經目標 TTS 試聽確認，一律 verified:false 且不自動套用；正式規則需人工確認後移至 verified.json。",
+  "source_sheet": "https://docs.google.com/spreadsheets/d/12UqQgG3GNxepKRNLeKjW5T1NvQEHqg2gMObu6IR1ZjU/edit",
+  "rules": [
+    {
+      "original": "λ",
+      "spoken": "蘭姆達",
+      "verified": false,
+      "auto_apply": false,
+      "source": "google-sheet-submission",
+      "note": "希臘字母符號朗讀候選；表單重複提交 11 次，尚未經目標 TTS 試聽確認，套用前請人工確認。",
+      "submission": {
+        "submission_count": 11,
+        "first_submitted": "2026-08-14 下午 2:39:11",
+        "last_submitted": "2026-08-14 下午 2:39:44",
+        "source_page": "https://arpowchao.github.io/yincai-physics-skill-suite/",
+        "context_sample": "波。而 X 光，它就是屬於電磁波...光速、頻率和波長之間的關係，我們可以寫成 C 等於 Fλ。其中，C 代表真空中的光速，F 代表頻率，λ 代表波長。"
+      }
+    },
+    {
+      "original": "γ",
+      "spoken": "嘎馬",
+      "verified": false,
+      "auto_apply": false,
+      "source": "google-sheet-submission",
+      "note": "希臘字母符號朗讀候選，避開「伽」的多音字風險（伽可讀 qié 或 jiā）；尚未經目標 TTS 試聽確認，套用前請人工確認。",
+      "submission": {
+        "submission_count": 1,
+        "first_submitted": "2026-08-14 下午 8:59:13",
+        "source_page": "https://arpowchao.github.io/yincai-physics-skill-suite/",
+        "context_sample": "最後一種電磁波叫做 γ 射線。它位於電磁波譜中頻率最高、波長最短的一端...醫療上可以利用 γ 射線來破壞癌細胞，應用在癌症的治療。"
+      }
+    }
+  ]
+}

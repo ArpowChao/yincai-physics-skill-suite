@@ -80,7 +80,7 @@ class TtsPronunciationTests(unittest.TestCase):
             all(rule["pronunciation"] and rule["note"] for rule in imported)
         )
         self.assertEqual(
-            {"和（連詞）", "聘請"},
+            {"和（連詞）", "聘請", "舞蹈"},
             {
                 rule["original"]
                 for rule in imported

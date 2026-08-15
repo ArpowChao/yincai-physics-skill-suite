@@ -85,15 +85,18 @@ const referenceRules = (globalThis.MOE_HETERONYM_LEXICON?.rules || []).map(
 );
 const crossStraitRules = (
   globalThis.CROSS_STRAIT_PRONUNCIATION_CANDIDATES?.rules || []
-).map(([original, spoken, taiwanPronunciation, mainlandPronunciation, hasFullSuggestion]) => ({
+).map(([original, spoken, taiwanPronunciation, mainlandPronunciation, hasFullSuggestion, autoApply]) => ({
   original,
   spoken,
   pronunciation: taiwanPronunciation,
   mainlandPronunciation,
   hasFullSuggestion,
+  autoApply: autoApply !== false,
   verified: false,
   source: "cross-strait-reference",
-  note: hasFullSuggestion
+  note: autoApply === false
+    ? "兩岸詞典讀音差異；團隊審核後判斷目標 TTS 唸原字已正確，保留原稿，不套用同音字建議。"
+    : hasFullSuggestion
     ? "兩岸詞典讀音差異；完整同音字草稿已依團隊批次確認自動套用，仍可選擇保留原稿。"
     : "兩岸詞典讀音差異；尚無完整同音字替代，維持原稿並等待人工確認。",
 }));
@@ -302,6 +305,7 @@ function analyzeLocally(text, overrides = []) {
         pronunciation: match.pronunciation || "",
         mainlandPronunciation: match.mainlandPronunciation || "",
         hasFullSuggestion: match.hasFullSuggestion !== false,
+        autoApply: match.autoApply !== false,
         verified: false,
         source: match.source,
         note: match.note,
@@ -353,7 +357,11 @@ function renderPersonalRuleSummary() {
 
 function decisionFor(change) {
   return decisions.get(change.id) || {
-    status: isPendingChange(change) ? "pending" : "accepted",
+    status: isPendingChange(change)
+      ? "pending"
+      : change.type === "cross-strait" && change.autoApply === false
+      ? "ignored"
+      : "accepted",
     spoken: change.spoken,
   };
 }
@@ -565,10 +573,7 @@ async function analyzeText() {
     decisions = new Map(
       analysis.changes.map((change) => [
         change.id,
-        {
-          status: isPendingChange(change) ? "pending" : "accepted",
-          spoken: change.spoken,
-        },
+        decisionFor(change),
       ]),
     );
     renderAnalysis();

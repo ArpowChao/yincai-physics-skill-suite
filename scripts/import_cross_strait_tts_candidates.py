@@ -201,9 +201,36 @@ def build_candidates(rows: list[dict[str, str]]) -> tuple[list[dict], dict[str, 
     return rules, stats
 
 
+def apply_manual_overrides(rules: list[dict], json_output: Path) -> None:
+    """Preserve human auto_apply:false review decisions across re-imports.
+
+    Re-running this script rebuilds every rule from the raw dictionary CSV, which
+    would otherwise silently drop a maintainer's "keep original, do not auto-apply"
+    decision made through the showcase review page. Match by (original, spoken) so a
+    decision only carries forward while it still targets the same suggested text.
+    """
+    if not json_output.exists():
+        return
+    try:
+        previous = json.loads(json_output.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return
+    rejected = {
+        (rule.get("original"), rule.get("spoken"))
+        for rule in previous.get("rules", [])
+        if rule.get("auto_apply") is False
+    }
+    if not rejected:
+        return
+    for rule in rules:
+        if (rule["original"], rule["spoken"]) in rejected:
+            rule["auto_apply"] = False
+
+
 def write_outputs(
     rules: list[dict], stats: dict[str, int], json_output: Path, js_output: Path
 ) -> None:
+    apply_manual_overrides(rules, json_output)
     payload = {
         "schema_version": 1,
         "locale": "zh-TW",
@@ -231,6 +258,7 @@ def write_outputs(
                 rule["taiwan_pronunciation"],
                 rule["mainland_pronunciation"],
                 rule["has_full_suggestion"],
+                rule.get("auto_apply", True),
             ]
             for rule in rules
         ],
