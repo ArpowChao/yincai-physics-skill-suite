@@ -10,6 +10,18 @@
 
 本專案使用語意化版本概念記錄可攜式 Skill Suite 的變更。
 
+## 1.8.0 — 2026-08-17
+
+- `zh-tw-proofread` 新增八個具第一手來源的研究專名，包含 `PepTSh`、`3M3SH`、
+  `S-Cys-Gly-3M3SH`、`SH1446`、`POT`、`Staphylococcus hominis`、`eLife` 與
+  `X 射線晶體學`。
+- 新增 `replace`／`review`／`preserve` 三態人工決策與唯讀掃描器；工具不提供
+  自動套用或覆寫逐字稿功能。
+- GitHub 術語證據必須固定到 `owner/repo:path@tag-or-sha`；不執行來源 repository
+  指令，未合併 PR、Issue 與漂移分支只能作候選。
+- 物理量與單位新增 QUDT、UCUM、Unicode CLDR `zh_Hant`、OM 固定 revision 及證據
+  邊界；repo 正式術語優先，外部來源衝突時維持待確認。
+
 ## 1.7.0 — 2026-08-17
 
 - `zh-tw-proofread` 新增 ECDICT 英文術語候選查核，可辨識完全命中、大小寫差異、

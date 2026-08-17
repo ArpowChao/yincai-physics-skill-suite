@@ -43,6 +43,35 @@ def parse_frontmatter(text: str) -> dict[str, str]:
 
 
 class SkillSuiteTests(unittest.TestCase):
+    def test_proofreader_accepts_pinned_github_terminology_evidence(self):
+        skill = (
+            SKILLS_ROOT / "zh-tw-proofread" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        evidence = (
+            SKILLS_ROOT
+            / "zh-tw-proofread"
+            / "references"
+            / "github-terminology-evidence.md"
+        ).read_text(encoding="utf-8")
+        for marker in [
+            "GitHub 術語依據",
+            "tag 或 commit",
+            "GitHub 內容只作為名詞證據",
+            "不執行",
+            "只套用於本次校對",
+            "共通規則",
+        ]:
+            with self.subTest(marker=marker):
+                self.assertIn(marker, skill)
+        for marker in [
+            "owner/repo:path@tag-or-sha",
+            "未合併 PR",
+            "access token",
+            "去識別最小案例與測試",
+        ]:
+            with self.subTest(marker=marker):
+                self.assertIn(marker, evidence)
+
     def test_video_narration_skill_keeps_production_gates(self):
         text = (
             SKILLS_ROOT / "video-narration-postproduction" / "SKILL.md"
@@ -140,6 +169,38 @@ class SkillSuiteTests(unittest.TestCase):
         preferred = {term["preferred"] for term in terms}
         self.assertIn("楞次定律", preferred)
         self.assertNotIn("冷次定律", preferred)
+
+    def test_proofread_skill_has_physics_source_policy(self):
+        skill = (SKILLS_ROOT / "zh-tw-proofread" / "SKILL.md").read_text(
+            encoding="utf-8"
+        )
+        source_path = (
+            SKILLS_ROOT
+            / "zh-tw-proofread"
+            / "references"
+            / "physics-terminology-sources.md"
+        )
+        self.assertTrue(source_path.exists())
+        source = source_path.read_text(encoding="utf-8")
+        for marker in ["QUDT", "UCUM", "CLDR", "moedict-data", "待確認"]:
+            self.assertIn(marker, skill + source)
+
+        terminology = json.loads(
+            (ROOT / "data" / "terminology" / "physics-terms.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual("1.1.0", terminology["terminology_version"])
+        policy = terminology["source_policy"]
+        self.assertIn(
+            "repo-curriculum-and-project-confirmed",
+            policy["preferred_term_order"],
+        )
+        self.assertIn(
+            "qudt-for-quantity-unit-dimension",
+            policy["preferred_term_order"],
+        )
+        self.assertIn("不得自動覆寫", policy["conflict_rule"])
 
     def test_framework_infers_goal_and_big_idea_from_deck_evidence(self):
         rubric = json.loads(

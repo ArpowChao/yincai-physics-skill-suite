@@ -1,6 +1,20 @@
 {
-  "terminology_version": "1.0.0",
+  "terminology_version": "1.1.0",
   "locale": "zh-TW",
+  "source_policy": {
+    "preferred_term_order": [
+      "repo-curriculum-and-project-confirmed",
+      "repo-physics-terms",
+      "moe-dictionary-for-language-form",
+      "qudt-for-quantity-unit-dimension",
+      "ucum-for-machine-unit-code",
+      "cldr-zh-hant-for-unit-display",
+      "csld-for-cross-strait-aliases",
+      "om-as-fallback-ontology"
+    ],
+    "conflict_rule": "外部來源不得自動覆寫 repo 正式詞；repo 內也有衝突時保留原詞並標記待確認。",
+    "reference": ".agents/skills/zh-tw-proofread/references/physics-terminology-sources.md"
+  },
   "rules": [
     "同一單元包的術語、符號、正方向與單位必須一致。",
     "首次出現專有名詞時提供學生語言轉譯。",

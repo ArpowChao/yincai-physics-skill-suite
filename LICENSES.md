@@ -66,3 +66,18 @@ g2pW 模型或其訓練資料打包進靜態網頁。若未來散布模型權重
 只作拼字、大小寫與詞形候選，不能取代論文、官方產品文件或領域術語表；其中譯也
 可能不是臺灣慣用詞。完整的證據順位與使用邊界見
 `.agents/skills/zh-tw-proofread/references/terminology-sources.md`。
+
+## 研究專名來源
+
+`data/terminology/research-proper-terms.json` 只保存八個短專名、常見錯聽形式、
+三態人工決策與來源識別碼，不重製論文全文。研究專名目前引用
+[eLife 7:e34995](https://elifesciences.org/articles/34995) 的公開論文頁；原始來源的
+著作權不因短詞目索引而改變。完整證據邊界見
+`.agents/skills/zh-tw-proofread/references/terminology-evidence.md`。
+
+## 物理量與單位查核來源
+
+QUDT、UCUM、Unicode CLDR 與 OM 僅作物理量、單位、量綱、機器代碼與繁體顯示的
+外部查核來源；repository 只保存來源網址、固定 revision 與使用邊界，不重製其完整
+資料。若未來匯入實際詞條或定義，必須另行核對各上游授權。版本與優先序見
+`.agents/skills/zh-tw-proofread/references/physics-terminology-sources.md`。
