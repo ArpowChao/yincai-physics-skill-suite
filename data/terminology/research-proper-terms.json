@@ -40,6 +40,12 @@
           "confidence": "confirmed"
         },
         {
+          "text": "PepT Sh",
+          "kind": "spacing_candidate",
+          "action": "review",
+          "confidence": "candidate"
+        },
+        {
           "text": "PepTSh",
           "kind": "preferred_form",
           "action": "preserve",

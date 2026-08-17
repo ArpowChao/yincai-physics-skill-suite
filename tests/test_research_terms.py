@@ -64,6 +64,16 @@ class ZhTwProofreadTests(unittest.TestCase):
             {term["preferred"] for term in self.registry["terms"]},
         )
 
+    def test_registry_exercises_all_three_manual_decision_states(self):
+        self.assertEqual(
+            {"replace", "review", "preserve"},
+            {
+                variant["action"]
+                for term in self.registry["terms"]
+                for variant in term["variants"]
+            },
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
