@@ -1,0 +1,406 @@
+{
+  "terminology_version": "1.0.0",
+  "locale": "zh-TW",
+  "description": "理化領域中文專有名詞對照表：供 zh-tw-proofread 校正語音逐字稿時，辨識 ASR 同音誤植、兩岸譯名差異與常見別字。本檔只提供候選，不提供自動取代授權。",
+  "evidence_policy": [
+    "本檔是候選清單，不是自動取代規則；命中後仍須依語境判斷。",
+    "證據優先序：第一手來源（論文、官方文件、教科書）> 國家教育研究院樂詞網 > 教育部國語辭典 > 本檔。",
+    "低順位來源不得推翻高順位來源。",
+    "帶有 context_guard 的條目一律先讀語境，不得無條件取代。",
+    "本檔未收錄的專有名詞，維持原詞並標註待確認，不得臆改。"
+  ],
+  "categories": {
+    "asr-homophone": "語音辨識同音／近音誤植，preferred 為正確詞，variants 為實際觀察到的錯誤輸出。",
+    "cross-strait": "兩岸譯名差異，variants 為中國大陸慣用譯名，preferred 為臺灣慣用譯名。",
+    "orthography": "臺灣中文內部的別字或用字習慣差異。"
+  },
+  "evidence_codes": {
+    "naer": "國家教育研究院樂詞網學術名詞（terms.naer.edu.tw）",
+    "moe": "教育部重編國語辭典修訂本",
+    "textbook": "臺灣高中物理／化學教科書與課綱慣用詞",
+    "primary-source": "論文原文或官方產品文件，URL 記於 evidence_url",
+    "transcript-case": "本專案實際校對案例中觀察到的 ASR 輸出"
+  },
+  "entries": [
+    {
+      "preferred": "向量",
+      "variants": ["矢量"],
+      "domain": "physics",
+      "category": "cross-strait",
+      "english": "vector",
+      "evidence": ["naer", "textbook"]
+    },
+    {
+      "preferred": "純量",
+      "variants": ["標量"],
+      "domain": "physics",
+      "category": "cross-strait",
+      "english": "scalar",
+      "evidence": ["naer", "textbook"]
+    },
+    {
+      "preferred": "位能",
+      "variants": ["勢能"],
+      "domain": "physics",
+      "category": "cross-strait",
+      "english": "potential energy",
+      "evidence": ["naer", "textbook"]
+    },
+    {
+      "preferred": "力矩",
+      "variants": ["力距"],
+      "domain": "physics",
+      "category": "orthography",
+      "english": "torque",
+      "evidence": ["naer", "textbook"],
+      "note": "「矩」為量度之意，非距離的「距」。此為高頻手寫與 ASR 錯字。"
+    },
+    {
+      "preferred": "振幅",
+      "variants": ["震幅"],
+      "domain": "physics",
+      "category": "orthography",
+      "english": "amplitude",
+      "evidence": ["naer", "moe"],
+      "note": "物理振動用「振」；「震」限地震、震撼等語境。"
+    },
+    {
+      "preferred": "共振",
+      "variants": ["共震"],
+      "domain": "physics",
+      "category": "orthography",
+      "english": "resonance",
+      "evidence": ["naer", "moe"]
+    },
+    {
+      "preferred": "繞射",
+      "variants": ["衍射"],
+      "domain": "physics",
+      "category": "cross-strait",
+      "english": "diffraction",
+      "evidence": ["naer", "textbook"]
+    },
+    {
+      "preferred": "電漿",
+      "variants": ["等離子體", "等離子"],
+      "domain": "physics",
+      "category": "cross-strait",
+      "english": "plasma",
+      "evidence": ["naer", "textbook"]
+    },
+    {
+      "preferred": "微中子",
+      "variants": ["中微子"],
+      "domain": "physics",
+      "category": "cross-strait",
+      "english": "neutrino",
+      "evidence": ["naer", "textbook"]
+    },
+    {
+      "preferred": "雷射",
+      "variants": ["激光"],
+      "domain": "physics",
+      "category": "cross-strait",
+      "english": "laser",
+      "evidence": ["naer", "textbook"]
+    },
+    {
+      "preferred": "二極體",
+      "variants": ["二極管"],
+      "domain": "physics",
+      "category": "cross-strait",
+      "english": "diode",
+      "evidence": ["naer"]
+    },
+    {
+      "preferred": "電晶體",
+      "variants": ["晶體管", "三極管"],
+      "domain": "physics",
+      "category": "cross-strait",
+      "english": "transistor",
+      "evidence": ["naer"]
+    },
+    {
+      "preferred": "積體電路",
+      "variants": ["集成電路"],
+      "domain": "physics",
+      "category": "cross-strait",
+      "english": "integrated circuit",
+      "evidence": ["naer"]
+    },
+    {
+      "preferred": "感測器",
+      "variants": ["傳感器"],
+      "domain": "physics",
+      "category": "cross-strait",
+      "english": "sensor",
+      "evidence": ["naer"]
+    },
+    {
+      "preferred": "都卜勒效應",
+      "variants": ["多普勒效應"],
+      "domain": "physics",
+      "category": "cross-strait",
+      "english": "Doppler effect",
+      "evidence": ["naer", "textbook"]
+    },
+    {
+      "preferred": "克卜勒",
+      "variants": ["開普勒"],
+      "domain": "physics",
+      "category": "cross-strait",
+      "english": "Kepler",
+      "evidence": ["naer", "textbook"]
+    },
+    {
+      "preferred": "薛丁格",
+      "variants": ["薛定諤"],
+      "domain": "physics",
+      "category": "cross-strait",
+      "english": "Schrodinger",
+      "evidence": ["naer", "textbook"]
+    },
+    {
+      "preferred": "波茲曼",
+      "variants": ["玻爾茲曼", "玻耳茲曼"],
+      "domain": "physics",
+      "category": "cross-strait",
+      "english": "Boltzmann",
+      "evidence": ["naer", "textbook"]
+    },
+    {
+      "preferred": "楞次定律",
+      "variants": ["冷次定律"],
+      "domain": "physics",
+      "category": "asr-homophone",
+      "english": "Lenz's law",
+      "evidence": ["naer", "textbook"]
+    },
+    {
+      "preferred": "亞佛加厥數",
+      "variants": ["阿伏伽德羅常數", "阿佛加德羅數"],
+      "domain": "chemistry",
+      "category": "cross-strait",
+      "english": "Avogadro constant",
+      "evidence": ["naer", "textbook"]
+    },
+    {
+      "preferred": "莫耳",
+      "variants": ["摩爾"],
+      "domain": "chemistry",
+      "category": "cross-strait",
+      "english": "mole",
+      "evidence": ["naer", "textbook"]
+    },
+    {
+      "preferred": "矽",
+      "variants": ["硅"],
+      "domain": "chemistry",
+      "category": "cross-strait",
+      "english": "silicon",
+      "evidence": ["naer", "textbook"]
+    },
+    {
+      "preferred": "係數",
+      "variants": ["系數"],
+      "domain": "general-science",
+      "category": "orthography",
+      "english": "coefficient",
+      "evidence": ["moe", "naer"],
+      "note": "摩擦係數、膨脹係數等一律用「係」。"
+    },
+    {
+      "preferred": "熱力學",
+      "variants": [],
+      "domain": "physics",
+      "category": "orthography",
+      "english": "thermodynamics",
+      "evidence": ["naer"],
+      "note": "保留條目供領域標記使用，無已知誤植型態。"
+    },
+    {
+      "preferred": "半胱胺酸",
+      "variants": ["半光氨酸", "半胱氨酸"],
+      "domain": "chemistry",
+      "category": "asr-homophone",
+      "english": "cysteine",
+      "evidence": ["naer", "transcript-case"],
+      "note": "臺灣慣用「胺酸」，中國大陸用「氨酸」；「半光」為 ASR 同音誤植。"
+    },
+    {
+      "preferred": "甘胺酸",
+      "variants": ["肝氨酸", "甘氨酸"],
+      "domain": "chemistry",
+      "category": "asr-homophone",
+      "english": "glycine",
+      "evidence": ["naer", "transcript-case"]
+    },
+    {
+      "preferred": "酪胺酸",
+      "variants": ["弱氨酸", "酪氨酸"],
+      "domain": "chemistry",
+      "category": "asr-homophone",
+      "english": "tyrosine",
+      "evidence": ["naer", "transcript-case"],
+      "note": "「酪」讀 ㄌㄠˋ，易被 ASR 聽成「弱」。"
+    },
+    {
+      "preferred": "色胺酸",
+      "variants": ["色氨酸"],
+      "domain": "chemistry",
+      "category": "cross-strait",
+      "english": "tryptophan",
+      "evidence": ["naer"]
+    },
+    {
+      "preferred": "丙胺酸",
+      "variants": ["丙氨酸"],
+      "domain": "chemistry",
+      "category": "cross-strait",
+      "english": "alanine",
+      "evidence": ["naer"]
+    },
+    {
+      "preferred": "胜肽",
+      "variants": ["生態", "肽"],
+      "domain": "chemistry",
+      "category": "asr-homophone",
+      "english": "peptide",
+      "evidence": ["naer", "transcript-case"],
+      "context_guard": "「生態」在環境科學語境為正確詞（ecology），僅在生化語境且指 peptide 時才改為「胜肽」。",
+      "note": "臺灣用「胜肽」，中國大陸用「肽」。"
+    },
+    {
+      "preferred": "雙胜肽",
+      "variants": ["雙生態", "二肽"],
+      "domain": "chemistry",
+      "category": "asr-homophone",
+      "english": "dipeptide",
+      "evidence": ["naer", "transcript-case"]
+    },
+    {
+      "preferred": "寡胜肽",
+      "variants": ["寡態", "寡肽"],
+      "domain": "chemistry",
+      "category": "asr-homophone",
+      "english": "oligopeptide",
+      "evidence": ["naer", "transcript-case"]
+    },
+    {
+      "preferred": "硫醇",
+      "variants": ["流醇"],
+      "domain": "chemistry",
+      "category": "asr-homophone",
+      "english": "thiol",
+      "evidence": ["naer", "transcript-case"]
+    },
+    {
+      "preferred": "化學鍵",
+      "variants": ["化學件", "化學建"],
+      "domain": "chemistry",
+      "category": "asr-homophone",
+      "english": "chemical bond",
+      "evidence": ["naer", "transcript-case"]
+    },
+    {
+      "preferred": "氫鍵",
+      "variants": ["興建", "輕鍵"],
+      "domain": "chemistry",
+      "category": "asr-homophone",
+      "english": "hydrogen bond",
+      "evidence": ["naer", "transcript-case"],
+      "context_guard": "「興建」在工程語境為正確詞，僅在化學鍵結語境才改為「氫鍵」。"
+    },
+    {
+      "preferred": "結合位點",
+      "variants": ["結合胃點"],
+      "domain": "biology",
+      "category": "asr-homophone",
+      "english": "binding site",
+      "evidence": ["naer", "transcript-case"]
+    },
+    {
+      "preferred": "頂泌汗腺",
+      "variants": ["鼎密含氹", "頂密汗腺"],
+      "domain": "biology",
+      "category": "asr-homophone",
+      "english": "apocrine gland",
+      "evidence": ["naer", "transcript-case"],
+      "note": "亦稱頂漿腺；相對於外分泌汗腺（eccrine gland，小汗腺）。"
+    },
+    {
+      "preferred": "大腸桿菌",
+      "variants": ["大廠感菌", "大腸杆菌"],
+      "domain": "biology",
+      "category": "asr-homophone",
+      "english": "Escherichia coli",
+      "evidence": ["naer", "transcript-case"]
+    },
+    {
+      "preferred": "葡萄球菌",
+      "variants": ["葡萄糖菌"],
+      "domain": "biology",
+      "category": "asr-homophone",
+      "english": "Staphylococcus",
+      "evidence": ["naer"]
+    },
+    {
+      "preferred": "介導",
+      "variants": ["借導"],
+      "domain": "biology",
+      "category": "asr-homophone",
+      "english": "mediated",
+      "evidence": ["naer", "transcript-case"]
+    },
+    {
+      "preferred": "滋生",
+      "variants": ["直生", "孳生"],
+      "domain": "biology",
+      "category": "orthography",
+      "evidence": ["moe", "transcript-case"],
+      "note": "「孳生」亦為正寫，但教育部辭典以「滋生」為主要詞形。"
+    },
+    {
+      "preferred": "親油",
+      "variants": ["輕油"],
+      "domain": "chemistry",
+      "category": "asr-homophone",
+      "english": "lipophilic",
+      "evidence": ["naer", "transcript-case"],
+      "context_guard": "「輕油」在石化工業為正確詞（naphtha），僅在描述親和性語境才改為「親油」。"
+    },
+    {
+      "preferred": "親脂性",
+      "variants": ["清脂性"],
+      "domain": "chemistry",
+      "category": "asr-homophone",
+      "english": "lipophilicity",
+      "evidence": ["naer", "transcript-case"]
+    },
+    {
+      "preferred": "品質",
+      "variants": ["質量"],
+      "domain": "general-science",
+      "category": "cross-strait",
+      "english": "quality",
+      "evidence": ["naer", "moe"],
+      "context_guard": "最高風險條目：物理語境的 mass 必須保留「質量」，絕不可改為「品質」。僅在評估產品、服務或教學優劣時才轉換。"
+    },
+    {
+      "preferred": "機率",
+      "variants": ["概率"],
+      "domain": "general-science",
+      "category": "cross-strait",
+      "english": "probability",
+      "evidence": ["naer", "textbook"]
+    },
+    {
+      "preferred": "演算法",
+      "variants": ["算法"],
+      "domain": "general-science",
+      "category": "cross-strait",
+      "english": "algorithm",
+      "evidence": ["naer"]
+    }
+  ]
+}

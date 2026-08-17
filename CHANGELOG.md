@@ -10,6 +10,19 @@
 
 本專案使用語意化版本概念記錄可攜式 Skill Suite 的變更。
 
+## 1.6.0 — 2026-08-15
+
+- `zh-tw-proofread` 新增中文專有名詞查核層，補上原本只有一般同音字規則、
+  缺乏領域名詞依據的缺口。
+- 新增 `data/terminology/zh-tw-science-terms.json`：理化領域對照表，區分
+  ASR 同音誤植、兩岸譯名與臺灣用字別字三類，每條標示證據來源。
+- 新增 `scripts/check_zh_terms.py`：唯讀候選查核工具，採最長匹配，
+  對 `context_guard` 條目標記 `requires_context_review`，明確不授權自動取代。
+- 新增 `.agents/skills/zh-tw-proofread/references/zh-terminology-sources.md`：
+  確立「第一手來源 > 樂詞網 > 教育部辭典 > 對照表」的證據優先序。
+- 修訂對照表新增「專名查核」變更類型，說明欄必須寫出實際來源而非「對照表命中」。
+- 明訂禁止憑語感臆造學術名詞（例如把不確定的胺基酸直接寫成常見的那一個）。
+
 ## 1.5.0 — 2026-08-14
 
 - 新增 `video-narration-postproduction`，使 Skill Suite 擴充為 13 個 Skills。
