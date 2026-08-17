@@ -1,11 +1,11 @@
 ---
 name: zh-tw-proofread
-description: Use when proofreading Chinese audio transcripts, fixing transcription typos, homophones, or un-idiomatic phrases based on Ministry of Education dictionary standards (g0v/moedict-data), converting Mainland Chinese terminology to standard Taiwan Chinese terms (g0v/moedict-data-csld), and verifying science domain proper nouns against a curated zh-TW terminology table plus NAER authoritative sources.
+description: Use when proofreading Chinese audio transcripts, fixing transcription typos and homophones, converting Mainland Chinese terminology to standard Taiwan Chinese, verifying science-domain terms against traceable zh-TW sources, or checking English technical-term spelling and casing with ECDICT as a non-authoritative candidate source.
 ---
 
 # Taiwan Chinese Transcript Proofreading & Terminology Conversion
 
-針對語音轉文字（如 Whisper ASR）輸出的原始逐字稿或字幕，依據教育部辭典標準（`g0v/moedict-data`）校正同音異字、錯別字，並依兩岸常用詞彙對照（`g0v/moedict-data-csld`）將簡體字與大陸用語轉換為標準臺灣繁體中文。
+針對語音轉文字（如 Whisper ASR）輸出的原始逐字稿或字幕，依據教育部辭典標準（`g0v/moedict-data`）校正同音異字、錯別字，並依兩岸常用詞彙對照（`g0v/moedict-data-csld`）將簡體字與大陸用語轉換為標準臺灣繁體中文。英文詞可用 ECDICT 查找拼字、大小寫與詞形候選；ECDICT 不是專有名詞的權威來源，不得僅憑查詢結果自動取代原文。
 
 ## Inputs
 
@@ -15,9 +15,12 @@ description: Use when proofreading Chinese audio transcripts, fixing transcripti
 - 理化領域對照表 `data/terminology/zh-tw-science-terms.json`；缺檔時仍應完成中文校對，不得因此中止。
 - 詞條來源索引 `data/terminology/zh-tw-science-term-sources.json`；缺少來源定位時，
   命中只能列為待確認，不能據此改稿。
+- 可選的本機 ECDICT `ecdict.csv`；未提供時仍可完成中文校對，不得因缺少字典而中止。
 
 處理專有名詞前，先完整閱讀
-[`references/zh-terminology-sources.md`](references/zh-terminology-sources.md)。
+[`references/zh-terminology-sources.md`](references/zh-terminology-sources.md)；處理英文
+專有名詞或使用 ECDICT 前，再閱讀
+[`references/terminology-sources.md`](references/terminology-sources.md)。
 
 ## Workflow
 
@@ -43,15 +46,21 @@ description: Use when proofreading Chinese audio transcripts, fixing transcripti
    - 人名、菌株、基因、蛋白質、化合物、品牌與產品技術名稱，必須以論文原文、官方頁面
      或使用者提供的詞表確認；只有語感或對照表命中不足以構成證據。
    - 對照表未收錄者，不得因為「聽起來不像詞」就改寫；保留原詞並標註待確認。
-4. **兩岸用語在地化轉換（依據 moedict-data-csld 對照）**：
+4. **英文術語候選查核（ECDICT，唯讀且不得自動取代）**：
+   - 有本機 `ecdict.csv` 時，可從 repository 根目錄執行：
+     `python scripts/check_ecdict_terms.py <逐字稿> <ecdict.csv> --output <報告.json>`。
+   - `exact`、`case-variant`、`normalized` 都只代表字典中存在相近英文詞目；翻譯可能是簡體中文或非臺灣慣用術語，仍須依語境與臺灣來源覆核。
+   - 基因、蛋白質、化合物代號、型號、品牌、人名、縮寫及保留大小寫/標點的識別字，必須以論文、官方文件或使用者提供的詞表確認。`PepTSh`、`3M3SH`、`S-Cys-Gly-3M3SH` 等詞即使 ECDICT 有近似項目，也不得據此改寫。
+   - `not-found` 不是錯字證明；保留原詞並標註待確認。若經第一手來源確認，才可在修訂表標記為「專名查核」。
+5. **兩岸用語在地化轉換（依據 moedict-data-csld 對照）**：
    - **資訊科技與數位**：軟件→軟體、硬件→硬體、網絡→網路、數據→資料、信息→資訊、算法→演算法、屏幕→螢幕、激活→啟用/開通、數據庫→資料庫、項目→專案、服務器→伺服器、程序→程式、默認→預設、鏈接→連結、芯片→晶片、內存→記憶體、人工智能→人工智慧、用戶→使用者/用戶、優化→最佳化/優化。
    - **日常生活與媒體**：方便面→泡麵、出租車→計程車、地鐵→捷運、衛生間→洗手間/廁所、視頻→影片、音頻→音訊/聲音、概率→機率、激光→雷射、空調→冷氣、公交車→公車、充值→儲值。
    - **商務與職場**：崗位→職位/崗位、抓手→著力點/切入點、落地→落實/執行、迭代→更新/迭次、打通→串聯/整合。
-5. **語境多義詞判讀（Context-Aware Disambiguation）**：
+6. **語境多義詞判讀（Context-Aware Disambiguation）**：
    - **質量**：物理學/科學語境保留為「**質量**」（Mass）；評估產品、服務或教學時轉換為「**品質**」（Quality）。
    - **土豆**：大陸用語指蔬菜時轉換為「**馬鈴薯**」；臺灣在地傳統語境保留為「**花生**」。
    - **窩心**：大陸原意指憋屈難過時轉換為「**憋屈/難過**」；臺灣日常語意指貼心溫馨時保留為「**溫馨/貼心**」。
-6. **產出雙區塊報告**：產出完整校正逐字稿及修訂對照表。
+7. **產出雙區塊報告**：產出完整校正逐字稿及修訂對照表。
 
 ## Output contract
 
@@ -59,7 +68,7 @@ description: Use when proofreading Chinese audio transcripts, fixing transcripti
   1. **校正後完整逐字稿**：通順、符合臺灣繁體中文用語的完整文本（若輸入為 SRT/VTT 則完整保留時間軸與序號）。
   2. **修訂對照與說明表**：以 Markdown 表格呈現所有修訂細節。
 - 修訂表格格式規範：
-  | 原始文字 | 校正後文字 | 變更類型 (錯別字 / 兩岸用語 / 語意判讀 / 專名查核) | 說明與依據 (MOE / CSLD / NAER / 對照表 / 第一手來源 / 語境) |
+  | 原始文字 | 校正後文字 | 變更類型 (錯別字 / 兩岸用語 / 語意判讀 / 專名查核) | 說明與依據 (MOE / CSLD / NAER / ECDICT 候選 / 第一手來源 / 語境) |
   | :--- | :--- | :--- | :--- |
 - 標記為「專名查核」者，說明欄必須寫出實際依據（論文、官方頁面或詞表），
   不得只寫「對照表命中」。
@@ -73,6 +82,7 @@ description: Use when proofreading Chinese audio transcripts, fixing transcripti
 - 涉及專有名詞或特定人名無外部證據可確認時，標註待確認並保留原詞。
 - 只有對照表命中而無第一手來源佐證的人名、菌株、基因、化合物、品牌或型號，
   一律標註待確認，不得改寫。
+- 涉及專有名詞、特定人名或技術識別字，若只有 ECDICT 候選而無第一手證據，標註待確認並保留原詞。
 
 ## Common mistakes
 
@@ -84,3 +94,4 @@ description: Use when proofreading Chinese audio transcripts, fixing transcripti
 - 在生化語境把「胜肽」誤留為「生態」，或反過來把環境科學的「生態」改成「胜肽」。
 - 憑語感臆造學術名詞（例如把不確定的胺基酸直接寫成常見的那一個），
   而不回查論文原文。
+- 把 ECDICT 當作專有名詞權威，或用一般英文詞目的模糊比對結果改寫基因、蛋白質、化學代號、品牌與型號。

@@ -54,3 +54,15 @@ g2pW 模型或其訓練資料打包進靜態網頁。若未來散布模型權重
 
 更完整的資料角色、版本快照與升級條件見
 `.agents/skills/prepare-tts-transcript/references/pronunciation-sources.md`。
+
+## 英文術語候選資料
+
+[ECDICT](https://github.com/skywind3000/ECDICT) 是採 MIT License 發布的英漢字典
+專案。`zh-tw-proofread` 以 revision
+`bc015ed2e24a7abef49fc6dbbb7fe32c1dadaf8b` 的資料格式與欄位作為工具契約基準，
+只讀取使用者自行下載的本機 CSV，並在候選報告保留來源網址、revision 與授權。
+
+本 repository 不內嵌或重新散布完整 ECDICT 資料庫。ECDICT 的一般英文詞目與中譯
+只作拼字、大小寫與詞形候選，不能取代論文、官方產品文件或領域術語表；其中譯也
+可能不是臺灣慣用詞。完整的證據順位與使用邊界見
+`.agents/skills/zh-tw-proofread/references/terminology-sources.md`。
