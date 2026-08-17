@@ -5,6 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TERMS_PATH = ROOT / "data" / "terminology" / "zh-tw-science-terms.json"
+SOURCES_PATH = ROOT / "data" / "terminology" / "zh-tw-science-term-sources.json"
 SKILL_PATH = ROOT / ".agents" / "skills" / "zh-tw-proofread" / "SKILL.md"
 REFERENCE_PATH = (
     ROOT / ".agents" / "skills" / "zh-tw-proofread" / "references" / "zh-terminology-sources.md"
@@ -15,6 +16,10 @@ ALLOWED_DOMAINS = {"physics", "chemistry", "biology", "general-science"}
 
 def load_terms() -> dict:
     return json.loads(TERMS_PATH.read_text(encoding="utf-8"))
+
+
+def load_sources() -> dict:
+    return json.loads(SOURCES_PATH.read_text(encoding="utf-8"))
 
 
 class TerminologyDataTests(unittest.TestCase):
@@ -31,6 +36,44 @@ class TerminologyDataTests(unittest.TestCase):
             self.assertIn(field, data, f"缺少頂層欄位 {field}")
         self.assertEqual("zh-TW", data["locale"])
         self.assertTrue(data["entries"], "entries 不得為空")
+
+    def test_every_source_is_versioned_and_addressable(self):
+        data = load_sources()
+        source_ids = set()
+        for source in data["sources"]:
+            source_id = source.get("id", "")
+            self.assertTrue(source_id, "來源必須有 id")
+            self.assertNotIn(source_id, source_ids, f"來源 id 重複：{source_id}")
+            source_ids.add(source_id)
+            self.assertTrue(source.get("url"), f"{source_id} 缺少 URL")
+            self.assertTrue(source.get("version"), f"{source_id} 缺少版本或擷取日期")
+
+    def test_every_entry_resolves_to_traceable_source_records(self):
+        terms = load_terms()
+        source_data = load_sources()
+        source_ids = {source["id"] for source in source_data["sources"]}
+        mappings = {
+            mapping["preferred"]: mapping["source_refs"]
+            for mapping in source_data["term_sources"]
+        }
+        self.assertEqual(
+            {entry["preferred"] for entry in terms["entries"]},
+            set(mappings),
+            "詞條與來源索引必須一一對應",
+        )
+        for entry in terms["entries"]:
+            refs = mappings[entry["preferred"]]
+            self.assertTrue(refs, f"{entry['preferred']} 缺少來源引用")
+            for ref in refs:
+                self.assertIn(
+                    ref.get("source_id"),
+                    source_ids,
+                    f"{entry['preferred']} 引用不存在的來源 {ref.get('source_id')}",
+                )
+                self.assertTrue(
+                    ref.get("locator"),
+                    f"{entry['preferred']} 的來源引用缺少查詢鍵或記錄定位",
+                )
 
     def test_every_entry_declares_category_domain_and_evidence(self):
         data = load_terms()
@@ -161,12 +204,30 @@ class CliTests(unittest.TestCase):
         self.assertEqual(2, exit_code)
         self.assertIn("找不到逐字稿", stderr.getvalue())
 
+    def test_cli_rejects_blank_transcript(self):
+        import contextlib
+        import io
+        import tempfile
+
+        from scripts import check_zh_terms
+
+        with tempfile.TemporaryDirectory() as folder:
+            transcript = Path(folder) / "blank.txt"
+            transcript.write_text(" \n\t", encoding="utf-8")
+            stderr = io.StringIO()
+            with contextlib.redirect_stderr(stderr):
+                exit_code = check_zh_terms.main([str(transcript)])
+
+        self.assertEqual(2, exit_code)
+        self.assertIn("空白", stderr.getvalue())
+
 
 class SkillWiringTests(unittest.TestCase):
     def test_skill_references_the_terminology_data_and_policy(self):
         text = SKILL_PATH.read_text(encoding="utf-8")
 
         self.assertIn("data/terminology/zh-tw-science-terms.json", text)
+        self.assertIn("data/terminology/zh-tw-science-term-sources.json", text)
         self.assertIn("references/zh-terminology-sources.md", text)
         self.assertIn("check_zh_terms.py", text)
 

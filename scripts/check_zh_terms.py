@@ -5,7 +5,7 @@
 
 用法：
     python scripts/check_zh_terms.py <逐字稿.txt> [--terms <對照表.json>]
-        [--output <報告.json>] [--domain physics] [--include-guarded]
+        [--sources <來源索引.json>] [--output <報告.json>] [--domain physics]
 """
 
 from __future__ import annotations
@@ -18,6 +18,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_TERMS = ROOT / "data" / "terminology" / "zh-tw-science-terms.json"
+DEFAULT_SOURCES = ROOT / "data" / "terminology" / "zh-tw-science-term-sources.json"
 
 
 def load_terms(path: Path) -> dict:
@@ -132,6 +133,9 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="中文理化專有名詞候選誤植查核（唯讀）")
     parser.add_argument("transcript", type=Path, help="逐字稿純文字檔")
     parser.add_argument("--terms", type=Path, default=DEFAULT_TERMS, help="對照表 JSON")
+    parser.add_argument(
+        "--sources", type=Path, default=DEFAULT_SOURCES, help="詞條來源索引 JSON"
+    )
     parser.add_argument("--output", type=Path, help="輸出 JSON 報告路徑")
     parser.add_argument("--domain", help="只查特定領域，如 physics／chemistry／biology")
     args = parser.parse_args(argv)
@@ -142,12 +146,21 @@ def main(argv: list[str] | None = None) -> int:
     if not args.terms.exists():
         print(f"找不到對照表：{args.terms}", file=sys.stderr)
         return 2
+    if not args.sources.exists():
+        print(f"找不到來源索引：{args.sources}", file=sys.stderr)
+        return 2
 
     data = load_terms(args.terms)
     text = args.transcript.read_text(encoding="utf-8")
+    if not text.strip():
+        print("逐字稿是空白檔案，停止查核。", file=sys.stderr)
+        return 2
     report = scan_text(text, data["entries"], args.domain)
+    source_data = json.loads(args.sources.read_text(encoding="utf-8"))
     report["terminology_version"] = data.get("terminology_version", "")
     report["evidence_policy"] = data.get("evidence_policy", [])
+    report["sources"] = source_data.get("sources", [])
+    report["term_sources"] = source_data.get("term_sources", [])
 
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)

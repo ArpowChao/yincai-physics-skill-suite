@@ -1,0 +1,760 @@
+{
+  "schema_version": 1,
+  "terminology_file": "data/terminology/zh-tw-science-terms.json",
+  "sources": [
+    {
+      "id": "naer-academic-terms",
+      "name": "國家教育研究院樂詞網學術名詞",
+      "url": "https://terms.naer.edu.tw/",
+      "version": "retrieved 2026-08-17",
+      "role": "臺灣學術名詞中英文查詢與審定譯名",
+      "locator_format": "query_zh 與 query_en；人工查核時應再記錄結果頁或詞條識別碼"
+    },
+    {
+      "id": "g0v-moe-revised-a6dc997",
+      "name": "g0v/moedict-data（教育部重編國語辭典修訂本資料）",
+      "url": "https://github.com/g0v/moedict-data/tree/a6dc997417507eb510fc29822bc514de2c92728c",
+      "version": "a6dc997417507eb510fc29822bc514de2c92728c",
+      "role": "一般字詞正寫與詞義參考"
+    },
+    {
+      "id": "project-review-case-pr18",
+      "name": "PR #18 去識別逐字稿乾跑紀錄",
+      "url": "https://github.com/ArpowChao/yincai-physics-skill-suite/pull/18",
+      "version": "PR description retrieved 2026-08-17",
+      "role": "只證明 variants 曾在本機 ASR 校對案例出現；原稿因資料邊界不公開，不能單獨證明 preferred"
+    }
+  ],
+  "term_sources": [
+    {
+      "preferred": "向量",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "向量",
+            "query_en": "vector"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "純量",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "純量",
+            "query_en": "scalar"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "位能",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "位能",
+            "query_en": "potential energy"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "力矩",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "力矩",
+            "query_en": "torque"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "振幅",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "振幅",
+            "query_en": "amplitude"
+          }
+        },
+        {
+          "source_id": "g0v-moe-revised-a6dc997",
+          "locator": {
+            "headword": "振幅"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "共振",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "共振",
+            "query_en": "resonance"
+          }
+        },
+        {
+          "source_id": "g0v-moe-revised-a6dc997",
+          "locator": {
+            "headword": "共振"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "繞射",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "繞射",
+            "query_en": "diffraction"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "電漿",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "電漿",
+            "query_en": "plasma"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "微中子",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "微中子",
+            "query_en": "neutrino"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "雷射",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "雷射",
+            "query_en": "laser"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "二極體",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "二極體",
+            "query_en": "diode"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "電晶體",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "電晶體",
+            "query_en": "transistor"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "積體電路",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "積體電路",
+            "query_en": "integrated circuit"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "感測器",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "感測器",
+            "query_en": "sensor"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "都卜勒效應",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "都卜勒效應",
+            "query_en": "Doppler effect"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "克卜勒",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "克卜勒",
+            "query_en": "Kepler"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "薛丁格",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "薛丁格",
+            "query_en": "Schrodinger"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "波茲曼",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "波茲曼",
+            "query_en": "Boltzmann"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "楞次定律",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "楞次定律",
+            "query_en": "Lenz's law"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "亞佛加厥數",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "亞佛加厥數",
+            "query_en": "Avogadro constant"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "莫耳",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "莫耳",
+            "query_en": "mole"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "矽",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "矽",
+            "query_en": "silicon"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "係數",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "係數",
+            "query_en": "coefficient"
+          }
+        },
+        {
+          "source_id": "g0v-moe-revised-a6dc997",
+          "locator": {
+            "headword": "係數"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "熱力學",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "熱力學",
+            "query_en": "thermodynamics"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "半胱胺酸",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "半胱胺酸",
+            "query_en": "cysteine"
+          }
+        },
+        {
+          "source_id": "project-review-case-pr18",
+          "locator": {
+            "observed_variants": [
+              "半光氨酸",
+              "半胱氨酸"
+            ]
+          },
+          "supports": "observed ASR variants only"
+        }
+      ]
+    },
+    {
+      "preferred": "甘胺酸",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "甘胺酸",
+            "query_en": "glycine"
+          }
+        },
+        {
+          "source_id": "project-review-case-pr18",
+          "locator": {
+            "observed_variants": [
+              "肝氨酸",
+              "甘氨酸"
+            ]
+          },
+          "supports": "observed ASR variants only"
+        }
+      ]
+    },
+    {
+      "preferred": "酪胺酸",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "酪胺酸",
+            "query_en": "tyrosine"
+          }
+        },
+        {
+          "source_id": "project-review-case-pr18",
+          "locator": {
+            "observed_variants": [
+              "弱氨酸",
+              "酪氨酸"
+            ]
+          },
+          "supports": "observed ASR variants only"
+        }
+      ]
+    },
+    {
+      "preferred": "色胺酸",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "色胺酸",
+            "query_en": "tryptophan"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "丙胺酸",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "丙胺酸",
+            "query_en": "alanine"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "胜肽",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "胜肽",
+            "query_en": "peptide"
+          }
+        },
+        {
+          "source_id": "project-review-case-pr18",
+          "locator": {
+            "observed_variants": [
+              "生態",
+              "肽"
+            ]
+          },
+          "supports": "observed ASR variants only"
+        }
+      ]
+    },
+    {
+      "preferred": "雙胜肽",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "雙胜肽",
+            "query_en": "dipeptide"
+          }
+        },
+        {
+          "source_id": "project-review-case-pr18",
+          "locator": {
+            "observed_variants": [
+              "雙生態",
+              "二肽"
+            ]
+          },
+          "supports": "observed ASR variants only"
+        }
+      ]
+    },
+    {
+      "preferred": "寡胜肽",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "寡胜肽",
+            "query_en": "oligopeptide"
+          }
+        },
+        {
+          "source_id": "project-review-case-pr18",
+          "locator": {
+            "observed_variants": [
+              "寡態",
+              "寡肽"
+            ]
+          },
+          "supports": "observed ASR variants only"
+        }
+      ]
+    },
+    {
+      "preferred": "硫醇",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "硫醇",
+            "query_en": "thiol"
+          }
+        },
+        {
+          "source_id": "project-review-case-pr18",
+          "locator": {
+            "observed_variants": [
+              "流醇"
+            ]
+          },
+          "supports": "observed ASR variants only"
+        }
+      ]
+    },
+    {
+      "preferred": "化學鍵",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "化學鍵",
+            "query_en": "chemical bond"
+          }
+        },
+        {
+          "source_id": "project-review-case-pr18",
+          "locator": {
+            "observed_variants": [
+              "化學件",
+              "化學建"
+            ]
+          },
+          "supports": "observed ASR variants only"
+        }
+      ]
+    },
+    {
+      "preferred": "氫鍵",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "氫鍵",
+            "query_en": "hydrogen bond"
+          }
+        },
+        {
+          "source_id": "project-review-case-pr18",
+          "locator": {
+            "observed_variants": [
+              "興建",
+              "輕鍵"
+            ]
+          },
+          "supports": "observed ASR variants only"
+        }
+      ]
+    },
+    {
+      "preferred": "結合位點",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "結合位點",
+            "query_en": "binding site"
+          }
+        },
+        {
+          "source_id": "project-review-case-pr18",
+          "locator": {
+            "observed_variants": [
+              "結合胃點"
+            ]
+          },
+          "supports": "observed ASR variants only"
+        }
+      ]
+    },
+    {
+      "preferred": "頂泌汗腺",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "頂泌汗腺",
+            "query_en": "apocrine gland"
+          }
+        },
+        {
+          "source_id": "project-review-case-pr18",
+          "locator": {
+            "observed_variants": [
+              "鼎密含氹",
+              "頂密汗腺"
+            ]
+          },
+          "supports": "observed ASR variants only"
+        }
+      ]
+    },
+    {
+      "preferred": "大腸桿菌",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "大腸桿菌",
+            "query_en": "Escherichia coli"
+          }
+        },
+        {
+          "source_id": "project-review-case-pr18",
+          "locator": {
+            "observed_variants": [
+              "大廠感菌",
+              "大腸杆菌"
+            ]
+          },
+          "supports": "observed ASR variants only"
+        }
+      ]
+    },
+    {
+      "preferred": "葡萄球菌",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "葡萄球菌",
+            "query_en": "Staphylococcus"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "介導",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "介導",
+            "query_en": "mediated"
+          }
+        },
+        {
+          "source_id": "project-review-case-pr18",
+          "locator": {
+            "observed_variants": [
+              "借導"
+            ]
+          },
+          "supports": "observed ASR variants only"
+        }
+      ]
+    },
+    {
+      "preferred": "滋生",
+      "source_refs": [
+        {
+          "source_id": "g0v-moe-revised-a6dc997",
+          "locator": {
+            "headword": "滋生"
+          }
+        },
+        {
+          "source_id": "project-review-case-pr18",
+          "locator": {
+            "observed_variants": [
+              "直生",
+              "孳生"
+            ]
+          },
+          "supports": "observed ASR variants only"
+        }
+      ]
+    },
+    {
+      "preferred": "親油",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "親油",
+            "query_en": "lipophilic"
+          }
+        },
+        {
+          "source_id": "project-review-case-pr18",
+          "locator": {
+            "observed_variants": [
+              "輕油"
+            ]
+          },
+          "supports": "observed ASR variants only"
+        }
+      ]
+    },
+    {
+      "preferred": "親脂性",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "親脂性",
+            "query_en": "lipophilicity"
+          }
+        },
+        {
+          "source_id": "project-review-case-pr18",
+          "locator": {
+            "observed_variants": [
+              "清脂性"
+            ]
+          },
+          "supports": "observed ASR variants only"
+        }
+      ]
+    },
+    {
+      "preferred": "品質",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "品質",
+            "query_en": "quality"
+          }
+        },
+        {
+          "source_id": "g0v-moe-revised-a6dc997",
+          "locator": {
+            "headword": "品質"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "機率",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "機率",
+            "query_en": "probability"
+          }
+        }
+      ]
+    },
+    {
+      "preferred": "演算法",
+      "source_refs": [
+        {
+          "source_id": "naer-academic-terms",
+          "locator": {
+            "query_zh": "演算法",
+            "query_en": "algorithm"
+          }
+        }
+      ]
+    }
+  ]
+}

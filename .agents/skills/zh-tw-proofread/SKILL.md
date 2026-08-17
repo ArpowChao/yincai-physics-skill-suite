@@ -13,6 +13,8 @@ description: Use when proofreading Chinese audio transcripts, fixing transcripti
 - 可選的領域專有名詞表或上下文說明（如物理教材術語、特定人名/地名）。
 - 可選的第一手來源（論文原文、官方產品頁、教科書頁碼），用於確認專有名詞。
 - 理化領域對照表 `data/terminology/zh-tw-science-terms.json`；缺檔時仍應完成中文校對，不得因此中止。
+- 詞條來源索引 `data/terminology/zh-tw-science-term-sources.json`；缺少來源定位時，
+  命中只能列為待確認，不能據此改稿。
 
 處理專有名詞前，先完整閱讀
 [`references/zh-terminology-sources.md`](references/zh-terminology-sources.md)。
