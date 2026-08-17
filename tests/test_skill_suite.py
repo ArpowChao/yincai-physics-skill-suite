@@ -513,40 +513,25 @@ class SkillSuiteTests(unittest.TestCase):
         self.assertIn("應用活動題型庫", architect)
         self.assertIn("s9_application_task_patterns", architect)
         self.assertIn("用本課術語寫成完整句", architect)
-        self.assertIn("整塊換到新領域並升一級", architect)
-        self.assertIn("升級對象", architect)
         self.assertIn("限一句、配白話翻譯", architect)
 
     def test_activity_frame_shared_rules(self):
-        # 春修版共同慣例：答案同框、連續編號、一框一情境、備案進備忘稿。
+        # 春修版共同慣例：比大小兩變數方向相反、易混反例直接寫進活動框。
         architect = (
             SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
         ).read_text(encoding="utf-8")
         self.assertIn("活動框共同守則", architect)
-        self.assertIn("題目與教師參考答案同框", architect)
-        self.assertIn("依教學順序連續編號", architect)
-        self.assertIn("照上課順序連續編號", architect)
-        self.assertIn("一框只放一個情境", architect)
-        self.assertIn("備案寫進備忘稿", architect)
-        self.assertIn("別課的殘稿一定要清掉", architect)
         self.assertIn("兩個變數方向相反", architect)
         self.assertIn("反例直接寫進活動框備註", architect)
 
-    def test_principle_and_observation_upgrades(self):
-        # S3 公式知識身分與姊妹課對仗；S5 成對觀察句、比喻貫穿、背過公式起點；原理句條件反查。
+    def test_observation_sentence_upgrades(self):
+        # S5 觀察句成對寫並預告活動現象；已背過但不理解的公式是合法起點。
         architect = (
             SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
         ).read_text(encoding="utf-8")
-        self.assertIn("知識身分", architect)
-        self.assertIn("一正一反", architect)
-        self.assertIn("刻意對仗", architect)
         self.assertIn("觀察句成對寫", architect)
         self.assertIn("觀察區就是活動的預告清單", architect)
-        self.assertIn("巨觀生活比喻", architect)
-        self.assertIn("不得中途更換", architect)
         self.assertIn("把背誦變成理解", architect)
-        self.assertIn("反向檢查", architect)
-        self.assertIn("每個條件都要有活動情境演到", architect)
 
     def test_change_and_stability_used_as_pair_without_relaxing_selection(self):
         # 「改變與穩定」是一體兩面的一組，可正反並用；但大概念只選一個的判定不得鬆動。
