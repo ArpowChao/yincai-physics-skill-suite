@@ -295,14 +295,14 @@ class SkillSuiteTests(unittest.TestCase):
         self.assertNotIn("change", ideas)
         self.assertNotIn("balance", ideas)
         self.assertNotIn("structure", ideas)
-        self.assertIn("只能", data["selection_rule"])
-        self.assertIn("不得使用主／副大概念", data["selection_rule"])
+        self.assertIn("大概念可以多個", data["selection_rule"])
+        self.assertIn("實質貫穿", data["selection_rule"])
 
         architect = (
             SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
         ).read_text(encoding="utf-8")
-        self.assertIn("只選一個", architect)
-        self.assertIn("不使用主／副大概念", architect)
+        self.assertIn("大概念可以多個", architect)
+        self.assertIn("不分主副", architect)
         self.assertIn("改變與穩定", architect)
         self.assertIn("結構與功能", architect)
 
@@ -471,13 +471,13 @@ class SkillSuiteTests(unittest.TestCase):
         names = [item["name"] for item in library["patterns"]]
         self.assertEqual(7, len(names))
         for expected in (
-            "輪流固定變數＋數字打架",
-            "候選公式淘汰賽",
+            "輪流固定一個變數，最後讓數字打架",
+            "公式是選出來的，不是背出來的",
             "故意出一組比不出來的",
             "把數據畫線延伸出去",
-            "做不出的實驗用思考實驗＋AI 影片演",
+            "做不出的實驗，就用想的＋AI 影片演出來",
             "反著問——怎麼做到、怎麼弄壞",
-            "查真實數據，並教怎麼查",
+            "查真實數據，還要教怎麼查",
         ):
             self.assertIn(expected, names)
 
@@ -486,6 +486,7 @@ class SkillSuiteTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
         self.assertIn("探究活動題型庫", architect)
         self.assertIn("s8_inquiry_task_patterns", architect)
+        self.assertIn("探究活動有七種出題方法", architect)
         self.assertIn("不是只有控變因一式", architect)
 
     def test_application_task_pattern_library(self):
@@ -500,10 +501,10 @@ class SkillSuiteTests(unittest.TestCase):
         names = [item["name"] for item in library["patterns"]]
         self.assertEqual(4, len(names))
         for expected in (
-            "生活決策題",
-            "同一件事三種做法評比",
-            "回家動手驗證步驟",
-            "一路追問四連問",
+            "拋真實購買問題，讓學生用規格做決定",
+            "同一件事列三種做法，讓學生評比高下",
+            "應用寫成回家做得到的驗證步驟",
+            "四個問題一路追問，直接拿去問 AI",
         ):
             self.assertIn(expected, names)
 
@@ -512,36 +513,42 @@ class SkillSuiteTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
         self.assertIn("應用活動題型庫", architect)
         self.assertIn("s9_application_task_patterns", architect)
-        self.assertIn("用本課術語寫成完整句", architect)
+        self.assertIn("應用活動有四種出題方法", architect)
+        self.assertIn("都用這課的新名詞講一遍", architect)
         self.assertIn("限一句、配白話翻譯", architect)
 
     def test_activity_frame_shared_rules(self):
-        # 春修版共同慣例：比大小兩變數方向相反、易混反例直接寫進活動框。
+        # 春修版共同慣例：比大小一個量大一個量小、最易搞混的例子直接寫進活動框。
         architect = (
             SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
         ).read_text(encoding="utf-8")
         self.assertIn("活動框共同守則", architect)
-        self.assertIn("兩個變數方向相反", architect)
-        self.assertIn("反例直接寫進活動框備註", architect)
+        self.assertIn("一個量大、另一個量小，才要動腦", architect)
+        self.assertIn("直接寫進活動框備註", architect)
 
     def test_observation_sentence_upgrades(self):
-        # S5 觀察句成對寫並預告活動現象；已背過但不理解的公式是合法起點。
+        # S5 觀察句成對寫並預告活動現象；學生背過但不懂的公式也可以當起點。
         architect = (
             SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
         ).read_text(encoding="utf-8")
         self.assertIn("觀察句成對寫", architect)
+        self.assertIn("有變化的、沒變化的都寫", architect)
         self.assertIn("觀察區就是活動的預告清單", architect)
+        self.assertIn("也可以當起點", architect)
         self.assertIn("把背誦變成理解", architect)
 
-    def test_change_and_stability_used_as_pair_without_relaxing_selection(self):
-        # 「改變與穩定」是一體兩面的一組，可正反並用；但大概念只選一個的判定不得鬆動。
+    def test_multiple_big_ideas_allowed_per_topic(self):
+        # 春修版：一主題的「大概念可以多個」（原子核的穩定＝「改變」和「穩定」並用）。
+        data = json.loads(
+            (ROOT / "data" / "big-ideas.json").read_text(encoding="utf-8")
+        )
+        self.assertIn("大概念可以多個", data["selection_rule"])
         architect = (
             SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
         ).read_text(encoding="utf-8")
-        self.assertIn("一體兩面的一組", architect)
-        self.assertIn("不算並列兩個大概念", architect)
-        self.assertIn("只選一個", architect)
-        self.assertIn("不使用主／副大概念", architect)
+        self.assertIn("大概念可以多個", architect)
+        self.assertNotIn("只選一個", architect)
+        self.assertNotIn("不並列第二個大概念", architect)
 
     def test_cross_agent_runtime_requires_user_iteration_decision(self):
         runtime = (ROOT / "references" / "cross-agent-runtime.md").read_text(
