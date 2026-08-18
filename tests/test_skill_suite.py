@@ -469,5 +469,60 @@ class SkillSuiteTests(unittest.TestCase):
         self.assertIn("不得自行把候選需求升級成共通規則", runtime)
 
 
+    def test_transfer_question_rubric_is_optional_and_low_load(self):
+        rubric = json.loads(
+            (ROOT / "data" / "rubrics" / "transfer-question.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        # 未選用不構成缺失，審查不得因未使用而扣分——選配定位是向後相容的前提。
+        self.assertEqual("optional-extension", rubric["status"])
+        self.assertEqual("S9", rubric["applies_after"])
+        self.assertIn("不得因未使用", rubric["source"]["note"])
+        # 課末不再燒腦，是 C2 與 S8 探究的根本分工。
+        limits = rubric["load_limits"]
+        self.assertEqual(2, limits["integrated_concepts_max"])
+        self.assertEqual(2, limits["reasoning_steps_max"])
+        self.assertEqual("Aha", limits["affect"])
+        rules = " ".join(rubric["iron_rules"])
+        for marker in ["類比性借用", "保結構", "〔待查證〕", "不引入新概念"]:
+            self.assertIn(marker, rules)
+        for field in [
+            "他領域情境",
+            "同構說明",
+            "保持的關係形狀",
+            "最少他領域背景",
+            "預期 Aha 點",
+        ]:
+            self.assertTrue(
+                any(field in item for item in rubric["required_fields"]),
+                field,
+            )
+
+    def test_transfer_question_keeps_entry_ban_and_closes_the_course(self):
+        rubric = json.loads(
+            (ROOT / "data" / "rubrics" / "transfer-question.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        # S6 入口禁令與 C2 出口遷移是不同槽位，混用會讓體驗情境脫離學生經驗。
+        slot = rubric["slot_rule"]
+        self.assertIn("S6", slot["entry"])
+        self.assertIn("不得由物理概念反推類比", slot["entry"])
+        self.assertIn("出口", slot["exit"])
+        self.assertIn("最後", rubric["placement"]["rule"])
+        self.assertIn("S9", rubric["placement"]["rule"])
+
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("跨域遷移題", architect)
+        self.assertIn("transfer-question.json", architect)
+        self.assertIn("類比性借用", architect)
+        self.assertIn("同構", architect)
+        self.assertIn("選配", architect)
+        # 入口禁令原文必須保留，不得因新增出口遷移而被稀釋。
+        self.assertIn("不得由物理概念反推類比", architect)
+
 if __name__ == "__main__":
     unittest.main()
