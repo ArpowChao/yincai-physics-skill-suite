@@ -499,12 +499,13 @@ class SkillSuiteTests(unittest.TestCase):
         library = rubric["s9_application_task_patterns"]
         self.assertIn("審查時不得因教材未使用某型而扣分", library["scope"])
         names = [item["name"] for item in library["patterns"]]
-        self.assertEqual(4, len(names))
+        self.assertEqual(5, len(names))
         for expected in (
             "拋真實購買問題，讓學生用規格做決定",
             "同一件事列三種做法，讓學生評比高下",
             "應用寫成回家做得到的驗證步驟",
             "四個問題一路追問，直接拿去問 AI",
+            "兩個看起來一樣的現象，問異同",
         ):
             self.assertIn(expected, names)
 
@@ -513,7 +514,56 @@ class SkillSuiteTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
         self.assertIn("應用活動題型庫", architect)
         self.assertIn("s9_application_task_patterns", architect)
-        self.assertIn("應用活動有四種出題方法", architect)
+        self.assertIn("應用活動有五種出題方法", architect)
+
+    def test_inquiry_evidence_source_rule_blocks_generated_video_for_measurement(self):
+        # 要從畫面讀數值、比例或間距時，證據不得來自生成式 AI 影片。
+        rubric = json.loads(
+            (ROOT / "data" / "rubrics" / "nine-step.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        rule = rubric["s8_inquiry_task_patterns"]["evidence_source_rule"]
+        self.assertIn("不看是哪一個 S 步驟", rule["rule"])
+        self.assertIn("不得使用生成式 AI 影片", rule["rule"])
+        for field in ("rationale", "fallback"):
+            self.assertTrue(rule[field].strip())
+        self.assertIn("伽利略", rule["examples"]["allowed"])
+        self.assertIn("雙狹縫", rule["examples"]["disallowed"])
+
+        # 思考實驗題型必須自己指回這條判準，否則會被讀成「AI 影片一律可用」。
+        patterns = {
+            item["id"]: item["rule"]
+            for item in rubric["s8_inquiry_task_patterns"]["patterns"]
+        }
+        self.assertIn(
+            "evidence_source_rule", patterns["thought-experiment-ai-video"]
+        )
+
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("evidence_source_rule", architect)
+        self.assertIn("不得使用生成式 AI 影片", architect)
+
+    def test_application_transfer_distance_rule(self):
+        # S9 的載體必須離開 S6／S8 的器材，只換光源或數字不算遷移。
+        rubric = json.loads(
+            (ROOT / "data" / "rubrics" / "nine-step.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        rule = rubric["s9_application_task_patterns"]["transfer_distance_rule"]
+        self.assertIn("必須離開", rule["rule"])
+        self.assertIn("不算遷移", rule["rule"])
+        self.assertTrue(rule["check"].strip())
+        self.assertTrue(rule["example"].strip())
+
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("transfer_distance_rule", architect)
+        self.assertIn("遷移距離", architect)
         self.assertIn("都用這課的新名詞講一遍", architect)
         self.assertIn("限一句、配白話翻譯", architect)
 
