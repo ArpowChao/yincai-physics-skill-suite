@@ -720,13 +720,20 @@ class SkillSuiteTests(unittest.TestCase):
         )
         contract = rubric["ai_video_storyboard_contract"]
         simple = contract["simple_storyboard"]
-        self.assertIn("一到兩句", simple["rule"])
-        self.assertIn("不寫秒數、鏡位、運鏡", simple["rule"])
+        self.assertIn("寫多寫少看媒材", simple["rule"])
+        self.assertIn("一個學生當主角", simple["rule"])
         self.assertEqual(
             ["動作或變因", "畫面上看到什麼", "媒材（括號標註）", "學生會說的話或追問"],
             simple["required_fields"],
         )
-        self.assertEqual(3, len(simple["examples"]))
+        self.assertEqual(4, len(simple["examples"]))
+        # 深度分媒材：實錄一句話，AI 影片要寫到能發包。
+        depth = simple["depth_by_medium"]
+        self.assertIn("不寫鏡位與運鏡", depth["學生自己動手"])
+        for medium in ["實驗影片", "模擬"]:
+            self.assertIn("一句話", depth[medium])
+        for field in ["場景與主角", "鏡頭怎麼移動", "關鍵物件的顏色", "要不要出現文字"]:
+            self.assertIn(field, depth["AI影片"])
         # 長表降為發包用，不是架構圖階段的必填。
         self.assertIn("發包拍攝時才展開", contract["detailed_fields_note"])
         self.assertIn("鏡位與構圖", contract["detailed_fields"])
@@ -739,6 +746,12 @@ class SkillSuiteTests(unittest.TestCase):
         self.assertIn("動作／變因 → 看到什麼（媒材）→ 學生會說的話或追問", architect)
         self.assertIn("寫得出來就拍得出來", architect)
         self.assertIn("架構圖階段不需要", architect)
+        # 寫多寫少看媒材：實錄一句話，AI 影片要寫到能發包。
+        self.assertIn("寫多寫少看媒材", architect)
+        for field in ["場景與主角", "鏡頭怎麼移動", "關鍵物件的顏色", "要不要出現文字"]:
+            with self.subTest(field=field):
+                self.assertIn(field, architect)
+        self.assertIn("AI 影片寫不到這個程度就發不了包", architect)
         # 媒材逐框決定，判準不自成一套。
         self.assertIn("不要整份預設成 AI 影片", architect)
         self.assertIn("evidence_source_rule", architect)
