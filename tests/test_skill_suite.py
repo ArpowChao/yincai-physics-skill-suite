@@ -478,6 +478,18 @@ class SkillSuiteTests(unittest.TestCase):
                 self.assertIn(item, text)
         self.assertIn("未取得答案前不生成架構", text)
 
+    def test_architect_outputs_architecture_not_a_lesson_plan(self):
+        # 只產架構：逐站教學流程、時間分配與課堂腳本交給下游。
+        text = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        contract = text.split("## Output contract", 1)[1].split(
+            "## Stop conditions", 1
+        )[0]
+        self.assertIn("只產架構，不產教案", contract)
+        self.assertNotIn("**教學流程**", contract)
+        self.assertIn("把架構寫成逐站教案或時間分配表", text)
+
     def test_project_defaults_are_not_asked(self):
         # 交付形式與影片長度是專案內定值，不再列入確認項目。
         text = (
