@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS_ROOT = ROOT / ".agents" / "skills"
 EXPECTED_SKILLS = {
+    "chatcut-teaching-rough-cut",
     "video-narration-postproduction",
     "prepare-tts-transcript",
     "zh-tw-proofread",
@@ -43,6 +44,35 @@ def parse_frontmatter(text: str) -> dict[str, str]:
 
 
 class SkillSuiteTests(unittest.TestCase):
+    def test_chatcut_rough_cut_keeps_v1541_protection_contract(self):
+        skill_dir = SKILLS_ROOT / "chatcut-teaching-rough-cut"
+        skill = (skill_dir / "SKILL.md").read_text(encoding="utf-8")
+        rules = (
+            skill_dir / "references" / "rough-cut-rules-v1.5.4.1.md"
+        ).read_text(encoding="utf-8")
+        template = (
+            skill_dir / "references" / "teacher-input-template-v1.5.4.1.md"
+        ).read_text(encoding="utf-8")
+        for marker in [
+            "V1.5.4.1 開場硬保護、檢核點精準保護與可追溯穩定版",
+            "Atomic Block",
+            "只保護最長 7 秒",
+            "可編輯時間線",
+            "SRT",
+        ]:
+            with self.subTest(marker=marker):
+                self.assertIn(marker, skill)
+        for marker in [
+            "先暫時保護原始素材前 15 秒",
+            "前 7 秒",
+            "不得只以音訊交叉淡化取代",
+            "不得重新剪輯整支影片",
+            "有效刪除清單",
+        ]:
+            with self.subTest(marker=marker):
+                self.assertIn(marker, rules)
+        self.assertIn("其他不可修改區段", template)
+
     def test_proofreader_accepts_pinned_github_terminology_evidence(self):
         skill = (
             SKILLS_ROOT / "zh-tw-proofread" / "SKILL.md"
