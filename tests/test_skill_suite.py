@@ -464,19 +464,35 @@ class SkillSuiteTests(unittest.TestCase):
 
 
     def test_architect_confirms_scope_before_generating(self):
-        # 交付形式與深度上限沒問就自己假設，是整份架構作廢的來源。
+        # 深度上限與先備沒問就自己假設，是整份架構作廢的來源。
         text = (
             SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
         ).read_text(encoding="utf-8")
         self.assertIn("開始前必須確認", text)
         for item in (
-            "交付形式",
+            "學習階段與程度基準",
             "先備單元",
             "最少要帶走的一句話",
         ):
             with self.subTest(item=item):
                 self.assertIn(item, text)
         self.assertIn("未取得答案前不生成架構", text)
+
+    def test_project_defaults_are_not_asked(self):
+        # 交付形式與影片長度是專案內定值，不再列入確認項目。
+        text = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("專案內定值（不要問）", text)
+        self.assertIn("交付形式：線上影片自學", text)
+        self.assertIn("影片總長：6 分鐘", text)
+        self.assertIn("預測型暫停點", text)
+        # 內定不等於寫死：使用者當次指定可覆寫。
+        self.assertIn("才依指定值覆寫", text)
+        # 確認清單只剩三項，不得再問節數或影片總長。
+        gate = text.split("## 開始前必須確認", 1)[1].split("## Workflow", 1)[0]
+        self.assertNotIn("節數", gate)
+        self.assertNotIn("影片總長", gate)
         self.assertIn("不以假設代替提問", text)
 
     def test_architect_offers_candidates_before_committing(self):
