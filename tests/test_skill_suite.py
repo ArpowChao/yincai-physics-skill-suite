@@ -478,6 +478,29 @@ class SkillSuiteTests(unittest.TestCase):
                 self.assertIn(item, text)
         self.assertIn("未取得答案前不生成架構", text)
 
+    def test_architect_outputs_fixed_nine_cell_table(self):
+        # 九格表是主產物，固定格式；九列一列都不能少。
+        text = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("九格架構表（固定格式）", text)
+        contract = text.split("## Output contract", 1)[1].split(
+            "## Stop conditions", 1
+        )[0]
+        self.assertIn("這是主產物", contract)
+        self.assertIn("欄位與列序不得更動", contract)
+        table = contract.split("### 九格架構表（固定格式）", 1)[1]
+        for step in [f"**S{n}**" for n in range(1, 10)]:
+            with self.subTest(step=step):
+                self.assertIn(step, table)
+        # 分鏡直接寫在 S6/S8/S9 的內容欄，不另開一段。
+        self.assertEqual(3, table.count("**簡單分鏡**（含媒材）"))
+        # 兩軸註記與「不是九個教學站」的防呆都要在。
+        self.assertIn("縱軸 Erickson", table)
+        self.assertIn("橫軸 Karplus", table)
+        self.assertIn("不得因為", table)
+        self.assertIn("九個教學站平鋪", table)
+
     def test_architect_outputs_architecture_not_a_lesson_plan(self):
         # 只產架構：逐站教學流程、時間分配與課堂腳本交給下游。
         text = (
