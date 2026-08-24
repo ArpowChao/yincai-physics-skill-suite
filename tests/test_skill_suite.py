@@ -496,8 +496,17 @@ class SkillSuiteTests(unittest.TestCase):
         # 分鏡直接寫在 S6/S8/S9 的內容欄，不另開一段。
         self.assertEqual(3, table.count("**簡單分鏡**（含媒材）"))
         # 兩軸註記與「不是九個教學站」的防呆都要在。
-        self.assertIn("縱軸 Erickson", table)
-        self.assertIn("橫軸 Karplus", table)
+        self.assertIn("縱軸（下→上）", table)
+        self.assertIn("橫軸（活動序）", table)
+        # 白話欄位：表格列本身不得再用鏈/錨定術語（散文裡的禁令句不算）。
+        rows = [ln for ln in table.splitlines() if ln.startswith("| **S")]
+        self.assertEqual(9, len(rows))
+        for row in rows:
+            with self.subTest(row=row[:12]):
+                self.assertNotIn("鏈", row)
+                self.assertNotIn("錨定", row)
+        for plain in ["**體驗活動**", "**探究活動**", "**應用活動**", "不對學生講"]:
+            self.assertIn(plain, table)
         self.assertIn("不得因為", table)
         self.assertIn("九個教學站平鋪", table)
 
@@ -733,6 +742,12 @@ class SkillSuiteTests(unittest.TestCase):
         # 媒材逐框決定，判準不自成一套。
         self.assertIn("不要整份預設成 AI 影片", architect)
         self.assertIn("evidence_source_rule", architect)
+        # 分鏡是學生當主角的故事，不是產品型錄式旁白。
+        self.assertIn("分鏡要寫成一個學生當主角的故事", architect)
+        for beat in ["一個學生", "他正在做的事", "他看到了什麼", "他心裡冒出來的那個問題"]:
+            with self.subTest(beat=beat):
+                self.assertIn(beat, architect)
+        self.assertIn("產品型錄", architect)
 
     def test_change_and_stability_is_one_pair_not_two_big_ideas(self):
         # 春對原子核案例的處理：一體兩面、原理句可正反並用，但不算並列兩個大概念。
