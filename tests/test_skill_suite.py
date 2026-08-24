@@ -451,7 +451,8 @@ class SkillSuiteTests(unittest.TestCase):
         architect = (
             SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
         ).read_text(encoding="utf-8")
-        self.assertIn("AI 影片畫面規格卡", architect)
+        # 標題不再冠 AI：媒材是第 0 欄的決定，不是預設。
+        self.assertIn("影片畫面規格卡", architect)
         self.assertIn("S6 體驗活動、S8 探究活動、S9 應用活動各輸出一張", architect)
         self.assertIn("不使用理由、替代表徵", architect)
 
@@ -630,6 +631,63 @@ class SkillSuiteTests(unittest.TestCase):
         self.assertNotIn("大概念可以多個", architect)
         self.assertIn("只選一個", architect)
         self.assertIn("由使用者選定", architect)
+
+    def test_spring_rules_trimmed_from_the_slide_set_are_restored(self):
+        # f647a52 的 author trim 砍掉只出現在春總表、未出現在被挑出投影片上的規則。
+        # 團隊判定以春的版本為準，這些規則必須留在 SKILL.md。
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        for marker in [
+            # 備忘稿殘稿——雙狹縫那份留著別課的蒸發備忘稿，就是這條在擋。
+            "備忘稿裡別課的殘稿一定要清掉",
+            "一框只放一個情境",
+            # 題目與教師答案同框
+            "題目與教師參考答案同框",
+            "要控制的變因",
+            # 撞場景整塊換並升一級
+            "整塊換到新領域並升一級",
+            "升級對象",
+            # 三活動連續編號
+            "三個活動依教學順序連續編號",
+            # S3 知識身分與姊妹課對仗
+            "註明知識身分",
+            "姊妹課要寫成一正一反",
+            # 原理句條件反查
+            "S3 原理句的每個條件都要有活動情境演到",
+            # 看不見的主題用巨觀比喻貫穿
+            "巨觀生活比喻當觀察對象",
+            "不得中途更換",
+        ]:
+            with self.subTest(marker=marker):
+                self.assertIn(marker, architect)
+
+    def test_video_spec_card_decides_medium_before_shot_fields(self):
+        # 春的「寫成拍得出來的分鏡」曾被判定為既有規格卡已涵蓋而未納入。
+        # 既有規格卡只問「怎麼拍」，從未問「該不該是 AI 生成」——補成第 0 欄。
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("第 0 欄先答媒材", architect)
+        for medium in ["學生自己動手", "實錄實驗影片", "有物理引擎的模擬", "AI 生成影片"]:
+            with self.subTest(medium=medium):
+                self.assertIn(medium, architect)
+        self.assertIn("不要整份預設成 AI 影片", architect)
+        self.assertIn("拍得出來", architect)
+        # 媒材判準不自成一套，指回既有的證據來源規則。
+        self.assertIn("evidence_source_rule", architect)
+
+    def test_change_and_stability_is_one_pair_not_two_big_ideas(self):
+        # 春對原子核案例的處理：一體兩面、原理句可正反並用，但不算並列兩個大概念。
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("一體兩面的一組", architect)
+        self.assertIn("原理句可正反並用", architect)
+        self.assertIn("這不算並列兩個大概念", architect)
+        # 原子核正是被 13b5150 誤讀成需要兩個大概念的案例。
+        self.assertIn("原子核就不穩定而分裂", architect)
+        self.assertIn("只選一個", architect)
 
     def test_lens_selection_projects_primitives_onto_the_seven_lenses(self):
         # 選鏡不是憑印象挑：先判結構原語，再投影到七項之一。
