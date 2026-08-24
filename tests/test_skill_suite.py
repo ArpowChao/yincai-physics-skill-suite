@@ -446,15 +446,15 @@ class SkillSuiteTests(unittest.TestCase):
             "學生觀看任務",
             "不可直接揭露的答案",
         ]:
-            self.assertIn(field, contract["required_fields"])
+            # 這些欄位降為發包拍攝用；架構圖階段寫 simple_storyboard。
+            self.assertIn(field, contract["detailed_fields"])
 
         architect = (
             SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
         ).read_text(encoding="utf-8")
-        # 標題不再冠 AI：媒材是第 0 欄的決定，不是預設。
-        self.assertIn("影片畫面規格卡", architect)
-        self.assertIn("S6 體驗活動、S8 探究活動、S9 應用活動各輸出一張", architect)
-        self.assertIn("不使用理由、替代表徵", architect)
+        self.assertIn("簡單分鏡（S6／S8／S9 各一則）", architect)
+        self.assertIn("不用影片的活動一樣寫這一則", architect)
+        self.assertIn("替代表徵", architect)
 
     def test_architect_states_stage_baseline(self):
         text = (
@@ -662,19 +662,36 @@ class SkillSuiteTests(unittest.TestCase):
             with self.subTest(marker=marker):
                 self.assertIn(marker, architect)
 
-    def test_video_spec_card_decides_medium_before_shot_fields(self):
-        # 春的「寫成拍得出來的分鏡」曾被判定為既有規格卡已涵蓋而未納入。
-        # 既有規格卡只問「怎麼拍」，從未問「該不該是 AI 生成」——補成第 0 欄。
+    def test_storyboard_stays_simple_at_architecture_stage(self):
+        # 第 18 招：分鏡就寫一到兩句，像春修版那樣，不在架構圖階段填長表。
+        rubric = json.loads(
+            (ROOT / "data" / "rubrics" / "nine-step.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        contract = rubric["ai_video_storyboard_contract"]
+        simple = contract["simple_storyboard"]
+        self.assertIn("一到兩句", simple["rule"])
+        self.assertIn("不寫秒數、鏡位、運鏡", simple["rule"])
+        self.assertEqual(
+            ["動作或變因", "畫面上看到什麼", "媒材（括號標註）", "學生會說的話或追問"],
+            simple["required_fields"],
+        )
+        self.assertEqual(3, len(simple["examples"]))
+        # 長表降為發包用，不是架構圖階段的必填。
+        self.assertIn("發包拍攝時才展開", contract["detailed_fields_note"])
+        self.assertIn("鏡位與構圖", contract["detailed_fields"])
+        self.assertNotIn("鏡位與構圖", simple["required_fields"])
+
         architect = (
             SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
         ).read_text(encoding="utf-8")
-        self.assertIn("第 0 欄先答媒材", architect)
-        for medium in ["學生自己動手", "實錄實驗影片", "有物理引擎的模擬", "AI 生成影片"]:
-            with self.subTest(medium=medium):
-                self.assertIn(medium, architect)
+        self.assertIn("簡單分鏡", architect)
+        self.assertIn("動作／變因 → 看到什麼（媒材）→ 學生會說的話或追問", architect)
+        self.assertIn("寫得出來就拍得出來", architect)
+        self.assertIn("架構圖階段不需要", architect)
+        # 媒材逐框決定，判準不自成一套。
         self.assertIn("不要整份預設成 AI 影片", architect)
-        self.assertIn("拍得出來", architect)
-        # 媒材判準不自成一套，指回既有的證據來源規則。
         self.assertIn("evidence_source_rule", architect)
 
     def test_change_and_stability_is_one_pair_not_two_big_ideas(self):
