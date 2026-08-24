@@ -631,6 +631,76 @@ class SkillSuiteTests(unittest.TestCase):
         self.assertIn("只選一個", architect)
         self.assertIn("由使用者選定", architect)
 
+    def test_lens_selection_projects_primitives_onto_the_seven_lenses(self):
+        # 選鏡不是憑印象挑：先判結構原語，再投影到七項之一。
+        lens = json.loads(
+            (ROOT / "data" / "rubrics" / "lens-selection.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        valid = {
+            item["id"]
+            for item in json.loads(
+                (ROOT / "data" / "big-ideas.json").read_text(encoding="utf-8")
+            )["ideas"]
+        }
+        families = {f["id"] for f in lens["primitive_families"]}
+        self.assertEqual(
+            {"graph-topology", "image-schema", "proportion-quantity"}, families
+        )
+        seen = set()
+        for family in lens["primitive_families"]:
+            self.assertTrue(family["source"].strip())
+            for prim in family["primitives"]:
+                with self.subTest(primitive=prim["id"]):
+                    self.assertTrue(prim["lenses"], "每個原語都要投影到透鏡")
+                    # 投影目標必須是 big-ideas.json 現有的七項，不得出現「循環」「模型」。
+                    for lens_id in prim["lenses"]:
+                        self.assertIn(lens_id, valid)
+                    seen.update(prim["lenses"])
+                    if "pole" in prim:
+                        # pole 只在「改變與穩定」合併後用來保留原本強調的那一端。
+                        self.assertIn("change-and-stability", prim["lenses"])
+                        self.assertIn(prim["pole"], {"改變", "穩定"})
+        # 七項都要有原語投影得到，否則某支透鏡永遠選不出來。
+        self.assertEqual(valid, seen)
+
+    def test_lens_selection_keeps_single_choice_and_layer_separation(self):
+        lens = json.loads(
+            (ROOT / "data" / "rubrics" / "lens-selection.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        # 來源文件允許 1~2 個透鏡，本 repo 只採用一個。
+        self.assertIn("只選一個", lens["selection_rule"])
+        self.assertIn("1~2", lens["selection_rule"])
+        self.assertIn("使用者選定", lens["selection_rule"])
+        # 三層機制不同，選鏡不是 Gentner 映射。
+        layers = {layer["id"]: layer for layer in lens["layer_model"]["layers"]}
+        self.assertEqual(
+            {"structure-primitive", "conceptual-lens", "cross-domain-mapping"},
+            set(layers),
+        )
+        self.assertIn("不是 Gentner", layers["conceptual-lens"]["not"])
+        self.assertEqual(
+            "transfer-question.json", layers["cross-domain-mapping"]["see"]
+        )
+        # 八透鏡壓回七項的對映必須寫明。
+        remapped = {
+            item["source"]: item["target"]
+            for item in lens["name_reconciliation"]["remapped"]
+        }
+        self.assertEqual("order", remapped["循環"])
+        self.assertEqual("system", remapped["模型"])
+        self.assertIn("不是第二個大概念", lens["name_reconciliation"]["pole_note"])
+
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("lens-selection.json", architect)
+        self.assertIn("先判結構原語", architect)
+        self.assertIn("不得跳過原語直接挑透鏡", architect)
+
     def test_change_and_stability_is_one_big_idea_not_two(self):
         # 「改變與穩定」是七項中的一項；拆成兩項會把七項誤算成八項。
         data = json.loads(

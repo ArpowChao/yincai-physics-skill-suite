@@ -85,6 +85,7 @@ def validate() -> list[str]:
         ROOT / "data" / "rubrics" / "nine-step.json",
         ROOT / "data" / "rubrics" / "literacy-eight-criteria.json",
         ROOT / "data" / "rubrics" / "transfer-question.json",
+        ROOT / "data" / "rubrics" / "lens-selection.json",
         ROOT / "data" / "schemas" / "review-record.schema.json",
         ROOT / "data" / "schemas" / "ppt-review-result.schema.json",
         ROOT / "data" / "terminology" / "physics-terms.json",

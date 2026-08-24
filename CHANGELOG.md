@@ -10,6 +10,30 @@
 
 本專案使用語意化版本概念記錄可攜式 Skill Suite 的變更。
 
+## 1.12.0 — 2026-08-24
+
+補上 S2 選鏡的中間層。原本 `physics-one-page-architect` 只說「從七個大概念中選
+一個」，沒有說**憑什麼選**；現在先判結構原語，再投影到大概念。
+
+- 新增 `data/rubrics/lens-selection.json`：三族結構原語各一張對照表，每個原語
+  的 `lenses` 欄指向 `big-ideas.json` 的七項——圖論拓撲（Kemp & Tenenbaum 2008,
+  PNAS 105:10687）、動態／意象圖式（Johnson 1987；Talmy 力動態）、比例／數量
+  （NGSS scale, proportion, quantity）。
+- 明確三層機制不得互相取代：**結構原語 → 概念透鏡 → 跨域映射**。中間層是
+  Erickson CBCI 的 conceptual lens（抽象化與上位分類），**不是** Gentner
+  類比映射；跨域映射那一層是 1.9.0 的 `transfer-question.json`。
+- 來源文件的**八透鏡壓回七項**，對映寫進 `name_reconciliation`：「改變」「穩定」
+  合併為 `change-and-stability`；「結構」正名為 `structure-and-function`；
+  七項中不存在的「**循環**」歸 `order` 次序、「**模型**」歸 `system` 系統。
+- 來源文件允許「選定 1~2 個概念透鏡」，**本 repo 不採用**——每個單元仍只選一個，
+  未選中的候選改寫成區辨理由。合併「改變與穩定」後 BALANCE 與 FORCE 會指向同一
+  透鏡，各原語保留 `pole` 欄記錄原本強調的那一端，**僅供寫區辨理由，不是第二個
+  大概念**。
+- `SKILL.md` 步驟 3 改寫為四小步（判原語 → 投影候選 → 使用者選定一個 → 展開
+  套路），Output contract 的核心設計增列「判定的結構原語與取捨」，common
+  mistakes 加四條；`big-ideas.json` 增列 `selection_method` 指回本檔。
+- `VERSION` 檔 1.11.0 → 1.12.0。
+
 ## 1.11.0 — 2026-08-24
 
 - 新增 `chatcut-teaching-rough-cut`，以 V1.5.4.1 的開場硬保護、Atomic Block、精準
