@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS_ROOT = ROOT / ".agents" / "skills"
 EXPECTED_SKILLS = {
+    "chatcut-teaching-rough-cut",
     "video-narration-postproduction",
     "prepare-tts-transcript",
     "zh-tw-proofread",
@@ -43,6 +44,35 @@ def parse_frontmatter(text: str) -> dict[str, str]:
 
 
 class SkillSuiteTests(unittest.TestCase):
+    def test_chatcut_rough_cut_keeps_v1541_protection_contract(self):
+        skill_dir = SKILLS_ROOT / "chatcut-teaching-rough-cut"
+        skill = (skill_dir / "SKILL.md").read_text(encoding="utf-8")
+        rules = (
+            skill_dir / "references" / "rough-cut-rules-v1.5.4.1.md"
+        ).read_text(encoding="utf-8")
+        template = (
+            skill_dir / "references" / "teacher-input-template-v1.5.4.1.md"
+        ).read_text(encoding="utf-8")
+        for marker in [
+            "V1.5.4.1 開場硬保護、檢核點精準保護與可追溯穩定版",
+            "Atomic Block",
+            "只保護最長 7 秒",
+            "可編輯時間線",
+            "SRT",
+        ]:
+            with self.subTest(marker=marker):
+                self.assertIn(marker, skill)
+        for marker in [
+            "先暫時保護原始素材前 15 秒",
+            "前 7 秒",
+            "不得只以音訊交叉淡化取代",
+            "不得重新剪輯整支影片",
+            "有效刪除清單",
+        ]:
+            with self.subTest(marker=marker):
+                self.assertIn(marker, rules)
+        self.assertIn("其他不可修改區段", template)
+
     def test_proofreader_accepts_pinned_github_terminology_evidence(self):
         skill = (
             SKILLS_ROOT / "zh-tw-proofread" / "SKILL.md"
@@ -416,14 +446,15 @@ class SkillSuiteTests(unittest.TestCase):
             "學生觀看任務",
             "不可直接揭露的答案",
         ]:
-            self.assertIn(field, contract["required_fields"])
+            # 這些欄位降為發包拍攝用；架構圖階段寫 simple_storyboard。
+            self.assertIn(field, contract["detailed_fields"])
 
         architect = (
             SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
         ).read_text(encoding="utf-8")
-        self.assertIn("AI 影片畫面規格卡", architect)
-        self.assertIn("S6 體驗活動、S8 探究活動、S9 應用活動各輸出一張", architect)
-        self.assertIn("不使用理由、替代表徵", architect)
+        self.assertIn("簡單分鏡（S6／S8／S9 各一則）", architect)
+        self.assertIn("不用影片的活動一樣寫這一則", architect)
+        self.assertIn("替代表徵", architect)
 
     def test_architect_states_stage_baseline(self):
         text = (
@@ -433,19 +464,79 @@ class SkillSuiteTests(unittest.TestCase):
 
 
     def test_architect_confirms_scope_before_generating(self):
-        # 交付形式與深度上限沒問就自己假設，是整份架構作廢的來源。
+        # 深度上限與先備沒問就自己假設，是整份架構作廢的來源。
         text = (
             SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
         ).read_text(encoding="utf-8")
         self.assertIn("開始前必須確認", text)
         for item in (
-            "交付形式",
+            "學習階段與程度基準",
             "先備單元",
             "最少要帶走的一句話",
         ):
             with self.subTest(item=item):
                 self.assertIn(item, text)
         self.assertIn("未取得答案前不生成架構", text)
+
+    def test_architect_outputs_fixed_nine_cell_table(self):
+        # 九格表是主產物，固定格式；九列一列都不能少。
+        text = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("九格架構表（固定格式）", text)
+        contract = text.split("## Output contract", 1)[1].split(
+            "## Stop conditions", 1
+        )[0]
+        self.assertIn("這是主產物", contract)
+        self.assertIn("欄位與列序不得更動", contract)
+        table = contract.split("### 九格架構表（固定格式）", 1)[1]
+        for step in [f"**S{n}**" for n in range(1, 10)]:
+            with self.subTest(step=step):
+                self.assertIn(step, table)
+        # 分鏡直接寫在 S6/S8/S9 的內容欄，不另開一段。
+        self.assertEqual(3, table.count("**簡單分鏡**（含媒材）"))
+        # 兩軸註記與「不是九個教學站」的防呆都要在。
+        self.assertIn("縱軸（下→上）", table)
+        self.assertIn("橫軸（活動序）", table)
+        # 白話欄位：表格列本身不得再用鏈/錨定術語（散文裡的禁令句不算）。
+        rows = [ln for ln in table.splitlines() if ln.startswith("| **S")]
+        self.assertEqual(9, len(rows))
+        for row in rows:
+            with self.subTest(row=row[:12]):
+                self.assertNotIn("鏈", row)
+                self.assertNotIn("錨定", row)
+        for plain in ["**體驗活動**", "**探究活動**", "**應用活動**", "不對學生講"]:
+            self.assertIn(plain, table)
+        self.assertIn("不得因為", table)
+        self.assertIn("九個教學站平鋪", table)
+
+    def test_architect_outputs_architecture_not_a_lesson_plan(self):
+        # 只產架構：逐站教學流程、時間分配與課堂腳本交給下游。
+        text = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        contract = text.split("## Output contract", 1)[1].split(
+            "## Stop conditions", 1
+        )[0]
+        self.assertIn("只產架構，不產教案", contract)
+        self.assertNotIn("**教學流程**", contract)
+        self.assertIn("把架構寫成逐站教案或時間分配表", text)
+
+    def test_project_defaults_are_not_asked(self):
+        # 交付形式與影片長度是專案內定值，不再列入確認項目。
+        text = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("專案內定值（不要問）", text)
+        self.assertIn("交付形式：線上影片自學", text)
+        self.assertIn("影片總長：6 分鐘", text)
+        self.assertIn("預測型暫停點", text)
+        # 內定不等於寫死：使用者當次指定可覆寫。
+        self.assertIn("才依指定值覆寫", text)
+        # 確認清單只剩三項，不得再問節數或影片總長。
+        gate = text.split("## 開始前必須確認", 1)[1].split("## Workflow", 1)[0]
+        self.assertNotIn("節數", gate)
+        self.assertNotIn("影片總長", gate)
         self.assertIn("不以假設代替提問", text)
 
     def test_architect_offers_candidates_before_committing(self):
@@ -459,6 +550,321 @@ class SkillSuiteTests(unittest.TestCase):
         self.assertIn("不得由物理概念反推類比", text)
         self.assertIn("未選定前不進入後續步驟", text)
 
+    def test_inquiry_task_pattern_library(self):
+        # 春修版證據：探究不是只有控變因一式，共歸納出七種題型。
+        rubric = json.loads(
+            (ROOT / "data" / "rubrics" / "nine-step.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        library = rubric["s8_inquiry_task_patterns"]
+        self.assertIn("審查時不得因教材未使用某型而扣分", library["scope"])
+        names = [item["name"] for item in library["patterns"]]
+        self.assertEqual(7, len(names))
+        for expected in (
+            "輪流固定一個變數，最後讓數字打架",
+            "公式是選出來的，不是背出來的",
+            "故意出一組比不出來的",
+            "把數據畫線延伸出去",
+            "做不出的實驗，就用想的＋AI 影片演出來",
+            "反著問——怎麼做到、怎麼弄壞",
+            "查真實數據，還要教怎麼查",
+        ):
+            self.assertIn(expected, names)
+
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("探究活動題型庫", architect)
+        self.assertIn("s8_inquiry_task_patterns", architect)
+        self.assertIn("探究活動有七種出題方法", architect)
+        self.assertIn("不是只有控變因一式", architect)
+
+    def test_application_task_pattern_library(self):
+        # 春修版證據：應用另有四種題型，且不得只列裝置名稱。
+        rubric = json.loads(
+            (ROOT / "data" / "rubrics" / "nine-step.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        library = rubric["s9_application_task_patterns"]
+        self.assertIn("審查時不得因教材未使用某型而扣分", library["scope"])
+        names = [item["name"] for item in library["patterns"]]
+        self.assertEqual(5, len(names))
+        for expected in (
+            "拋真實購買問題，讓學生用規格做決定",
+            "同一件事列三種做法，讓學生評比高下",
+            "應用寫成回家做得到的驗證步驟",
+            "四個問題一路追問，直接拿去問 AI",
+            "兩個看起來一樣的現象，問異同",
+        ):
+            self.assertIn(expected, names)
+
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("應用活動題型庫", architect)
+        self.assertIn("s9_application_task_patterns", architect)
+        self.assertIn("應用活動有五種出題方法", architect)
+
+    def test_inquiry_evidence_source_rule_blocks_generated_video_for_measurement(self):
+        # 要從畫面讀數值、比例或間距時，證據不得來自生成式 AI 影片。
+        rubric = json.loads(
+            (ROOT / "data" / "rubrics" / "nine-step.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        rule = rubric["s8_inquiry_task_patterns"]["evidence_source_rule"]
+        self.assertIn("不看是哪一個 S 步驟", rule["rule"])
+        self.assertIn("不得使用生成式 AI 影片", rule["rule"])
+        for field in ("rationale", "fallback"):
+            self.assertTrue(rule[field].strip())
+        self.assertIn("伽利略", rule["examples"]["allowed"])
+        self.assertIn("雙狹縫", rule["examples"]["disallowed"])
+
+        # 思考實驗題型必須自己指回這條判準，否則會被讀成「AI 影片一律可用」。
+        patterns = {
+            item["id"]: item["rule"]
+            for item in rubric["s8_inquiry_task_patterns"]["patterns"]
+        }
+        self.assertIn(
+            "evidence_source_rule", patterns["thought-experiment-ai-video"]
+        )
+
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("evidence_source_rule", architect)
+        self.assertIn("不得使用生成式 AI 影片", architect)
+
+    def test_application_transfer_distance_rule(self):
+        # S9 的載體必須離開 S6／S8 的器材，只換光源或數字不算遷移。
+        rubric = json.loads(
+            (ROOT / "data" / "rubrics" / "nine-step.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        rule = rubric["s9_application_task_patterns"]["transfer_distance_rule"]
+        self.assertIn("必須離開", rule["rule"])
+        self.assertIn("不算遷移", rule["rule"])
+        self.assertTrue(rule["check"].strip())
+        self.assertTrue(rule["example"].strip())
+
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("transfer_distance_rule", architect)
+        self.assertIn("遷移距離", architect)
+        self.assertIn("都用這課的新名詞講一遍", architect)
+        self.assertIn("限一句、配白話翻譯", architect)
+
+    def test_activity_frame_shared_rules(self):
+        # 春修版共同慣例：比大小一個量大一個量小、最易搞混的例子直接寫進活動框。
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("活動框共同守則", architect)
+        self.assertIn("一個量大、另一個量小，才要動腦", architect)
+        self.assertIn("直接寫進活動框備註", architect)
+
+    def test_observation_sentence_upgrades(self):
+        # S5 觀察句成對寫並預告活動現象；學生背過但不懂的公式也可以當起點。
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("觀察句成對寫", architect)
+        self.assertIn("有變化的、沒變化的都寫", architect)
+        self.assertIn("觀察區就是活動的預告清單", architect)
+        self.assertIn("也可以當起點", architect)
+        self.assertIn("把背誦變成理解", architect)
+
+    def test_single_big_idea_per_topic_selected_by_user(self):
+        # 每個單元只能選一個大概念；生成端給選項，由使用者選定。
+        data = json.loads(
+            (ROOT / "data" / "big-ideas.json").read_text(encoding="utf-8")
+        )
+        self.assertNotIn("大概念可以多個", data["selection_rule"])
+        self.assertIn("由使用者選定", data["selection_rule"])
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertNotIn("大概念可以多個", architect)
+        self.assertIn("只選一個", architect)
+        self.assertIn("由使用者選定", architect)
+
+    def test_spring_slide_trim_is_upheld(self):
+        # 主要負責人裁定：只採用 f647a52 trim 後留在投影片上的 9 條。
+        # 只出現在春總表、未出現在投影片上的規則不進 SKILL.md。
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        for marker in [
+            "備忘稿裡別課的殘稿一定要清掉",
+            "題目與教師參考答案同框",
+            "整塊換到新領域並升一級",
+            "三個活動依教學順序連續編號",
+            "註明知識身分",
+            "姊妹課要寫成一正一反",
+            "S3 原理句的每個條件都要有活動情境演到",
+            "巨觀生活比喻當觀察對象",
+        ]:
+            with self.subTest(marker=marker):
+                self.assertNotIn(marker, architect)
+
+    def test_storyboard_stays_simple_at_architecture_stage(self):
+        # 第 18 招：分鏡就寫一到兩句，像春修版那樣，不在架構圖階段填長表。
+        rubric = json.loads(
+            (ROOT / "data" / "rubrics" / "nine-step.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        contract = rubric["ai_video_storyboard_contract"]
+        simple = contract["simple_storyboard"]
+        self.assertIn("寫多寫少看媒材", simple["rule"])
+        self.assertIn("一個學生當主角", simple["rule"])
+        self.assertEqual(
+            ["動作或變因", "畫面上看到什麼", "媒材（括號標註）", "學生會說的話或追問"],
+            simple["required_fields"],
+        )
+        self.assertEqual(4, len(simple["examples"]))
+        # 深度分媒材：實錄一句話，AI 影片要寫到能發包。
+        depth = simple["depth_by_medium"]
+        self.assertIn("不寫鏡位與運鏡", depth["學生自己動手"])
+        for medium in ["實驗影片", "模擬"]:
+            self.assertIn("一句話", depth[medium])
+        for field in ["場景與主角", "鏡頭怎麼移動", "關鍵物件的顏色", "要不要出現文字"]:
+            self.assertIn(field, depth["AI影片"])
+        # 長表降為發包用，不是架構圖階段的必填。
+        self.assertIn("發包拍攝時才展開", contract["detailed_fields_note"])
+        self.assertIn("鏡位與構圖", contract["detailed_fields"])
+        self.assertNotIn("鏡位與構圖", simple["required_fields"])
+
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("簡單分鏡", architect)
+        self.assertIn("動作／變因 → 看到什麼（媒材）→ 學生會說的話或追問", architect)
+        self.assertIn("寫得出來就拍得出來", architect)
+        self.assertIn("架構圖階段不需要", architect)
+        # 寫多寫少看媒材：實錄一句話，AI 影片要寫到能發包。
+        self.assertIn("寫多寫少看媒材", architect)
+        for field in ["場景與主角", "鏡頭怎麼移動", "關鍵物件的顏色", "要不要出現文字"]:
+            with self.subTest(field=field):
+                self.assertIn(field, architect)
+        self.assertIn("AI 影片寫不到這個程度就發不了包", architect)
+        # 媒材逐框決定，判準不自成一套。
+        self.assertIn("不要整份預設成 AI 影片", architect)
+        self.assertIn("evidence_source_rule", architect)
+        # 分鏡是學生當主角的故事，不是產品型錄式旁白。
+        self.assertIn("分鏡要寫成一個學生當主角的故事", architect)
+        for beat in ["一個學生", "他正在做的事", "他看到了什麼", "他心裡冒出來的那個問題"]:
+            with self.subTest(beat=beat):
+                self.assertIn(beat, architect)
+        self.assertIn("產品型錄", architect)
+
+    def test_change_and_stability_is_one_pair_not_two_big_ideas(self):
+        # 春對原子核案例的處理：一體兩面、原理句可正反並用，但不算並列兩個大概念。
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("一體兩面的一組", architect)
+        self.assertIn("原理句可正反並用", architect)
+        self.assertIn("這不算並列兩個大概念", architect)
+        # 原子核正是被 13b5150 誤讀成需要兩個大概念的案例。
+        self.assertIn("原子核就不穩定而分裂", architect)
+        self.assertIn("只選一個", architect)
+
+    def test_lens_selection_projects_primitives_onto_the_seven_lenses(self):
+        # 選鏡不是憑印象挑：先判結構原語，再投影到七項之一。
+        lens = json.loads(
+            (ROOT / "data" / "rubrics" / "lens-selection.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        valid = {
+            item["id"]
+            for item in json.loads(
+                (ROOT / "data" / "big-ideas.json").read_text(encoding="utf-8")
+            )["ideas"]
+        }
+        families = {f["id"] for f in lens["primitive_families"]}
+        self.assertEqual(
+            {"graph-topology", "image-schema", "proportion-quantity"}, families
+        )
+        seen = set()
+        for family in lens["primitive_families"]:
+            self.assertTrue(family["source"].strip())
+            for prim in family["primitives"]:
+                with self.subTest(primitive=prim["id"]):
+                    self.assertTrue(prim["lenses"], "每個原語都要投影到透鏡")
+                    # 投影目標必須是 big-ideas.json 現有的七項，不得出現「循環」「模型」。
+                    for lens_id in prim["lenses"]:
+                        self.assertIn(lens_id, valid)
+                    seen.update(prim["lenses"])
+                    if "pole" in prim:
+                        # pole 只在「改變與穩定」合併後用來保留原本強調的那一端。
+                        self.assertIn("change-and-stability", prim["lenses"])
+                        self.assertIn(prim["pole"], {"改變", "穩定"})
+        # 七項都要有原語投影得到，否則某支透鏡永遠選不出來。
+        self.assertEqual(valid, seen)
+
+    def test_lens_selection_keeps_single_choice_and_layer_separation(self):
+        lens = json.loads(
+            (ROOT / "data" / "rubrics" / "lens-selection.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        # 來源文件允許 1~2 個透鏡，本 repo 只採用一個。
+        self.assertIn("只選一個", lens["selection_rule"])
+        self.assertIn("1~2", lens["selection_rule"])
+        self.assertIn("使用者選定", lens["selection_rule"])
+        # 三層機制不同，選鏡不是 Gentner 映射。
+        layers = {layer["id"]: layer for layer in lens["layer_model"]["layers"]}
+        self.assertEqual(
+            {"structure-primitive", "conceptual-lens", "cross-domain-mapping"},
+            set(layers),
+        )
+        self.assertIn("不是 Gentner", layers["conceptual-lens"]["not"])
+        self.assertEqual(
+            "transfer-question.json", layers["cross-domain-mapping"]["see"]
+        )
+        # 八透鏡壓回七項的對映必須寫明。
+        remapped = {
+            item["source"]: item["target"]
+            for item in lens["name_reconciliation"]["remapped"]
+        }
+        self.assertEqual("order", remapped["循環"])
+        self.assertEqual("system", remapped["模型"])
+        self.assertIn("不是第二個大概念", lens["name_reconciliation"]["pole_note"])
+
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("lens-selection.json", architect)
+        self.assertIn("先判結構原語", architect)
+        self.assertIn("不得跳過原語直接挑透鏡", architect)
+
+    def test_change_and_stability_is_one_big_idea_not_two(self):
+        # 「改變與穩定」是七項中的一項；拆成兩項會把七項誤算成八項。
+        data = json.loads(
+            (ROOT / "data" / "big-ideas.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(7, len(data["ideas"]))
+        self.assertIn("「改變與穩定」是一項", data["selection_rule"])
+        for text, label in (
+            (data["source"]["note"], "big-ideas.json note"),
+            (
+                (SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md").read_text(
+                    encoding="utf-8"
+                ),
+                "SKILL.md",
+            ),
+        ):
+            with self.subTest(source=label):
+                # 「改變」和「穩定」並列即為拆項寫法。
+                self.assertNotIn("「改變」和「穩定」", text)
+                self.assertIn("改變與穩定", text)
+
     def test_cross_agent_runtime_requires_user_iteration_decision(self):
         runtime = (ROOT / "references" / "cross-agent-runtime.md").read_text(
             encoding="utf-8"
@@ -468,6 +874,61 @@ class SkillSuiteTests(unittest.TestCase):
         self.assertIn("未取得選擇前", runtime)
         self.assertIn("不得自行把候選需求升級成共通規則", runtime)
 
+
+    def test_transfer_question_rubric_is_optional_and_low_load(self):
+        rubric = json.loads(
+            (ROOT / "data" / "rubrics" / "transfer-question.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        # 未選用不構成缺失，審查不得因未使用而扣分——選配定位是向後相容的前提。
+        self.assertEqual("optional-extension", rubric["status"])
+        self.assertEqual("S9", rubric["applies_after"])
+        self.assertIn("不得因未使用", rubric["source"]["note"])
+        # 課末不再燒腦，是 C2 與 S8 探究的根本分工。
+        limits = rubric["load_limits"]
+        self.assertEqual(2, limits["integrated_concepts_max"])
+        self.assertEqual(2, limits["reasoning_steps_max"])
+        self.assertEqual("Aha", limits["affect"])
+        rules = " ".join(rubric["iron_rules"])
+        for marker in ["類比性借用", "保結構", "〔待查證〕", "不引入新概念"]:
+            self.assertIn(marker, rules)
+        for field in [
+            "他領域情境",
+            "同構說明",
+            "保持的關係形狀",
+            "最少他領域背景",
+            "預期 Aha 點",
+        ]:
+            self.assertTrue(
+                any(field in item for item in rubric["required_fields"]),
+                field,
+            )
+
+    def test_transfer_question_keeps_entry_ban_and_closes_the_course(self):
+        rubric = json.loads(
+            (ROOT / "data" / "rubrics" / "transfer-question.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        # S6 入口禁令與 C2 出口遷移是不同槽位，混用會讓體驗情境脫離學生經驗。
+        slot = rubric["slot_rule"]
+        self.assertIn("S6", slot["entry"])
+        self.assertIn("不得由物理概念反推類比", slot["entry"])
+        self.assertIn("出口", slot["exit"])
+        self.assertIn("最後", rubric["placement"]["rule"])
+        self.assertIn("S9", rubric["placement"]["rule"])
+
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("跨域遷移題", architect)
+        self.assertIn("transfer-question.json", architect)
+        self.assertIn("類比性借用", architect)
+        self.assertIn("同構", architect)
+        self.assertIn("選配", architect)
+        # 入口禁令原文必須保留，不得因新增出口遷移而被稀釋。
+        self.assertIn("不得由物理概念反推類比", architect)
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,92 @@
+{
+  "rubric_version": "1.0.0",
+  "title": "概念透鏡選擇：先判結構原語，再投影到大概念",
+  "source": {
+    "document": "通用教案設計（ForPhyEdu）HDMI設計 規劃層：00-總則 第三節、引擎0 結構選擇與語言偵察 A0–A2",
+    "note": "原文件使用八透鏡（改變／穩定 分列、結構 未連功能）。本檔依團隊確認名稱壓回 big-ideas.json 的七項，對映方式見 name_reconciliation。"
+  },
+  "layer_model": {
+    "description": "三層關係：結構原語 → 概念透鏡 → 跨域映射。三層機制不同，不得互相取代。",
+    "layers": [
+      {
+        "id": "structure-primitive",
+        "name": "結構原語",
+        "role": "判斷主題的深層結構形式（線性先後／循環／分支／互連／層級／比例相等…）。",
+        "mechanism": "由 S6→S8 觀察到的關係形狀歸納，不是由物理概念反推。"
+      },
+      {
+        "id": "conceptual-lens",
+        "name": "概念透鏡（S2 大概念）",
+        "role": "把結構原語投影成本單元的教學套路。",
+        "mechanism": "Erickson 概念為本課程（CBCI）的 conceptual lens／macroconcepts，與 IB key concepts、NGSS crosscutting concepts 同源；機制是抽象化與上位分類以促遷移（近 Gick & Holyoak schema induction）。",
+        "not": "這一步不是 Gentner 類比映射。把事實往上歸到上位概念，與把一域關係橫向映射到另一域是兩件事。"
+      },
+      {
+        "id": "cross-domain-mapping",
+        "name": "跨域映射",
+        "role": "S9 之後的選配收尾題，把 S3 原理原則的關係形狀映射到他領域。",
+        "mechanism": "Gentner (1983) structure-mapping。",
+        "see": "transfer-question.json"
+      }
+    ]
+  },
+  "selection_rule": "先列候選結構原語並選定本次主軸，再依 lenses 欄投影出候選透鏡，最後只選一個大概念。原文件允許選 1~2 個透鏡，本 repo 不採用：每個單元只能選一個，未選中的候選改列為區辨理由。候選與區辨理由交給使用者選定，未選定前不進入後續步驟。",
+  "consistency_rule": "判定的結構原語必須與 S6 體驗、S8 探究實際觀察到的關係形狀一致。原語判成環、探究卻在做線性比較，屬接縫錯位，先改結構原語不要改活動。",
+  "output_rule": "寫進架構圖的是透鏡名（模式、系統…），不是「環狀」「網狀」這類原語名。原語只寫在候選與區辨理由裡。",
+  "primitive_families": [
+    {
+      "id": "graph-topology",
+      "name": "圖論拓撲",
+      "source": "Kemp & Tenenbaum (2008), PNAS 105:10687",
+      "primitives": [
+        {"id": "chain", "name": "鏈／次序", "gloss": "線性先後、可比較的等級", "physics_examples": ["因果鏈", "能量傳遞", "莫氏硬度"], "lenses": ["order"]},
+        {"id": "ring", "name": "環", "gloss": "首尾相接的循環", "physics_examples": ["波與振盪", "四季", "卡諾循環"], "lenses": ["order"], "note": "原文件此列寫「循環」，七項中無此透鏡；循環是有原則的排列在時間上首尾相接，歸「次序」。"},
+        {"id": "hierarchy", "name": "階層", "gloss": "離散層級、嵌套", "physics_examples": ["原子能階", "分類層級"], "lenses": ["system", "structure-and-function"]},
+        {"id": "tree", "name": "樹", "gloss": "分支、親緣", "physics_examples": ["演化樹", "力的分解"], "lenses": ["relationship"]},
+        {"id": "grid", "name": "網／格", "gloss": "連結網或格點", "physics_examples": ["晶格", "電路", "食物網"], "lenses": ["interaction", "system"]},
+        {"id": "cylinder", "name": "圓筒", "gloss": "循環加上推進（螺旋）", "physics_examples": ["彈簧波", "DNA 螺旋", "經緯"], "lenses": ["system"], "note": "原文件此列寫「系統／模型」，七項中無「模型」；模型屬系統（系統與系統模型），歸「系統」。"}
+      ]
+    },
+    {
+      "id": "image-schema",
+      "name": "動態／意象圖式",
+      "source": "Johnson (1987)《The Body in the Mind》；Talmy 力動態",
+      "primitives": [
+        {"id": "container", "name": "CONTAINER 容器", "gloss": "內外、邊界", "physics_examples": ["系統邊界", "守恆系統"], "lenses": ["system"]},
+        {"id": "balance", "name": "BALANCE 平衡", "gloss": "對稱、抵消、穩態", "physics_examples": ["力平衡", "化學平衡"], "lenses": ["change-and-stability"], "pole": "穩定"},
+        {"id": "force", "name": "FORCE 力動態", "gloss": "驅動、阻礙、施受", "physics_examples": ["力", "場", "碰撞"], "lenses": ["interaction", "change-and-stability"], "pole": "改變"},
+        {"id": "path", "name": "PATH 路徑", "gloss": "起點到終點的移動", "physics_examples": ["運動軌跡", "過程"], "lenses": ["order", "change-and-stability"], "pole": "改變"}
+      ]
+    },
+    {
+      "id": "proportion-quantity",
+      "name": "比例／數量",
+      "source": "NGSS crosscutting concept: scale, proportion, and quantity",
+      "primitives": [
+        {"id": "proportion", "name": "proportion 比例相等", "gloss": "兩個比值相等", "physics_examples": ["干涉 y/L = λ/d", "相似律"], "lenses": ["relationship", "pattern"]},
+        {"id": "scaling", "name": "scaling 尺度律", "gloss": "量隨尺度冪次變化", "physics_examples": ["表面積與體積比", "量綱分析"], "lenses": ["pattern", "relationship"]},
+        {"id": "conservation", "name": "conservation 守恆", "gloss": "某個量保持不變", "physics_examples": ["動量守恆", "能量守恆"], "lenses": ["change-and-stability", "system"], "pole": "穩定"}
+      ]
+    }
+  ],
+  "name_reconciliation": {
+    "note": "來源文件的八透鏡壓回本 repo 的七項。壓縮只改名稱與歸屬，不改各原語指向的教學套路。",
+    "merged": [
+      {"source": ["改變", "穩定"], "target": "change-and-stability", "target_zh": "改變與穩定", "reason": "團隊確認的正式名稱是單一一項；拆成兩項會把七項誤算成八項。"},
+      {"source": ["結構"], "target": "structure-and-function", "target_zh": "結構與功能", "reason": "正式名稱要求連結功能：探究結構改變如何影響功能。"}
+    ],
+    "remapped": [
+      {"source": "循環", "target": "order", "target_zh": "次序", "reason": "七項中無「循環」；循環是在時間上首尾相接的有原則排列。"},
+      {"source": "模型", "target": "system", "target_zh": "系統", "reason": "七項中無「模型」；系統模型屬系統這一項。"}
+    ],
+    "pole_note": "改變與穩定合併後，BALANCE 與 FORCE 會指向同一個透鏡。各原語的 pole 欄保留它原本強調的那一端，供寫區辨理由時使用；pole 不是第二個大概念，不得寫進架構圖的 S2 欄。"
+  },
+  "common_failures": [
+    "沒判結構原語就直接選透鏡，或隨手挑一個順眼的",
+    "把原語名（環狀、網狀、鏈狀）當成透鏡寫進架構圖的 S2 欄",
+    "因為某個原語列出兩個候選透鏡，就同時選兩個大概念",
+    "把 pole（改變／穩定）當成第二個大概念並列",
+    "判定的結構原語與 S6、S8 實際觀察到的關係形狀不一致",
+    "用跨域映射的他領域情境反推回來當本單元的結構原語"
+  ]
+}

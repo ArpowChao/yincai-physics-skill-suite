@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS_ROOT = ROOT / ".agents" / "skills"
 EXPECTED = {
+    "chatcut-teaching-rough-cut",
     "video-narration-postproduction",
     "prepare-tts-transcript",
     "zh-tw-proofread",
@@ -83,6 +84,8 @@ def validate() -> list[str]:
         ROOT / "data" / "curriculum" / "project-node-overrides.json",
         ROOT / "data" / "rubrics" / "nine-step.json",
         ROOT / "data" / "rubrics" / "literacy-eight-criteria.json",
+        ROOT / "data" / "rubrics" / "transfer-question.json",
+        ROOT / "data" / "rubrics" / "lens-selection.json",
         ROOT / "data" / "schemas" / "review-record.schema.json",
         ROOT / "data" / "schemas" / "ppt-review-result.schema.json",
         ROOT / "data" / "terminology" / "physics-terms.json",
