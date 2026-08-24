@@ -632,35 +632,24 @@ class SkillSuiteTests(unittest.TestCase):
         self.assertIn("只選一個", architect)
         self.assertIn("由使用者選定", architect)
 
-    def test_spring_rules_trimmed_from_the_slide_set_are_restored(self):
-        # f647a52 的 author trim 砍掉只出現在春總表、未出現在被挑出投影片上的規則。
-        # 團隊判定以春的版本為準，這些規則必須留在 SKILL.md。
+    def test_spring_slide_trim_is_upheld(self):
+        # 主要負責人裁定：只採用 f647a52 trim 後留在投影片上的 9 條。
+        # 只出現在春總表、未出現在投影片上的規則不進 SKILL.md。
         architect = (
             SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
         ).read_text(encoding="utf-8")
         for marker in [
-            # 備忘稿殘稿——雙狹縫那份留著別課的蒸發備忘稿，就是這條在擋。
             "備忘稿裡別課的殘稿一定要清掉",
-            "一框只放一個情境",
-            # 題目與教師答案同框
             "題目與教師參考答案同框",
-            "要控制的變因",
-            # 撞場景整塊換並升一級
             "整塊換到新領域並升一級",
-            "升級對象",
-            # 三活動連續編號
             "三個活動依教學順序連續編號",
-            # S3 知識身分與姊妹課對仗
             "註明知識身分",
             "姊妹課要寫成一正一反",
-            # 原理句條件反查
             "S3 原理句的每個條件都要有活動情境演到",
-            # 看不見的主題用巨觀比喻貫穿
             "巨觀生活比喻當觀察對象",
-            "不得中途更換",
         ]:
             with self.subTest(marker=marker):
-                self.assertIn(marker, architect)
+                self.assertNotIn(marker, architect)
 
     def test_storyboard_stays_simple_at_architecture_stage(self):
         # 第 18 招：分鏡就寫一到兩句，像春修版那樣，不在架構圖階段填長表。
