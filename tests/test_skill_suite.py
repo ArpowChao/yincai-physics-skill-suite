@@ -295,14 +295,14 @@ class SkillSuiteTests(unittest.TestCase):
         self.assertNotIn("change", ideas)
         self.assertNotIn("balance", ideas)
         self.assertNotIn("structure", ideas)
-        self.assertIn("大概念可以多個", data["selection_rule"])
-        self.assertIn("實質貫穿", data["selection_rule"])
+        self.assertIn("只能", data["selection_rule"])
+        self.assertIn("不得使用主／副大概念", data["selection_rule"])
 
         architect = (
             SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
         ).read_text(encoding="utf-8")
-        self.assertIn("大概念可以多個", architect)
-        self.assertIn("不分主副", architect)
+        self.assertIn("只選一個", architect)
+        self.assertIn("不使用主／副大概念", architect)
         self.assertIn("改變與穩定", architect)
         self.assertIn("結構與功能", architect)
 
@@ -537,18 +537,40 @@ class SkillSuiteTests(unittest.TestCase):
         self.assertIn("也可以當起點", architect)
         self.assertIn("把背誦變成理解", architect)
 
-    def test_multiple_big_ideas_allowed_per_topic(self):
-        # 春修版：一主題的「大概念可以多個」（原子核的穩定＝「改變」和「穩定」並用）。
+    def test_single_big_idea_per_topic_selected_by_user(self):
+        # 每個單元只能選一個大概念；生成端給選項，由使用者選定。
         data = json.loads(
             (ROOT / "data" / "big-ideas.json").read_text(encoding="utf-8")
         )
-        self.assertIn("大概念可以多個", data["selection_rule"])
+        self.assertNotIn("大概念可以多個", data["selection_rule"])
+        self.assertIn("由使用者選定", data["selection_rule"])
         architect = (
             SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
         ).read_text(encoding="utf-8")
-        self.assertIn("大概念可以多個", architect)
-        self.assertNotIn("只選一個", architect)
-        self.assertNotIn("不並列第二個大概念", architect)
+        self.assertNotIn("大概念可以多個", architect)
+        self.assertIn("只選一個", architect)
+        self.assertIn("由使用者選定", architect)
+
+    def test_change_and_stability_is_one_big_idea_not_two(self):
+        # 「改變與穩定」是七項中的一項；拆成兩項會把七項誤算成八項。
+        data = json.loads(
+            (ROOT / "data" / "big-ideas.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(7, len(data["ideas"]))
+        self.assertIn("「改變與穩定」是一項", data["selection_rule"])
+        for text, label in (
+            (data["source"]["note"], "big-ideas.json note"),
+            (
+                (SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md").read_text(
+                    encoding="utf-8"
+                ),
+                "SKILL.md",
+            ),
+        ):
+            with self.subTest(source=label):
+                # 「改變」和「穩定」並列即為拆項寫法。
+                self.assertNotIn("「改變」和「穩定」", text)
+                self.assertIn("改變與穩定", text)
 
     def test_cross_agent_runtime_requires_user_iteration_decision(self):
         runtime = (ROOT / "references" / "cross-agent-runtime.md").read_text(
