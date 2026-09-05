@@ -453,8 +453,83 @@ class SkillSuiteTests(unittest.TestCase):
             SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
         ).read_text(encoding="utf-8")
         self.assertIn("簡單分鏡（S6／S8／S9 各一則）", architect)
-        self.assertIn("不用影片的活動一樣寫這一則", architect)
+        # 1.15.0 起三支影片必要且位置固定，不再有「不用影片」的寫法。
+        self.assertNotIn("不用影片的活動一樣寫這一則", architect)
+        self.assertIn("必要項目且位置固定", architect)
         self.assertIn("替代表徵", architect)
+
+    def test_deck_skeleton_fixes_three_videos_and_station_requirements(self):
+        # 內容型 PPT 製作指引（1150905）：三支影片必要且位置固定，
+        # 每支影片後接一題與一個學生動作，站 1／3／4／6 各有固定要求。
+        rubric = json.loads(
+            (ROOT / "data" / "rubrics" / "nine-step.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        contract = rubric["ai_video_storyboard_contract"]
+        self.assertTrue(contract["mandatory"])
+        self.assertNotIn("fallback", contract)
+        # 影片必要，但媒材仍逐支依 evidence_source_rule 決定。
+        self.assertIn("evidence_source_rule", contract["mandatory_rule"])
+        self.assertEqual(
+            {"S6": "體驗情境", "S8": "探究情境", "S9": "延伸應用"},
+            contract["deck_names"],
+        )
+        self.assertEqual(
+            {"S6": "一句直覺猜想", "S8": "一條部分規則", "S9": "解釋或判斷"},
+            contract["follow_up"]["student_output_by_activity"],
+        )
+        deck = rubric["deck_skeleton"]
+        stations = {item["station"]: item for item in deck["stations"]}
+        self.assertEqual([1, 2, 3, 4, 5, 6], sorted(stations))
+        self.assertEqual("S6", stations[1]["steps"][0])
+        self.assertEqual("S8", stations[3]["steps"][0])
+        self.assertEqual("S9", stations[6]["steps"][0])
+        self.assertEqual("一句直覺猜想", stations[1]["student_output"])
+        self.assertEqual("一條部分規則", stations[3]["student_output"])
+        self.assertEqual("解釋或判斷", stations[6]["student_output"])
+        self.assertIn("三分之一到一半", " ".join(stations[3]["rules"]))
+        self.assertEqual(1, stations[4]["practice"]["count"])
+        self.assertIn("定義與圖示", stations[4]["legacy_material_fills"])
+        self.assertIn("開場問題", stations[6]["closure"])
+        self.assertEqual(5, len(deck["delivery_gates"]))
+
+        architect = (
+            SKILLS_ROOT / "physics-one-page-architect" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        for marker in [
+            "必要項目且位置固定",
+            "只問一題",
+            "一句直覺猜想",
+            "一條部分規則",
+            "三分之一到一半",
+            "接回舊教材補齊",
+            "一題簡單數字題",
+            "解釋或判斷",
+            "回到開場問題",
+            "六站承接表",
+        ]:
+            with self.subTest(marker=marker):
+                self.assertIn(marker, architect)
+        # 六站承接表放在 Output contract 內，但不得變成教學流程。
+        contract_text = architect.split("## Output contract", 1)[1].split(
+            "## Stop conditions", 1
+        )[0]
+        self.assertIn("### 六站承接表（投影片承接）", contract_text)
+        self.assertIn("不含逐站教學動作與時間分配", contract_text)
+
+        checker = (
+            SKILLS_ROOT / "physics-framework-checker" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        review_rule = (ROOT / "references" / "ppt-content-review.md").read_text(
+            encoding="utf-8"
+        )
+        for gate in deck["delivery_gates"]:
+            with self.subTest(gate=gate):
+                self.assertIn(gate.split("：")[0], checker)
+                self.assertIn(gate.split("：")[0], review_rule)
+        self.assertIn("交件前五件事", checker)
+        self.assertIn("交件前五件事", review_rule)
 
     def test_architect_states_stage_baseline(self):
         text = (
