@@ -10,6 +10,32 @@
 
 本專案使用語意化版本概念記錄可攜式 Skill Suite 的變更。
 
+## 1.15.0 — 2026-09-05
+
+依「內容型 PPT 製作指引：三支 AI 影片，接成一條清楚的教學路徑」（1150905）整合六站骨架。
+
+- `nine-step.json` 2.7.0 → 2.8.0：新增 `deck_skeleton` 六站順序與 `delivery_gates` 交件前
+  五件事。三支影片改為**必要且位置固定**（體驗影片開頭、探究影片中段、延伸影片後段），
+  移除「不用影片改用替代表徵」的 fallback；媒材（實驗影片／模擬／AI影片）仍逐支依
+  `evidence_source_rule` 決定，必要的是影片本身與位置。每支影片後固定接一個問題與一個
+  學生動作，學生輸出依序為一句直覺猜想、一條部分規則、解釋或判斷。
+- 建立 PPT 名稱與九步驟的對照：體驗情境＝S6 體驗活動、探究情境＝S8 探究活動、
+  延伸應用＝S9 有感應用。
+- `physics-one-page-architect`：S6 影片後只問一題、口語初答；S8 探究走先預測、看變化、做比較、
+  說規則四步，只帶出全課三分之一到一半的部分規則，計算數值另寫在題目上；S3 在教完整站先用
+  學生的話整理再接回舊教材補齊定義與圖示、公式單位與成立條件、例子、反例，之後接一題只練
+  一個方法的簡單數字題；S9 走先預測、觀看、用原理解釋、看回饋四步，並回到開場問題。
+  Output contract 在九格架構表之後新增「六站承接表（投影片承接）」，只列承接關係，
+  不含逐站教學動作與時間分配，維持「只產架構，不產教案」。
+- `physics-framework-checker` 與 `references/ppt-content-review.md`：新增交件前五件事作為
+  critical gates，任一不成立不得 `PASS`。
+- 站 2 教材封面與站 5 檢核與 AI 本版只登錄名稱與位置，未展開要求。`teaching_order` 未變動；
+  S4 術語在探究前後的定案位置仍待團隊決定。
+- `test_deck_skeleton_fixes_three_videos_and_station_requirements` 釘住上述規則；
+  `test_architect_requires_ai_video_storyboard_cards_for_three_activities` 改為反向釘住
+  「不用影片」的寫法不得回流。
+- `VERSION` 檔 1.14.0 → 1.15.0。
+
 ## 1.14.0 — 2026-08-25
 
 `physics-one-page-architect` 收斂輸出範圍與確認閘門，兩項都是實跑一次
