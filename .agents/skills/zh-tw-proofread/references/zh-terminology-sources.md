@@ -28,6 +28,23 @@
 4. **兩岸常用詞彙對照**（`g0v/moedict-data-csld`）：兩岸用語差異。
 5. **本 repository 的 `data/terminology/zh-tw-science-terms.json`**：候選清單。
 
+## 可查詢的 GitHub 資料庫
+
+以下 repository 可作為可追溯的查詢入口，但用途不同，不能混作同一個「專有名詞權威庫」：
+
+| Repository | 適合用途 | 限制 |
+| --- | --- | --- |
+| [g0v/moedict-data](https://github.com/g0v/moedict-data) | 教育部《重編國語辭典修訂本》的字詞、讀音、義項 | 一般字詞資料，不單獨證明人名、機構、品牌或科學代號 |
+| [g0v/moedict-data-csld](https://github.com/g0v/moedict-data-csld) | 兩岸常用詞彙對照 | 只作臺灣用語候選，不自動改寫專名 |
+| [OpenCC/opencc](https://github.com/BYVoid/OpenCC)／[opencc-data](https://github.com/nk2028/opencc-data) | 簡繁與常見詞彙轉換 | 轉換器不是專名查證器；保留大小寫、代號與品牌原形 |
+| [Wikidata](https://www.wikidata.org/) | 實體識別、別名、跨語言名稱線索 | 必須回到機構／論文／官方頁面確認正式寫法 |
+| [Qmo37/localization-tw](https://github.com/Qmo37/localization-tw) | 臺灣在地化用語與兩岸詞彙整理線索 | 社群 Skill，屬候選資料，不取代 A 級來源 |
+
+使用任何 GitHub 資料時，固定到 tag 或 commit，並在修訂表記錄
+`GitHub: owner/repo:path@tag-or-sha`。未固定版本、只有 README 摘要或搜尋結果的內容，
+只能標為 `待確認`。GitHub repository 不應直接被當成自動替換字典；尤其人名、地名、
+機構、品牌、基因／蛋白／化學代號，必須再以原始發布者或論文核對。
+
 低順位不得推翻高順位。對照表命中只是「值得查」，不是「可以改」。
 
 ## 對照表的定位
