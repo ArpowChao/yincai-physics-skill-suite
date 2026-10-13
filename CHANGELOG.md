@@ -23,6 +23,8 @@
 - 新增 `scripts/gsat_sources.py`（抽取、搜尋、顯示學測原題與答案）、`scripts/build_node_item_sheet.py`
   （套範本產生任務單）、`scripts/audit_node_item_sheet.py`（題長、標點、單位空格、答案分布、正解長度檢查）。
   三者需 python-docx／pymupdf，不在 CI 執行；`tests/test_node_item_skill.py` 只驗證契約、資料與語法。
+- 併入 `codex/zh-tw-proofread-proper-nouns`：`zh-tw-proofread` 術語來源文件新增「可查詢的 GitHub 資料庫」，
+  並將 OpenCC 連結文字更正為 `BYVoid/OpenCC`。
 - 學測 PDF、任務單範本與產出 DOCX 都不提交，放在 `local-data/` 或 `outputs/`。
 - `VERSION` 檔 1.15.0 → 1.16.0。
 
