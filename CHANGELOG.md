@@ -10,6 +10,17 @@
 
 本專案使用語意化版本概念記錄可攜式 Skill Suite 的變更。
 
+## 1.17.0 — 2026-10-13
+
+課綱與學測原檔改以官方下載清單取得，別人執行 Skill 也能有同樣的檔案。
+
+- 新增 `data/sources/official-downloads.json`：108 課綱自然科學領域（國家教育研究院）與 101～115
+  學測自然試題、選擇題答案（大學入學考試中心）共 31 個官方網址，附建立時副本的 SHA-256 供比對。
+- 新增 `scripts/fetch_local_data.py`（僅標準函式庫）：下載到 `local-data/sources/`，略過已存在檔案，
+  拒收非 PDF 回應，與參考雜湊不同時提醒人工確認。
+- `yincai-physics-node-items`、`gsat_sources.py`、`local-data/README.md` 與 README 改為先下載再抽取；
+  課本章節與 Bloom 論文列為需自行放入的來源。
+
 ## 1.16.0 — 2026-10-13
 
 新增 `yincai-physics-node-items`：依因材網知識節點簡報產出四選一任務單 DOCX。
