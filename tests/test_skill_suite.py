@@ -21,6 +21,7 @@ EXPECTED_SKILLS = {
     "physics-ppt-upgrader",
     "physics-misconception-prompting",
     "physics-unit-package-qc",
+    "yincai-physics-node-items",
 }
 REQUIRED_HEADINGS = {
     "## Inputs",
