@@ -111,7 +111,17 @@ PowerPoint 實際播放匯出與 speaker notes 自動寫回目前依賴 Windows�
    才需要原始檔。操作見
    [`維護手冊`](docs/maintenance.md#所有協作者都能維護節點與-skill)。
 
-6. 建立一筆審查紀錄：
+6. 要用 `yincai-physics-node-items` 出診斷題時，先下載課綱與 101～115 學測
+   自然試題、答案（只需 Python 標準函式庫，存到 `local-data/sources/`）：
+
+   ```powershell
+   python scripts/fetch_local_data.py
+   ```
+
+   清單在 `data/sources/official-downloads.json`；課本章節需自行放入，見
+   [`local-data/README.md`](local-data/README.md)。
+
+7. 建立一筆審查紀錄：
 
    ```powershell
    python scripts/new_review_record.py PEb-Vc-4-1 physics-framework-checker `
@@ -317,7 +327,7 @@ python scripts/summarize_quality.py quality/records/*.json
 
 ## 資料與隱私邊界
 
-此 repository 預設不納入 `資料/`、原始 PDF、PPTX、DOCX、教師姓名索引、生成輸出與 LLM-wiki 全文。原因是容量、個資與著作權可能不適合公開散布。公開 repo 只包含可重建的規則、結構化資料、程式、測試與去識別品質案例。
+此 repository 預設不納入 `資料/`、原始 PDF、PPTX、DOCX、教師姓名索引、生成輸出與 LLM-wiki 全文。原因是容量、個資與著作權可能不適合公開散布。公開 repo 只包含可重建的規則、結構化資料、程式、測試與去識別品質案例。課綱與學測等公開官方檔案以下載清單取代原檔：`python scripts/fetch_local_data.py` 會從官方網址重新取得。
 
 本 repository 雖公開可見，程式碼與原創內容尚未選定開源授權；詳見
 [`LICENSES.md`](LICENSES.md)。

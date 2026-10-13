@@ -92,6 +92,7 @@ def validate() -> list[str]:
         ROOT / "data" / "terminology" / "physics-terms.json",
         ROOT / "data" / "curriculum" / "stage5-learning-performance.json",
         ROOT / "data" / "gsat" / "verified-physics-sources.json",
+        ROOT / "data" / "sources" / "official-downloads.json",
         ROOT / "data" / "tts-pronunciation" / "submission.json",
         ROOT / "integrations" / "google-apps-script" / "tts-pronunciation" / "appsscript.json",
     ]

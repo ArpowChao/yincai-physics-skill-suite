@@ -1,7 +1,9 @@
 """學測母題查詢工具（yincai-physics-node-items 使用）。
 
 用法：
+  python scripts/fetch_local_data.py --group gsat   # 先下載官方 PDF（沒有 .7z 時）
   python scripts/gsat_sources.py extract <學測.7z 或 PDF 資料夾> local-data/gsat-text
+  例如：python scripts/gsat_sources.py extract local-data/sources/gsat local-data/gsat-text
   python scripts/gsat_sources.py search  local-data/gsat-text 關鍵字1 [關鍵字2 ...]
   python scripts/gsat_sources.py show    local-data/gsat-text <年> <題號>
 
