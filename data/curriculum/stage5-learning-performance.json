@@ -1,0 +1,238 @@
+{
+  "catalog_version": "1.0.0",
+  "generated_from": {
+    "document": "十二年國民基本教育課程綱要國民中小學暨普通型高級中等學校─自然科學領域",
+    "section": "三、普通型高中必修課程學習重點（一）學習表現",
+    "pdf_pages": [
+      35,
+      36,
+      37
+    ],
+    "extracted": "2026-10-13"
+  },
+  "scope": "普通型高級中等學校必修（第五學習階段 Vc）學習表現，自然科學領域共用",
+  "code_note": "官方文件代碼使用羅馬數字「Ⅴ」，例如 tr-Ⅴc-1；本檔與 stage5-physics.json 一致改用 ASCII「V」。",
+  "mcq_suitability_note": "mcq_suitability 與 mcq_pattern 是本專案為四選一紙筆題選定學習表現所加的判斷，不是官方課綱文字。not_suitable 表示不宜以選擇題評量。",
+  "entries": [
+    {
+      "code": "ti-Vc-1",
+      "category": "探究能力－思考智能",
+      "sub_item": "想像創造",
+      "statement": "能主動察覺生活中各種自然科學問題的成因，並能根據已知的科學知識提出解決問題的各種假設想法，進而以個人或團體方式設計創新的科學探索方式並得到成果。",
+      "source": {
+        "pdf_page": 35
+      },
+      "mcq_suitability": "medium",
+      "mcq_pattern": "由現象選出合理的成因假設，或選出可行的探索方式"
+    },
+    {
+      "code": "tr-Vc-1",
+      "category": "探究能力－思考智能",
+      "sub_item": "推理論證",
+      "statement": "能運用簡單的數理演算公式及單一的科學證據或理論，理解自然科學知識或理論及其因果關係，或提出他人論點的限制，進而提出不同的論點。",
+      "source": {
+        "pdf_page": 35
+      },
+      "mcq_suitability": "high",
+      "mcq_pattern": "用一個公式或一項證據推出結果或因果；指出「小智認為……」這類論點的限制"
+    },
+    {
+      "code": "tc-Vc-1",
+      "category": "探究能力－思考智能",
+      "sub_item": "批判思辨",
+      "statement": "能比較與判斷自己及他人對於科學資料的解釋在方法及程序上的合理性，並能提出問題或意見。",
+      "source": {
+        "pdf_page": 36
+      },
+      "mcq_suitability": "high",
+      "mcq_pattern": "比較兩人對同一組資料的解釋或做法，判斷哪個在方法、程序上較合理"
+    },
+    {
+      "code": "tm-Vc-1",
+      "category": "探究能力－思考智能",
+      "sub_item": "建立模型",
+      "statement": "能依據科學問題自行運思或經由合作討論來建立模型，並能使用例如：「比擬或抽象」的形式來描述一個系統化的科學現象，進而了解模型有其局限性。",
+      "source": {
+        "pdf_page": 36
+      },
+      "mcq_suitability": "high",
+      "mcq_pattern": "用比擬或模型解釋現象，或判斷模型的局限"
+    },
+    {
+      "code": "po-Vc-1",
+      "category": "探究能力－問題解決",
+      "sub_item": "觀察與定題",
+      "statement": "能從日常經驗、科技運用、社會中的科學相關議題、學習活動、自然環境、書刊及網路媒體中，汲取資訊並進行有計畫、有條理的多方觀察，進而能察覺問題。",
+      "source": {
+        "pdf_page": 36
+      },
+      "mcq_suitability": "medium",
+      "mcq_pattern": "由情境資訊察覺可探究的問題"
+    },
+    {
+      "code": "po-Vc-2",
+      "category": "探究能力－問題解決",
+      "sub_item": "觀察與定題",
+      "statement": "能依據觀察、蒐集資料、閱讀、思考、討論等，確認並提出生活周遭中適合科學探究或適合以科學方式尋求解決的問題（或假說）。當有多個問題同時存在時，能分辨並擇定優先重要之問題（或假說）。",
+      "source": {
+        "pdf_page": 36
+      },
+      "mcq_suitability": "medium",
+      "mcq_pattern": "從多個問題中選出適合科學探究的問題或可檢驗的假說"
+    },
+    {
+      "code": "pe-Vc-1",
+      "category": "探究能力－問題解決",
+      "sub_item": "計劃與執行",
+      "statement": "能辨明多個自變項或應變項並計劃適當次數的測試、合理地預測活動的可能結果和可能失敗的原因。藉由教師或教科書的指引或展現創意，能根據問題特性、學習資源（設備、時間、人力等）、期望之成果（包括信效度）、對社會環境的影響等因素，規劃最佳化的實作（或推理）探究活動或問題解決活動。",
+      "source": {
+        "pdf_page": 36
+      },
+      "mcq_suitability": "high",
+      "mcq_pattern": "辨認自變項、應變項、控制變因；選出最恰當的實驗設計"
+    },
+    {
+      "code": "pe-Vc-2",
+      "category": "探究能力－問題解決",
+      "sub_item": "計劃與執行",
+      "statement": "能正確安全操作適合學習階段的物品、器材儀器、科技設備及資源，能適度創新改善執行方式。能進行精確的質性觀察或數值量測，視需要能運用科技儀器輔助記錄。",
+      "source": {
+        "pdf_page": 36
+      },
+      "mcq_suitability": "low",
+      "mcq_pattern": "選擇正確的器材或量測方式"
+    },
+    {
+      "code": "pa-Vc-1",
+      "category": "探究能力－問題解決",
+      "sub_item": "分析與發現",
+      "statement": "能合理運用思考智能、製作圖表、使用資訊及數學等方法，有效整理資訊或數據。",
+      "source": {
+        "pdf_page": 36
+      },
+      "mcq_suitability": "high",
+      "mcq_pattern": "由數據選出正確的圖表或整理方式；讀表後彙整計算"
+    },
+    {
+      "code": "pa-Vc-2",
+      "category": "探究能力－問題解決",
+      "sub_item": "分析與發現",
+      "statement": "能運用科學原理、思考智能、數學、統計等方法，從探究所得的資訊或數據，形成解釋、理解、發現新知、獲知因果關係、理解科學相關的社會議題、解決問題或是發現新的問題。並能將自己的探究結果和同學的結果或其他相關的資訊比較對照，相互檢核，確認結果。",
+      "source": {
+        "pdf_page": 36
+      },
+      "mcq_suitability": "high",
+      "mcq_pattern": "由數據或圖形找出規律、形成解釋；和他人結果對照檢核"
+    },
+    {
+      "code": "pc-Vc-1",
+      "category": "探究能力－問題解決",
+      "sub_item": "討論與傳達",
+      "statement": "能理解同學的探究過程和結果（或經簡化過的科學報告），提出合理而且較完整的疑問或意見。並能對整個探究過程：包括，觀察定題、推理實作、數據信效度、資源運用、活動安全、探究結果等，進行評核、形成評價並提出合理的改善方案。",
+      "source": {
+        "pdf_page": 36
+      },
+      "mcq_suitability": "medium",
+      "mcq_pattern": "評核一份簡化的探究報告，選出合理的疑問或改善方案"
+    },
+    {
+      "code": "pc-Vc-2",
+      "category": "探究能力－問題解決",
+      "sub_item": "討論與傳達",
+      "statement": "能利用口語、影像（例如：攝影、錄影）、文字與圖案、繪圖或實物、科學名詞、數學公式、模型等，呈現探究之過程、發現或成果；並在保有個資安全與不損及公眾利益下，嘗試以報告或新媒體形式，自主並較廣面性的分享相對嚴謹之探究發現、成果、結論或主張。視需要，並能摘要描述目的、特徵、方法、發現、價值、限制、運用及展望等。",
+      "source": {
+        "pdf_page": 37
+      },
+      "mcq_suitability": "low",
+      "mcq_pattern": "選出最能正確呈現結果的圖、表或敘述"
+    },
+    {
+      "code": "ai-Vc-1",
+      "category": "科學的態度與本質",
+      "sub_item": "培養科學探究的興趣",
+      "statement": "透過成功的問題解決經驗，獲得成就感。",
+      "source": {
+        "pdf_page": 37
+      },
+      "mcq_suitability": "not_suitable",
+      "mcq_pattern": ""
+    },
+    {
+      "code": "ai-Vc-2",
+      "category": "科學的態度與本質",
+      "sub_item": "培養科學探究的興趣",
+      "statement": "透過科學探索與科學思考對生活週遭的事物產生新的體驗及興趣。",
+      "source": {
+        "pdf_page": 37
+      },
+      "mcq_suitability": "not_suitable",
+      "mcq_pattern": ""
+    },
+    {
+      "code": "ai-Vc-3",
+      "category": "科學的態度與本質",
+      "sub_item": "培養科學探究的興趣",
+      "statement": "體會生活中處處都會運用到科學，而能欣賞科學的重要性。",
+      "source": {
+        "pdf_page": 37
+      },
+      "mcq_suitability": "not_suitable",
+      "mcq_pattern": ""
+    },
+    {
+      "code": "ah-Vc-1",
+      "category": "科學的態度與本質",
+      "sub_item": "養成應用科學思考與探究的習慣",
+      "statement": "了解科學知識是人們理解現象的一種解釋，但不是唯一的解釋。",
+      "source": {
+        "pdf_page": 37
+      },
+      "mcq_suitability": "medium",
+      "mcq_pattern": "判斷同一現象的不同解釋（例如地心說與日心說）各自的地位"
+    },
+    {
+      "code": "ah-Vc-2",
+      "category": "科學的態度與本質",
+      "sub_item": "養成應用科學思考與探究的習慣",
+      "statement": "對日常生活中所獲得的科學資訊抱持批判的態度，審慎檢視其真實性與可信度。",
+      "source": {
+        "pdf_page": 37
+      },
+      "mcq_suitability": "high",
+      "mcq_pattern": "檢視網路宣稱、廣告或產品標示的可信度與檢驗方式"
+    },
+    {
+      "code": "an-Vc-1",
+      "category": "科學的態度與本質",
+      "sub_item": "認識科學本質",
+      "statement": "了解科學探究過程採用多種方法、工具和技術，經由不同面向的證據支持特定的解釋，以增強科學論點的有效性。",
+      "source": {
+        "pdf_page": 37
+      },
+      "mcq_suitability": "high",
+      "mcq_pattern": "判斷哪些不同方法或證據共同支持一個結論；單一證據為何不足"
+    },
+    {
+      "code": "an-Vc-2",
+      "category": "科學的態度與本質",
+      "sub_item": "認識科學本質",
+      "statement": "了解科學的認知方式講求經驗證據性、合乎邏輯性、存疑和反覆檢視。",
+      "source": {
+        "pdf_page": 37
+      },
+      "mcq_suitability": "high",
+      "mcq_pattern": "尊重數據、不竄改；結論要能重複驗證；避免妄下決斷"
+    },
+    {
+      "code": "an-Vc-3",
+      "category": "科學的態度與本質",
+      "sub_item": "認識科學本質",
+      "statement": "體認科學能幫助人類創造更好的生活條件，但並不能解決人類社會所有的問題，科技發展有時也會引起環境或倫理道德的議題。",
+      "source": {
+        "pdf_page": 37
+      },
+      "mcq_suitability": "medium",
+      "mcq_pattern": "判斷科技應用（例如核能）的效益與限制、爭議"
+    }
+  ]
+}

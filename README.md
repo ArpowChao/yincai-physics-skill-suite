@@ -1,6 +1,6 @@
 # 因材網高中物理教材產線 Skill Suite
 
-這個 repository 把「投影片、學習單、素養題、配音稿、逐字稿校對、教學影片粗剪、影片旁白後製」整理成 14 個可組合的 Codex Skills，並用共用的第五學習階段課綱、九步驟架構、三面向八準則、術語表與品質紀錄，降低教師重複整理與審查的負擔。
+這個 repository 把「投影片、學習單、素養題、配音稿、逐字稿校對、教學影片粗剪、影片旁白後製」整理成 15 個可組合的 Codex Skills，並用共用的第五學習階段課綱、九步驟架構、三面向八準則、術語表與品質紀錄，降低教師重複整理與審查的負擔。
 
 本專案的核心原則是：**先確認課綱與證據，再生成；先記錄優點與缺失，再修改；無法確認時標示 `HOLD`，不自行猜測。**
 
@@ -39,7 +39,7 @@ flowchart LR
     G --> H["品質紀錄與下一版迭代"]
 ```
 
-## 14 個 Skills
+## 15 個 Skills
 
 | Skill | 用途 | 主要輸出 |
 |---|---|---|
@@ -53,6 +53,7 @@ flowchart LR
 | `physics-ppt-upgrader` | 舊簡報升級 | 差距分析、升級稿、變更摘要 |
 | `physics-misconception-prompting` | 迷思與誘答設計 | 迷思假設、誘答、診斷回饋 |
 | `physics-unit-package-qc` | 單元教材包出貨總檢 | 跨載體一致性與上架判定 |
+| `yincai-physics-node-items` | 因材網知識節點任務單出題 | 理解、應用與學測改編診斷題四選一 DOCX、學習表現與學習內容對照 |
 | `prepare-tts-transcript` | 配音前標記多音字與公式 | 保留原稿的配音稿、逐項修改紀錄 |
 | `zh-tw-proofread` | 逐字稿、中英學科術語、研究專名與兩岸用語校正 | 依可追溯來源及三態人工決策產生修訂對照表與待確認清單 |
 | `chatcut-teaching-rough-cut` | ChatCut 教學影片粗剪 | 可編輯時間線、字幕、SRT、保護區與片長對帳 |
@@ -325,7 +326,7 @@ python scripts/summarize_quality.py quality/records/*.json
 
 ```text
 .github/                審查問題與 pull request 範本
-.agents/skills/          14 個可攜式 Skills
+.agents/skills/          15 個可攜式 Skills
 archive/                 已被取代、暫不刪除的本機封存（內容不進版控）
 config/                  本機設定範例
 data/                    課綱、規準、術語、迷思與 schema

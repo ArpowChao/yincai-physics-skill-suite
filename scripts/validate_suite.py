@@ -23,6 +23,7 @@ EXPECTED = {
     "physics-ppt-upgrader",
     "physics-misconception-prompting",
     "physics-unit-package-qc",
+    "yincai-physics-node-items",
 }
 HEADINGS = {
     "## Inputs",
@@ -89,6 +90,8 @@ def validate() -> list[str]:
         ROOT / "data" / "schemas" / "review-record.schema.json",
         ROOT / "data" / "schemas" / "ppt-review-result.schema.json",
         ROOT / "data" / "terminology" / "physics-terms.json",
+        ROOT / "data" / "curriculum" / "stage5-learning-performance.json",
+        ROOT / "data" / "gsat" / "verified-physics-sources.json",
         ROOT / "data" / "tts-pronunciation" / "submission.json",
         ROOT / "integrations" / "google-apps-script" / "tts-pronunciation" / "appsscript.json",
     ]

@@ -1,0 +1,239 @@
+{
+  "catalog_version": "1.0.0",
+  "scope": "學測自然考科中已逐題核對原題與大考中心參考答案的物理題，供改編診斷題時查找母題",
+  "verification_method": "讀原題全文（含分式或圖時看 PDF 頁面），並對照同年度「自然考科選擇題參考答案」",
+  "verified_on": "2026-10-13",
+  "source_note": "原題 PDF 不放入 repo；使用者每次提供 101～115 學測自然試題與答案，以 scripts/gsat_sources.py 抽取查詢。",
+  "entries": [
+    {
+      "year": 102,
+      "question": 33,
+      "official_answer": "CDE",
+      "type": "multiple",
+      "core_concept": "原子核穩定的主要原因：質子與質子、質子與中子、中子與中子之間的強作用力",
+      "related_codes": [
+        "PKe-Vc-1"
+      ]
+    },
+    {
+      "year": 102,
+      "question": 55,
+      "official_answer": "D",
+      "type": "single",
+      "core_concept": "落體受空氣阻力的 v-t 圖：空氣阻力隨速率增大，最後趨於等速（54～55 題組）",
+      "related_codes": [
+        "PEb-Vc-4",
+        "PEb-Vc-5"
+      ]
+    },
+    {
+      "year": 102,
+      "question": 66,
+      "official_answer": "DE",
+      "type": "multiple",
+      "core_concept": "伽利略光滑斜坡道實驗：小球到達的高度與質量無關；由想像實驗推論動者恆動（66～67 題組）",
+      "related_codes": [
+        "PEb-Vc-2"
+      ]
+    },
+    {
+      "year": 101,
+      "question": 28,
+      "official_answer": "A",
+      "type": "single",
+      "core_concept": "輸送功率固定時，電壓改變使電流改變，傳輸線的熱損耗隨之改變",
+      "related_codes": [
+        "PMc-Vc-1"
+      ],
+      "note": "原題需 I²R 定量計算；改編為用電安全時只保留定性核心"
+    },
+    {
+      "year": 103,
+      "question": 21,
+      "official_answer": "C",
+      "type": "single",
+      "core_concept": "影響核融合反應速率的主要作用力為弱力",
+      "related_codes": [
+        "PKe-Vc-2",
+        "PBa-Vc-4"
+      ]
+    },
+    {
+      "year": 106,
+      "question": 28,
+      "official_answer": "BC",
+      "type": "multiple",
+      "core_concept": "原子核內兩質子間同時具有靜電力與強力；靜電力的作用範圍大於弱力",
+      "related_codes": [
+        "PKe-Vc-1",
+        "PKe-Vc-3"
+      ]
+    },
+    {
+      "year": 107,
+      "question": 15,
+      "official_answer": "E",
+      "type": "single",
+      "core_concept": "判斷同學對四種基本作用力的敘述",
+      "related_codes": [
+        "PKe-Vc-1",
+        "PKe-Vc-3"
+      ]
+    },
+    {
+      "year": 107,
+      "question": 39,
+      "official_answer": "A",
+      "type": "single",
+      "core_concept": "高溫使氘、氚原子核具高動能，可克服庫侖排斥而融合",
+      "related_codes": [
+        "PBa-Vc-4"
+      ]
+    },
+    {
+      "year": 108,
+      "question": 22,
+      "official_answer": "BCE",
+      "type": "multiple",
+      "core_concept": "強作用力克服質子間的靜電斥力；單獨的中子因弱作用力衰變",
+      "related_codes": [
+        "PKe-Vc-1",
+        "PKe-Vc-2"
+      ]
+    },
+    {
+      "year": 108,
+      "question": 35,
+      "official_answer": "B",
+      "type": "single",
+      "core_concept": "科學家與物理學主要貢獻的配對（牛頓、德布羅意、法拉第、庫侖、愛因斯坦）",
+      "related_codes": [
+        "PMc-Vc-3",
+        "PMc-Vc-4"
+      ]
+    },
+    {
+      "year": 109,
+      "question": 25,
+      "official_answer": "BD",
+      "type": "multiple",
+      "core_concept": "由電器的耗電功率資料計算電能、電費並比較",
+      "related_codes": [
+        "PMc-Vc-1",
+        "PMc-Vc-2"
+      ],
+      "note": "改編為延長線安全負載時，只保留讀功率資料再計算比較的考點"
+    },
+    {
+      "year": 110,
+      "question": 13,
+      "official_answer": "A",
+      "type": "single",
+      "core_concept": "彈力、摩擦力源自電磁力；誘答：核子間主要是弱力",
+      "related_codes": [
+        "PKe-Vc-1",
+        "PKe-Vc-3"
+      ]
+    },
+    {
+      "year": 110,
+      "question": 14,
+      "official_answer": "C",
+      "type": "single",
+      "core_concept": "以 SI 基本單位表示物理量單位（功率 kg·m²/s³）；誘答：電量 A·s²、壓力 kg/(m·s)、動能 kg·m²/s",
+      "related_codes": [
+        "PEa-Vc-1",
+        "PEa-Vc-2"
+      ],
+      "note": "選項含分式與上標，文字抽取會失真，須看 PDF 頁面"
+    },
+    {
+      "year": 110,
+      "question": 33,
+      "official_answer": "BCE",
+      "type": "multiple",
+      "core_concept": "原子彈與核電都利用核分裂；太陽藉核融合發光，發光越久總質量越小",
+      "related_codes": [
+        "PBa-Vc-4",
+        "PNc-Vc-1"
+      ]
+    },
+    {
+      "year": 112,
+      "question": 33,
+      "official_answer": "E",
+      "type": "single",
+      "core_concept": "終端速度比 1：2：3、質量比 1：4：9，推得阻力約與速率平方成正比",
+      "related_codes": [
+        "PEb-Vc-4",
+        "PMc-Vc-3"
+      ]
+    },
+    {
+      "year": 112,
+      "question": 34,
+      "official_answer": "E",
+      "type": "single",
+      "core_concept": "核分裂發電後反應爐內原子總質量減少，但燃料質量並非全部轉為能量",
+      "related_codes": [
+        "PBa-Vc-3",
+        "PBa-Vc-4",
+        "PNc-Vc-2"
+      ]
+    },
+    {
+      "year": 113,
+      "question": 19,
+      "official_answer": "ACE",
+      "type": "multiple",
+      "core_concept": "核能電廠的反應與能量轉換：質能轉換、熱能轉動能、核分裂",
+      "related_codes": [
+        "PNc-Vc-1",
+        "PNc-Vc-2"
+      ]
+    },
+    {
+      "year": 113,
+      "question": 20,
+      "official_answer": "CD",
+      "type": "multiple",
+      "core_concept": "中子經由弱力衰變；弱力與強力的作用範圍都比原子小",
+      "related_codes": [
+        "PKe-Vc-2",
+        "PKe-Vc-3"
+      ]
+    },
+    {
+      "year": 114,
+      "question": 26,
+      "official_answer": "B",
+      "type": "single",
+      "core_concept": "接觸力源自電磁力；誘答：強力範圍涵蓋整個原子",
+      "related_codes": [
+        "PKe-Vc-3",
+        "PEb-Vc-5"
+      ]
+    },
+    {
+      "year": 115,
+      "question": 15,
+      "official_answer": "B",
+      "type": "single",
+      "core_concept": "由定義推出導出單位：電場＝力÷電荷，單位 N/C",
+      "related_codes": [
+        "PEa-Vc-2",
+        "PKc-Vc-1"
+      ],
+      "note": "選項為分式，須看 PDF 頁面"
+    }
+  ],
+  "misattributions": [
+    {
+      "year": 105,
+      "question": 1,
+      "actual_concept": "基礎物理示範實驗與主要器材的配對",
+      "wrongly_cited_for": "伽利略斜面或落體實驗",
+      "note": "曾被 NotebookLM 誤標為落體題的母題；伽利略斜面實驗的母題應為 102 學測第 66～67 題。"
+    }
+  ]
+}

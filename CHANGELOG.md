@@ -10,6 +10,24 @@
 
 本專案使用語意化版本概念記錄可攜式 Skill Suite 的變更。
 
+## 1.16.0 — 2026-10-13
+
+新增 `yincai-physics-node-items`：依因材網知識節點簡報產出四選一任務單 DOCX。
+
+- 流程：讀簡報界定命題範圍 → `resolve_curriculum.py` 選定學習內容 → 依學習表現資料選定每題學習表現
+  （使用者未指定時由 Agent 決定、不停下來詢問）→ 從學測原題查母題並核對官方答案 → 套既有範本產生 DOCX → 稽核與渲染。
+- 新增 `data/curriculum/stage5-learning-performance.json`：普通型高中必修 20 項學習表現原文（附 PDF 頁碼），
+  另加本專案的四選一適合度與展現方式；`ai-Vc-1～3` 標為不適合選擇題。
+- 新增 `data/gsat/verified-physics-sources.json`：20 題已核對原題與參考答案的學測物理母題，
+  並記錄 105 學測第 1 題曾被誤標為落體題母題。
+- 新增 `scripts/gsat_sources.py`（抽取、搜尋、顯示學測原題與答案）、`scripts/build_node_item_sheet.py`
+  （套範本產生任務單）、`scripts/audit_node_item_sheet.py`（題長、標點、單位空格、答案分布、正解長度檢查）。
+  三者需 python-docx／pymupdf，不在 CI 執行；`tests/test_node_item_skill.py` 只驗證契約、資料與語法。
+- 併入 `codex/zh-tw-proofread-proper-nouns`：`zh-tw-proofread` 術語來源文件新增「可查詢的 GitHub 資料庫」，
+  並將 OpenCC 連結文字更正為 `BYVoid/OpenCC`。
+- 學測 PDF、任務單範本與產出 DOCX 都不提交，放在 `local-data/` 或 `outputs/`。
+- `VERSION` 檔 1.15.0 → 1.16.0。
+
 ## 1.15.0 — 2026-09-05
 
 依「內容型 PPT 製作指引：三支 AI 影片，接成一條清楚的教學路徑」（1150905）整合六站骨架。
