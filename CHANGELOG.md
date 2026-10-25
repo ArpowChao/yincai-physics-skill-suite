@@ -10,6 +10,26 @@
 
 本專案使用語意化版本概念記錄可攜式 Skill Suite 的變更。
 
+## 1.21.0 — 2026-10-25
+
+WSQ DOCX 改用美編版型；原本是純文字標題加底線，學生不易分辨三區。由 8 個單元（PBa-Vc-3-1、
+PBa-Vc-4-1、PBa-Vc-4-2、PEa-Vc-2-1、PMc-Vc-1-1、PMc-Vc-3-1、PMc-Vc-3-2、PNc-Vc-1-1）
+試做後納入共通規則。同時取消 W 的投影片頁碼：標了頁碼，學生會只盯那幾張、忽略其他頁面。
+
+- W 不再標「（第 N 張）」：`physics-worksheet-generator` 固定格式與 WSQ 樣板拿掉頁碼，
+  `audit_wsq.py` 由「沒標頁碼」改為「標了頁碼」才警告；其餘上限不變。
+- `scripts/build_wsq_docx.py`：標頭改為米色標題區（節點碼＋單元名稱）加深藍「WSQ 作答約 10 分鐘」標籤，
+  下接班級／座號／姓名欄；單元名稱超過 14 字縮字級，維持一行。
+- W／S／Q 各有色塊徽章（藍 #1F4E8C／橘紅 #D2542F／綠 #2F7A5F）、英文小字與一行作答說明；
+  W 每格只有淡藍題號欄與題目；S、Q 放進淡色作答框，作答線加深、加高到 38 pt。
+- 頁尾放節點碼、單元名稱與 W → S → Q 流程；清掉頁尾樣式內建定位點，避免右側文字黏在一起。
+- 儲存格與表格屬性依 OOXML 順序寫入，表格之間一律以段落隔開，避免 Word 忽略網底或把表格併成一張。
+- `parse()` 另外回傳 `code`、`name` 與班級列 `labels`。
+- `tests/test_worksheet_wsq.py` 新增頁碼警告測試，以及版型測試：徽章色、不出現頁碼、頁尾、字型、A4、表格不相鄰與屬性順序；
+  需要 python-docx，CI 未安裝時略過，其餘解析測試照常執行。
+- `physics-worksheet-generator` 的 Output contract 與 WSQ 樣板說明版型由腳本固定產生，不手動排版。
+- `VERSION` 1.20.0 → 1.21.0。
+
 ## 1.20.0 — 2026-10-25
 
 - 從 `ArpowChao/googleflow` 匯入 `google-flow-continuity-video`、四份參考規範及 `agents/openai.yaml`，Skills 總數由 15 增為 16。

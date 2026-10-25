@@ -1,9 +1,11 @@
 import contextlib
+import importlib.util
 import io
 import re
 import sys
 import unittest
 from pathlib import Path
+from xml.etree import ElementTree
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -40,6 +42,18 @@ def load_audit():
     return audit_wsq
 
 
+W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
+
+
+def load_builder():
+    sys.path.insert(0, str(ROOT / "scripts"))
+    try:
+        import build_wsq_docx
+    finally:
+        sys.path.pop(0)
+    return build_wsq_docx
+
+
 def template_example() -> str:
     text = TEMPLATES.read_text(encoding="utf-8")
     blocks = re.findall(r"```markdown\n(.*?)```", text, re.S)
@@ -54,7 +68,7 @@ class WsqFormatTests(unittest.TestCase):
             "3～5 格",
             "30 字內",
             "10 分鐘內",
-            "投影片頁碼",
+            "不標投影片頁碼",
             "選一個寫",
             "scripts/audit_wsq.py",
             "scripts/build_wsq_docx.py",
@@ -64,11 +78,12 @@ class WsqFormatTests(unittest.TestCase):
             with self.subTest(marker=marker):
                 self.assertIn(marker, text)
         self.assertNotIn("提供澄清、深化、應用提問句型", text)
+        self.assertNotIn("每格標投影片頁碼", text)
 
     def test_template_wsq_drops_timestamps_and_data_tables(self):
         text = TEMPLATES.read_text(encoding="utf-8")
         wsq = text.split("## 📑 模式二")[0]
-        for banned in ["觀看時間點", "數據記錄表格", "核心原理與公式摘要", "澄清型"]:
+        for banned in ["觀看時間點", "數據記錄表格", "核心原理與公式摘要", "澄清型", "（第"]:
             with self.subTest(banned=banned):
                 self.assertNotIn(banned, wsq)
 
@@ -85,10 +100,16 @@ class WsqFormatTests(unittest.TestCase):
             with self.subTest(expected=expected):
                 self.assertIn(expected, joined)
 
+    def test_slide_page_tag_is_flagged(self):
+        # 標了頁碼，學生會只盯那幾張投影片、忽略其他頁面
+        tagged = template_example().replace("1. 公車", "1. （第 2 張）公車")
+        warn, _ = load_audit().audit(tagged)
+        self.assertEqual(["W1 標了投影片頁碼（第 N 張），請拿掉"], warn)
+
     def test_too_many_w_items_and_long_prompt_are_flagged(self):
         example = template_example()
-        extra = "\n".join(f"{n}. （第 {n} 張）多一格＿＿。" for n in range(5, 7))
-        longer = example.replace("4. （第 8 張）", "4. （第 8 張）" + "很長的敘述" * 8)
+        extra = "\n".join(f"{n}. 多一格＿＿。" for n in range(5, 7))
+        longer = example.replace("4. 物體", "4. " + "很長的敘述" * 8 + "物體")
         warn, _ = load_audit().audit(longer.replace("## S", extra + "\n\n## S"))
         joined = "\n".join(warn)
         self.assertIn("W 有 6 格", joined)
@@ -108,6 +129,61 @@ class WsqFormatTests(unittest.TestCase):
         self.assertTrue(spec["header"].startswith("班級："))
         self.assertEqual(["W", "S", "Q"], [heading[:1] for heading, _ in spec["sections"]])
         self.assertNotIn("前傾", str(spec))
+
+    def test_docx_builder_splits_code_name_and_header_labels(self):
+        build_wsq_docx = load_builder()
+        spec = build_wsq_docx.parse(template_example())
+        self.assertEqual("PEb-Vc-4-1", spec["code"])
+        self.assertEqual("牛頓第一定律", spec["name"])
+        self.assertEqual(["班級", "座號", "姓名"], spec["labels"])
+
+    def test_skill_describes_styled_layout(self):
+        text = SKILL.read_text(encoding="utf-8")
+        for marker in ["W／S／Q 色塊徽章", "W 每格只有題號與題目", "作答框", "黑白列印"]:
+            with self.subTest(marker=marker):
+                self.assertIn(marker, text)
+
+    @unittest.skipUnless(importlib.util.find_spec("docx"), "需要 python-docx")
+    def test_docx_uses_styled_layout(self):
+        import tempfile
+        import zipfile
+
+        build_wsq_docx = load_builder()
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "wsq.docx"
+            with contextlib.redirect_stdout(io.StringIO()):
+                build_wsq_docx.build(build_wsq_docx.parse(template_example()), out)
+            with zipfile.ZipFile(out) as z:
+                body = z.read("word/document.xml").decode("utf-8")
+                footer = "".join(z.read(n).decode("utf-8") for n in z.namelist() if n.startswith("word/footer"))
+
+        # 標頭與三區徽章；不出現投影片頁碼
+        for text in ["牛頓第一定律", "WSQ", "Watch", "Summarize", "Question", "班級", "滑行距離"]:
+            with self.subTest(text=text):
+                self.assertIn(text, body)
+        self.assertNotRegex(body, r"第\s*\d+\s*張")
+        for color in build_wsq_docx.COLOR.values():
+            with self.subTest(color=color):
+                self.assertIn(f'w:fill="{color}"', body)
+        self.assertIn("PEb-Vc-4-1", footer)
+        self.assertIn('w:eastAsia="微軟正黑體"', body)
+        self.assertIn('w:ascii="Arial"', body)
+        self.assertIn('w:w="11906"', body)  # A4 寬
+
+        root = ElementTree.fromstring(body)
+        local = lambda node: node.tag.rsplit("}", 1)[-1]  # noqa: E731
+
+        # Word 會把相鄰表格併成一張，各區塊之間要有段落隔開
+        top = [local(node) for node in root.find(f"{W}body")]
+        self.assertGreaterEqual(top.count("tbl"), 5)
+        self.assertNotIn(("tbl", "tbl"), list(zip(top, top[1:])))
+
+        # 儲存格屬性要照 OOXML 順序，否則 Word 會忽略網底或框線
+        order = build_wsq_docx.TC_ORDER
+        for tc_pr in root.iter(f"{W}tcPr"):
+            names = [local(child) for child in tc_pr]
+            ranks = [order.index(name) for name in names]
+            self.assertEqual(sorted(ranks), ranks, names)
 
     def test_cli_exit_code(self):
         import tempfile
