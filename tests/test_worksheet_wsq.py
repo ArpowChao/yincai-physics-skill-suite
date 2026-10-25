@@ -1,9 +1,11 @@
 import contextlib
+import importlib.util
 import io
 import re
 import sys
 import unittest
 from pathlib import Path
+from xml.etree import ElementTree
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -38,6 +40,18 @@ def load_audit():
     finally:
         sys.path.pop(0)
     return audit_wsq
+
+
+W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
+
+
+def load_builder():
+    sys.path.insert(0, str(ROOT / "scripts"))
+    try:
+        import build_wsq_docx
+    finally:
+        sys.path.pop(0)
+    return build_wsq_docx
 
 
 def template_example() -> str:
@@ -108,6 +122,61 @@ class WsqFormatTests(unittest.TestCase):
         self.assertTrue(spec["header"].startswith("班級："))
         self.assertEqual(["W", "S", "Q"], [heading[:1] for heading, _ in spec["sections"]])
         self.assertNotIn("前傾", str(spec))
+
+    def test_docx_builder_splits_code_name_and_header_labels(self):
+        build_wsq_docx = load_builder()
+        spec = build_wsq_docx.parse(template_example())
+        self.assertEqual("PEb-Vc-4-1", spec["code"])
+        self.assertEqual("牛頓第一定律", spec["name"])
+        self.assertEqual(["班級", "座號", "姓名"], spec["labels"])
+
+    def test_skill_describes_styled_layout(self):
+        text = SKILL.read_text(encoding="utf-8")
+        for marker in ["W／S／Q 色塊徽章", "第 N 張」頁碼標籤", "作答框", "黑白列印"]:
+            with self.subTest(marker=marker):
+                self.assertIn(marker, text)
+
+    @unittest.skipUnless(importlib.util.find_spec("docx"), "需要 python-docx")
+    def test_docx_uses_styled_layout(self):
+        import tempfile
+        import zipfile
+
+        build_wsq_docx = load_builder()
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "wsq.docx"
+            with contextlib.redirect_stdout(io.StringIO()):
+                build_wsq_docx.build(build_wsq_docx.parse(template_example()), out)
+            with zipfile.ZipFile(out) as z:
+                body = z.read("word/document.xml").decode("utf-8")
+                footer = "".join(z.read(n).decode("utf-8") for n in z.namelist() if n.startswith("word/footer"))
+
+        # 標頭、三區徽章與頁碼標籤
+        for text in ["牛頓第一定律", "WSQ", "Watch", "Summarize", "Question", "第 2 張", "第 8 張", "班級"]:
+            with self.subTest(text=text):
+                self.assertIn(text, body)
+        self.assertNotIn("（第 2 張）", body)
+        for color in build_wsq_docx.COLOR.values():
+            with self.subTest(color=color):
+                self.assertIn(f'w:fill="{color}"', body)
+        self.assertIn("PEb-Vc-4-1", footer)
+        self.assertIn('w:eastAsia="微軟正黑體"', body)
+        self.assertIn('w:ascii="Arial"', body)
+        self.assertIn('w:w="11906"', body)  # A4 寬
+
+        root = ElementTree.fromstring(body)
+        local = lambda node: node.tag.rsplit("}", 1)[-1]  # noqa: E731
+
+        # Word 會把相鄰表格併成一張，各區塊之間要有段落隔開
+        top = [local(node) for node in root.find(f"{W}body")]
+        self.assertGreaterEqual(top.count("tbl"), 5)
+        self.assertNotIn(("tbl", "tbl"), list(zip(top, top[1:])))
+
+        # 儲存格屬性要照 OOXML 順序，否則 Word 會忽略網底或框線
+        order = build_wsq_docx.TC_ORDER
+        for tc_pr in root.iter(f"{W}tcPr"):
+            names = [local(child) for child in tc_pr]
+            ranks = [order.index(name) for name in names]
+            self.assertEqual(sorted(ranks), ranks, names)
 
     def test_cli_exit_code(self):
         import tempfile
