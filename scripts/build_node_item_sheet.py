@@ -1,13 +1,17 @@
-"""以既有任務單 docx 為範本，填入 4 題並輸出新的任務單（yincai-physics-node-items 使用）。
+"""以既有任務單 docx 為範本，填入 4 題並輸出練習題、診斷題兩份任務單（yincai-physics-node-items 使用）。
 
 用法：
   python scripts/build_node_item_sheet.py 範本.docx items.json outputs/節點_標題_P4_MMDD.docx
 
+實際寫出 節點_標題_P4_MMDD_練習題.docx（理解題、應用題）與 節點_標題_P4_MMDD_診斷題.docx（診斷題1、2），
+拆分規則見 split_node_item_sheet.py。範本須是含 4 題的合併任務單，不能用已拆分的單份。
 需要 python-docx 與 lxml。範本的追蹤修訂會全部接受、註解會清除；
 第一個含「題目：」的表格視為範例，保持不動。
 """
-import copy, json, re, sys
+import copy, io, json, re, sys
+from pathlib import Path
 from docx import Document
+from split_node_item_sheet import output_paths, split_docx_bytes
 from docx.oxml.ns import qn
 from lxml import etree
 
@@ -75,7 +79,8 @@ for r in hdr.rows:
 KEY = {"標題：": "標題", "來源：": "來源", "題目：": "題目", "（A）": "A", "（B）": "B",
        "（C）": "C", "（D）": "D", "詳解：": "詳解", "答案：": "答案"}
 qtables = [t for t in doc.tables if any(r.cells[0].text.strip() == "題目：" for r in t.rows)]
-assert len(qtables) == 1 + len(data["items"]), f"範本有 {len(qtables)-1} 個題目表格，items 有 {len(data['items'])} 題"
+assert len(qtables) == 1 + len(data["items"]), (
+    f"範本有 {len(qtables)-1} 個題目表格，items 有 {len(data['items'])} 題；範本要用含 4 題的合併任務單，不是 _練習題／_診斷題 拆分檔")
 for t, item in zip(qtables[1:], data["items"]):
     for r in t.rows:
         k = KEY.get(r.cells[0].text.strip())
@@ -92,5 +97,12 @@ for p in doc.paragraphs:
     p.runs[0].text = new
     for r in p.runs[1:]:
         r.text = ""
-doc.save(out)
-print("saved", out)
+
+# 拆成練習題、診斷題兩份；題號在各自檔案內從 1 重編
+buffer = io.BytesIO()
+doc.save(buffer)
+parts = split_docx_bytes(buffer.getvalue())
+for kind, target in output_paths(Path(out)).items():
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_bytes(parts[kind])
+    print("saved", target)
