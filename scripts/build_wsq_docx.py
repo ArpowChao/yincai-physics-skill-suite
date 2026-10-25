@@ -9,7 +9,7 @@
 版型：
 - 標頭：左側米色標題區（節點碼＋單元名稱），右側深藍「WSQ」標籤；下接班級／座號／姓名欄。
 - W／S／Q 各有色塊徽章（藍／橘紅／綠）與一行作答說明。
-- W 每格分成題號、「第 N 張」頁碼標籤與題目；S、Q 放進淡色作答框，各給兩條手寫作答線。
+- W 每格只有題號與題目（不標投影片頁碼）；S、Q 放進淡色作答框，各給兩條手寫作答線。
 - 句中的＿＿轉成加長的底線空格；□ 換成較大的 ☐。色塊與作答線在黑白列印下仍分得出來。
 """
 from __future__ import annotations
@@ -18,12 +18,11 @@ import re
 import sys
 from pathlib import Path
 
-from audit_wsq import BLANK_LINE, ITEM, PAGE, sections, student_block
+from audit_wsq import BLANK_LINE, ITEM, sections, student_block
 
 EAST_ASIA = "微軟正黑體"
 LATIN = "Arial"
 BLANK = re.compile(r"＿+")
-PAGE_NO = re.compile(r"\d+(?:～\d+)?")
 ANSWER_LINES = 2
 CONTENT_W = 17.4  # 版心寬（cm），A4 左右各留 1.8 cm
 
@@ -32,7 +31,7 @@ COLOR = {"W": "1F4E8C", "S": "D2542F", "Q": "2F7A5F"}
 TINT = {"W": "E9EFF7", "S": "FBEEE9", "Q": "E8F2ED"}
 LINE = {"W": "7F97BD", "S": "C98E7A", "Q": "84AE98"}
 ENGLISH = {"W": "Watch", "S": "Summarize", "Q": "Question"}
-HINT = {"W": "看到那一張投影片就填寫", "S": "從提示接著寫，用自己的話", "Q": "勾選一個句首，接著寫下去"}
+HINT = {"W": "依影片順序，邊看邊填","S": "從提示接著寫，用自己的話", "Q": "勾選一個句首，接著寫下去"}
 
 # Word 對順序不合 schema 的屬性會忽略（網底、框線不見）或判定檔案損毀
 TC_ORDER = ["cnfStyle", "tcW", "gridSpan", "hMerge", "vMerge", "tcBorders", "shd", "noWrap",
@@ -215,21 +214,17 @@ def build(spec: dict, out: Path) -> None:
         spacer(4)
         if key == "W":
             items = [ITEM.match(line).group(1) for line in lines if ITEM.match(line)]
-            for n, (row, item) in enumerate(zip(table([0.8, 2.0, CONTENT_W - 2.8], rows=len(items)).rows, items), 1):
-                no, page, body = row.cells
+            for n, (row, item) in enumerate(zip(table([1.0, CONTENT_W - 1.0], rows=len(items)).rows, items), 1):
+                no, body = row.cells
                 for cell in row.cells:
                     cell.vertical_alignment = VALIGN.CENTER
                     if n < len(items):
                         borders(cell, bottom=(4, RULE, "dotted"))
+                shade(no, TINT["W"])
                 margins(no, 0.24, 0.24, 0.05, 0.05)
-                margins(page, 0.24, 0.24, 0.05, 0.15)
-                margins(body, 0.24, 0.24, 0.15, 0.05)
+                margins(body, 0.24, 0.24, 0.3, 0.05)
                 run(fmt(no.paragraphs[0], spacing=1.0, align=WD_ALIGN_PARAGRAPH.CENTER), str(n), 14, COLOR["W"], bold=True)
-                tag = PAGE.search(item)
-                if tag:
-                    run(fmt(page.paragraphs[0], spacing=1.0, align=WD_ALIGN_PARAGRAPH.CENTER),
-                        f" 第 {PAGE_NO.search(tag.group()).group()} 張 ", 9, COLOR["W"], bold=True, fill=TINT["W"])
-                rich(fmt(body.paragraphs[0], spacing=1.25), PAGE.sub("", item).strip(), 12)
+                rich(fmt(body.paragraphs[0], spacing=1.25), item.strip(), 12)
             continue
 
         box = table([CONTENT_W]).rows[0].cells[0]

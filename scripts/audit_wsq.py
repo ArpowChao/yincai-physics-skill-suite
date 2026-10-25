@@ -62,8 +62,9 @@ def audit(text: str) -> tuple[list[str], dict[str, int]]:
     if not W_MIN <= len(w_items) <= W_MAX:
         warn.append(f"W 有 {len(w_items)} 格（應 {W_MIN}～{W_MAX} 格）")
     for n, item in enumerate(w_items, 1):
-        if not PAGE.search(item):
-            warn.append(f"W{n} 沒標投影片頁碼（第 N 張）")
+        # 標了頁碼，學生會只盯那幾張投影片、忽略其他頁面
+        if PAGE.search(item):
+            warn.append(f"W{n} 標了投影片頁碼（第 N 張），請拿掉")
         if "＿" not in item and "□" not in item:
             warn.append(f"W{n} 沒有作答空格或勾選")
         if prompt_length(item) > W_PROMPT_MAX:

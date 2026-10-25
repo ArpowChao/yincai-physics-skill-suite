@@ -68,7 +68,7 @@ class WsqFormatTests(unittest.TestCase):
             "3～5 格",
             "30 字內",
             "10 分鐘內",
-            "投影片頁碼",
+            "不標投影片頁碼",
             "選一個寫",
             "scripts/audit_wsq.py",
             "scripts/build_wsq_docx.py",
@@ -78,11 +78,12 @@ class WsqFormatTests(unittest.TestCase):
             with self.subTest(marker=marker):
                 self.assertIn(marker, text)
         self.assertNotIn("提供澄清、深化、應用提問句型", text)
+        self.assertNotIn("每格標投影片頁碼", text)
 
     def test_template_wsq_drops_timestamps_and_data_tables(self):
         text = TEMPLATES.read_text(encoding="utf-8")
         wsq = text.split("## 📑 模式二")[0]
-        for banned in ["觀看時間點", "數據記錄表格", "核心原理與公式摘要", "澄清型"]:
+        for banned in ["觀看時間點", "數據記錄表格", "核心原理與公式摘要", "澄清型", "（第"]:
             with self.subTest(banned=banned):
                 self.assertNotIn(banned, wsq)
 
@@ -99,10 +100,16 @@ class WsqFormatTests(unittest.TestCase):
             with self.subTest(expected=expected):
                 self.assertIn(expected, joined)
 
+    def test_slide_page_tag_is_flagged(self):
+        # 標了頁碼，學生會只盯那幾張投影片、忽略其他頁面
+        tagged = template_example().replace("1. 公車", "1. （第 2 張）公車")
+        warn, _ = load_audit().audit(tagged)
+        self.assertEqual(["W1 標了投影片頁碼（第 N 張），請拿掉"], warn)
+
     def test_too_many_w_items_and_long_prompt_are_flagged(self):
         example = template_example()
-        extra = "\n".join(f"{n}. （第 {n} 張）多一格＿＿。" for n in range(5, 7))
-        longer = example.replace("4. （第 8 張）", "4. （第 8 張）" + "很長的敘述" * 8)
+        extra = "\n".join(f"{n}. 多一格＿＿。" for n in range(5, 7))
+        longer = example.replace("4. 物體", "4. " + "很長的敘述" * 8 + "物體")
         warn, _ = load_audit().audit(longer.replace("## S", extra + "\n\n## S"))
         joined = "\n".join(warn)
         self.assertIn("W 有 6 格", joined)
@@ -132,7 +139,7 @@ class WsqFormatTests(unittest.TestCase):
 
     def test_skill_describes_styled_layout(self):
         text = SKILL.read_text(encoding="utf-8")
-        for marker in ["W／S／Q 色塊徽章", "第 N 張」頁碼標籤", "作答框", "黑白列印"]:
+        for marker in ["W／S／Q 色塊徽章", "W 每格只有題號與題目", "作答框", "黑白列印"]:
             with self.subTest(marker=marker):
                 self.assertIn(marker, text)
 
@@ -150,11 +157,11 @@ class WsqFormatTests(unittest.TestCase):
                 body = z.read("word/document.xml").decode("utf-8")
                 footer = "".join(z.read(n).decode("utf-8") for n in z.namelist() if n.startswith("word/footer"))
 
-        # 標頭、三區徽章與頁碼標籤
-        for text in ["牛頓第一定律", "WSQ", "Watch", "Summarize", "Question", "第 2 張", "第 8 張", "班級"]:
+        # 標頭與三區徽章；不出現投影片頁碼
+        for text in ["牛頓第一定律", "WSQ", "Watch", "Summarize", "Question", "班級", "滑行距離"]:
             with self.subTest(text=text):
                 self.assertIn(text, body)
-        self.assertNotIn("（第 2 張）", body)
+        self.assertNotRegex(body, r"第\s*\d+\s*張")
         for color in build_wsq_docx.COLOR.values():
             with self.subTest(color=color):
                 self.assertIn(f'w:fill="{color}"', body)
