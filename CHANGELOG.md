@@ -10,6 +10,13 @@
 
 本專案使用語意化版本概念記錄可攜式 Skill Suite 的變更。
 
+## 1.20.0 — 2026-10-25
+
+- 從 `ArpowChao/googleflow` 匯入 `google-flow-continuity-video`、四份參考規範及 `agents/openai.yaml`，Skills 總數由 15 增為 16。
+- 保留故事確認、單段唯一主要變化、固定攝影母版、相鄰合格幀與逐幀連戲／外觀驗收；失敗幀不得傳播，修復保留版本且有重試上限。
+- 套件版補齊 Inputs、Workflow、Output contract、Stop conditions、Common mistakes 與 PASS／REVISE／HOLD；生成產物放本機 `outputs/google-flow/`。
+- 更新 README、Skill 清單驗證與整合測試。未包含來源專案的圖片、影片、Premiere 檔、憑證或本機路徑。
+
 ## 1.19.0 — 2026-10-25
 
 `physics-worksheet-generator` 的 WSQ 改為學生邊看影片邊寫的一頁紀錄單；原本沒有固定格式，

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Google Flow 連續短片"
+  short_description: "依複雜度切段、製作連戲分鏡及雙語 Flow 提示詞"
+  default_prompt: "Use $google-flow-continuity-video to complete my AI-video story, storyboard frames, and standalone bilingual Google Flow prompts step by step."

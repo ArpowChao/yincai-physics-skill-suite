@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS_ROOT = ROOT / ".agents" / "skills"
 EXPECTED = {
+    "google-flow-continuity-video",
     "chatcut-teaching-rough-cut",
     "video-narration-postproduction",
     "prepare-tts-transcript",
