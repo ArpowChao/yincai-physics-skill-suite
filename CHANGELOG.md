@@ -10,6 +10,22 @@
 
 本專案使用語意化版本概念記錄可攜式 Skill Suite 的變更。
 
+## 1.19.0 — 2026-10-25
+
+`physics-worksheet-generator` 的 WSQ 改為學生邊看影片邊寫的一頁紀錄單；原本沒有固定格式，
+也沒有長度上限，產出太長，學生無法在短時間寫完。
+
+- 新增「WSQ 固定格式」：W 看影片記重點 3～5 格（每格標投影片頁碼、題目 35 字內）、
+  S 用一句話寫出重點觀念（30 字內，附句首提示）、Q 三個句首選一個寫；全份一頁、作答 10 分鐘內。
+- 學生版不再放數據表、公式推導、計算題與影片時間碼，Q 不再要求澄清、深化、應用三種提問都寫。
+- WSQ 只交學生版 DOCX（附同內容 Markdown），不產教師版；三層模式不變。
+- 新增 `scripts/build_wsq_docx.py`：由 Markdown 產生一頁 A4 DOCX，句中空格轉成加長底線，
+  S、Q 各給兩條手寫作答線。
+- `references/worksheets_templates_and_examples.md` 的 WSQ 樣板改寫，並附 `PEb-Vc-4-1` 範例。
+- 新增 `scripts/audit_wsq.py`（僅標準函式庫）檢查格數、頁碼、字數、表格、時間碼與公式；
+  `tests/test_worksheet_wsq.py` 驗證樣板範例通過、舊式冗長 WSQ 會被標出。
+- `VERSION` 1.18.0 → 1.19.0。
+
 ## 1.18.0 — 2026-10-25
 
 `yincai-physics-node-items` 交件改為練習題、診斷題兩份 DOCX。

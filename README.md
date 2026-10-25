@@ -46,7 +46,7 @@ flowchart LR
 | `physics-framework-checker` | 內容型 PPT 總審查 | 九步驟、逐頁教學鏈、影音與修復藍圖 |
 | `physics-one-page-architect` | 課綱到一頁式架構 | 概念鏈、探究鏈、應用鏈 |
 | `physics-slide-enhancer` | 讓簡報可自學 | speaker notes、轉場、答題回饋 |
-| `physics-worksheet-generator` | 三層學習單 | 預習單、課中單、課後單 |
+| `physics-worksheet-generator` | WSQ 與三層學習單 | 一頁 WSQ 看影片紀錄單；預習單、課中單、課後單 |
 | `physics-literacy-question-creator` | 三面向八準則命題 | 題組、詳解、自評表 |
 | `physics-visual-style-guide` | 統一物理示意圖 | 受力圖、光路圖、電路圖、波形圖規格 |
 | `physics-question-qa-checker` | 題目品質雙檢 | 物理、數值、圖文、誘答檢查 |
