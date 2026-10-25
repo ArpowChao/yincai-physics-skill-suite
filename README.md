@@ -53,7 +53,7 @@ flowchart LR
 | `physics-ppt-upgrader` | 舊簡報升級 | 差距分析、升級稿、變更摘要 |
 | `physics-misconception-prompting` | 迷思與誘答設計 | 迷思假設、誘答、診斷回饋 |
 | `physics-unit-package-qc` | 單元教材包出貨總檢 | 跨載體一致性與上架判定 |
-| `yincai-physics-node-items` | 因材網知識節點任務單出題 | 理解、應用與學測改編診斷題四選一 DOCX、學習表現與學習內容對照 |
+| `yincai-physics-node-items` | 因材網知識節點任務單出題 | 理解、應用與學測改編診斷題四選一 DOCX（`_練習題`、`_診斷題` 兩份）、學習表現與學習內容對照 |
 | `prepare-tts-transcript` | 配音前標記多音字與公式 | 保留原稿的配音稿、逐項修改紀錄 |
 | `zh-tw-proofread` | 逐字稿、中英學科術語、研究專名與兩岸用語校正 | 依可追溯來源及三態人工決策產生修訂對照表與待確認清單 |
 | `chatcut-teaching-rough-cut` | ChatCut 教學影片粗剪 | 可編輯時間線、字幕、SRT、保護區與片長對帳 |

@@ -1,6 +1,6 @@
 interface:
   display_name: "因材網節點任務單出題"
-  short_description: "依節點簡報產出理解、應用與學測改編診斷題任務單"
-  default_prompt: "Use $yincai-physics-node-items to write the four-item worksheet for this knowledge-node deck."
+  short_description: "依節點簡報產出練習題、診斷題兩份任務單"
+  default_prompt: "Use $yincai-physics-node-items to write the practice and diagnostic worksheets for this knowledge-node deck."
 policy:
   allow_implicit_invocation: true
